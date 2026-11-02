@@ -66,3 +66,9 @@ Licenses and attributions are retained under the component trees and described i
 ## MORPHY personality
 
 Fresh launcher profiles automatically receive the editable `defaults/morphy/SOUL.md` and `IDENTITY.md` in their own workspace. No manual personality setup is needed. Existing profiles and custom agents are not migrated or overwritten. See [Phase2 implementation and verification](AUDIT/PHASE2_PERSONALITY.md).
+
+## Phase 3 voice development
+
+The existing Windows mic control can opt into final-utterance submission with `MORPHEUS_VOICE_AUTOSEND=1`; it uses the selected existing conversation and normal send pipeline. Without the flag, ordinary dictation remains unchanged. First-message compose screens retain dictation until the session is materialized normally. Use disposable profiles, enable the existing speech permissions and model setup, and stop/mute speech before recording another utterance.
+
+Fresh silence default is900ms; saved supported settings remain valid. Whisper previews are emitted during buffered decoding, not while-speaking streaming. Native Windows build/audio acceptance is still required. See [Phase3 results, test commands and limitations](AUDIT/PHASE3_IMPLEMENTATION_RESULTS.md). No homepage redesign or always-on listening is included.

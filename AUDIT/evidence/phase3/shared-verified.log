@@ -1,0 +1,11 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  OpenClaw.Shared -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Shared/bin/Debug/net10.0/OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.TestSupport/bin/Debug/net10.0/OpenClaw.TestSupport.dll
+  OpenClaw.Cli -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Cli/bin/Debug/net10.0/OpenClaw.Cli.dll
+  OpenClaw.Shared.TestHost -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.dll
+  OpenClaw.Shared.Tests -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/OpenClaw.Shared.Tests.dll
+Test run for /workspace/MORPHEUS/components/windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/OpenClaw.Shared.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    26, Skipped:     0, Total:    26, Duration: 73 ms - OpenClaw.Shared.Tests.dll (net10.0)

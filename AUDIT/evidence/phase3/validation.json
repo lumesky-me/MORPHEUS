@@ -1,0 +1,29 @@
+{
+  "source_commit": "fd5a1da9f773fc11b8d6ed1422de060f95a9280b",
+  "tray": {
+    "total": "763",
+    "executed": "763",
+    "passed": "763",
+    "failed": "0",
+    "error": "0",
+    "timeout": "0",
+    "aborted": "0",
+    "inconclusive": "0",
+    "passedButRunAborted": "0",
+    "notRunnable": "0",
+    "notExecuted": "0",
+    "disconnected": "0",
+    "warning": "0",
+    "completed": "0",
+    "inProgress": "0",
+    "pending": "0"
+  },
+  "shared": {
+    "passed": 148,
+    "failed": 0,
+    "skipped": 0
+  },
+  "native_build": "blocked: MakePri.exe Exec format error; Windows XAML compiler unavailable",
+  "real_model_calls": 0,
+  "physical_audio_tests": 0
+}
