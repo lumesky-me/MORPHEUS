@@ -31,3 +31,14 @@ $('draft').oninput=()=>{$('draft').style.height='auto';$('draft').style.height=M
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(narrowLayout.matches&&sidebarOpen&& !$('handoff').open){sidebarOpen=false;presentSidebar();$('sidebar-toggle').focus();}$('more-menu').hidden=true;$('more').setAttribute('aria-expanded','false');}});
 document.addEventListener('click',e=>{if(!e.target.closest('.menu-anchor')){$('more-menu').hidden=true;$('more').setAttribute('aria-expanded','false');}});
 navigate('home');
+
+// Decorative feedback only: does not activate voice or submit a request.
+const coreTouch=document.querySelector('.core-touch');
+let corePulseTimer;
+coreTouch.addEventListener('click',()=>{
+ clearTimeout(corePulseTimer);
+ coreTouch.classList.remove('pressed');
+ void coreTouch.offsetWidth;
+ coreTouch.classList.add('pressed');
+ corePulseTimer=setTimeout(()=>coreTouch.classList.remove('pressed'),650);
+});
