@@ -1,0 +1,1259 @@
+# Development Guide
+
+A comprehensive guide for building, running, and contributing to the OpenClaw Windows Hub.
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Project Structure](#project-structure)
+- [Building](#building)
+- [Architecture Overview](#architecture-overview)
+- [Documentation and Diagrams](#documentation-and-diagrams)
+- [Testing](#testing)
+- [CI/CD](#cicd)
+- [Contributing](#contributing)
+
+## Prerequisites
+
+### Required
+
+- **.NET SDK 10.0.400 or newer** - [Download here](https://dotnet.microsoft.com/download)
+- **Windows 10/11** - WinUI 3 and Windows App SDK require Windows 10 version 1903 or later
+- **Node.js LTS with npm** - Used by selected CI, documentation and frontend helpers. MXC and the WinUI execution path are restored through NuGet, not a root npm bridge.
+- **Windows 10 SDK** - Required for WinUI builds
+- **WebView2 Runtime** - Usually pre-installed on Windows 10+ ([Manual download](https://developer.microsoft.com/microsoft-edge/webview2/))
+- **Visual Studio 2022** (optional) - For easier development and debugging with WinUI 3 designer support
+
+Start with `.\scripts\setup-dev.ps1 -CheckOnly` from the repository root.
+Installation through `.\scripts\setup-dev.ps1` uses winget and may add Git
+trust; run it only with permission to make those machine changes.
+`-RunValidation` also runs the required closeout after setup.
+
+For read-only developer, desktop-proof, and optional shared-review diagnostics:
+
+```powershell
+.\scripts\setup-dev.ps1 -AgentReadiness
+```
+
+This reports prerequisites, not a successful build or authorized runtime.
+See [agent readiness](docs/AGENT_WORKFLOWS.md#check-host-and-tool-readiness).
+
+### For Testing
+
+- **A running OpenClaw gateway instance** - The gateway provides the backend for chat, sessions, and notifications when validating gateway-mediated flows
+  - Default gateway URL: `ws://localhost:18789`
+  - You'll need a valid authentication token from your OpenClaw instance
+- **Local MCP Server** - Windows node capabilities can also be validated without a gateway by enabling Local MCP Server in the tray Settings UI and using `winnode`
+
+## Project Structure
+
+This monorepo contains these main projects:
+
+```
+openclaw-windows-hub/
+├── src/
+│   ├── OpenClaw.Shared/              # Shared gateway client library
+│   │   ├── OpenClawGatewayClient.cs  # WebSocket client for gateway protocol
+│   │   ├── Models.cs                 # Data models (SessionInfo, ChannelHealth, etc.)
+│   │   └── IOpenClawLogger.cs        # Logging interface
+│   │
+│   ├── OpenClaw.Connection/          # Gateway registry, credentials, connection manager
+│   │
+│   ├── OpenClaw.Chat/                # Native chat model and reducer
+│   │   ├── ChatModels.cs             # Threads, entries, events, provider contract
+│   │   └── ChatTimelineReducer.cs    # Timeline state transitions
+│   │
+│   ├── OpenClaw.Cli/                 # WebSocket connect/send/probe validator
+│   │
+│   ├── OpenClaw.WinNode.Cli/         # winnode local MCP/Windows-node CLI
+│   │
+│   ├── OpenClaw.SetupEngine/         # Local WSL gateway setup and setup-code support
+│   │
+│   ├── OpenClaw.SetupEngine.UI/      # WinUI setup wizard pages hosted by the tray app
+│   │
+│   ├── OpenClawTray.FunctionalUI/    # Small in-repo declarative WinUI helper
+│   │   └── FunctionalUI.cs           # Components, hooks, elements, host control
+│   │
+│   └── OpenClaw.Tray.WinUI/          # WinUI 3 system tray application (primary)
+│   │   ├── App.xaml.cs               # Main application, tray icon, gateway connection
+│   │   ├── Services/                 # Settings, logging, hotkeys, deep links
+│   │   ├── Windows/                  # UI windows (Workspace, Settings, Status, etc.)
+│   │   ├── Dialogs/                  # Modal dialogs
+│   │   └── Helpers/                  # Icon generation, utilities
+│   │
+├── tests/
+│   ├── OpenClaw.Shared.Tests/        # Unit tests for shared library/capabilities/MCP
+│   ├── OpenClaw.Connection.Tests/    # Gateway registry and connection manager tests
+│   ├── OpenClaw.Tray.Tests/          # Tests for tray helpers (menu, settings, deep links)
+│   ├── OpenClaw.WinNode.Cli.Tests/   # winnode CLI contract tests
+│   ├── OpenClaw.SetupEngine.Tests/      # Setup engine tests
+│   ├── OpenClaw.Tray.UITests/           # Native WinUI/A2UI UI tests
+│   ├── OpenClawTray.FunctionalUI.Tests/ # FunctionalUI smoke tests
+│   ├── OpenClaw.Tray.IntegrationTests/  # Real-process tray/MCP integration tests
+│   └── OpenClaw.E2ETests/               # Gateway-mediated setup/connect E2E suites
+│
+├── .github/workflows/
+│   └── ci.yml                        # GitHub Actions CI/CD workflow
+│
+├── openclaw-windows-node.slnx        # Solution file
+├── README.md                         # User-facing documentation
+└── DEVELOPMENT.md                    # This file
+```
+
+### Project Dependencies
+
+```
+OpenClaw.Tray.WinUI  ──depends on──▶  OpenClaw.Shared + OpenClaw.Connection + OpenClaw.Chat + OpenClaw.SetupEngine.UI
+OpenClaw.WinNode.Cli  ──depends on──▶  OpenClaw.Shared
+OpenClaw.SetupEngine.UI  ──wraps──▶  OpenClaw.SetupEngine
+OpenClaw.SetupEngine  ──supports──▶  local WSL gateway setup
+OpenClaw.*.Tests  ──test──▶  corresponding shared, connection, tray, setup, and CLI surfaces
+```
+
+### Key Subsystems
+
+| Subsystem | Location | Purpose |
+|-----------|----------|---------|
+| **Gateway Communication** | `OpenClaw.Shared/OpenClawGatewayClient.cs` | WebSocket client with protocol v3, reconnect/backoff logic |
+| **Connection Management** | `OpenClaw.Connection/` | Gateway registry, credential precedence, pairing, tunnels, and reconnect policy |
+| **Notification System** | `OpenClaw.Tray.WinUI/App.xaml.cs` | Event routing, toast notifications, classification |
+| **WebView2 Integration** | `OpenClaw.Tray.WinUI/Pages/ChatPage.xaml.cs`, `OpenClaw.Tray.WinUI/Helpers/GatewayChatHelper.cs` | Optional Workspace web-chat fallback with lifecycle and navigation guards |
+| **Tray Icon Management** | `OpenClaw.Tray.WinUI/Helpers/IconHelper.cs` | GDI handle management, dynamic icon generation |
+| **Session Tracking** | `OpenClaw.Shared/OpenClawGatewayClient.cs` | Session state, activity tracking, polling |
+| **Settings & Logging** | `OpenClaw.Tray.WinUI/Services/` | JSON settings persistence, file rotation logging |
+
+## Building
+
+### Build the Entire Solution
+
+From the repository root:
+
+```bash
+./build.ps1
+```
+
+This restores prerequisites as needed and builds the shared library, tray app, setup engine, and CLI tools with the required Windows runtime identifiers.
+
+Legacy MXC payload cleanup uses the Windows PowerShell included with Windows and does not require PowerShell 7.
+
+### Build Individual Projects
+
+**Shared Library:**
+```bash
+dotnet build src/OpenClaw.Shared
+```
+
+**Tray App (WinUI):**
+```bash
+dotnet build src/OpenClaw.Tray.WinUI -r win-x64
+```
+
+### Platform and Architecture Notes
+
+#### x64 vs ARM64
+
+The solution supports both Intel/AMD (x64) and ARM (arm64) architectures:
+
+- **Tray App**: Can be built for either architecture
+  ```bash
+  dotnet build src/OpenClaw.Tray.WinUI -r win-x64
+  dotnet build src/OpenClaw.Tray.WinUI -r win-arm64
+  ```
+
+#### Cross-Platform Building
+
+The Shared library is cross-platform and can be built on Windows, Linux, or macOS:
+
+```bash
+cd src/OpenClaw.Shared
+dotnet build
+```
+
+The WinUI Tray app is Windows-only but can be built on Linux using:
+
+```bash
+dotnet build src/OpenClaw.Tray.WinUI -r win-x64 -p:EnableWindowsTargeting=true
+```
+
+### Running in Debug Mode
+
+#### Visual Studio
+
+1. Open `openclaw-windows-node.slnx` in Visual Studio 2022
+2. Set `OpenClaw.Tray.WinUI` as the startup project
+3. Press F5 to run with debugging
+
+#### Command Line
+
+```bash
+dotnet run --project src/OpenClaw.Tray.WinUI -r win-x64
+```
+
+For verbose output:
+
+```bash
+dotnet run --project src/OpenClaw.Tray.WinUI -c Debug -r win-x64
+```
+
+### Publishing (Self-Contained)
+
+For distribution:
+
+```bash
+dotnet publish src/OpenClaw.Tray.WinUI -c Release -r win-x64 --self-contained -o publish
+```
+
+This creates a standalone executable with all dependencies bundled.
+
+#### Local Inno Installer Iteration
+
+Use the local helper to build unsigned installer EXEs without waiting for CI:
+
+```powershell
+# Fast x64 installer for Windows Sandbox smoke tests
+.\scripts\build-inno-local.ps1 -Arch x64 -Fast
+
+# Recompile Inno only after changing installer.iss
+.\scripts\build-inno-local.ps1 -Arch x64 -Fast -NoPublish
+
+# Build both release-shaped architectures locally
+.\scripts\build-inno-local.ps1 -Arch All
+```
+
+`-Fast` uses ZIP/no-solid compression for quick local iteration. CI release builds keep the default LZMA solid compression and Azure signing.
+
+#### Local development MSIX
+
+The development MSIX is opt-in and does not replace the Inno or Updatum
+release paths. Create and trust its local signing certificate once from an
+elevated PowerShell:
+
+```powershell
+.\scripts\setup-dev-msix-cert.ps1
+```
+
+Then build the signed package:
+
+```powershell
+.\build.ps1 -Project WinUI -Msix Dev
+```
+
+`-Msix Dev` implies `-DevBuild`, uses the side-by-side development package
+identity, publishes the .NET runtime self-contained, advances the installed
+development package revision, and prints the generated package path. The
+development certificate has a distinct local-only publisher and a
+non-exportable private key; only its thumbprint is stored under
+`%LOCALAPPDATA%\OpenClawDevelopment\MSIX`. Future Microsoft Store submissions
+use the Partner Center identity and signing process instead.
+
+The development machine must also have
+`Microsoft.VCLibs.140.00.UWPDesktop` version `14.0.33728.0` or newer installed.
+Microsoft Store distribution resolves this framework dependency automatically;
+direct `Add-AppxPackage` sideloading requires it to be installed first.
+
+A production-identity MSIX can be installed while an Inno build is still present;
+see "The Store package alongside an existing Inno install" below for what the two
+share and how they interfere. The packaged app deliberately leaves the legacy
+scheduled task and `HKCU\...\Run` value in place: MSIX virtualizes HKCU writes and
+cannot remove the host value without a restricted capability that is inappropriate
+for the Store package, and deleting the task would silently disable an Inno install
+the user has not agreed to replace. That cleanup belongs to a migration flow that
+asks first, tracked in #1374.
+Packaged builds register launch-at-login through the manifest
+`windows.startupTask` extension and the Windows `StartupTask` API. Unpackaged
+Inno builds retain the existing scheduled-task and registry fallback until that
+installer path is retired.
+
+Remove the development certificate and machine trust when it is no longer
+needed:
+
+```powershell
+.\scripts\setup-dev-msix-cert.ps1 -Remove
+```
+
+#### Microsoft Store packages
+
+Store submissions use the release identity and are signed by Partner Center, so
+they share no state with the development certificate above:
+
+```powershell
+.\build.ps1 -Project WinUI -Msix Store
+```
+
+The two `-Msix` modes are mutually exclusive because they produce different
+applications rather than two flavors of one. They install side by side, which
+is what lets a packaged smoke test run without disturbing a working install:
+
+| | `-Msix Dev` | `-Msix Store` |
+| --- | --- | --- |
+| Identity | `OpenClawFoundation.OpenClaw.Dev` | `OpenClawFoundation.OpenClaw` |
+| Publisher | local development certificate | Partner Center |
+| Protocol | `openclaw-dev` | `openclaw` |
+| Signing | signed locally | unsigned; the Store signs |
+| Version revision | installed revision + 1 locally; explicit CI run number | pinned to `0` |
+| Architectures | host only | x64 and ARM64 |
+
+The revision field is the clearest reason the modes cannot merge, because each
+needs the opposite value. `Add-AppxPackage` only installs over an existing
+package when the version increases, and GitVersion holds major/minor/build
+steady across rebuilds of one commit, so a development build derives its
+revision from the installed development package and adds one. Rebuilding
+without installing in between reuses the same revision, which is why an
+uninstalled package must be installed before the next revision advances.
+Partner Center rejects any submission whose revision is non-zero.
+
+`-Msix Store` forces `-Configuration Release`, refuses to combine with
+`-DevBuild`, and delegates to `scripts\Build-StoreMsix.ps1` once
+per architecture. Each run produces one unsigned self-contained package at
+`artifacts\msix\<arch>\OpenClaw-<arch>.msix` alongside an
+`msix-metadata.json` provenance sidecar recording the source commit, whether
+the tree was dirty, the package version, publisher, and the package SHA-256.
+
+`scripts\Build-StoreMsix.ps1` fails the build when the produced package drifts from
+`Package.appxmanifest`: the identity name, publisher, and processor
+architecture must match, the version must be four `uint16` components ending in
+`.0` because Partner Center reserves the revision field, exactly one `.msix`
+must be produced, required content must be present (the app host, the .NET
+runtime, the in-process SetupEngine UI, and the architecture-matched MXC SDK
+native assets), and forbidden content must be absent (`AppxSignature.p7x` and
+the loose Visual C++ runtime files that the Inno payload ships but the MSIX
+resolves through its VCLibs framework dependency).
+
+CI combines both packages into `OpenClaw.msixbundle`, the recommended single
+Partner Center submission input. The standalone `.msix` files remain available
+for architecture-specific inspection or fallback. `Identity/@Name`,
+`Identity/@Publisher`, and `Properties/PublisherDisplayName` in
+`src\OpenClaw.Tray.WinUI\Package.appxmanifest` already hold the reserved
+Partner Center values and must keep matching **Product management > Product
+identity** exactly; a mismatch fails ingestion. The submission also needs a
+justification for the `runFullTrust` restricted capability and a stated reason
+plus privacy policy for the declared `webcam`, `microphone`, and `location`
+device capabilities.
+
+Generating the optional `.appxsym` symbol package additionally requires
+`mspdbcmf.exe` from the Visual Studio **Desktop development with C++** workload;
+without it the build logs a warning and skips symbols.
+
+#### CI MSIX downloads
+
+The **Build and Test** workflow builds both x64 and ARM64 MSIX variants and a
+multi-architecture bundle whenever
+the change classifier selects a release-build lane. This includes packaging,
+build, and workflow PRs, pushes to `main`/`master`, tags, and manual workflow
+dispatches. Ordinary targeted or documentation-only PRs intentionally skip them.
+MSIX failures block **CI Gate** when selected; a skipped unselected job is valid.
+
+Download the desired ZIP from the workflow run's **Artifacts**:
+
+| Artifact | Contents and purpose |
+|---|---|
+| `openclaw-msix-dev-x64` / `openclaw-msix-dev-arm64` | Signed `OpenClaw-Dev-<arch>.msix`, public `OpenClaw-Dev.cer`, `msix-metadata.json`, and `INSTALL.txt` for opt-in tester installation. |
+| `openclaw-msix-store-unsigned-x64` / `openclaw-msix-store-unsigned-arm64` | Unsigned `OpenClaw-<arch>.msix` and the validated provenance sidecar from `Build-StoreMsix.ps1`. Submission inputs, not directly installable tester packages. |
+
+These MSIX filenames use `OpenClaw`, not the previous `OpenClawCompanion`
+prefix. Only the download filenames changed: package identities, versions,
+and EXE installer filenames are unchanged. Existing downloads are not renamed.
+
+Each disposable runner uses `setup-dev-msix-cert.ps1` to generate and trust a
+non-exportable Dev certificate. Only its public `.cer` is included. The key and
+runner trust are removed in an always-run cleanup step. No repository signing
+secret or production release-signing environment is used. Each architecture
+and later workflow run can have a different certificate; testers must trust
+the matching signer explicitly. Only install packages from a workflow/source
+you trust, especially when testing unreviewed PR code.
+
+Extract the Dev artifact and follow `INSTALL.txt`: verify package/certificate
+hashes, install the architecture-matched VCLibs dependency described above,
+import the public certificate into `LocalMachine\TrustedPeople` from elevated
+PowerShell, then install the package as the intended user. This uses the
+existing **OpenClaw (Dev)** identity and can upgrade a locally installed Dev
+package; it is not a new independent test identity.
+
+CI passes `-MsixRevision $env:GITHUB_RUN_NUMBER` to the existing
+`build.ps1 -Project WinUI -Configuration Release -Msix Dev` path, with a fresh
+`-MsixOutputDirectory`. Explicit revisions must be 1-65535; overflow fails
+instead of wrapping. Omitting these options preserves local build behavior.
+Tagged-release reruns reuse their reserved package base. PR/main previews use
+the latest published stable Windows release line from the canonical upstream
+repository and do not consume numbers. For example, while Latest is
+`v2026.9.4`, previews use the `2026.9.4` allocation range and currently produce
+Store `2026.9.402.0`; a future official `v2026.9.5` release still starts in the
+`500-599` range. A preview candidate can advance after another official release
+reserves a number. Version ordering is not guaranteed across forks, branches,
+local builds, or decreasing base versions.
+Do not uninstall/downgrade an existing Dev package just to
+resolve a version conflict without considering its settings and data.
+When `-MsixBaseVersion` is omitted, local `-Msix Dev` builds compare the
+application-derived base with the installed Dev package and reuse the installed
+three-part base when it is higher. The fourth component still increments from
+the installed revision. This keeps ordinary local builds upgrade-compatible
+after installing an encoded CI Dev package without changing GitVersion.
+
+CI allocates a separate MSIX base without changing the application's GitVersion,
+assembly metadata, EXE/ZIP versions, or GitHub release tags. For app `X.Y.Z`,
+the third package component starts at `Z * 100` and advances within that patch's
+100-number range. For example:
+
+| App release line | MSIX Store versions |
+|---|---|
+| `2026.9.4`, including its alpha/correction tags | `2026.9.400.0` through `2026.9.499.0` |
+| `2026.9.5`, including its alpha/correction tags | `2026.9.500.0` through `2026.9.599.0` |
+| `2026.10.1`, including its alpha/correction tags | `2026.10.100.0` through `2026.10.199.0` |
+
+The already-used `2026.9.400.0` is recorded with its workflow and artifact
+provenance in `.github/msix-version-baseline.json`. The canonical ledger also
+contains reservation `msix-package/2026.9.4/401`, so the next unreserved
+`2026.9.4` packaging candidate is `2026.9.402.0`. Correction suffixes do not
+occupy their own digit.
+
+All tags on the same app patch share the counter, including revisions 10, 11,
+and onward. Exhaustion fails rather than entering the next patch's range.
+Every component must fit `uint16`; patch 655 has only the remaining 65500-65535
+slots, and larger patches cannot be encoded.
+
+Only `push` or `workflow_dispatch` builds of `v*` tags in the upstream repository
+reserve versions. A separate write-scoped job allocates once before the
+architecture matrix. PRs, ordinary main builds, and fork builds resolve Latest
+from `openclaw/openclaw-windows-node`, then read the next candidate from that
+same canonical reservation ledger. They are marked `preview` in
+`msixVersionAllocation` in each metadata sidecar and are not official release
+or Store-submission versions.
+Both Store architectures share the reserved base and end in `.0`. Both Dev
+architectures use the same base with the CI run number as the final component.
+
+The allocator records reservations as append-only annotated Git tags under
+`msix-package/<app-base>/<package-counter>`. Concurrent claims use atomic
+create-ref requests; reruns of the same source tag/commit reuse their record.
+Failed builds keep their reservations, so numbers are never recycled.
+Do not delete, move, or repurpose reservation tags, including during alpha
+release cleanup. The repository's active `Protect MSIX package reservations`
+ruleset blocks deletion and non-fast-forward updates under this namespace while
+permitting the official workflow to create refs. Preserve that ruleset as part
+of the release contract.
+See [MSIX version allocation](docs/RELEASING.md#msix-version-allocation).
+
+For an encoded local preview, save the readonly resolver result outside tracked
+source, then pass it through the validated builder:
+
+```powershell
+$info = .\scripts\Resolve-MsixPackageVersion.ps1 `
+  -SourceVersion (.\scripts\Get-OpenClawMsixPreviewSourceVersion.ps1) `
+  -SourceCommit (git rev-parse HEAD) `
+  -SourceRef "refs/heads/$(git branch --show-current)" `
+  -Repository openclaw/openclaw-windows-node
+$info | ConvertTo-Json -Depth 4 |
+  Set-Content "$env:TEMP\openclaw-msix-preview.json" -Encoding utf8
+.\scripts\Build-StoreMsix.ps1 -Architecture x64 `
+  -VersionInfoPath "$env:TEMP\openclaw-msix-preview.json"
+.\build.ps1 -Project WinUI -Configuration Release -Msix Dev `
+  -MsixBaseVersion $info.packageBaseVersion
+```
+
+`VersionInfoPath` validates the source commit and expected actual package
+version before writing metadata. `MsixBaseVersion` changes only the package
+manifest base; it does not override the app's assembly versions.
+Ordinary local builds that omit these options preserve their previous
+unallocated version calculation. Store distribution remains gated by #1375;
+this allocator does not submit packages to Partner Center.
+
+Every canonical stable, correction, and prerelease tag attaches
+`OpenClaw-Dev-x64.zip` and `OpenClaw-Dev-arm64.zip`. Each archive contains the
+signed Dev MSIX, matching public certificate, provenance metadata, and
+installation instructions. Unsigned Store MSIX packages and the bundle remain
+Actions artifacts only for manual upload to Partner Center. Public
+prereleases are not Latest and are not hidden from GitHub's Releases list.
+
+To request a new alpha from current `main`, manually run **Daily Alpha
+Release**. Its existing checks choose the GitVersion alpha tag, skip a commit
+that already has a published release, and dispatch **Build and Test** on the
+tag. It does not release the feature branch selected in the UI. Running
+**Build and Test** directly on a branch still produces workflow artifacts
+only. See [manual alpha releases](docs/RELEASING.md#manual-alpha-releases).
+
+Store distribution remains paused. This workflow neither submits to Partner
+Center nor retrieves or publishes Store-signed packages. The published Dev
+packages require explicit trust of their included development certificate.
+
+#### The Store package alongside an existing Inno install
+
+The Store package and the Inno installer produce the same application. Both can
+be installed at once, and uninstalling the Inno build first is **not** required.
+They cannot both run at once, though, and nothing in either build arbitrates
+between them yet.
+
+What the two installs share: the `openclaw` protocol registration, the
+`OpenClawTray` single-instance mutex, per-user data under `%APPDATA%\OpenClawTray`,
+the local gateway port, and the WSL gateway distro. MSIX full-trust apps are not
+namespace-isolated for named objects, so the mutex really is shared. Package
+identity, install directory, and AppUserModelID are the only axes that differ.
+
+Consequences to expect while both are installed:
+
+- The first one launched holds the mutex. The second forwards its activation to
+  the running instance and exits, so opening the Store entry while the Inno build
+  is running surfaces the Inno window with no error shown.
+- Both can register autostart, so which build starts at logon is a race. The
+  Inno installer's "Start when Windows starts" task creates a Startup folder
+  shortcut (`installer.iss:124`, `{userstartup}`); the Inno app's own Settings
+  toggle creates a logon scheduled task and an `HKCU\...\Run` value; the packaged
+  build uses the manifest's `windows.startupTask`. Neither build suppresses the
+  other, so the race persists across reboots. Windows Settings lists all of them
+  under the same name, and a Startup folder shortcut is labelled by its target
+  executable, so they cannot be told apart there.
+- Settings, gateway records, and device identities carry over either way. A
+  packaged process reads the existing per-user data through the merged MSIX view,
+  so there is no re-pairing.
+- A running Store app blocks the Inno installer **and** uninstaller, because
+  `installer.iss` sets `AppMutex` to the shared mutex name. Both abort with
+  "Setup has detected that OpenClaw Companion is currently running". Quit the
+  Store app before installing or uninstalling the Inno build.
+- Inno uninstall asks whether to also remove the local WSL gateway. **No** is the
+  default and keeps it. A silent uninstall (`/SILENT`, `/VERYSILENT`) always
+  removes the gateway.
+
+To make the Store build the one that runs, quit the Inno build and launch the
+Store entry, or uninstall the Inno build.
+
+Detecting a legacy install from the packaged app, suppressing its autostart,
+telling the user which install is active, and removing it with consent are
+tracked in #1374 and are not implemented here.
+
+#### Dev identity and side-by-side installs
+
+Release identity is the default for every configuration. Use `-DevBuild` on `build.ps1` or `-Dev` on `run-app-local.ps1` when you explicitly want the side-by-side dev identity:
+
+```powershell
+.\build.ps1 -Project WinUI -DevBuild
+.\run-app-local.ps1 -Dev -Isolated
+```
+
+`-DevBuild` passes `-p:DevBuild=true` to the WinUI project and produces the dev app identity marker that CI verifies in the **Verify DevBuild identity marker** step. `installer.iss` also accepts `/DDevBuild=1` for side-by-side dev installers; `.\scripts\build-inno-local.ps1 -Dev` wires that flag for local installer iteration.
+
+#### Onboarding and setup workflow helpers
+
+Native Gateway development follows npm `latest`, not the Store MSIX payload.
+The existing MSIX isolation/runtime is retained by packaging the npm archive with
+`openclaw/openclaw-windows-packaging` under a separate development identity:
+
+```powershell
+.\run-app-local.ps1 -Isolated
+.\run-app-local.ps1 -Isolated -GatewayChannel Packaged
+.\run-app-local.ps1 -Isolated -GatewayChannel Packaged -PackagingRelease v2026.9.9-msix.0
+```
+
+`-GatewayChannel Packaged` tests the latest published packaging release from the same Companion source,
+without a long-lived release fork. The launcher selects `npm-latest` or
+`packaged` and automatically isolates each channel's app data. `-NoBuild`
+skips only the Companion build; Gateway tags are still resolved to exact versions.
+An explicit `OPENCLAW_NATIVE_GATEWAY_DEV_PATCH` reuses a prepared patch without
+rebuilding. `-UseStoreGateway` opts back into the installed Store runtime.
+Existing profiles are retained, not migrated into the new channel-specific data
+directories; use `-DataDir` only when deliberately reusing an existing profile.
+
+For Gateway-only preparation, use `.\scripts\Build-NativeGatewayFromSource.ps1`
+with the same `-GatewayChannel` and `-PackagingRelease` parameters. Packaged reuses
+the verified released MSIX application payload and builds its development launcher
+from the release's packaging commit, rather than repacking npm at the same version.
+Use an exact `-PackagingRelease` for a reproducible baseline. Latest published on
+GitHub does not necessarily mean deployed to Store. For an exact npm reproduction,
+pass `-OpenClawNpmVersion <exact-version> -PackagingRef <commit> -Patch <name>`.
+Explicit `-OpenClawRef main`, local source and prebuilt-package inputs remain
+supported. See the [native Gateway skill](.agents/skills/native-gateway-from-source/SKILL.md)
+for prerequisites, provenance, verification and removal.
+
+This changes development tooling, not installed Companion's Store acquisition or
+normal WSL setup. WSL already defaults to npm `latest`; set `Gateway.Version`
+explicitly for a WSL version-specific install.
+
+##### Gateway development and CI matrix
+
+`build.ps1` builds Companion. Native Gateway preparation is performed by
+`run-app-local.ps1` or `scripts\Build-NativeGatewayFromSource.ps1`; the native
+channel flag is `-GatewayChannel Packaged`, not `-Packaged`.
+
+| Context | Gateway | Default / Latest | Packaged | Coverage or limitation |
+|---|---|---|---|---|
+| Local development | Native | Download npm Latest and build/register a side-by-side development package. | Reuse the verified released MSIX application payload and build/register a side-by-side development package. | Native runtime proof is separate from build/registration checks. |
+| Local development | WSL | Use the existing installer policy, normally npm Latest. | Not a WSL channel. An explicit `Gateway.Version` can select another npm version. | Native channel flags do not change WSL setup. |
+| CI | WSL | Run each selected setup/connect, revocation and network recovery job once against a shared exact npm Latest snapshot. | No duplicated Packaged lane or MSIX baseline dependency. | Real WSL Gateway-to-Windows-node coverage; not native session proof. |
+| CI | Native | No live Gateway runtime lane. | No live Gateway runtime lane. | Unit/helper and upstream packaging checks exist, but live isolated-session startup, pairing and recovery are not covered. |
+
+Native runtime CI requires a capability-qualified Windows client runner.
+Standard Windows Server runners are rejected by the current support gate; a
+Windows client build alone is not sufficient without a successful session
+capability probe and real startup proof.
+
+The first-run Windows gateway onboarding wizard lives in `OpenClaw.SetupEngine.UI` and is hosted by `OpenClaw.Tray.WinUI`; see [docs/ONBOARDING_WIZARD.md](docs/ONBOARDING_WIZARD.md) for the page flow. The setup pipeline itself is documented in [docs/SETUP_ENGINE_REDESIGN.md](docs/SETUP_ENGINE_REDESIGN.md), including the Windows node context step that injects agent instructions into the WSL workspace.
+
+Useful local scripts:
+
+- `.\scripts\clean-uninstall.ps1` is a standalone demo-device cleanup script (Windows PowerShell 5.1, no build or Copilot required). Preview by default; repeat with `-ConfirmDestructive` to apply. `-All` enables shared cached-model, dev-state, and owned WSL cleanup together; add `-ExcludeCachedModels` to preserve external shared cached weights. Additional profile paths remain explicit. See the [standalone usage and safety limits](.agents/skills/uninstall/HARD-CLEAN.md#standalone-script-no-copilot-required).
+  Use `-RemoveIsolatedProfilePath` for explicitly identified leftover Windows isolated-profile registrations, including records whose folders were already deleted. This is not implied by `-All`; confirmed removal requires elevation and rejects loaded, special, and ordinary user profiles.
+- For a native Gateway/MXC and llama.cpp clean retest, use the [uninstall skill](.agents/skills/uninstall/SKILL.md) and its [hard-clean procedure](.agents/skills/uninstall/HARD-CLEAN.md). It includes package teardown, isolated profiles, shared-model consent, and post-clean verification; the WSL helpers below are not substitutes.
+- `.\scripts\dev-reset-rebuild-launch.ps1` resets tray data, rebuilds, and optionally launches the app; add `-WipeWslDistro` for a full local WSL gateway reset.
+- `.\scripts\validate-mxc-e2e.ps1` runs the formal WSL Gateway -> Windows node -> `system.run` MXC proof path for MXC-sensitive changes.
+
+MXC development uses the exact `Microsoft.Mxc.Sdk` 1.0.0 package in Shared.
+The SDK remains the only contained production path. Positively unsupported
+Windows selects a narrow direct-argv compatibility executor, not a failure
+fallback. Tests must distinguish that OS verdict from missing DLLs, unknown/
+failed probes and request/spawn errors. Node Sandbox disables permission controls
+and warns that file/network/clipboard/UI restrictions are not enforced in
+uncontained mode. Command approvals, deadlines and output bounds remain active.
+Companion's own OS minimum is unchanged.
+Unit tests inject the public `IMxcProcess` and a narrow spawn delegate, never a
+second production runner. Native isolated SDK proofs require
+`OPENCLAW_RUN_MXC_NATIVE_PROOF=1`; skipped proofs are not containment validation.
+The formal E2E script provisions WSL/Gateway resources. Run it only on a host
+where that exact runtime mutation is authorized. Balanced/Open use OS-resolved
+user-folder scope, never volume roots. Run
+`.\scripts\validate-mxc-userfolders-native.ps1 -ArtifactDirectory <owned-path-outside-repo> -SourceManifest <current-manifest>`
+for authorized product-runner proof against synthetic profiles only. It does
+not provision a Gateway, WSL, tray, listener or elevated resource. Native skips
+fail this proof. Keep real-appdata and fixture/ancestor ACL before/after evidence.
+
+## Architecture Overview
+
+### Native chat surface (Reactor + OpenClaw.Chat)
+
+Workspace hosts the only application chat page
+(`src/OpenClaw.Tray.WinUI/Pages/ChatPage.xaml`). It renders conversations
+with native WinUI 3 controls via the in-repo
+Reactor components and `OpenClaw.Chat` model/reducer code.
+The standard WebView2-hosted gateway web client remains available as a
+settings-controlled fallback. Tray Chat, the Settings Chat rail, and Local AI
+Open chat navigate to Workspace rather than creating another chat host.
+
+**Layering:**
+
+```
+src/OpenClaw.Tray.WinUI/Chat/    OpenClawReactorChatRoot · ReactorChatTimeline · ReactorChatComposer
+                                 OpenClawChatDataProvider (adapts OpenClawGatewayClient → IChatDataProvider)
+                                 ReactorChatHostExtensions (mounts Reactor into a XAML <Border>)
+                                 IChatGatewayBridge        (testability seam over OpenClawGatewayClient)
+        ▲ depends on
+src/OpenClaw.Chat/               ChatThread · ChatTimelineState · IChatDataProvider · ChatTimelineReducer
+        ▲ rendered by
+Reactor.WinUI                    Component · hooks · ReactorHostControl · WinUI elements
+```
+
+**Lifecycle:**
+
+- One `OpenClawChatDataProvider` instance lives on `App` (`App.ChatProvider`),
+  created in `InitializeGatewayClient` and disposed inside
+  `UnsubscribeGatewayEvents`. Its lifetime is independent of Workspace, so
+  closing the window does not stop background Gateway/MCP operations.
+- `ReactorChatHostExtensions` mounts a dedicated `ReactorHostControl` in
+  Workspace's `ChatPage` as the child of `<Border x:Name="ChatHost"/>`.
+  `MountedReactorChat` owns the composer session and disposes it exactly once.
+  The surrounding Workspace chrome stays XAML.
+- Workspace owns agent/session selection and back/forward history. Sidebar,
+  notification, Sessions/Cron actions, and composer-created sessions use that
+  navigation boundary; the composer has no separate session picker.
+  Actual-width observation keeps model/reasoning controls and transcript
+  geometry responsive in narrow and wide Workspace layouts.
+- Provider events fire on the WebSocket-receive thread; the provider
+  marshals `Changed` / `NotificationRequested` callbacks through a
+  dispatcher post delegate (`DispatcherQueue.AsPost()`), so Reactor
+  components observe state on the UI thread.
+
+**Adding new chat behavior:** model new events in `OpenClaw.Chat`'s
+`ChatEvent` discriminated union, handle them in `ChatTimelineReducer`, and
+emit them from `OpenClawChatDataProvider` in response to gateway signals.
+
+### Gateway WebSocket Connection
+
+The `OpenClawGatewayClient` manages the connection to the OpenClaw gateway:
+
+**Connection Flow:**
+1. WebSocket connects to gateway URL (default: `ws://localhost:18789`)
+2. Client waits for `challenge` event from gateway
+3. Client responds with authentication token
+4. Gateway sends `connected` event confirming authentication
+5. Client begins receiving events and can send requests
+
+**Reconnect & Backoff Logic:**
+- Automatic reconnection on disconnect or error
+- Exponential backoff: 1s, 2s, 4s, 8s, 15s, 30s, 60s (max)
+- Resets backoff counter on successful connection
+- Connection state exposed via `StatusChanged` event
+
+**Implementation:**
+```csharp
+// Backoff sequence in milliseconds
+private static readonly int[] BackoffMs = { 1000, 2000, 4000, 8000, 15000, 30000, 60000 };
+```
+
+### Event Parsing and Notification Types
+
+The gateway sends structured events over WebSocket. The client parses these into typed notifications:
+
+#### Event Types
+
+| Event Type | Handler | Description | UI Result |
+|------------|---------|-------------|-----------|
+| `challenge` | Initial handshake | Gateway requests authentication | Client sends token |
+| `connected` | Authentication success | Gateway confirms connection | Status → Connected |
+| `agent` (stream=job) | `HandleJobEvent` | Job/task activity | Activity indicator, tray badge |
+| `agent` (stream=tool) | `HandleToolEvent` | Tool execution (exec, read, write, etc.) | Activity with tool name + args |
+| `chat` | `HandleChatEvent` | Assistant chat messages | Toast notification for short messages |
+| `health` | `ParseChannelHealth` | Channel health status | Channel status in tray menu |
+| `session` | `HandleSessionEvent` | Session list updates | Session display refresh |
+| `usage` | `ParseUsage` | Token usage, cost, requests | Usage info in status window |
+
+#### Notification Classification
+
+Notifications are classified using two strategies:
+
+1. **Structured** (preferred): Events with explicit `type`, `category`, or `notificationType` fields
+2. **Text-based** (fallback): Keyword matching on notification content
+
+**Categories:**
+- `health` - Blood sugar, glucose, CGM readings
+- `urgent` - Critical alerts requiring immediate attention
+- `reminder` - Calendar reminders, tasks
+- `stock` - Stock price alerts
+- `email` - Email notifications
+- `calendar` - Calendar events
+- `error` - Error messages
+- `build` - CI/CD build status
+- `info` - General information (default)
+
+**Routing:**
+- Notifications trigger Windows toast notifications (if enabled in settings)
+- Stored in notification history for later review
+- Can be filtered by category
+
+### WebView2 Lifecycle
+
+Workspace's `ChatPage` retains Microsoft Edge WebView2 as the optional gateway
+web-chat renderer. The persisted `UseLegacyWebChat` setting keeps its existing
+JSON name and default (`false`, native chat). Diagnostics can temporarily force
+the native or gateway UI for Workspace; the override resets on restart.
+
+`GatewayChatHelper` initializes WebView2 with the shared profile and standard
+browser settings, and delegates chat URL construction to `GatewayChatUrlBuilder`.
+`ChatPage` owns credential injection and navigation guards, renderer selection,
+pending-session consumption, loading/error presentation, and generation-fenced
+asynchronous applies. Native setup chat
+retains its verified native binding rather than following the fallback setting.
+
+The shared WebView2 profile and browser dependencies remain in use by chat and
+other app surfaces. Removing the retired popup does not delete profile data,
+conversation history, drafts, or Gateway credentials. Workspace close/reopen
+cleans up its mounted host without changing the app-owned provider lifetime.
+
+### GDI Handle Management
+
+The tray icon system uses GDI handles for icon creation. Proper management prevents handle leaks:
+
+**Icon Creation Pattern:**
+```csharp
+// Create bitmap
+using var bitmap = new Bitmap(16, 16);
+using var graphics = Graphics.FromImage(bitmap);
+graphics.DrawSomething(...);
+
+// Convert to icon (creates GDI handle)
+var hIcon = bitmap.GetHicon();
+var icon = Icon.FromHandle(hIcon);
+
+// Clone to own the data
+var result = (Icon)icon.Clone();
+
+// CRITICAL: Destroy the GDI handle
+DestroyIcon(hIcon);
+
+return result;
+```
+
+**Why This Matters:**
+- GDI handles are a limited system resource (10,000 per process on Windows)
+- Not calling `DestroyIcon()` causes handle leaks
+- Each tray icon update could leak a handle without proper cleanup
+- The pattern: Create → Clone → Destroy ensures we own the icon data and release the GDI handle
+
+**Caching:**
+Icons are cached to avoid repeated GDI operations:
+```csharp
+private static Icon? _connectedIcon;
+private static Icon? _disconnectedIcon;
+// ... etc
+```
+
+### Session Tracking and Polling
+
+The client tracks active agent sessions with intelligent display logic:
+
+**Session State:**
+- Main session: Primary user conversation
+- Sub-sessions: Background tasks, tool executions
+- Each session has: key, status, model, channel, activity
+
+**Polling:**
+- `RequestSessionsAsync()` called periodically (every 5 seconds when connected)
+- Gateway responds with session list
+- Client updates internal `_sessions` dictionary
+
+**Display Selection Algorithm:**
+1. Active main session always takes priority
+2. Currently displayed session kept if still active (prevents flipping)
+3. Falls back to most recently active sub-session
+4. 3-second debounce prevents jitter during rapid changes
+
+**Why This Matters:**
+Without stable selection, the activity display would rapidly flip between sessions during concurrent operations, creating a poor user experience.
+
+### Logging
+
+File-based logging with automatic rotation:
+
+**Log File:**
+- Location: `%LOCALAPPDATA%\OpenClawTray\openclaw-tray.log`
+- Rotation: When log exceeds 5MB, old log → `openclaw-tray.log.old`
+- Thread-safe: Uses lock for concurrent writes
+
+**Easy-button setup diagnostics:**
+- Human summary: `%LOCALAPPDATA%\OpenClawTray\Logs\Setup\easy-setup-latest.txt`
+- Machine-readable latest trace: `%LOCALAPPDATA%\OpenClawTray\Logs\Setup\easy-setup-latest.jsonl`
+- Per-run traces: `%LOCALAPPDATA%\OpenClawTray\Logs\Setup\setup-*.jsonl`
+- Contents are redacted and cover setup phases, WSL commands, pairing, gateway checks, repair, and remove lifecycle steps.
+
+**Log Levels:**
+- `INFO` - Normal operation (connections, events)
+- `WARN` - Recoverable issues (reconnects, timeouts)
+- `ERROR` - Failures (connection errors, exceptions)
+- `DEBUG` - Detailed diagnostics (only in DEBUG builds)
+
+**Format:**
+```
+[2026-02-01 12:34:56.789] [INFO] Gateway connected, waiting for challenge...
+[2026-02-01 12:34:57.123] [WARN] Reconnecting with 2000ms backoff...
+[2026-02-01 12:34:58.456] [ERROR] Connection failed: Host not found
+```
+
+**Debug Output:**
+In DEBUG builds, logs are also written to Visual Studio Output window via `System.Diagnostics.Debug.WriteLine()`.
+
+**Security:**
+Sensitive data (authentication tokens) are never logged.
+
+## Documentation and Diagrams
+
+For documentation or instruction work, start with
+[docs/AGENTS.md](docs/AGENTS.md) and the
+[technical-documentation skill](.agents/skills/technical-documentation/SKILL.md).
+Choose the reader's task, show one recommended workflow, and verify its claims
+against source. Keep exact contracts and safety facts when rewriting; link
+exhaustive reference material rather than repeating it in every guide.
+
+Maintained architecture, data-flow, and sequence diagrams use a paired source
+and rendered artifact:
+
+```text
+docs/diagrams/<name>.excalidraw
+docs/diagrams/<name>.svg
+```
+
+Embed the SVG in Markdown so GitHub renders it, and place an adjacent link to
+the `.excalidraw` source so contributors can edit it. Keep labels synchronized
+between both files. Every text element in the Excalidraw JSON must have explicit
+`width` and `height` and use black text; container boxes remain transparent.
+
+Do not add new Mermaid or maintained ASCII-art architecture diagrams. Small
+state notations, directory trees, wire examples, and command-output snippets
+may remain as fenced text when their value is the literal text rather than a
+visual layout. Historical design documents may retain clearly labeled inline
+sketches, but they must link to the current canonical diagram when one exists.
+
+Run documentation validation directly with:
+
+```powershell
+.\scripts\validate-docs.ps1
+```
+
+`.\build.ps1` runs the same validator before compiling. It checks the named
+custom Windows proof-pool inventory, maintained Markdown links and anchors,
+rejects Mermaid and em dashes, verifies every Excalidraw/SVG pair, requires SVG
+accessibility metadata, and confirms rendered labels match the editable source.
+
+## Testing
+
+Required agent validation lives in [AGENTS.md](AGENTS.md). For changes touching
+tray UX, Settings, onboarding, chat/canvas, Command Center, Windows node
+capabilities, local MCP, gateway pairing/connection, permissions, or
+diagnostics, use the repo-local skill
+`.agents/skills/openclaw-proof-validation/SKILL.md`: run the build/tests,
+validate local MCP with `winnode --list-tools` plus the changed command, run
+rubber-duck review for non-trivial changes, then launch the tray from this
+worktree and drive the changed UI with computer-use / desktop automation as one
+batched closeout pass before PR publication. Mid-development rubber-duck,
+computer-use, or MCP validation is also appropriate when explicitly requested or
+needed to unblock the work; agents should ask whether to run computer-use or
+provide manual UI proof steps, while still enforcing required automated tests.
+
+PRs should include `## Required proof pools`, `## Validation`, and
+`## Real behavior proof` sections. Select stable pool IDs from
+[`docs/PROOF_POOLS.md`](docs/PROOF_POOLS.md), or declare `none` with a reason.
+Pool selection schedules capacity-dependent work but does not claim it ran.
+Paste concrete after-change output, visible UI evidence for visual changes,
+`winnode` output or raw MCP server JSON-RPC output for node commands, and
+gateway invoke output for gateway-mediated behavior when available. The default
+PR template includes these prompts.
+
+### Running Unit Tests
+
+The repository has multiple unit, UI, integration, and E2E test projects. Use [docs/TEST_COVERAGE.md](docs/TEST_COVERAGE.md) as the inventory of record.
+
+```bash
+# Run local-dev tests. E2E is intentionally excluded from the solution and
+# runs in CI before merge; run it locally only when explicitly needed.
+dotnet test
+
+# Run with detailed output
+dotnet test --verbosity detailed
+
+# Run specific test class
+dotnet test --filter "FullyQualifiedName~AgentActivityTests"
+```
+
+**Test Coverage:**
+- `OpenClaw.Shared.Tests` covers models, gateway client behavior, capabilities, URL helpers, notification categorization, shell quoting, MCP, device identity, and WinNode client contracts.
+- `OpenClaw.Tray.Tests` covers settings isolation, deep link parsing, onboarding state, setup code decoding, gateway health/chat helpers, security validation, wizard step parsing, gateway discovery, localization, and tray UI helpers.
+- Additional projects cover connection management, setup engine behavior, `winnode`, FunctionalUI, native UI/A2UI, integration, and gateway-mediated E2E flows.
+- See [docs/TEST_COVERAGE.md](docs/TEST_COVERAGE.md) for suite ownership,
+  historical counts, and which lanes require network, WSL, real-process, or
+  desktop prerequisites.
+- Treat its dated counts as historical measurements, not current validation.
+  Use [regression authoring](docs/TEST_COVERAGE.md#writing-a-regression-test)
+  and [test-audit](.agents/skills/test-audit/SKILL.md) when adding or reviewing tests.
+
+See [tests/OpenClaw.Shared.Tests/README.md](tests/OpenClaw.Shared.Tests/README.md) for detailed test documentation.
+
+### Manual Testing Without Live Gateway
+
+Use the [Gateway fixture guide](docs/GATEWAY_FIXTURE_TESTING.md) to run the
+current built app against deterministic responses in an isolated profile.
+It covers populated navigation and chat without a real Gateway or provider.
+Follow its explicit executable selection and owned-process cleanup.
+
+For MCP-only diagnosis, use the
+[local MCP guide](.agents/skills/windows-app-mcp/SKILL.md). Do not change real
+settings or auto-start state merely to make a disconnected demo. Fixture and
+MCP results do not prove real pairing, installer behavior, or MXC.
+
+### Manual Test Scenarios
+
+#### Tray Icon States
+
+1. **Disconnected (Gray)**: 
+   - Start app without gateway running
+   - Verify icon is gray
+   - Verify tooltip shows "Disconnected"
+
+2. **Connecting (Amber)**:
+   - Configure valid gateway URL but don't start gateway yet
+   - Restart app
+   - Briefly observe amber icon during connection attempt
+
+3. **Connected (Green)**:
+   - Start gateway
+   - Verify icon turns green
+   - Verify tooltip shows "Connected"
+
+4. **Error (Red)**:
+   - Connect to gateway, then stop gateway
+   - Verify icon turns red after timeout
+
+5. **Activity Badge**:
+   - Connect to gateway
+   - Send a chat message that triggers tool use
+   - Verify small colored dot appears on tray icon during tool execution
+
+#### Notifications
+
+1. **Toast Notifications**:
+   - Connect to gateway
+   - Send a message that triggers a chat response
+   - Verify Windows toast notification appears (if enabled)
+   - Click toast → should open relevant UI
+
+2. **Activity / notification history**:
+   - Right-click tray → **Activity Stream** or **Notification History**
+   - Verify past notifications are listed
+   - Test filtering by category
+
+3. **Notification Settings**:
+   - Settings → Disable notifications
+   - Send a chat message
+   - Verify no toast appears (but history still records it)
+
+#### Workspace chat
+
+1. **Entry points and draft preservation**:
+   - Open Chat from the tray, Settings Chat rail, Local AI, and command palette
+   - Verify they reuse or restore one Workspace window, never a separate popup
+   - Verify Settings retains its selected page and plain Chat retains the current
+     conversation and unsent draft
+
+2. **Session identity and responsive layout**:
+   - Open an explicit session from Sessions, Cron, or Notifications
+   - Verify the Workspace sidebar, selected agent, destination, and transcript agree
+   - Create a session with `/new`, then exercise Back/Forward and tray reactivation
+   - Resize Workspace; verify model/reasoning controls, voice, Attach, and Send remain
+     usable without a composer session picker
+   - Collect Light/Dark proof separately from actual Windows high-contrast proof
+
+3. **Optional WebView2 renderer**:
+   - Enable the standard Gateway Chat interface in Settings
+   - Verify the gateway web chat opens inside Workspace and consumes an explicit
+     session selection once
+   - Exercise loading/retry and navigation guards, then switch back to native chat
+   - Close/reopen Workspace and verify background Gateway/MCP operations remain live
+
+## CI/CD
+
+### GitHub Actions Workflow
+
+The repository uses GitHub Actions for continuous integration and release automation.
+
+**Workflow File:** `.github/workflows/ci.yml`
+
+**Trigger Events:**
+- Push to `main` branch
+- Pull requests to `main`
+- Git tags matching `v*` (e.g., `v1.2.3`) for releases
+
+### Gateway release selection
+
+- Normal setup runs the official installer without `--version`, so npm `latest`
+  selects the current stable OpenClaw package.
+- Setup records the installed CLI version and requires the protocol-v4 gateway
+  handshake to report that same version.
+- `Gateway.Version` follows the upstream installer selector contract. Leave it
+  null for npm `latest`, use a supported npm channel tag, or set an exact
+  OpenClaw package version.
+- `Gateway.FallbackVersion` may name an exact stable release to offer after a
+  typed compatibility failure. It is never a default product pin.
+- A custom installer is labeled unverified and requires an exact stable
+  `Gateway.Version`.
+- Set `OPENCLAW_E2E_GATEWAY_VERSION` to exercise an exact published candidate in
+  the setup/connect and recovery E2E shards.
+
+### Build Matrix
+
+CI uses explicit change-impact outputs rather than one always-running test
+job. Core, Tray, UI/accessibility, setup/recovery E2E, and release-build lanes
+are selected conservatively; main/tag events include the broader architecture
+matrix. The always-running CI Gate checks required and skipped job results.
+
+Use the [lane inventory](docs/TEST_COVERAGE.md#ci-impact-fast-paths) and
+[workflow source](.github/workflows/ci.yml) for exact projects, prerequisites,
+architecture conditions, and artifact names. A local validation plan does not
+dispatch these jobs. Release/signing policy lives in [RELEASING.md](docs/RELEASING.md).
+
+### Artifacts
+
+On every build, the following artifacts are uploaded:
+
+| Artifact | Contents | Purpose |
+|----------|----------|---------|
+| `openclaw-tray-win-x64` | x64 Tray app binaries | Testing, distribution |
+| `openclaw-tray-win-arm64` | ARM64 Tray app binaries | Testing, distribution |
+
+### Release Process
+
+When a tag is pushed (e.g., `git tag v1.2.3 && git push origin v1.2.3`):
+
+1. **Build & Sign:**
+   - All artifacts built for x64 and ARM64
+   - Executables signed with Azure Trusted Signing certificate
+
+2. **Create Installers:**
+   - Inno Setup creates Windows installers
+   - Separate installers for x64 and ARM64
+
+3. **GitHub Release:**
+   - Automatic release created with tag name
+   - Includes:
+     - Installers: `OpenClawCompanion-Setup-x64.exe`, `OpenClawCompanion-Setup-arm64.exe`
+     - Portable ZIPs: `OpenClawTray-{version}-win-x64.zip`, `OpenClawTray-{version}-win-arm64.zip`
+   - Release notes auto-generated from commits
+
+### Monitoring CI
+
+**Check Latest Build:**
+```bash
+gh run list --repo openclaw/openclaw-windows-node --limit 5
+```
+
+**View Specific Run:**
+```bash
+gh run view <run-id> --repo openclaw/openclaw-windows-node
+```
+
+**Download Artifacts:**
+```bash
+gh run download <run-id> --repo openclaw/openclaw-windows-node
+```
+
+### What CI Checks
+
+Required selected jobs must succeed. The workflow includes documentation,
+skill, classifier, proof-contract, build, unit, integration, UI/accessibility,
+and E2E checks, with conditions described in the linked inventory.
+Ordinary environment-gated tests may report supported skips; those skips are
+not complete custom-host proof. Release jobs own their signing checks.
+
+Consult the actual run and its fresh reports before claiming any lane passed.
+Historical counts and estimates in docs do not establish current CI status.
+
+## Contributing
+
+### Development Workflow
+
+1. Use a task-owned checkout of `openclaw/openclaw-windows-node`. Inspect its
+   branch, HEAD, and local changes; preserve unrelated work. In an app-managed
+   worktree, use its existing branch rather than switching another checkout.
+2. Identify the reported behavior and its owner using
+   [AGENTS.md](AGENTS.md#working-agreement) and the
+   [architecture ledger](docs/ARCHITECTURE.md). Read only the relevant guides,
+   including cross-directory callers when the contract requires them.
+3. Add a faithful regression, make the scoped change, and update the directly
+   related documentation. A read-only investigation does not authorize edits.
+4. Run focused validation and the
+   [required local closeout](AGENTS.md#required-validation-after-every-change).
+   Use the [validation plan](docs/TEST_COVERAGE.md#explain-the-validation-plan)
+   to distinguish local checks, hosted CI, and custom proof.
+5. When publication is authorized, use the existing PR template, report exact
+   evidence and blockers, and address review findings. Permission to implement
+   is not permission to commit, push, create a PR, or mutate GitHub metadata.
+
+### Code Style
+
+- **C#**: Follow standard .NET conventions
+- **XAML**: Consistent indentation, organize resources logically
+- **Naming**: Descriptive names, avoid abbreviations
+- **Comments**: Explain "why", not "what"
+- **Error Handling**: Use try-catch for expected failures, let unexpected exceptions bubble
+
+### Adding New Features
+
+**Example: Adding a New Gateway Event Type**
+
+1. Verify the upstream event contract at an exact revision. Find the existing
+   protocol/parser owner and relevant consumers; do not invent a payload from
+   the event's name.
+2. Read the affected [ledger rows](docs/ARCHITECTURE.md). Add parsing and
+   independent payload tests at the protocol owner, preserving existing
+   unknown/invalid input behavior.
+3. For operator events, extend the existing `GatewayService` subscription and
+   model-update path as appropriate. Preserve unsubscription and generation
+   fencing so an old client cannot update the new connection's state.
+4. Update the owning state/projection and have the page observe it. App remains
+   the composition root; do not put new parsing, subscriptions, or mutable
+   domain ownership there by default.
+5. Test the observable change and a credible failure, such as a stale event
+   after client replacement. A model round-trip or self-comparison is not a
+   rendering test. Use [test authoring](docs/TEST_COVERAGE.md#writing-a-regression-test)
+   and applicable live proof for the actual boundary.
+
+### Troubleshooting
+
+**Common Issues:**
+
+1. **Build Error: "Windows SDK not found"**
+   - Run `.\scripts\setup-dev.ps1 -CheckOnly` and follow its Windows SDK
+     prerequisite diagnostics. Installation needs machine-change authorization.
+   - A Shared-only build is useful for a focused check, not full WinUI validation.
+
+2. **WebView2 Error 0x8007000B on ARM64**
+   - The tray app must be built for ARM64
+   - Rebuild: `dotnet build src/OpenClaw.Tray.WinUI -r win-arm64`
+
+3. **Tray Icon Not Appearing**
+   - Check Windows notification area settings
+   - Verify app is running (Task Manager)
+   - Check logs: `%LOCALAPPDATA%\OpenClawTray\openclaw-tray.log`
+
+4. **Gateway Connection Fails**
+   - Identify the failing boundary: local MCP, operator connection, node
+     pairing, or Gateway invocation. Keep the selected profile and endpoint
+     fixed while reproducing.
+   - Use [local MCP diagnosis](.agents/skills/windows-app-mcp/SKILL.md#diagnose-the-boundary-before-changing-code)
+     or [connection architecture](docs/CONNECTION_ARCHITECTURE.md) as appropriate.
+     Listener health does not prove authentication or pairing.
+   - Inspect redacted status/errors before proposing a repair. Do not reset
+     credentials, change firewall rules, or restart an unowned Gateway as a
+     diagnostic shortcut.
+
+5. **Piper voice preview fails with "Piper TTS native library could not be loaded"**
+   - The build copied a Visual C++ runtime that is too old for `onnxruntime`
+     next to the exe. Local x64 builds take a compatible 14.38-or-newer runtime
+     from your Visual Studio install. If the component is missing, stale, or
+     incomplete for x64, the build falls back to a 14.29 runtime and warns
+     (`OPENCLAW0001`).
+   - Install or update "C++ Redistributable Update" via the Visual Studio
+     Installer (Individual Components), rebuild, and confirm `msvcp140.dll` beside
+     `OpenClaw.Tray.WinUI.exe` is 14.38 or newer.
+   - The same failure shows up in `%LOCALAPPDATA%\OpenClawTray\openclaw-tray.log`
+     as `DllNotFoundException` from `PiperTextToSpeechClient`.
+
+### Getting Help
+
+- **Issues**: [GitHub Issues](https://github.com/openclaw/openclaw-windows-node/issues)
+- **Repository guidance**: [Task routes](AGENTS.md#working-agreement)
+- **Upstream documentation**: [OpenClaw docs source](https://github.com/openclaw/openclaw/tree/main/docs)
+
+## Developing & Testing the Onboarding Wizard
+
+This section describes the legacy FunctionalUI onboarding implementation, not
+the current native setup or post-setup chat host. Use
+[docs/ONBOARDING_WIZARD.md](docs/ONBOARDING_WIZARD.md) for the current flow.
+Post-setup chat is hosted only by Workspace's ChatPage.
+
+### Building
+
+The WinUI project requires platform-specific build targets. Use the build script:
+
+```bash
+./build.ps1 -Project WinUI   # Builds with correct -r win-x64 targets
+```
+
+Direct `dotnet build` without the script will fail with "WindowsAppSDKSelfContained requires a supported Windows architecture".
+
+### Environment Variables
+
+| Variable | Purpose |
+|----------|---------|
+| `OPENCLAW_FORCE_ONBOARDING=1` | Show onboarding wizard even if a token already exists |
+| `OPENCLAW_SKIP_UPDATE_CHECK=1` | Skip the update dialog (useful during testing) |
+| `OPENCLAW_LANGUAGE=fr-fr` | Override UI language (validated: en-us, fr-fr, nl-nl, pt-br, zh-cn, zh-tw) |
+| `OPENCLAW_GATEWAY_PORT=19001` | Override default gateway port for local dev |
+| `OPENCLAW_NATIVE_GATEWAY_START_TIMEOUT=600` | Native Gateway startup budget in whole seconds (30-3600, default 180) |
+| `OPENCLAW_VISUAL_TEST=1` | Enable automatic screenshot capture on page transitions |
+| `OPENCLAW_VISUAL_TEST_DIR=path` | Output directory for visual test screenshots |
+
+### Testing the Wizard Locally
+
+1. Start a local gateway (e.g., in WSL): `cd ~/openclaw && npx openclaw gateway`
+2. Set env vars:
+   ```powershell
+   $env:OPENCLAW_FORCE_ONBOARDING = "1"
+   $env:OPENCLAW_SKIP_UPDATE_CHECK = "1"
+   ```
+3. Build and run: `./build.ps1 -Project WinUI` then launch the exe
+4. Navigate through all 6 screens to verify
+
+### Architecture
+
+- **FunctionalUI**: `src/OpenClawTray.FunctionalUI/` - Minimal declarative WinUI helper layer used by onboarding
+- **Pages**: `src/OpenClaw.Tray.WinUI/Onboarding/Pages/` - Functional UI components for each wizard screen
+- **Services**: `src/OpenClaw.Tray.WinUI/Onboarding/Services/` - State management, setup code decoder, permission checker, health check, input validation
+- **Widgets**: `src/OpenClaw.Tray.WinUI/Onboarding/Widgets/` - Shared UI components (cards, step indicators, feature rows)
+- **Window**: `src/OpenClaw.Tray.WinUI/Onboarding/OnboardingWindow.cs` - Host window with WebView2 overlay for chat
+- **Helpers**: `src/OpenClaw.Tray.WinUI/Helpers/GatewayChatHelper.cs` - Current Workspace WebView2 initialization and gateway chat URL helper
+
+---
+
+*Made with 🦞 love by Scott Hanselman and the OpenClaw community*

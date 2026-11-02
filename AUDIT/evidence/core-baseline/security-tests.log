@@ -1,0 +1,174 @@
+$ node scripts/test-projects.mts src/gateway/auth.test.ts src/gateway/origin-check.test.ts src/gateway/auth-rate-limit.test.ts src/gateway/auth.redaction.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.gateway.config.ts
+[openclaw] Staging pinned Bun fork openclaw-v1.4.4-20261026-191755ec11-webkit-b82bc917e9 (one-time download)…
+
+ RUN  v5.0.5 /tmp/morpheus-upstream-core
+
+ ✓ |gateway-core| src/gateway/auth.test.ts > rejects placeholder token "null" at startup and the request boundary 157ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > rejects placeholder token "  undefined  " at startup and the request boundary 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > rejects placeholder token "  " at startup and the request boundary 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > HTTP shared-secret fields > token mode accepts either field but only its configured secret 4ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > HTTP shared-secret fields > password mode accepts either field but only its configured secret 4ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > HTTP shared-secret fields > gives the matching field precedence and preserves deferred failures 4ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > treats Forwarded as forwarded request evidence 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > treats X-Forwarded-User as forwarded request evidence 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > treats X-Real-IP as forwarded request evidence 6ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > treats env-template auth secrets as SecretRefs instead of plaintext 15ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > marks mode source as override when runtime mode override is provided 6ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > checks https://evil.example under none-mode HTTP auth 5ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > checks http://localhost:5173 under none-mode HTTP auth 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > reports missing password config even when a token is configured 11ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > does not allow tailscale identity to satisfy token mode auth by default 5ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects matching Tailscale-shaped identity without managed Serve provenance 13ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > keeps externally managed Tailscale ingress on ordinary trusted-proxy auth semantics 6ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > verifies managed Serve identity before a same-source shared-secret lockout 9ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > serializes managed Serve auth through the delayed failure write 15ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > requires the Funnel password when Tailscale header auth is explicitly enabled 8ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > allows an origin-less same-origin image through the Control UI read surface 6ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects wildcard origin grants for ambient Tailscale avatar identity 6ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > allows an approved Control UI origin before verifying Tailscale avatar identity 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects an origin-less avatar request without same-origin fetch metadata 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects missing identity on the Control UI read HTTP surface 2ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects mismatched identity on the Control UI read HTTP surface 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects non-loopback source on the Control UI read HTTP surface 4ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects incomplete forwarded headers on the Control UI read HTTP surface 8ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > keeps explicit password auth on the Control UI read HTTP surface 4ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > keeps trusted-proxy client lockout and reset state isolated by source 5ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > requires explicit X-Real-IP fallback: false 5ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > requires explicit X-Real-IP fallback: true 5ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects unresolved password configuration: { source: 'exec', provider: 'op', …(1) } 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > gateway auth > rejects unresolved password configuration: undefined 8ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > rejects trusted-proxy headers from the host non-loopback interface address 13ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > rejects trusted-proxy headers when local interface discovery fails 7ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > checks the origin https://evil.example for an allowlisted proxy user 10ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > checks the origin https://control.example.com for an allowlisted proxy user 6ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > rejects request with missing user header 16ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > rejects trusted-proxy mode with an environment token 5ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > rejects local-direct token auth even with a valid token 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > accepts local-direct password fallback when trusted-proxy auth fails 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > rejects wrong local-direct password fallback and records the failure 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > enforces rate-limit lockout before local-direct password fallback 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > accepts identity with an explicitly allowed loopback proxy 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > requires headers with an explicitly allowed loopback proxy 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > enforces allowUsers with an explicitly allowed loopback proxy 8ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > fails closed when forwarded headers are present but the client chain resolves to loopback 4ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > still fails closed when trusted-proxy config is missing 3ms
+ ✓ |gateway-core| src/gateway/auth.test.ts > trusted-proxy auth > still fails closed when trusted proxies are not configured 3ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > treats blank scopes as the default scope 29ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > applies new limits to retained scope history without releasing earned lockouts 5ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > replaces window settings and restores omitted defaults without erasing history 4ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > preserves locked entries when flood eviction runs 4ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > preserves overflow and tracked lockouts when policy changes while the table is full 3ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > throttles 1.2.3.4 and its alias 3ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > throttles browser-origin:http://127.0.0.1:18789 and its alias 3ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > throttles identity:node:node-1 and its alias 7ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > caps loopback delay, locked=false 11ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > caps loopback delay, locked=true 4ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > retires expired locks under {"maxAttempts":2,"exemptLoopback":true} 4ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > retires expired locks under {"maxAttempts":2,"exemptLoopback":false} 2ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > retires expired locks under undefined 3ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > still delays loopback failures when many are already pending 8ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > preserves earned delay across history reset, policy changes, and scheduler shutdown 4ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > reset only clears the requested scope for an IP 6ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > prunes expired locks, window=5000 3ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > prunes expired locks, window=60000 2ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > sleeps with no history and resumes pruning without shortening lockouts 7ms
+ ✓ |gateway-core| src/gateway/auth-rate-limit.test.ts > auth rate limiter > dispose settles pending loopback failure delays immediately 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://127.0.0.1:18789 against { requestHost: '127.0.0.1:18789', …(2) } 31ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks https://gateway.example.com:18789 against { …(2) } 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://192.168.0.202:18789 against { …(2) } 5ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://peters-mac-studio-1.example.ts.n… against { …(2) } 5ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://127.0.0.1:18789 against { requestHost: '127.0.0.1:18789', …(2) } 4ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://127.0.0.1:18789 against { requestHost: '127.0.0.1:18789', …(2) } 5ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://[64:ff9b:1::8.8.8.8]:18789 against { …(2) } 8ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://localhost:5173 against { requestHost: '127.0.0.1:18789', …(2) } 4ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks http://localhost:5173 against { requestHost: '127.0.0.1:18789', …(2) } 4ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks https://CONTROL.example.com against { …(3) } 4ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks https://any-origin.example.com against { …(3) } 5ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks  against { …(2) } 4ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks null against { …(2) } 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks not a url against { …(2) } 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > checks https://attacker.example.com against { …(2) } 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > accepts an exactly allowlisted hosted app origin: chrome-extension://abcdefghijklmnop 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > accepts an exactly allowlisted hosted app origin: tauri://localhost 5ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: tauri://localhost/path 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: tauri://localhost/admin/.. 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: tauri://localhost/%2e 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: https://control.example.com\admin 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: tauri://localhost?mode=admin 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: tauri://localhost#admin 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: tauri://user@localhost 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: file:///tmp/openclaw.html 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > rejects a non-origin URL value: data:text/plain,hello 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > checkBrowserOrigin > recognizes only canonical Chrome extension origins 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > resolveAcceptedBrowserOrigin > uses the effective configured origin policy: {"origin":"https://gateway.example.com","accepted":true} 3ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > resolveAcceptedBrowserOrigin > uses the effective configured origin policy: {"origin":"https://other.example.com","accepted":false} 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > resolveAcceptedBrowserOrigin > uses the effective configured origin policy: {"allowedOrigins":[],"origin":"https://gateway.example.com","accepted":false} 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > resolveAcceptedBrowserOrigin > uses the effective configured origin policy: {"allowedOrigins":["https://other.example.com"],"origin":"https://gateway.example.com","accepted":false} 2ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > resolveAcceptedBrowserOrigin > uses the effective configured origin policy: {"allowedOrigins":["https://other.example.com"],"origin":"https://other.example.com","accepted":true} 4ms
+ ✓ |gateway-core| src/gateway/origin-check.test.ts > resolveAcceptedBrowserOrigin > applies the configured Host-header fallback through the canonical request resolver 3ms
+[vitest] still running with no output for 30000ms.
+[vitest] still running with no output for 60000ms.
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js (48:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js:48:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m48 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js (11:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js:11:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m11 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js (6:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js:6:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m6 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js (12:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js:12:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m12 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js (9:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js:9:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m9 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[vitest-workers] prepared 28d6ec0d89db in 83107ms (14804 inputs, 23275 outputs)
+ ✓ |gateway-core| src/gateway/auth.redaction.test.ts > rejects a redacted token before shared-secret or Tailscale authentication 18ms
+ ✓ |gateway-core| src/gateway/auth.redaction.test.ts > rejects a redacted password before shared-secret or Tailscale authentication 4ms
+ ✓ |gateway-core| src/gateway/auth.redaction.test.ts > rejects a redacted local password fallback without rejecting proxy mode 4ms
+ ✓ |gateway-core| src/gateway/auth.redaction.test.ts > keeps the corrupted store entry and Doctor remedy in the startup refusal 6053ms
+
+ Test Files  4 passed (4)
+      Tests  107 passed (107)
+   Start at  11:17:26
+   Duration  105.19s (transform 90%, tests 7%, worker 2%, import 2%, setup 1%)
+
+[vitest-workers] verifying completed generation before cleanup
+[test] passed 1 Vitest shard in 113.91s

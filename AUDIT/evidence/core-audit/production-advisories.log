@@ -1,0 +1,6 @@
+Bulk advisory attempt 1/4 failed: "Bulk advisory request unavailable (EAI_AGAIN)"; retrying in 1269ms.
+Bulk advisory attempt 2/4 failed: "Bulk advisory request unavailable (EAI_AGAIN)"; retrying in 2100ms.
+Bulk advisory attempt 3/4 failed: "Bulk advisory request unavailable (EAI_AGAIN)"; retrying in 4392ms.
+Bulk advisory attempt 4/4 failed: "Bulk advisory request unavailable (EAI_AGAIN)"; stopping.
+Production dependency audit incomplete: Bulk advisory request failed after 4 attempts. Check npm registry availability and retry the audit; no clearance was obtained. Last failure: Bulk advisory request unavailable (EAI_AGAIN)
+[pnpm-audit-prod] FAILED (exit 2)

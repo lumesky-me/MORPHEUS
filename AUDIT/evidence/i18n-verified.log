@@ -1,0 +1,29 @@
+$ node scripts/test-projects.mts ui/src/i18n/lib/translate.test.ts
+[test] starting test/vitest/vitest.ui.config.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - JSON import "./control-ui-i18n-config.json" without import attributes (scripts/lib/control-ui-i18n-sync-plan.ts:2:41). Add `with { type: 'json' }`
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > repairs a Node-style storage accessor without invoking its unsafe getter 9ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > prepares registered English namespaces before publishing a locale without loading unopened ones 5ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps late namespace results scoped to their locale and retries a failed namespace 53ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > deduplicates an in-flight target and permits retry after the shared load settles 5ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > persists the latest explicit request 2ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > persists the latest system request 2ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps explicit recovery preference 8ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps system recovery preference 6ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > ignores a stale locale load's failure 2ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > ignores a stale locale load's success 1ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/i18n/lib/translate.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > rebrands catalog templates without changing user values or technical command identifiers 3ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  11:46:38
+   Duration  1.27s (worker 64%, transform 18%, tests 10%, setup 5%, import 3%)
+
+[test] passed 1 Vitest shard in 3.53s

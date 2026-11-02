@@ -1,0 +1,17 @@
+$ node --import ./scripts/tsx.mjs scripts/check-deadcode-unused-files.mts
+[deadcode] Knip production unused-file scan still running after 60s.
+[deadcode] Knip full-tree unused-file scan still running after 60s.
+[deadcode] Knip production unused-file scan still running after 120s.
+[deadcode] Knip full-tree unused-file scan still running after 120s.
+[deadcode] Knip production unused-file scan still running after 180s.
+[deadcode] Knip full-tree unused-file scan still running after 180s.
+[deadcode] Knip production unused-file scan still running after 240s.
+[deadcode] Knip full-tree unused-file scan still running after 240s.
+[deadcode] Knip production unused-file scan still running after 349s.
+[deadcode] Knip full-tree unused-file scan still running after 349s.
+[deadcode] Knip production unused-file scan still running after 409s.
+[deadcode] Knip full-tree unused-file scan still running after 409s.
+[deadcode] Knip production unused-file scan passed with 0 entries.
+[deadcode] Knip full-tree unused-file scan still running after 469s.
+[deadcode] Knip full-tree unused-file scan still running after 529s.
+[deadcode] Knip full-tree unused-file scan passed with 0 entries.

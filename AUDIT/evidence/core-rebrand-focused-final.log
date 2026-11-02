@@ -1,0 +1,234 @@
+$ node scripts/test-projects.mts ui/src/app-navigation.test.ts ui/src/app/theme-catalog.test.ts ui/src/lib/assistant-identity.test.ts ui/src/i18n/lib/translate.test.ts packages/gateway-protocol/src/theme.test.ts src/cli/banner.test.ts src/cli/program/help.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.gateway-client.config.ts
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > accepts authored mascot, critters and hat, and normalizes custom working phrases 354ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > accepts independent branding with no working indicator 52ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > restricts custom brand icons to the manifest's icon IDs 31ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > keeps null avatar hats out of personal definitions 46ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > accepts plugin artwork only from declared IDs of the corresponding kind 40ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects nonportable artwork IDs at the wire boundary 18ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"brandName":"hello\ud800"} 4ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"workingIndicator":"spinner"} 10ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"lobsterdex":"false"} 26ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"mascot":"robot"} 8ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"workingPhrases":["Working 0","Working 1","Working 2","Working 3","Working 4","Working 5","Working 6","Working 7","Working 8","Working 9","Working 10","Working 11","Working 12","Working 13","Working 14","Working 15","Working 16","Working 17","Working 18","Working 19","Working 20","Working 21","Working 22","Working 23","Working 24"]} 5ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"workingPhrases":["Building"," Building "]} 8ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"critters":["penguin","penguin","penguin","penguin","penguin","penguin","penguin","penguin","penguin"]} 6ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"critters":["penguin","penguin"]} 4ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"background":"#000;display:none"} 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"background":"var(--other-theme)"} 6ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"font-sans":"var(--font-body)"} 8ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"font-sans":"Foo serif"} 11ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"font-sans":"default"} 42ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > preserves font family names 6ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects missing modes, incomplete palettes, unknown properties, and oversized stored values 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity claw 5ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity user/xenovessel 5ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity space/../neon 7ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/neon 16ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > resolves omitted branding to neutral MORPHEUS without critters or a hat and retains authored branding 46ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > keeps explicit branding independent from mascot defaults 14ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > normalizes only exact theme mode literals: "dark" 13ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > normalizes only exact theme mode literals: null 12ms
+
+ Test Files  1 passed (1)
+      Tests  29 passed (29)
+   Start at  11:23:52
+   Duration  7.05s (transform 49%, setup 28%, tests 13%, import 9%)
+
+[test] starting test/vitest/vitest.cli.config.ts
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > formats off tagline mode 214ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > formats default tagline mode 51ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > selects a complete index or falls back for 0 10ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > selects a complete index or falls back for 1abc 14ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > drops decorative emoji for generic Linux terminals 15ms
+ ✓ |cli| src/cli/banner.test.ts > future holiday tagline windows (2028-2030) > activates Diwali on 2029-10-5 87ms
+ ✓ |cli| src/cli/banner.test.ts > future holiday tagline windows (2028-2030) > activates Diwali on 2030-9-25 74ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '--json' ] 216ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '--json=true' ] 204ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '--version' ] 170ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '-V' ] 254ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '-v' ] 351ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ 'acp', '-v' ] 250ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > does not write a banner without a TTY 369ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps seasonal mascot artwork out of MORPHEUS throughout Thu Feb 26 2026 00:00:00 GMT+0000 (Coordinated Universal Time) 186ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps seasonal mascot artwork out of MORPHEUS throughout Thu Feb 26 2026 23:59:00 GMT+0000 (Coordinated Universal Time) 280ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of plain terminals 260ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of off mode 263ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of default mode 213ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of non-lobster days 288ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of CI 202ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of tests 186ms
+stderr | unknown test
+[sqlite-test-lifecycle] src/cli/banner.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > emits only once per module instance 396ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > renders group help through both flag and help-command entrypoints 101ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > formats parse errors from the exact Commander command path 52ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > parses --log-level %p 15ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > parses --log-level %p 16ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > suppresses banner formatting when parent default help requests it 25ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > prints version with commit abc1234 and exits immediately 52ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > prints version with commit null and exits immediately 75ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders plugins using the supplied isolated config and env 44ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > loads no plugins by default and gates private QA (undefined) 57ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > loads no plugins by default and gates private QA (1) 36ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders safe unique visible descriptors: [{"name":"safe-command","description":"Open \u001b]8;;https://example.test\u0007link\u001b]8;;\u0007 now\u001b[2J","hasSubcommands":false}] 19ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders safe unique visible descriptors: [{"name":"visible","description":"Visible","hasSubcommands":false},{"name":"retired","description":"Retired","hasSubcommands":false,"hidden":true}] 51ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders safe unique visible descriptors: [{"name":" alpha ","description":"First alpha","hasSubcommands":false},{"name":"alpha","description":"Ignored normalized duplicate","hasSubcommands":false}] 47ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > rejects unsafe command names before emitting help 44ms
+
+ Test Files  2 passed (2)
+      Tests  37 passed (37)
+   Start at  11:24:02
+   Duration  9.13s (tests 62%, worker 15%, transform 11%, setup 10%, import 2%)
+
+[test] starting test/vitest/vitest.ui.config.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - JSON import "./control-ui-i18n-config.json" without import attributes (scripts/lib/control-ui-i18n-sync-plan.ts:2:41). Add `with { type: 'json' }`
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves knot branding before loading its dark palette 527ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves knot branding before loading its light palette 31ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves crt branding before loading its dark palette 61ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves crt branding before loading its light palette 65ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves phosphor branding before loading its dark palette 13ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves phosphor branding before loading its light palette 78ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ × |ui| ui/src/app/theme-catalog.test.ts > notifies leaf branding consumers when a newly selected built-in palette loads 502ms
+   → expected undefined to be '/favicon.svg' // Object.is equality
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ × |ui| ui/src/app/theme-catalog.test.ts > applies routed profile updates and plugin hot reloads, restoring an unavailable selection 118ms
+   → expected 'none' to be 'claw' // Object.is equality
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > retries a failed selected palette only after an explicit catalog retry 186ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > does not report a previous palette failure after a local theme switch 242ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > keeps a local palette selected during catalog refresh and reloads later versions 563ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > discards a late catalog after the requesting profile changes 149ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > discards a late palette after the requesting profile changes 248ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > discards a late palette after the requesting client changes 213ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > leaves built-in presentation quiet until Appearance discovery needs the catalog 191ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > leaves built-in presentation quiet until profile selection needs the catalog 84ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/app/theme-catalog.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > repairs a Node-style storage accessor without invoking its unsafe getter 39ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > prepares registered English namespaces before publishing a locale without loading unopened ones 20ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/i18n/lib/translate.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps late namespace results scoped to their locale and retries a failed namespace 57ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > deduplicates an in-flight target and permits retry after the shared load settles 2ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > persists the latest explicit request 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > persists the latest system request 0ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps explicit recovery preference 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps system recovery preference 20ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > ignores a stale locale load's failure 14ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > ignores a stale locale load's success 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > rebrands catalog templates without changing user values or technical command identifiers 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > returns a fallback navigation icon for an unknown route 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > matches setting text CPU usage against cp: true 4ms
+ ✓ |ui| ui/src/app-navigation.test.ts > matches setting text MCP against cp: false 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > matches setting text 外観設定 against 設定: true 2ms
+ ✓ |ui| ui/src/app-navigation.test.ts > matches setting text Cámara against Cámara: true 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > formats document title {"context":"About","brandName":"Northstar","attentionCount":2} 13ms
+ ✓ |ui| ui/src/app-navigation.test.ts > formats document title {"context":"Ask Northstar","brandName":"Northstar"} 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > formats document title {"context":"Usage","attentionCount":3} 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > keeps every navigation title and subtitle backed by an English translation 65ms
+ ✓ |ui| ui/src/app-navigation.test.ts > normalizes base paths and trailing route slashes 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > round-trips Workboard board paths 11ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/app-navigation.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/app-navigation.test.ts > round-trips Activity links for 12345678-ABCD-4EF0-8123-456789ABCDEF 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > round-trips Activity links for release.js 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > preserves full Activity UUIDs and accepts longer collision-disambiguating prefixes 18ms
+ ✓ |ui| ui/src/app-navigation.test.ts > rejects Activity path /activity/% 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > rejects Activity path /activity/%2E%2E 0ms
+ ✓ |ui| ui/src/app-navigation.test.ts > round-trips session navigation through the lazy contract seam 11ms
+ ✓ |ui| ui/src/app-navigation.test.ts > handles direct routes, nested mounts, mount roots, and index.html 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > never infers a route namespace as a mount base 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > reads a namespaced tab reference from the generic URL 1ms
+ ✓ |ui| ui/src/app-navigation.test.ts > recognizes plugin hub routes 7ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/lib/assistant-identity.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > uses MORPHY only when no custom agent name is available 1ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > truncates names without splitting a surrogate pair 1ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > preserves a maximum-size encoded local avatar above the old UI limit 23ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects oversized data URLs instead of truncating them into corrupt images 16ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects unsupported URI avatars instead of displaying them as text: data:text/plain,avatar 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects unsupported URI avatars instead of displaying them as text: https://example.com/avatar.png 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects unsupported URI avatars instead of displaying them as text: javascript:alert(1) 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > preserves same-origin Control UI avatar routes 11ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > keeps short text avatars 1ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > drops sentence-like text that exceeds the text-avatar limit 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > drops avatars containing newlines 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |ui| ui/src/app/theme-catalog.test.ts > notifies leaf branding consumers when a newly selected built-in palette loads
+AssertionError: expected undefined to be '/favicon.svg' // Object.is equality
+
+- Expected:
+"/favicon.svg"
+
++ Received:
+undefined
+
+ ❯ ui/src/app/theme-catalog.test.ts:167:65
+    165|     expect(theme.settings.theme).toBe("knot");
+    166|     expect(renderMark).toHaveBeenCalledTimes(1);
+    167|     expect(container.querySelector("img")?.getAttribute("src")).toBe("…
+       |                                                                 ^
+    168|     const palette = document.getElementById("openclaw-theme-palette-kn…
+    169|     expect(document.documentElement.dataset.themeId).toBe(descriptor.i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |ui| ui/src/app/theme-catalog.test.ts > applies routed profile updates and plugin hot reloads, restoring an unavailable selection
+AssertionError: expected 'none' to be 'claw' // Object.is equality
+
+Expected: "claw"
+Received: "none"
+
+ ❯ ui/src/app/theme-catalog.test.ts:219:46
+    217|     );
+    218|     expect(applicationTheme.catalog?.themes).toContainEqual(descriptor…
+    219|     expect(applicationTheme.branding.mascot).toBe("claw");
+       |                                              ^
+    220|
+    221|     response = catalog({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 57 passed (59)
+   Start at  11:24:15
+   Duration  47.85s (transform 54%, worker 29%, tests 8%, import 5%, environment 4%, setup 1%)
+
+[test] failed 3 Vitest shards in 79.89s
+[test] FAILED (exit 1)
+[ELIFECYCLE] Test failed. See above for more details.

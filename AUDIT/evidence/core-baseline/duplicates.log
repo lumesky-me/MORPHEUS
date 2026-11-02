@@ -1,0 +1,12 @@
+$ node scripts/check-duplicates.mjs --json
+[dup:check] target coverage ok
+
+[dup:check] production
+[32mJSON report saved to .artifacts/jscpd/production/jscpd-report.json[39m
+[90mtime: 41.56s[39m
+
+[dup:check] tests
+
+[dup:check] src-mixed
+[dup:check] FAILED (exit 137)
+Killed

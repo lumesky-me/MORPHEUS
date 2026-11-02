@@ -1,0 +1,1 @@
+$ pnpm dlx --package knip@6.40.0 knip --config config/knip.config.ts --production --no-progress --reporter compact --files --dependencies

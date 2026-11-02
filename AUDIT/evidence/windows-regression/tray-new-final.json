@@ -1,0 +1,106 @@
+[
+  {
+    "name": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.MorpheusRegistration_AddsOwnPrivateStateLeaves(name: \"Lumesky.Morpheus\", leaf: \"Morpheus\")",
+    "error": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry.\n---- System.InvalidOperationException : Windows did not supply an absolute local app data path."
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.DeepLinkParserTests.ParseDeepLink_CaseInsensitiveScheme",
+    "error": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.MsixDevelopmentSigningTests.PackageDisplayNames_MatchThePartnerCenterReservation",
+    "error": "Assert.DoesNotContain() Failure: Sub-string found\n                                 \u2193 (pos 1216)\nString: \u00b7\u00b7\u00b7\"\"\\n    Publisher=\"CN=MORPHEUS Local Develo\"\u00b7\u00b7\u00b7\nFound:  \"MORPHEUS\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.MsixDevelopmentSigningTests.BuildScript_StoreMsixPathIsUnsignedReleaseIdentityForBothArchitectures",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"<#\\n.SYNOPSIS\\n    Builds an unsigned, self\"\u00b7\u00b7\u00b7\nNot found: \"\"MORPHEUS-$Architecture.msix\"\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.StoreMigrationWorkflowTests.InstallerLink_UsesOfficialFullSetupForTheRequestedArchitecture(architecture: \"x64\", expected: \"https://github.com/lumesky-me/MORPHEUS/releases/la\"\u00b7\u00b7\u00b7)",
+    "error": "Assert.Equal() Failure: Strings differ\n                                  \u2193 (pos 64)\nExpected: \u00b7\u00b7\u00b7\"ses/latest/download/OpenClawCompanion-Set\"\u00b7\u00b7\u00b7\nActual:   \u00b7\u00b7\u00b7\"ses/latest/download/MORPHEUS-Setup-x64.ex\"\u00b7\u00b7\u00b7\n                                  \u2191 (pos 64)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: null, protocolUri: \"morpheus://settings\", postSetupLaunch: null, shouldDispatch: True, expectedPage: \"settings\")",
+    "error": "Assert.Equal() Failure: Values differ\nExpected: True\nActual:   False"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.MsixDevelopmentSigningTests.DevelopmentMsixSigning_IsLocalOnlyAndStoreBuildsRemainUnsigned",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"<Project Sdk=\"Microsoft.NET.Sdk\">\\n\\n  <Pro\"\u00b7\u00b7\u00b7\nNot found: \"$(LOCALAPPDATA)\\\\OpenClawDevelopment\\\\MSIX\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.InnoMigrationContractTests.PreservationNotice_CarriesItsOwnRemovalInstructions",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"# Uninstalling OpenClaw Tray - Portable Z\"\u00b7\u00b7\u00b7\nNot found: \"wsl --unregister MorpheusGateway\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ForgedShapeAndUnknownHandle_AreNotVerificationAuthority",
+    "error": "Assert.IsType() Failure: Value is not the exact type\nExpected: typeof(OpenClawTray.Services.ActivationPlan+Dispatch)\nActual:   typeof(OpenClawTray.Services.ActivationPlan+Ignore)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.SetupDashboardHandoffTests.RestartAndForwardedActivation_PreserveTypedReceipt(intent: Dashboard)",
+    "error": "Assert.IsType() Failure: Value is not the exact type\nExpected: typeof(OpenClawTray.Services.ActivationPlan+Dispatch)\nActual:   typeof(OpenClawTray.Services.ActivationPlan+Ignore)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.StartupSetupStateTests.RequiresSetup_ReturnsTrue_WhenOperatorTokenExistsButGatewayUrlIsDefault",
+    "error": "Assert.True() Failure\nExpected: True\nActual:   False"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.MigrationBuildConfigurationTests.TrayImportsOneCanonicalMigrationBuildPolicy",
+    "error": "Assert.Equal() Failure: Strings differ\n           \u2193 (pos 0)\nExpected: \"9NFPR3BGDRR5\"\nActual:   \"\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: \"morpheus://chat\", protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: \"chat\")",
+    "error": "Assert.Equal() Failure: Values differ\nExpected: True\nActual:   False"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.ReleaseSigningWorkflowTests.ReleaseWorkflow_BundlesAndVerifiesNativeRuntimeDependencies",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"name: Build and Test\\n\\non:\\n  push:\\n    bra\"\u00b7\u00b7\u00b7\nNot found: \"Morpheus-${{ needs.metadata.outputs.semVe\"\u00b7\u00b7\u00b7"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: \"--background\", protocolUri: \"morpheus://settings\", postSetupLaunch: null, shouldDispatch: True, expectedPage: \"settings\")",
+    "error": "Assert.Equal() Failure: Values differ\nExpected: True\nActual:   False"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.CiNugetCacheWorkflowTests.UiLane_IsolatesEveryProductRootAndSeparatesNativeOnboardingProof",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"  ui-tests:\\n    name: UI, functional, and\"\u00b7\u00b7\u00b7\nNot found: \"MORPHEUS_TRAY_DATA_DIR: ${{ github.worksp\"\u00b7\u00b7\u00b7"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.MorpheusRegistration_AddsOwnPrivateStateLeaves(name: \"Lumesky.Morpheus.Dev\", leaf: \"Morpheus-Dev\")",
+    "error": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry.\n---- System.InvalidOperationException : Windows did not supply an absolute local app data path."
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.OpenClawChatDataProviderTests.CompactAuthoritativeReload_RetriesAfterTransientFailureWhenHistoryWasLoaded",
+    "error": "Assert.Equal() Failure: Values differ\nExpected: Status\nActual:   User"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.InstallerIssAssertionTests.MsixManifest_IsGeneratedUnderObjWithoutMutatingTrackedSource",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"<?xml version=\"1.0\" encoding=\"utf-8\"?>\\n\\n<\"\u00b7\u00b7\u00b7\nNot found: \"<uap:Protocol Name=\"openclaw\">\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.StoreMigrationWorkflowTests.InstallerLink_UsesOfficialFullSetupForTheRequestedArchitecture(architecture: \"arm64\", expected: \"https://github.com/lumesky-me/MORPHEUS/releases/la\"\u00b7\u00b7\u00b7)",
+    "error": "Assert.Equal() Failure: Strings differ\n                                  \u2193 (pos 64)\nExpected: \u00b7\u00b7\u00b7\"ses/latest/download/OpenClawCompanion-Set\"\u00b7\u00b7\u00b7\nActual:   \u00b7\u00b7\u00b7\"ses/latest/download/MORPHEUS-Setup-arm64.\"\u00b7\u00b7\u00b7\n                                  \u2191 (pos 64)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.ReleaseSigningWorkflowTests.ReleaseWorkflow_VerifiesExecutableSigningPolicy",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"<#\\n.SYNOPSIS\\n    Verifies release payload\"\u00b7\u00b7\u00b7\nNot found: \"Unknown MORPHEUS binary in release payloa\"\u00b7\u00b7\u00b7"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.PublicRoute_CannotRequestExplicitRetryOrSupplyAFilePath",
+    "error": "Assert.IsType() Failure: Value is not the exact type\nExpected: typeof(OpenClawTray.Services.ActivationPlan+Dispatch)\nActual:   typeof(OpenClawTray.Services.ActivationPlan+Ignore)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.ReleaseSigningWorkflowTests.ReleaseWorkflow_SignsOnlyOpenClawOwnedPayloadBinaries",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"name: Build and Test\\n\\non:\\n  push:\\n    bra\"\u00b7\u00b7\u00b7\nNot found: \"Stage x64 MORPHEUS Binaries for Signing\""
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.PublicJsonCannotOverrideIntentModelOrGenerationOfALocalPendingRecord",
+    "error": "Assert.IsType() Failure: Value is not the exact type\nExpected: typeof(OpenClawTray.Services.ActivationPlan+Dispatch)\nActual:   typeof(OpenClawTray.Services.ActivationPlan+Ignore)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.SetupDashboardHandoffTests.RestartAndForwardedActivation_PreserveTypedReceipt(intent: CustodianOnboarding)",
+    "error": "Assert.IsType() Failure: Value is not the exact type\nExpected: typeof(OpenClawTray.Services.ActivationPlan+Dispatch)\nActual:   typeof(OpenClawTray.Services.ActivationPlan+Ignore)"
+  },
+  {
+    "name": "OpenClaw.Tray.Tests.InstallerIssAssertionTests.Installer_CreatesStartMenuEntrypointsForTraySetupAndSupport",
+    "error": "Assert.Contains() Failure: Sub-string not found\nString:    \"; MORPHEUS Inno Setup Script (WinUI versi\"\u00b7\u00b7\u00b7\nNot found: \"OutputBaseFilename=OpenClawCompanion{#MyO\"\u00b7\u00b7\u00b7"
+  }
+]

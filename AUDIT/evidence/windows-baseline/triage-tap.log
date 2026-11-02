@@ -1,0 +1,328 @@
+TAP version 13
+# Subtest: no-state input is distinct from a versioned triage report
+ok 1 - no-state input is distinct from a versioned triage report
+  ---
+  duration_ms: 4.693304
+  type: 'test'
+  ...
+# Subtest: real open handler serves inert bootstrap and preserves explicit-state refresh
+ok 2 - real open handler serves inert bootstrap and preserves explicit-state refresh
+  ---
+  duration_ms: 1104.708206
+  type: 'test'
+  ...
+# Subtest: normalizes a versioned triage dashboard input
+ok 3 - normalizes a versioned triage dashboard input
+  ---
+  duration_ms: 0.808063
+  type: 'test'
+  ...
+# Subtest: rejects unknown proof pool identifiers
+ok 4 - rejects unknown proof pool identifiers
+  ---
+  duration_ms: 0.277487
+  type: 'test'
+  ...
+# Subtest: keeps the proof-pool allowlist aligned with the repository registry
+ok 5 - keeps the proof-pool allowlist aligned with the repository registry
+  ---
+  duration_ms: 0.505319
+  type: 'test'
+  ...
+# Subtest: rejects non-HTTP item links
+ok 6 - rejects non-HTTP item links
+  ---
+  duration_ms: 0.254201
+  type: 'test'
+  ...
+# Subtest: binds inputs and item links to the OpenClaw repository
+ok 7 - binds inputs and item links to the OpenClaw repository
+  ---
+  duration_ms: 0.398759
+  type: 'test'
+  ...
+# Subtest: rejects duplicate item numbers across item types
+ok 8 - rejects duplicate item numbers across item types
+  ---
+  duration_ms: 0.342033
+  type: 'test'
+  ...
+# Subtest: requires expected checks for pull requests
+ok 9 - requires expected checks for pull requests
+  ---
+  duration_ms: 0.303876
+  type: 'test'
+  ...
+# Subtest: rejects check requirements and landing gates for issues
+ok 10 - rejects check requirements and landing gates for issues
+  ---
+  duration_ms: 0.434032
+  type: 'test'
+  ...
+# Subtest: summarizes failed, pending, skipped, and missing checks
+ok 11 - summarizes failed, pending, skipped, and missing checks
+  ---
+  duration_ms: 0.292729
+  type: 'test'
+  ...
+# Subtest: recognizes lane-skipped expected checks as observed
+ok 12 - recognizes lane-skipped expected checks as observed
+  ---
+  duration_ms: 0.188814
+  type: 'test'
+  ...
+# Subtest: treats legacy error statuses as failed checks
+ok 13 - treats legacy error statuses as failed checks
+  ---
+  duration_ms: 0.131397
+  type: 'test'
+  ...
+# Subtest: permits a merge request only for a reviewed exact-head TAKE
+ok 14 - permits a merge request only for a reviewed exact-head TAKE
+  ---
+  duration_ms: 0.249826
+  type: 'test'
+  ...
+# Subtest: blocks draft, proof-incomplete, and TAKE_AFTER_CHECKS items
+ok 15 - blocks draft, proof-incomplete, and TAKE_AFTER_CHECKS items
+  ---
+  duration_ms: 0.189524
+  type: 'test'
+  ...
+# Subtest: publishes a completed exact-head adversarial verdict and recomputes merge readiness
+ok 16 - publishes a completed exact-head adversarial verdict and recomputes merge readiness
+  ---
+  duration_ms: 0.21302
+  type: 'test'
+  ...
+# Subtest: does not publish stale, incomplete, or malformed adversarial verdicts
+ok 17 - does not publish stale, incomplete, or malformed adversarial verdicts
+  ---
+  duration_ms: 0.249555
+  type: 'test'
+  ...
+# Subtest: merges live GitHub state into stage and summary projections
+ok 18 - merges live GitHub state into stage and summary projections
+  ---
+  duration_ms: 0.28599
+  type: 'test'
+  ...
+# Subtest: removes closed items and their completed plan work from open inventory
+ok 19 - removes closed items and their completed plan work from open inventory
+  ---
+  duration_ms: 9.067018
+  type: 'test'
+  ...
+# Subtest: keeps closed-unmerged plan prerequisites blocked
+ok 20 - keeps closed-unmerged plan prerequisites blocked
+  ---
+  duration_ms: 0.860503
+  type: 'test'
+  ...
+# Subtest: keeps items when exact live state is unavailable
+ok 21 - keeps items when exact live state is unavailable
+  ---
+  duration_ms: 0.267322
+  type: 'test'
+  ...
+# Subtest: normalizes legacy counts even when inventory membership is unchanged
+ok 22 - normalizes legacy counts even when inventory membership is unchanged
+  ---
+  duration_ms: 0.43264
+  type: 'test'
+  ...
+# Subtest: removes tracked pull requests that become drafts
+ok 23 - removes tracked pull requests that become drafts
+  ---
+  duration_ms: 0.214762
+  type: 'test'
+  ...
+# Subtest: keeps plan-targeted drafts visible without counting them as non-draft
+ok 24 - keeps plan-targeted drafts visible without counting them as non-draft
+  ---
+  duration_ms: 0.251337
+  type: 'test'
+  ...
+# Subtest: adds newly discovered open non-draft pull requests as safely untriaged
+ok 25 - adds newly discovered open non-draft pull requests as safely untriaged
+  ---
+  duration_ms: 0.514974
+  type: 'test'
+  ...
+# Subtest: adds structural PR counts to legacy producer wording
+ok 26 - adds structural PR counts to legacy producer wording
+  ---
+  duration_ms: 0.275154
+  type: 'test'
+  ...
+# Subtest: generates a unique plan ID for newly discovered pull requests
+ok 27 - generates a unique plan ID for newly discovered pull requests
+  ---
+  duration_ms: 4.506959
+  type: 'test'
+  ...
+# Subtest: does not revive pruned work through the legacy plan fallback
+ok 28 - does not revive pruned work through the legacy plan fallback
+  ---
+  duration_ms: 0.349325
+  type: 'test'
+  ...
+# Subtest: does not classify issues as landing blocked
+ok 29 - does not classify issues as landing blocked
+  ---
+  duration_ms: 0.290486
+  type: 'test'
+  ...
+# Subtest: updates plan status from linked live gates
+ok 30 - updates plan status from linked live gates
+  ---
+  duration_ms: 0.251878
+  type: 'test'
+  ...
+# Subtest: reprojects plan and summary after an exact-head adversarial review
+ok 31 - reprojects plan and summary after an exact-head adversarial review
+  ---
+  duration_ms: 0.357396
+  type: 'test'
+  ...
+# Subtest: blocks downstream plan steps until dependencies complete
+ok 32 - blocks downstream plan steps until dependencies complete
+  ---
+  duration_ms: 0.251328
+  type: 'test'
+  ...
+# Subtest: builds sequential and independent dependency lanes
+ok 33 - builds sequential and independent dependency lanes
+  ---
+  duration_ms: 0.603677
+  type: 'test'
+  ...
+# Subtest: builds stable branched dependency levels
+ok 34 - builds stable branched dependency levels
+  ---
+  duration_ms: 0.217917
+  type: 'test'
+  ...
+# Subtest: renders a linked item only once across plan steps
+ok 35 - renders a linked item only once across plan steps
+  ---
+  duration_ms: 0.113921
+  type: 'test'
+  ...
+# Subtest: limits large plans by both workstream and step count
+ok 36 - limits large plans by both workstream and step count
+  ---
+  duration_ms: 0.530106
+  type: 'test'
+  ...
+# Subtest: uses legacy queue and day-plan guidance only when no structured plan exists
+ok 37 - uses legacy queue and day-plan guidance only when no structured plan exists
+  ---
+  duration_ms: 4.274981
+  type: 'test'
+  ...
+# Subtest: rejects unknown and cyclic plan dependencies
+ok 38 - rejects unknown and cyclic plan dependencies
+  ---
+  duration_ms: 0.802675
+  type: 'test'
+  ...
+# Subtest: the checked-in skill template satisfies the canvas contract
+ok 39 - the checked-in skill template satisfies the canvas contract
+  ---
+  duration_ms: 0.651138
+  type: 'test'
+  ...
+# Subtest: global triage defaults adversarial reviews to one coordinated PR child session
+ok 40 - global triage defaults adversarial reviews to one coordinated PR child session
+  ---
+  duration_ms: 0.64542
+  type: 'test'
+  ...
+# Subtest: the renderer exposes live filters and guarded action controls
+ok 41 - the renderer exposes live filters and guarded action controls
+  ---
+  duration_ms: 6.348936
+  type: 'test'
+  ...
+# Subtest: item actions route to one reusable child session
+ok 42 - item actions route to one reusable child session
+  ---
+  duration_ms: 0.803086
+  type: 'test'
+  ...
+# Subtest: issue actions use a distinct stable child session name
+ok 43 - issue actions use a distinct stable child session name
+  ---
+  duration_ms: 0.29327
+  type: 'test'
+  ...
+# Subtest: merge routing stops before sending when fresh GitHub evidence is unavailable
+ok 44 - merge routing stops before sending when fresh GitHub evidence is unavailable
+  ---
+  duration_ms: 0.427972
+  type: 'test'
+  ...
+# Subtest: action routing enforces plan dependencies for every entry point
+ok 45 - action routing enforces plan dependencies for every entry point
+  ---
+  duration_ms: 1.0454
+  type: 'test'
+  ...
+# Subtest: action routing rejects unsupported and stale requests before sending
+ok 46 - action routing rejects unsupported and stale requests before sending
+  ---
+  duration_ms: 36.058039
+  type: 'test'
+  ...
+# Subtest: action routing sends exactly once after fresh exact-head verification
+ok 47 - action routing sends exactly once after fresh exact-head verification
+  ---
+  duration_ms: 1.073472
+  type: 'test'
+  ...
+# Subtest: loopback request guards require the bound host and action token
+ok 48 - loopback request guards require the bound host and action token
+  ---
+  duration_ms: 0.290136
+  type: 'test'
+  ...
+# Subtest: the extension contains no direct GitHub mutation command
+ok 49 - the extension contains no direct GitHub mutation command
+  ---
+  duration_ms: 0.843767
+  type: 'test'
+  ...
+# Subtest: live GitHub collection and session review data are reflected in the canvas
+ok 50 - live GitHub collection and session review data are reflected in the canvas
+  ---
+  duration_ms: 0.543957
+  type: 'test'
+  ...
+# Subtest: ambiguous bulk merge state gets an exact PR lookup
+ok 51 - ambiguous bulk merge state gets an exact PR lookup
+  ---
+  duration_ms: 0.1862
+  type: 'test'
+  ...
+# Subtest: tracked drafts require exact lookup before inventory pruning
+ok 52 - tracked drafts require exact lookup before inventory pruning
+  ---
+  duration_ms: 0.348814
+  type: 'test'
+  ...
+# Subtest: validates exact lookup identity and explicit state
+ok 53 - validates exact lookup identity and explicit state
+  ---
+  duration_ms: 0.212799
+  type: 'test'
+  ...
+1..53
+# tests 53
+# suites 0
+# pass 53
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1958.19713

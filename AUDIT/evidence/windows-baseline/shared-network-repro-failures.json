@@ -1,0 +1,18 @@
+[
+  {
+    "test": "OpenClaw.Shared.Tests.McpHttpServerTests.Post_WithLocalhostHost_Accepted",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: null)",
+    "message": "System.OperationCanceledException : The operation was canceled."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Text)",
+    "message": "System.OperationCanceledException : The operation was canceled."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Binary)",
+    "message": "System.OperationCanceledException : The operation was canceled."
+  }
+]

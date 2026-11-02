@@ -1,0 +1,64 @@
+$ node --import ./scripts/tsx.mjs scripts/build-all.mts
+[build-all] native-protocol
+[build-all] native-protocol done in 406ms
+[build-all] runtime:scripts:check
+[build-all] runtime:scripts:check done in 14s
+[build-all] plugins:assets:build
+[clawrouter] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/clawrouter
+[knowledge] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/knowledge
+[mcp-relay] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/mcp-relay
+[memory-core] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/memory-core
+[nostr] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/nostr
+[whatsapp] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/whatsapp
+[workboard] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/workboard
+[x] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/x
+[build-all] plugins:assets:build done in 36.4s
+[build-all] tsdown-ai
+
+ WARN  TypeScript 7.0 does not yet have a stable API and is experimental. Some options will be unavailable.
+
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 11.9s of this 12.1s build (99%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin openclaw-native-declarations buildStart (91%, 11.0s, 1 call)
+Additional callback time came from the callbacks below and from callbacks under 1s.
+3 callbacks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - plugin tsdown:deps resolveId (942 calls)
+  - plugin rolldown-plugin-dts:resolver resolveId (1032 calls)
+  - plugin rolldown-plugin-dts:fake-js transform (148 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+[tsdown-build] invocation 1/1 finished in 12.7s
+[build-all] tsdown-ai done in 16.3s
+[build-all] tsdown-packages
+
+ WARN  TypeScript 7.0 does not yet have a stable API and is experimental. Some options will be unavailable.
+
+[tsdown-build] still running pid=14012; no output for 60s
+[tsdown-build] invocation 1/1 finished in 79.4s
+[build-all] tsdown-packages done in 1m 22.7s
+[build-all] tsdown
+[tsdown-build] invocation 1/2 finished in 0.6s
+
+ ERROR  Error: Build failed with 1 error:
+
+[plugin openclaw:worker-deploy]
+TypeError: fetch failed
+Caused by:
+  Error: getaddrinfo EAI_AGAIN registry.npmjs.org
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+    at aggregateBindingErrorsIntoJsError (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/error-D0SD8_tL.mjs:49:18)
+    at unwrapBindingResult (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/error-D0SD8_tL.mjs:19:128)
+    at #build (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/rolldown-CMhwwZPA.mjs:145:34)
+    at async build (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/index.mjs:46:22)
+    at async Promise.all (index 0)
+    at async Object.runBuild (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/style-Cl932eax.mjs:57:11)
+    at async buildSingle (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/build-B3hcYrTt.mjs:811:19)
+    at async Promise.all (index 71)
+    at async buildWithConfigs (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/build-B3hcYrTt.mjs:758:18)
+    at async build$1 (file:///tmp/morpheus-upstream-core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/build-B3hcYrTt.mjs:713:9)
+
+[tsdown-build] child result pid=16772: {"status":1,"signal":null,"parentSignal":null,"timedOut":false,"cleanup":"none","observedProcessState":"dead","observationScope":"process-group","finalStatus":1}
+[tsdown-build] invocation 2/2 finished in 10.1s
+[build-all] tsdown failed after 13.5s
+[build-all] phase timings: total 2m 44.7s; slowest tsdown-packages 1m 22.7s; plugins:assets:build 36.4s; tsdown-ai 16.3s; runtime:scripts:check 14s; tsdown (failed) 13.5s; native-protocol 406ms
+[ELIFECYCLE] Command failed with exit code 1.

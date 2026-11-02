@@ -1,0 +1,6 @@
+$ node --import ./scripts/tsx.mjs scripts/build-all.mts
+[tsdown-build] The process memory limit is not visible through this cgroup mount namespace, so OpenClaw cannot choose a safe default heap.
+Stopping before any build output is removed. Pick one:
+  - run the build where the process cgroup limit is visible
+  - set OPENCLAW_TSDOWN_MAX_OLD_SPACE_MB=<MB> to explicitly attempt the build anyway
+[ELIFECYCLE] Command failed with exit code 1.

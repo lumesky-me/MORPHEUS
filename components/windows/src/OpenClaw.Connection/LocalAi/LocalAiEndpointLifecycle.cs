@@ -1,0 +1,85 @@
+namespace OpenClaw.Connection.LocalAi;
+
+public sealed record LocalAiEndpointLifecycleResult(bool Success, string? Detail = null)
+{
+    public static LocalAiEndpointLifecycleResult Ok() => new(true);
+    public static LocalAiEndpointLifecycleResult Failed(string detail) => new(false, detail);
+}
+
+public enum LocalAiQuiesceReason
+{
+    EndpointCycle,
+    Teardown,
+}
+
+public enum LocalAiRuntimeStartStage { StartingRuntime, CheckingConfiguration, PublishingProvider, VerifyingEndpoint }
+
+/// <summary>
+/// Coordinates consumers of the app-owned endpoint with native process changes.
+/// Implementations must remove managed routing before a listener can disappear,
+/// and publish routing only after the replacement endpoint is proven healthy.
+/// </summary>
+public interface ILocalAiEndpointLifecycle
+{
+    bool HasReleasableOwnership => false;
+    /// <summary>Presentation hint only. Start must still revalidate the selected Gateway.</summary>
+    bool RequiresNativeSelection => false;
+    event EventHandler? SelectionChanged { add { } remove { } }
+    bool AutomaticRecoveryEnabled => true;
+    Task ReleaseOwnershipAsync(CancellationToken cancellationToken)
+        => throw new InvalidOperationException("There is no native Local AI ownership to release.");
+    Task PrepareStartAsync(LocalAiResolvedInstall install, CancellationToken cancellationToken)
+        => Task.CompletedTask;
+    Task PrepareUnownedStopAsync(CancellationToken cancellationToken)
+        => Task.CompletedTask;
+    /// <summary>Confirm withdrawal through the original owner without inferring provider ownership from damaged artifacts.</summary>
+    Task ConfirmWithdrawnWithoutInstallAsync(CancellationToken cancellationToken)
+        => throw new InvalidOperationException("Restore the Local AI installation receipt before resolving its Gateway route.");
+    Task<LocalAiEndpointLifecycleResult> CompleteStartAsync(LocalAiResolvedInstall install, CancellationToken cancellationToken)
+        => Task.FromResult(LocalAiEndpointLifecycleResult.Ok());
+    Task<LocalAiEndpointLifecycleResult> CompleteStartAsync(LocalAiResolvedInstall install, CancellationToken cancellationToken,
+        IProgress<LocalAiRuntimeStartStage>? progress) => CompleteStartAsync(install, cancellationToken);
+
+    /// <summary>Durable owners persist explicit running intent; stateless transports need no receipt.</summary>
+    Task SetAutomaticRecoveryEnabledAsync(bool enabled, CancellationToken cancellationToken = default)
+        => Task.CompletedTask;
+
+    Task<LocalAiEndpointLifecycleResult> QuiesceAsync(
+        LocalAiResolvedInstall install,
+        LocalAiQuiesceReason reason = LocalAiQuiesceReason.Teardown,
+        CancellationToken cancellationToken = default);
+
+    Task<LocalAiEndpointLifecycleResult> PublishAsync(
+        LocalAiResolvedInstall install,
+        CancellationToken cancellationToken = default);
+
+    Task<LocalAiEndpointLifecycleResult> PublishAsync(LocalAiResolvedInstall install, CancellationToken cancellationToken,
+        IProgress<LocalAiRuntimeStartStage>? progress)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        progress?.Report(LocalAiRuntimeStartStage.PublishingProvider);
+        return PublishAsync(install, cancellationToken);
+    }
+}
+
+internal sealed class NullLocalAiEndpointLifecycle : ILocalAiEndpointLifecycle
+{
+    public static NullLocalAiEndpointLifecycle Instance { get; } = new();
+
+    public Task<LocalAiEndpointLifecycleResult> QuiesceAsync(
+        LocalAiResolvedInstall install,
+        LocalAiQuiesceReason reason = LocalAiQuiesceReason.Teardown,
+        CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(LocalAiEndpointLifecycleResult.Ok());
+    }
+
+    public Task<LocalAiEndpointLifecycleResult> PublishAsync(
+        LocalAiResolvedInstall install,
+        CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(LocalAiEndpointLifecycleResult.Ok());
+    }
+}

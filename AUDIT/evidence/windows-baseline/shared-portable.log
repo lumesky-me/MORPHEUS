@@ -1,0 +1,5 @@
+Test run for /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/OpenClaw.Shared.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: /workspace/morpheus-evidence/windows-baseline/shared-portable-baseline.trx
+
+Passed!  - Failed:     0, Passed:   259, Skipped:     0, Total:   259, Duration: 760 ms - OpenClaw.Shared.Tests.dll (net10.0)

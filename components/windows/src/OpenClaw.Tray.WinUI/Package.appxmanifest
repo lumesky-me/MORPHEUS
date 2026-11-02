@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap desktop com rescap">
+
+  <!-- Version is patched at build time by the SyncAppxManifestVersionTarget in
+       OpenClaw.Tray.WinUI.csproj from $(Version) (see docs/VERSIONING.md).
+       The 0.0.0.0 below is a sentinel and is never shipped. -->
+  <!-- Identity/@Publisher must be the Partner Center "Package/Identity/Publisher" value
+       verbatim, not the Authenticode code-signing subject used for the unpackaged
+       installer (see docs/RELEASING.md). The Store re-signs the package to this identity,
+       so do NOT change this to the Azure Artifact Signing certificate subject: that
+       certificate signs the unpackaged installer and its executables, never this MSIX. -->
+  <Identity
+    Name="Lumesky.Morpheus"
+    Publisher="CN=MORPHEUS Local Development"
+    Version="0.0.0.0" />
+
+  <Properties>
+    <DisplayName>MORPHEUS</DisplayName>
+    <PublisherDisplayName>MORPHEUS contributors</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26100.0" />
+    <PackageDependency
+      Name="Microsoft.VCLibs.140.00.UWPDesktop"
+      MinVersion="14.0.33728.0"
+      Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="MORPHEUS"
+        Description="MORPHEUS Windows system tray for gateway management, node capabilities, and agent interaction"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+
+      <Extensions>
+        <!-- Protocol activation for morpheus:// deep links -->
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="morpheus">
+            <uap:DisplayName>MORPHEUS Protocol</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+
+        <!-- Packaged COM activation for Microsoft.Toolkit.Uwp.Notifications. -->
+        <desktop:Extension Category="windows.toastNotificationActivation">
+          <desktop:ToastNotificationActivation ToastActivatorCLSID="85FCDDDB-6B26-5436-AF18-79992247C221" />
+        </desktop:Extension>
+
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:ExeServer
+              Executable="OpenClaw.Tray.WinUI.exe"
+              Arguments="-ToastActivated"
+              DisplayName="MORPHEUS Toast Activator">
+              <com:Class
+                Id="85FCDDDB-6B26-5436-AF18-79992247C221"
+                DisplayName="MORPHEUS Toast Activator" />
+            </com:ExeServer>
+          </com:ComServer>
+        </com:Extension>
+
+        <!-- Store-compatible startup registration. The app applies the user's
+             AutoStart setting through Windows.ApplicationModel.StartupTask. -->
+        <desktop:Extension
+          Category="windows.startupTask"
+          Executable="OpenClaw.Tray.WinUI.exe"
+          EntryPoint="Windows.FullTrustApplication">
+          <desktop:StartupTask
+            TaskId="MorpheusStartup"
+            Enabled="false"
+            DisplayName="MORPHEUS" />
+        </desktop:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust" />
+    <DeviceCapability Name="webcam" />
+    <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>

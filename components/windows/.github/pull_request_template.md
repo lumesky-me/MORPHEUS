@@ -1,0 +1,143 @@
+<!--
+Optional linked context:
+Add a visible `Closes #<issue-number>` or `Related: #<issue-number>` line
+below this comment.
+
+Required PR title:
+type: user-facing description
+Use a parenthesized scope only when it adds clarity:
+fix(auth): login redirect loops when session cookie is expired
+
+Types: feat, fix, improve, refactor, docs, chore.
+For fixes, describe the user-visible symptom and trigger:
+fix: task list fails to load when user has no environments
+Avoid implementation details such as:
+fix: add null check to task query
+
+**MUST:** Keep **Allow edits from maintainers** enabled for this PR so maintainers
+can help update the branch when needed.
+-->
+
+## What Problem This Solves
+
+<!--
+Describe the concrete user, product, or operational problem.
+Use one short, plain-language sentence. For fixes, prefer:
+"Fixes: <what goes wrong> when <trigger or condition>."
+For other changes, describe the need without inventing a bug.
+Name the affected workflow, not the code-level cause.
+-->
+
+## User Impact
+
+<!--
+"User impact: <what users, operators, or developers can now do or expect>."
+Lead with the concrete outcome in plain language, usually one sentence.
+For internal-only changes, say there is no user-visible change; do not invent a benefit.
+Keep important risks, breaking changes, migrations, and required user actions visible here.
+-->
+
+## Why This Change Was Made
+
+<!--
+Briefly explain how the change addresses the problem without repeating the impact.
+Keep the body short. Leave file lists, internal acronyms, and root-cause walkthroughs
+in the diff or optional <details>; include technical detail only when it explains
+behavior or a material tradeoff. Do not hide risks or required actions in <details>.
+-->
+
+## Evidence
+
+<!--
+Show the most useful proof that this change works. Screenshots, screencasts,
+terminal output, focused tests, CI results, live observations, redacted logs,
+and artifact links are all useful. Include before/after evidence for visual
+changes when it clarifies the result.
+
+Reviewers will inspect the code, tests, and CI. Use this section to make the
+validation easy to understand, not to restate the diff.
+Summarize what was checked and the result; note meaningful gaps. Link long output
+or put it in optional <details>, keeping the useful evidence summary visible.
+-->
+
+## Change Type
+
+- [ ] Bug fix
+- [ ] Feature
+- [ ] Refactor
+- [ ] Docs or instructions
+- [ ] Tests or validation
+- [ ] Security hardening
+- [ ] Chore or infrastructure
+
+## Scope
+
+- [ ] Tray or WinUI UX
+- [ ] Windows node capability
+- [ ] Local MCP or `winnode`
+- [ ] Gateway, connection, or pairing
+- [ ] Setup or onboarding
+- [ ] Permissions, privacy, or security
+- [ ] Tests, CI, or docs
+
+## Required proof pools
+
+<!--
+Select every applicable pool ID from docs/PROOF_POOLS.md using:
+- `<pool-id>`: <reason>
+
+Use `none` with a reason only when no capacity-dependent custom Windows proof is
+required. Declaring a pool schedules proof; it does not claim the proof ran.
+-->
+
+## Validation
+
+<!--
+Include exact commands and pass/fail counts. Baseline after code changes:
+- `./build.ps1`
+- `dotnet test ./tests/OpenClaw.Shared.Tests/OpenClaw.Shared.Tests.csproj --no-restore`
+- `dotnet test ./tests/OpenClaw.Tray.Tests/OpenClaw.Tray.Tests.csproj --no-restore`
+
+Add focused tests when relevant. In fresh worktrees, confirm tests actually ran
+and report non-zero test counts.
+For inventory-bound proof, link the local execution summary described in
+docs/PROOF_POOLS.md. A valid summary is not complete pool, visual, or binary-provenance proof.
+-->
+
+## Real Behavior Proof
+
+<!--
+Paste at least one current-head proof item that directly demonstrates the
+changed behavior. Use copied live output, screenshots or video, UI diagnostics,
+`winnode` output, raw MCP JSON-RPC, gateway invoke output, redacted runtime
+logs, or linked artifacts.
+-->
+
+- Environment tested:
+- PR head or commit tested:
+- Exact steps or command run:
+- Evidence after fix:
+- Observed result:
+- Screenshot or artifact links verified? (`Yes`/`No`/`N/A`)
+- Not verified or blocked:
+
+## Security Impact
+
+- New permissions or capabilities? (`Yes`/`No`)
+- Secrets or tokens handling changed? (`Yes`/`No`)
+- New or changed network calls? (`Yes`/`No`)
+- Command or tool execution surface changed? (`Yes`/`No`)
+- Data access scope changed? (`Yes`/`No`)
+- If any answer is `Yes`, explain the risk and mitigation:
+
+## Compatibility and Migration
+
+- Backward compatible? (`Yes`/`No`)
+- Config or environment changes? (`Yes`/`No`)
+- Migration needed? (`Yes`/`No`)
+- If yes, list the exact upgrade steps:
+
+## Review Conversations
+
+- [ ] I replied to or resolved every bot review conversation addressed by this PR.
+- [ ] I left unresolved only conversations that still need maintainer judgment.

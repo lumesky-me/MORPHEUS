@@ -1,0 +1,9 @@
+# Phase 1 GitHub checkpoint
+
+This checkpoint preserves the existing Phase1 source, branding, configuration, tests, documentation, licenses and audit findings. No functionality was changed, no outstanding bugs were fixed, no rebuild was required, and Phase2 was not started.
+
+Pre-push screening covered the staged files and compressed evidence for common credential formats/private-key markers, credential-bearing URLs, artifact paths and oversized blobs. Flagged source values were upstream test fixtures/examples or detection code; credential-pattern values in the modified test files matched their pinned upstream versions. Source fixtures were retained. As a precaution, seven compressed Windows TRX evidence files had credential-like fixture values and URL userinfo redacted. Their XML structure, test-result counts and outcomes were preserved. This screening is not a renewed security audit or a guarantee of no secrets.
+
+The root .gitignore now also excludes local environment overrides, root credential directories, Python/cache and OS-generated files while retaining environment examples. All original64804tracked component files remain staged, including required upstream generated source, test fixtures and the source launcher under skills/sherpa-onnx-tts/bin. No node_modules, dist, local bin/obj outputs, caches, disposable profiles, live credentials or downloaded SDKs are part of the checkpoint. Audit evidence is intentionally retained.
+
+The existing seven required audit reports are unchanged. Their Windows regressions, dependency advisories, Gateway packaging limitations and unverified native behaviors remain open. The source commits/provenance and downstream source manifest remain in UPSTREAM.md and AUDIT/evidence. This is a development checkpoint, not a release or main-branch merge.

@@ -1,0 +1,90 @@
+{
+  "ui/public/favicon-32.png": [
+    32,
+    32
+  ],
+  "ui/public/apple-touch-icon.png": [
+    180,
+    180
+  ],
+  "ui/public/app-art/chrome-extension.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/linux.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/android-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/macos-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/android.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/wear-os-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/ios.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/ios-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/wear-os.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/apple-watch.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/apple-watch-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/windows.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/chrome-extension-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/plugins-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/plugins.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/macos.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/windows-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/app-art/linux-dark.webp": [
+    640,
+    349
+  ],
+  "ui/public/community-art/community-invite-dark.webp": [
+    1024,
+    512
+  ],
+  "ui/public/community-art/community-invite-light.webp": [
+    1024,
+    512
+  ]
+}

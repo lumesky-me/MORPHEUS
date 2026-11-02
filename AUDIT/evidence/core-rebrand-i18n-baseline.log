@@ -1,0 +1,7 @@
+$ node --import ./scripts/tsx.mjs scripts/control-ui-i18n-verify.ts baseline
+control-ui-i18n: raw-copy: baseline entries=71
+control-ui-i18n: source: keys=11620 literal_references=9992 template_prefix_references=331
+control-ui-i18n: plugin=memory-core keys=74 locales=22 unused_translations=0
+control-ui-i18n: plugin=nostr keys=61 locales=22 unused_translations=0
+control-ui-i18n: plugin=whatsapp keys=23 locales=22 unused_translations=0
+control-ui-i18n: plugin=workboard keys=381 locales=22 unused_translations=1180

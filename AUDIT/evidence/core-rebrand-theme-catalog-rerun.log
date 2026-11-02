@@ -1,0 +1,75 @@
+$ node scripts/test-projects.mts ui/src/app/theme-catalog.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.ui.config.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - JSON import "./control-ui-i18n-config.json" without import attributes (scripts/lib/control-ui-i18n-sync-plan.ts:2:41). Add `with { type: 'json' }`
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves knot branding before loading its dark palette 692ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves knot branding before loading its light palette 58ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves crt branding before loading its dark palette 39ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves crt branding before loading its light palette 39ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves phosphor branding before loading its dark palette 49ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > resolves phosphor branding before loading its light palette 30ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > notifies leaf branding consumers when a newly selected built-in palette loads 331ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ × |ui| ui/src/app/theme-catalog.test.ts > applies routed profile updates and plugin hot reloads, restoring an unavailable selection 339ms
+   → expected 'none' to be 'claw' // Object.is equality
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > retries a failed selected palette only after an explicit catalog retry 155ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > does not report a previous palette failure after a local theme switch 249ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > keeps a local palette selected during catalog refresh and reloads later versions 426ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > discards a late catalog after the requesting profile changes 128ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > discards a late palette after the requesting profile changes 158ms
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > discards a late palette after the requesting client changes 133ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > leaves built-in presentation quiet until Appearance discovery needs the catalog 106ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/app/theme-catalog.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/app/theme-catalog.test.ts > leaves built-in presentation quiet until profile selection needs the catalog 143ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |ui| ui/src/app/theme-catalog.test.ts > applies routed profile updates and plugin hot reloads, restoring an unavailable selection
+AssertionError: expected 'none' to be 'claw' // Object.is equality
+
+Expected: "claw"
+Received: "none"
+
+ ❯ ui/src/app/theme-catalog.test.ts:308:58
+    306|     expect(applicationTheme.catalog?.unavailableId).toBe(descriptor.id…
+    307|     expect(applicationTheme.branding.mascot).toBe("none");
+    308|     expect(document.documentElement.dataset.themeMascot).toBe("claw");
+       |                                                          ^
+    309|     expect(document.documentElement.dataset.themeAvatarHat).toBeUndefi…
+    310|     await vi.dynamicImportSettled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 passed (16)
+   Start at  11:27:46
+   Duration  19.27s (worker 27%, transform 24%, environment 22%, tests 17%, import 8%, setup 1%)
+
+[test] failed 1 Vitest shard in 31.13s
+[test] FAILED (exit 1)
+[ELIFECYCLE] Test failed. See above for more details.

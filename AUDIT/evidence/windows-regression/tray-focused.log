@@ -1,0 +1,156 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  OpenClaw.Shared -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Shared/bin/Debug/net10.0/OpenClaw.Shared.dll
+  OpenClaw.Connection -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Connection/bin/Debug/net10.0/OpenClaw.Connection.dll
+  OpenClaw.TestSupport -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.TestSupport/bin/Debug/net10.0/OpenClaw.TestSupport.dll
+  OpenClaw.Tray.Tests -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll
+Test run for /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:01.72]     OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ConcurrentFirstAcquisitionCannotGrantTwoExecutionWindows [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ConcurrentFirstAcquisitionCannotGrantTwoExecutionWindows [26 ms]
+  Error Message:
+   Assert.Single() Failure: The collection did not contain any matching items
+Expected:   (predicate expression)
+Collection: [SetupHandoffAcquisition { Status = Acquired, Lease = OpenClawTray.Services.SetupDashboardHandoffStore+Lease }, SetupHandoffAcquisition { Status = Unavailable, Lease =  }]
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ConcurrentFirstAcquisitionCannotGrantTwoExecutionWindows() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupDashboardHandoffStoreTests.cs:line 421
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:01.73]     OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ExclusiveLease_RejectsInflightDuplicateAndReplayAfterConsume [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ExclusiveLease_RejectsInflightDuplicateAndReplayAfterConsume [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ExclusiveLease_RejectsInflightDuplicateAndReplayAfterConsume() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupDashboardHandoffStoreTests.cs:line 93
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.19]     OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: null, protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: null) [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: null, protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: null) [444 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 145
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:02.61]     OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: null, protocolUri: "morpheus://settings", postSetupLaunch: null, shouldDispatch: True, expectedPage: "settings") [FAIL]
+[xUnit.net 00:00:03.01]     OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: "morpheus://chat", protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: "chat") [FAIL]
+[xUnit.net 00:00:03.45]     OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: "--post-setup-restart", protocolUri: null, postSetupLaunch: "chat", shouldDispatch: True, expectedPage: "chat") [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: null, protocolUri: "morpheus://settings", postSetupLaunch: null, shouldDispatch: True, expectedPage: "settings") [415 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 145
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+--- End of stack trace from previous location ---
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: "morpheus://chat", protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: "chat") [407 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 145
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+--- End of stack trace from previous location ---
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: "--post-setup-restart", protocolUri: null, postSetupLaunch: "chat", shouldDispatch: True, expectedPage: "chat") [412 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 145
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:03.85]     OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: "--background", protocolUri: "morpheus://settings", postSetupLaunch: null, shouldDispatch: True, expectedPage: "settings") [FAIL]
+[xUnit.net 00:00:04.27]     OpenClaw.Tray.Tests.ActivationRouterTests.NativeSetupRestart_UsesTheSameReceiptForInitialAndSecondaryLaunch [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: "--background", protocolUri: "morpheus://settings", postSetupLaunch: null, shouldDispatch: True, expectedPage: "settings") [401 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 145
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+   at OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(Boolean startupTask, String argument, String protocolUri, String postSetupLaunch, Boolean shouldDispatch, String expectedPage) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 157
+--- End of stack trace from previous location ---
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.NativeSetupRestart_UsesTheSameReceiptForInitialAndSecondaryLaunch [419 ms]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.NativeSetupRestart_UsesTheSameReceiptForInitialAndSecondaryLaunch() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 175
+   at OpenClaw.Tray.Tests.ActivationRouterTests.NativeSetupRestart_UsesTheSameReceiptForInitialAndSecondaryLaunch() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 181
+   at OpenClaw.Tray.Tests.ActivationRouterTests.NativeSetupRestart_UsesTheSameReceiptForInitialAndSecondaryLaunch() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 181
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.33]     OpenClaw.Tray.Tests.ActivationRouterTests.ForwardThenListen_DispatchesRouteFromForwardedDeepLink [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.ForwardThenListen_DispatchesRouteFromForwardedDeepLink [1 s]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.ForwardThenListen_DispatchesRouteFromForwardedDeepLink() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 472
+   at OpenClaw.Tray.Tests.ActivationRouterTests.ForwardThenListen_DispatchesRouteFromForwardedDeepLink() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 480
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:06.38]     OpenClaw.Tray.Tests.ActivationRouterTests.Listener_AcceptsNextForwardWhileConfirmationIsPending [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.Listener_AcceptsNextForwardWhileConfirmationIsPending [1 s]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.Listener_AcceptsNextForwardWhileConfirmationIsPending() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 591
+   at OpenClaw.Tray.Tests.ActivationRouterTests.Listener_AcceptsNextForwardWhileConfirmationIsPending() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 610
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:09.44]     OpenClaw.Tray.Tests.ActivationRouterTests.MigrationShutdown_DisabledReceiverDoesNotDisruptSubsequentActivation [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.MigrationShutdown_DisabledReceiverDoesNotDisruptSubsequentActivation [1 s]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.MigrationShutdown_DisabledReceiverDoesNotDisruptSubsequentActivation() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 55
+   at OpenClaw.Tray.Tests.ActivationRouterTests.MigrationShutdown_DisabledReceiverDoesNotDisruptSubsequentActivation() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 58
+   at OpenClaw.Tray.Tests.ActivationRouterTests.MigrationShutdown_DisabledReceiverDoesNotDisruptSubsequentActivation() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 58
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:10.96]     OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_ListenerStartsLate_RetriesAndDispatchesDefaultHub [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_ListenerStartsLate_RetriesAndDispatchesDefaultHub [1 s]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_ListenerStartsLate_RetriesAndDispatchesDefaultHub() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 522
+   at OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_ListenerStartsLate_RetriesAndDispatchesDefaultHub() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 530
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:12.01]     OpenClaw.Tray.Tests.ActivationRouterTests.StopAsync_CancelsPendingConfirmationAndPreventsLateDispatch [FAIL]
+[xUnit.net 00:00:12.43]     OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_NoArgumentLaunch_DispatchesDefaultHub [FAIL]
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.StopAsync_CancelsPendingConfirmationAndPreventsLateDispatch [1 s]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.StopAsync_CancelsPendingConfirmationAndPreventsLateDispatch() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 623
+--- End of stack trace from previous location ---
+  Failed OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_NoArgumentLaunch_DispatchesDefaultHub [403 ms]
+  Error Message:
+   Assert.True() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_NoArgumentLaunch_DispatchesDefaultHub() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 494
+   at OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_NoArgumentLaunch_DispatchesDefaultHub() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/ActivationRouterTests.cs:line 504
+--- End of stack trace from previous location ---
+Results File: /workspace/morpheus-evidence/windows-regression/tray-focused.trx
+
+Failed!  - Failed:    14, Passed:   196, Skipped:     0, Total:   210, Duration: 10 s - OpenClaw.Tray.Tests.dll (net10.0)

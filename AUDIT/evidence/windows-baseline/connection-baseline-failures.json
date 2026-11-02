@@ -1,0 +1,1118 @@
+[
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.MalformedReceipt_CannotBeEncoded(field: \"version\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.ExistingConsentWithoutLock_PropagatesOperationalFailureWithoutCreatingLock(corrupt: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.ARecordThatDecryptsButDoesNotParse_RequiresRecovery",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.RegistryGoneButSourcePayloadRemains_WaitsWithoutMutation",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: ChangePermissions, expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.MalformedReceipt_CannotBeEncoded(field: \"future\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.ADecodableReceipt_IsNeverDiscarded(source: NotInstalled)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.Completion_OwnsExclusiveLockBeforeRecheckingSource",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.MalformedReceipt_CannotBeEncoded(field: \"fingerprint\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.MissingConsent_DoesNotPreventLegacyReceiptFinalization",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.LockedRecord_IsUnavailableNotAbsent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.MissingConsent_DoesNotAcquireOrChangeExistingPreparationLock",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.NoActiveGateway_CompletesBecauseNothingNeedsPreserving",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.ScriptTimeout_TerminatesProcessTreeAndPreservesFailureDiagnostics(lockLog: False)",
+    "message": "System.PlatformNotSupportedException : The named version of this synchronization primitive is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.BackwardClock_InvalidatesConsentAndPreventsSilentReplacement",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.CrossSessionInspection_RunsUnderExclusiveLockBeforePublication(activity: Stopped, expectedState: Prepared)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_IsBoundToPackageAndSourceContract(field: \"CN=4BA40A7A-B719-4C40-BF91-84AF4F1136FC\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.BindingDrift_InvalidatesConsentAndPreventsOverwrite(field: \"install\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.ADirectoryOccupyingASourceName_BlocksRemoval(name: \"unins000.exe\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-full-control-grant\", expectedSound: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.WrongRecordKind_RequiresRecovery(kind: \"intent\", destination: \"completed.dpapi\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.WrongBinding_RequiresRecovery(field: \"user\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"completed\", expectedExit: 10, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.SameNameProcessAtCanonicalSourcePath_BlocksRemoval",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Load_RejectsTamperedSchemaFourCacheReceipt",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.MissingConsent_PreexistingEmptyMigrationDirectoryRemainsUnchanged",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-readonly-grant\", expectedSound: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_UsesVerifiedDestinationThatWinsPromotionRace",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.SourceRestartBetweenPreparationAndCompletion_BlocksUntilExit",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.ARecordDamagedAfterWriting_CountsAsCorrupt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.NoRecordsAtAll_DoesNotClaimAReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"missing-codec\", expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.DirectoryAtConsentPath_PropagatesAccessFailure",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Grant_RemovesAForeignGrantFromAnOtherwiseProtectedDirectory",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.DeletedReceipt_WithStorePackageInstalled_PreservesGateway(removeDirectory: False)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.InaccessibleSameNameProcessOwnedByOtherUser_DoesNotBlockRemoval",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationPreparationTests.ChangedSource_CreatesFreshConsentInventoryWithoutMutatingSource",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.SameNameProcessAtUnrelatedPath_DoesNotBlockRemoval",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.ActualProductionInnoMetadata_IsDetected",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.Completion_TakesPrecedenceOverOldOrCorruptIntent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_RequiresStrictNonInventoryFields(field: \"future\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.MalformedProtectedPayload_IsInvalidNotAnOperationalIoFailure(format: \"truncated\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Completion_RemainsValidRegardlessOfClockChanges(secondsAfterCompletion: 315360000)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: Delete, expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"intent\", expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.DeletedReceipt_WithoutStorePackage_ReportsNoMigration(removeDirectory: True)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.ValidatedSource_PreparesIntentOnlyWhileLeaseIsHeld",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"wrong-path\", expectedExit: 2, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationPreparationTests.CorruptIntent_IsNotSilentlyReplaced",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.InvalidSize_IsLoggedAndNeverReplaced(size: 4194305)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Completion_RemainsValidRegardlessOfClockChanges(secondsAfterCompletion: -315360000)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-deny-grant\", expectedSound: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.ExclusiveMigrationLock_ExcludesConsentReadsAndWrites",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.ManagedLocalGatewayPortProvenanceServiceTests.VerifyMicrosoftSignedFile_RejectsUnsignedAssembly",
+    "message": "System.IO.FileNotFoundException : Could not load file or assembly 'getfilesiginforedistwrapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'. The system cannot find the file specified."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.PreparedInventory_IsNeverImplicitConsent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.EmptyRepository_PreservesGateway",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.ScriptTimeout_TerminatesProcessTreeAndPreservesFailureDiagnostics(lockLog: True)",
+    "message": "System.PlatformNotSupportedException : The named version of this synchronization primitive is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.CleanupFailure_PreservesCompletionAndDeletesOnlyEarlierRecords(lockedKind: \"consent\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.ValidRecord_IsReadWithoutMutation(kind: \"completed\", expected: Completed)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ExclusiveOwner_BlocksRuntimeWithoutChangingRecords",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.DefaultRepositoryKey_IsTheAppModelRepository",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.ResolvedDeviceCredential_WritesAtomicCompletionWithoutDeletingIntent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RecoversFromInterruptedPartialCopy",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.RuntimeInAnotherProcess_ExcludesStoreUntilNormalExitOrCrash(crash: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"trusted-owner-clean\", expectedSound: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"wrong-path\", expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"missing-tampered\", expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_RequiresStrictNonInventoryFields(field: \"expiry\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.AMissingLeaseFile_DoesNotFakeSuccess",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RejectsDestinationDirectorySwapWithoutWritingOutsideCache",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.ACorruptReceiptBesideAValidIntent_CostsOnlyTheReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_MissingLegacyDirectoryTreeDoesNotCreateCacheDirectories",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"consent\", expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationInventoryTests.Capture_JunctionSource_IsRejectedWithoutReadingTarget",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.CrossSessionInspection_RunsUnderExclusiveLockBeforeCompletion(activity: Running, expectedState: InnoRunning)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-generic-write-grant\", expectedSound: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_RequiresStrictNonInventoryFields(field: \"inventory\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.CrossSessionInspection_RunsUnderExclusiveLockBeforeCompletion(activity: Stopped, expectedState: Completed)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.AnAbandonedIntent_IsDiscardableOnceTheSourceIsGone(source: OrphanedRegistration)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.AnInstallMissingOnlyTheMigrationPayload_StillReportsItsSourcePresent(name: \"MigrationRecordCodec.cs\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.AValidIntent_IsKeptWhileTheSourceIsStillInstalled(source: Detected)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.CompletionDirectory_IsTreatedAsAReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.CrossSessionInspection_RunsUnderExclusiveLockBeforePublication(activity: InspectionFailed, expectedState: ValidationFailed)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RejectsConcurrentManifestUpdateWithoutLosingIt",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.BindingDrift_InvalidatesConsentAndPreventsOverwrite(field: \"roaming\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Intent_CannotAuthorizeUninstall",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.ARecordThatDecryptsButDoesNotParse_CountsAsCorrupt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Grant_RejectsBindingForAnotherWindowsUser",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.BindingDrift_InvalidatesConsentAndPreventsOverwrite(field: \"user\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_CancellationWhileVerifyingRecoveredPartialReleasesItForRetry",
+    "message": "Assert.ThrowsAny() Failure: Exception type was not compatible"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_IsBoundToPackageAndSourceContract(field: \"OpenClawFoundation.OpenClaw\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.ValidRecord_IsReadWithoutMutation(kind: \"intent\", expected: Intent)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.AnyExistingCompletion_PreventsGrantWithoutChangingConsent(completion: \"corrupt\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.ADirectoryOccupyingASourceName_BlocksRemoval(name: \"OpenClaw.Tray.WinUI.exe\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.CleanupScript_CompletedReceiptPreservesFilesWithoutCallingWsl(parentShare: Read, expectedExit: 10, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.LockedConsent_PropagatesOperationalFailureRatherThanTreatingItAsMissingOrInvalid",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: FullControl, expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.CleanupScript_CompletedReceiptPreservesFilesWithoutCallingWsl(parentShare: null, expectedExit: 10, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Load_RejectsSchemaFourWithInvalidLegacyCompatibilityPath",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.AnOrphanBesideALiveUserRegistration_StillReportsThePayloadPresent",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: TakeOwnership, expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.RecordsHeldByAnotherOperation_AreNotDiscarded",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.SourceVersionDrift_RequiresExplicitNewGrant",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.RuntimeLease_BlocksPreparationBeforeDetectionOrInventory",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RejectsConcurrentManifestDeletionWithoutResurrectingIt",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-generic-read-grant\", expectedSound: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.ManagedLocalGatewayPortProvenanceServiceTests.RepairConflict_ProvenNativeOpenClaw_DisablesTaskThenStopsExactPid",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.MalformedReceipt_CannotBeEncoded(field: \"expiry\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_RequiresStrictNonInventoryFields(field: \"autostart\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_AcceptsUtf8BomManifest",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.UnpairedActiveGateway_CompletesWithoutACredential",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.AnyExistingCompletion_PreventsGrantWithoutChangingConsent(completion: \"valid\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.BindingDrift_InvalidatesConsentAndPreventsOverwrite(field: \"architecture\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.DeviceIdentityDamagedAfterPreparation_FailsClosedDuringCompletion",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.OtherKindInConsentFile_IsInvalidAndCannotBeOverwritten(kind: \"intent\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeAdapter_ReadsActualPeMachineAndFileVersion(machine: Arm64)",
+    "message": "System.ArgumentException : Destination array was not long enough. Check the destination index, length, and the array's lower bounds. (Parameter 'destinationArray')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeRegistryAdapter_IgnoresDevIdAndDeduplicatesReadOnlyProductionAlias",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-owner\", expectedSound: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationPreparationTests.ConcurrentPreparation_IsRejectedWithoutReplacingIntent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.OrphanedRegistrationWithTheSourceGone_Finalizes",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.ProtectedRecord_RoundTripsWithoutPlaintext(kind: \"consent\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.RepeatAcquisition_LeavesAnAlreadyHardenedDirectoryUntouched",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.ProtectedRecord_RoundTripsWithoutPlaintext(kind: \"completed\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_IsBoundToPackageAndSourceContract(field: \"{M0LTB0T-TRAY-4PP1-D3N7}\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.CrossSessionInspection_RunsUnderExclusiveLockBeforeCompletion(activity: InspectionFailed, expectedState: ValidationFailed)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.InvalidSize_RequiresRecovery(size: 0)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: ImageResolved, image: null, expected: InspectionFailed)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Grant_StillCorrectsADirectoryThatLostItsProtection",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.EnumerationFailure_FailsClosed",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.AValidIntent_IsKeptWhileTheSourceIsStillInstalled(source: Unsupported)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.StartupPreferenceRefusal_RemovesReceiptSoLaunchIsNotBlockedAgain",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Receipt_IsBoundToUserAndInstallation(field: \"local\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: Unresolved, image: null, expected: InspectionFailed)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.CorruptCompletion_StillReportsTheReceiptAsPresent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ExplicitForeignGrantOnTheReceipt_IsScrubbedOnNextAcquisition",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.StaleCompletionReceiptWithChangedInventory_BlocksBeforeStartupPreferenceOrCleanup",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.ADecodableReceipt_IsNeverDiscarded(source: Detected)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: ImageResolved, image: \"\", expected: InspectionFailed)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.OtherKindInConsentFile_IsInvalidAndCannotBeOverwritten(kind: \"completed\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RejectsHardLinkedPartialWithoutChangingEitherLink",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.MissingRepository_PreservesGateway",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.RuntimeReadLease_ExistingConsentInspectionRemainsReadOnly",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.RegistryGoneButSourceRuntimeEvidenceRemains_WaitsWithoutMutation",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.GenericRightsCountAsMutatingEvenWithoutNamedBits(ace: \"(A;;GX;;;BG)\", expectedSound: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.WindowsTcpListenerSnapshotTests.AwaitRedirectedOutput_ReturnsNullWhenDescendantKeepsStdoutOpen",
+    "message": "Abandoned stdout read failed unexpectedly: System.IO.IOException: Operation canceled"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationPreparationTests.RenewedConsent_ReplacesExpiredIntentButNotBeforeExpiry",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeRegistryAdapter_RejectsNonStringKindsWithoutExpansion(kind: MultiString)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.StartupPreferenceFailure_KeepsReceiptAndDoesNotCleanRecords",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.ProvenRemoval_AppliesSavedPreferenceOnceCleansSameReceiptAndAllowsStartup",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationPreparationTests.Preparation_IsProtectedAtomicAndIdempotent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RejectsReparsePointCacheRootWithoutWritingItsTarget",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.AnInstalledSourceThatFailsValidation_StillReportsItsPayloadPresent",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"corrupt\", expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: Exited, image: null, expected: Stopped)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.OrphanedRegistrationWhoseSourceReappears_WaitsWithoutMutation",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"consent\", expectedExit: 2, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.AnAbandonedIntent_IsDiscardableOnceTheSourceIsGone(source: NotInstalled)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.FailedAtomicReplacement_PreservesConsentAndCleansTemporaryFile",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.ReparsePointAncestor_IsUnsupported",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.RuntimeInAnotherProcess_ExcludesStoreUntilNormalExitOrCrash(crash: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: ImageResolved, image: \"C:\\\\other\\\\OpenClaw.Tray.WinUI.exe\", expected: Stopped)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-generic-all-grant\", expectedSound: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.ProtectedRecord_RoundTripsWithoutPlaintext(kind: \"intent\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.WrongBinding_RequiresRecovery(field: \"install\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Load_IsIdempotentAndDoesNotRewriteVerifiedCacheContent",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.AValidIntent_IsKeptWhileTheSourceIsStillInstalled(source: InspectionFailed)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationInventoryTests.Capture_InvalidLocalState_FailsWithoutChangingIt(name: \"LocalAI\\\\state.json\", content: \"{}\")",
+    "message": "Assert.Throws() Failure: No exception was thrown"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: ReadAndExecute, expectedSound: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeRegistryAdapter_RejectsNonStringKindsWithoutExpansion(kind: ExpandString)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Receipt_IsBoundToUserAndInstallation(field: \"install\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.AnInstallMissingOnlyTheMigrationPayload_StillReportsItsSourcePresent(name: \"Test-InnoMigration.ps1\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ProtectedReceiptOwnedByAnotherPrincipal_StillRequiresHardening",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ProtectedButPermissiveDirectory_LosesTheForeignGrantOnNextAcquisition",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: OwnedByOtherUser, image: null, expected: Stopped)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.StartupPreferenceRefusal_CleansReceiptAndAllowsStartup",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.MalformedReceipt_CannotBeEncoded(field: \"kind\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Receipt_IsBoundToUserAndInstallation(field: \"architecture\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.CrossSessionInspection_RunsUnderExclusiveLockBeforePublication(activity: Running, expectedState: InnoRunning)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ContendedAcquisition_IsDistinguishableFromAnInaccessibleLock",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.GenericRightsCountAsMutatingEvenWithoutNamedBits(ace: \"(A;;GR;;;BG)\", expectedSound: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.CleanupScript_CompletedReceiptPreservesFilesWithoutCallingWsl(parentShare: null, expectedExit: 10, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ReceiptOwnedByAnotherPrincipal_IsNotSoundAuthorityEvenWhenInherited",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.DriftedDirectorySecurity_IsRehardenedOnNextAcquisition",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.FirstRuntime_CreatesProtectedLockWithoutMigrationRecords",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.DetectionDoesNotModifyInstallationOrReadUserState",
+    "message": "Assert.All() Failure: 1 out of 10 items in the collection did not pass."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.BindingDrift_InvalidatesConsentAndPreventsOverwrite(field: \"local\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.GenericRightsCountAsMutatingEvenWithoutNamedBits(ace: \"(A;;GA;;;BG)\", expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.Cleaner_RejectsChangedReceiptBeforeDeletingAnything",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.MalformedReceipt_CannotBeEncoded(field: \"id\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Load_CopiesVerifiedLegacyWeightsAndRecordsTransitionalReceipt",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.AnUnreadableRegistration_DoesNotMaskALiveSibling",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-delete-grant\", expectedSound: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.ChangedSource_StopsBeforePreparation",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: ReadData, expectedSound: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WrongPackageContract_IsRejected",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Intent_ExpiresAtThirtyDays_ButCanBeReadForNewConsent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.ConsentOnly_DoesNotBecomePendingIntentOrAuthorizeUninstall",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-inherit-only-grant\", expectedSound: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.CleanupFailure_PreservesCompletionAndDeletesOnlyEarlierRecords(lockedKind: \"consent-lock\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationAdoptionPreparationCoordinatorTests.BusyInno_DoesNotInspectOrPrepare",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.PowerShellAuthorityPredicate_AcceptsOnlyNonMutatingForeignGrants(scenario: \"foreign-write-grant\", expectedSound: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Connection.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.UnverifiableRegistrySource_FailsClosedAndKeepsReceipt(status: InspectionFailed)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_RequiresStrictNonInventoryFields(field: \"target\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.ExpiredIntent_RemainsPendingWithoutRenewingConsent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.CorruptIntentAlone_DoesNotClaimAReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.CorruptProtectedReceipt_IsRejected",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.DeletedReceipt_WithoutStorePackage_ReportsNoMigration(removeDirectory: False)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.OrphanedRegistrationWithAnUnprovableSource_FailsClosedAndKeepsReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.WrongUserBinding_IsRejectedBeforeCreatingDirectory",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.UnresolvedSameNameProcess_FailsClosed",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.MalformedProtectedPayload_IsInvalidNotAnOperationalIoFailure(format: \"negative-string-length\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.ForeignGrantBreaksAuthorityOnlyWhenItCanChangeTheReceipt(granted: WriteData, expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.AnInstallMissingOnlyTheMigrationPayload_StillReportsItsSourcePresent(name: \"Uninstall-LocalGateway.ps1\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.ManagedLocalGatewayPortProvenanceServiceTests.RepairConflict_TaskEndAlreadyReleasedPort_IsSuccessWithoutPidKill",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"corrupt\", expectedExit: 2, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationOperationLockTests.GenericRightsCountAsMutatingEvenWithoutNamedBits(ace: \"(A;;GW;;;BG)\", expectedSound: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Consent_ExpiresExactlyAtThirtyDaysWithoutReadRenewal",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.ReparsePointAncestor_IsUnavailableNotRecovery",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.MissingRecords_DoesNotCreateAnyDirectory",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.CorruptConsent_IsLoggedAndNeverSilentlyReplaced",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.ExistingConsentWithoutLock_PropagatesOperationalFailureWithoutCreatingLock(corrupt: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.CleanupScript_CompletedReceiptPreservesFilesWithoutCallingWsl(parentShare: None, expectedExit: 2, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.ConcurrentFinalization_OnlyLockOwnerAppliesStartupPreference",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.CorruptCompletion_DoesNotFallBackToValidIntent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.MalformedProtectedPayload_IsInvalidNotAnOperationalIoFailure(format: \"malformed-string-length\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Load_RejectsMismatchedLegacySourceWithoutWritingCacheOrReceipt",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Consent_RequiresStrictNonInventoryFields(field: \"fingerprint\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.CleanupScript_CompletedReceiptPreservesFilesWithoutCallingWsl(parentShare: Read, expectedExit: 10, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Receipt_IsBoundToUserAndInstallation(field: \"roaming\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"completed\", expectedExit: 10, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.UncertainSourceRemoval_FailsClosedAndKeepsReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.FailedCompletion_ReleasesLockForUninstall",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.AnyExistingCompletion_PreventsGrantWithoutChangingConsent(completion: \"directory\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeRegistryAdapter_RejectsNonStringKindsWithoutExpansion(kind: Binary)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Grant_RoundTripsProtectedSeparateConsentWithoutInventoryOrCompletion",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.UnrelatedPackages_DoNotPreserveTheGateway",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"missing\", expectedExit: 0, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.UnreadableRecords_AreRemovedSoRecoveryCanBeCleared",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.ManagedLocalGatewayPortProvenanceServiceTests.Inspect_TaskXmlEscapedProfilePath_IsStillProven",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationPreparationTests.ExistingCompletion_PreventsNewPreparationEvenIfUnreadable",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeRegistryAdapter_RejectsNonStringKindsWithoutExpansion(kind: DWord)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Intent_StillRejectsFutureCreationAfterClockRollback",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.UninstallReadHandles_BlockCompletionUntilSourceRemoval",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.WrongBinding_RequiresRecovery(field: \"architecture\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.RuntimeReadLease_AllowsExplicitGrantAndInspection",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.CleanupFailure_PreservesCompletionAndDeletesOnlyEarlierRecords(lockedKind: \"intent\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"missing-readonly-foreign\", expectedExit: 0, clockRollback: False)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_MissingLegacySourceDoesNotCreateCacheDirectories",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.InvalidSize_RequiresRecovery(size: 4194305)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.CleanupInterruptionAfterIntentDeletion_RetriesFromReceipt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.DamagedDeviceIdentity_FailsClosedDuringPreparation",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.ReparseMigrationDirectory_RequiresConfirmationAndGrantCannotWriteThroughIt",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Completion_RemainsValidRegardlessOfClockChanges(secondsAfterCompletion: -3600)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationRecoveryDiscardTests.NoRecordDirectory_ReportsTheOutcomeTheUserAskedFor",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.ManagedLocalGatewayPortProvenanceServiceTests.VerifyMicrosoftSignedFile_AcceptsWindowsWslBinary",
+    "message": "System.IO.FileNotFoundException : Could not load file or assembly 'getfilesiginforedistwrapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'. The system cannot find the file specified."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.ExitedSameNameProcess_DoesNotBlockRemoval",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_AllowsExistingReadHandleOnActiveLegacyModel",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_RejectsAttemptedTemporaryChangeAndRemovesOwnedPartial",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.ConsentWriterLock_SerializesGrantsWithoutBlockingDurableConsentInspection",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Grant_LeavesAnAlreadyHardenedDirectoryAlone",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.ManifestDeletion_DoesNotDeleteMigratedSharedCacheContent",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.UnverifiableRegistrySource_FailsClosedAndKeepsReceipt(status: Unsupported)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Receipt_IsBoundToUserAndInstallation(field: \"user\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.ChangedPreparedInventory_CannotComplete",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.Completion_RemainsValidRegardlessOfClockChanges(secondsAfterCompletion: -1)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationRecordTests.WindowsPowerShellChecker_UsesTheSameContract(kind: \"intent\", expectedExit: 2, clockRollback: True)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_CancellationDuringCopyRemovesOwnedPartialAndPreservesLegacyState",
+    "message": "Assert.ThrowsAny() Failure: Exception type was not compatible"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.LocalAiManifestMigrationTests.Migration_MapsFlatLegacyFileIntoNestedHuggingFaceSnapshotPath",
+    "message": "System.PlatformNotSupportedException : Local AI Hugging Face cache migration requires Windows handle-relative file operations."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationPackagePresenceTests.DeletedReceipt_WithStorePackageInstalled_PreservesGateway(removeDirectory: True)",
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationFinalizationCoordinatorTests.CleanupFailure_PreservesCompletionAndDeletesOnlyEarlierRecords(lockedKind: \"completed\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.MigrationStartupRecordReaderTests.WrongRecordKind_RequiresRecovery(kind: \"completed\", destination: \"intent.dpapi\")",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.InvalidSourceVersion_CannotReplaceExistingConsent",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoInstallationDetectorTests.NativeAdapter_ReadsActualPeMachineAndFileVersion(machine: Amd64)",
+    "message": "System.ArgumentException : Destination array was not long enough. Check the destination index, length, and the array's lower bounds. (Parameter 'destinationArray')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.Grant_DoesNotReadOrChangeLiveSettingsAndIdentity",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: ImageResolved, image: \"C:\\\\source\\\\OpenClaw.Tray.WinUI.exe\", expected: Running)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.MissingConsent_DoesNotCreateProfileOrMigrationDirectory",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.StoreMigrationCompletionCoordinatorTests.ExistingReceipt_IsNeverReplaced",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoMigrationConsentStoreTests.InvalidSize_IsLoggedAndNeverReplaced(size: 0)",
+    "message": "System.PlatformNotSupportedException : Windows Principal functionality is not supported on this platform."
+  },
+  {
+    "test": "OpenClaw.Connection.Tests.InnoSourceActivityVerifierTests.Candidates_AreClassifiedWithoutSessionLocalAssumptions(state: ImageResolved, image: \"c:\\\\SOURCE\\\\OpenClaw.Tray.WinUI.exe\", expected: Running)",
+    "message": "System.ArgumentException : Source executable must be absolute. (Parameter 'executable')"
+  }
+]

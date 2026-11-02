@@ -1,0 +1,24 @@
+node_modules/
+.morpheus-test/
+.tools/
+.artifacts/
+**/bin/
+**/obj/
+**/TestResults/
+**/*.tsbuildinfo
+
+# Local credentials and environment overrides (keep distributable examples).
+.env
+.env.*
+!.env.example
+!.env.template
+/.secrets/
+/credentials/
+
+# Local caches and editor/OS output.
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,115 @@
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using OpenClaw.Shared;
+using OpenClaw.Shared.Audio;
+using SherpaOnnx;
+
+namespace OpenClawTray.Services;
+
+/// <summary>
+/// Wraps Sherpa-ONNX <see cref="OfflineTts"/> with a Piper voice for
+/// fully-local neural text-to-speech.
+///
+/// One instance owns one loaded voice. Callers ensure the voice is
+/// downloaded (via <see cref="PiperVoiceManager"/>) before constructing
+/// this service. Generation is single-flight: a second concurrent
+/// <see cref="GenerateWavAsync"/> call waits behind the first.
+///
+/// Output is 16-bit PCM mono WAV at the model's native sample rate
+/// (typically 22 050 Hz for Piper-low, 16 000 Hz for some others). The
+/// caller is responsible for playback.
+/// </summary>
+public sealed class PiperTextToSpeechClient : IDisposable, IAsyncDisposable
+{
+    private const string SherpaNativeLibrary = "sherpa-onnx-c-api";
+    private static readonly object s_nativeLibraryLock = new();
+    private static IntPtr s_nativeLibraryHandle;
+
+    private readonly IOpenClawLogger _logger;
+    private readonly string _voiceId;
+    private readonly OfflineTts _tts;
+    private readonly PiperGenerationLease _lease;
+
+    public string VoiceId => _voiceId;
+    public int SampleRate => _tts.SampleRate;
+
+    public PiperTextToSpeechClient(IOpenClawLogger logger, PiperVoiceManager voices, string voiceId)
+    {
+        _logger = logger;
+        _voiceId = voiceId;
+
+        if (!voices.IsVoiceDownloaded(voiceId))
+            throw new InvalidOperationException($"Piper voice '{voiceId}' is not downloaded.");
+
+        var config = new OfflineTtsConfig();
+        config.Model.Vits.Model = voices.GetModelPath(voiceId);
+        config.Model.Vits.Tokens = voices.GetTokensPath(voiceId);
+        config.Model.Vits.DataDir = voices.GetEspeakDataDir(voiceId);
+        // Piper defaults — produce natural-sounding speech.
+        config.Model.Vits.NoiseScale = 0.667f;
+        config.Model.Vits.NoiseScaleW = 0.8f;
+        config.Model.Vits.LengthScale = 1.0f;
+        config.Model.NumThreads = Math.Max(1, Environment.ProcessorCount / 2);
+        config.Model.Provider = "cpu";
+        config.Model.Debug = 0;
+        config.MaxNumSentences = 2;
+
+        EnsureNativeLibraryLoaded();
+        _tts = new OfflineTts(config);
+        _lease = new PiperGenerationLease(ReleaseNativeSynthesizer);
+        _logger.Info($"Piper voice '{_voiceId}' loaded (sample rate {_tts.SampleRate} Hz, {config.Model.NumThreads} threads)");
+    }
+
+    /// <summary>
+    /// Synthesize <paramref name="text"/> to a WAV byte array.
+    /// <paramref name="speed"/> &gt; 1 speeds up; &lt; 1 slows down.
+    /// </summary>
+    public async Task<byte[]> GenerateWavAsync(string text, float speed = 1.0f, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("text must be non-empty", nameof(text));
+
+        // Inference is CPU-bound. The lease keeps it on a worker and holds its gate
+        // until this call returns, so native release cannot free the synthesizer underneath it.
+        return await _lease.RunAsync(_ =>
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var audio = _tts.Generate(text, speed: speed, speakerId: 0);
+            cancellationToken.ThrowIfCancellationRequested();
+            return PcmWavEncoder.EncodeMono16(audio.Samples, audio.SampleRate);
+        }, cancellationToken).ConfigureAwait(false);
+    }
+
+    private static void EnsureNativeLibraryLoaded()
+    {
+        lock (s_nativeLibraryLock)
+        {
+            if (s_nativeLibraryHandle != IntPtr.Zero)
+                return;
+
+            if (!NativeLibrary.TryLoad(
+                    SherpaNativeLibrary,
+                    typeof(OfflineTts).Assembly,
+                    DllImportSearchPath.SafeDirectories,
+                    out s_nativeLibraryHandle))
+            {
+                throw new DllNotFoundException("Piper TTS native library could not be loaded.");
+            }
+        }
+    }
+
+    public void Dispose() => _lease.Dispose();
+
+    public ValueTask DisposeAsync() => _lease.DisposeAsync();
+
+    private void ReleaseNativeSynthesizer()
+    {
+        // SherpaOnnx suppresses its finalizer only after native cleanup succeeds.
+        // Suppress first so a cleanup failure cannot retry from the finalizer thread.
+        GC.SuppressFinalize(_tts);
+        // slopwatch-ignore: SW003 Cleanup is best-effort; failure cannot improve caller state and the original outcome is preserved.
+        try { _tts.Dispose(); } catch { /* swallow */ }
+    }
+}

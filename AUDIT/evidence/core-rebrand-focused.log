@@ -1,0 +1,129 @@
+$ node scripts/test-projects.mts ui/src/lib/assistant-identity.test.ts ui/src/i18n/lib/translate.test.ts packages/gateway-protocol/src/theme.test.ts src/cli/banner.test.ts src/cli/program/help.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.gateway-client.config.ts
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > accepts authored mascot, critters and hat, and normalizes custom working phrases 211ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > accepts independent branding with no working indicator 31ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > restricts custom brand icons to the manifest's icon IDs 12ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > keeps null avatar hats out of personal definitions 38ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > accepts plugin artwork only from declared IDs of the corresponding kind 15ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects nonportable artwork IDs at the wire boundary 21ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"brandName":"hello\ud800"} 5ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"workingIndicator":"spinner"} 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"lobsterdex":"false"} 15ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"mascot":"robot"} 31ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"workingPhrases":["Working 0","Working 1","Working 2","Working 3","Working 4","Working 5","Working 6","Working 7","Working 8","Working 9","Working 10","Working 11","Working 12","Working 13","Working 14","Working 15","Working 16","Working 17","Working 18","Working 19","Working 20","Working 21","Working 22","Working 23","Working 24"]} 11ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"workingPhrases":["Building"," Building "]} 4ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"critters":["penguin","penguin","penguin","penguin","penguin","penguin","penguin","penguin","penguin"]} 12ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects invalid branding {"critters":["penguin","penguin"]} 16ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"background":"#000;display:none"} 20ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"background":"var(--other-theme)"} 10ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"font-sans":"var(--font-body)"} 31ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"font-sans":"Foo serif"} 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects unsafe or malformed CSS values {"font-sans":"default"} 8ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > preserves font family names 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > rejects missing modes, incomplete palettes, unknown properties, and oversized stored values 10ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity claw 13ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity user/xenovessel 16ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity space/../neon 50ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > portable theme definition > validates catalog identity aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/neon 15ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > resolves omitted branding to neutral MORPHEUS without critters or a hat and retains authored branding 6ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > keeps explicit branding independent from mascot defaults 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > normalizes only exact theme mode literals: "dark" 9ms
+ ✓ |gateway-client| packages/gateway-protocol/src/theme.test.ts > normalizes only exact theme mode literals: null 3ms
+
+ Test Files  1 passed (1)
+      Tests  29 passed (29)
+   Start at  11:21:51
+   Duration  3.39s (transform 44%, tests 24%, setup 24%, import 7%)
+
+[test] starting test/vitest/vitest.cli.config.ts
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > renders group help through both flag and help-command entrypoints 324ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > formats parse errors from the exact Commander command path 12ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > parses --log-level %p 8ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > parses --log-level %p 15ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > suppresses banner formatting when parent default help requests it 4ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > prints version with commit abc1234 and exits immediately 50ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > prints version with commit null and exits immediately 19ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders plugins using the supplied isolated config and env 18ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > loads no plugins by default and gates private QA (undefined) 12ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > loads no plugins by default and gates private QA (1) 36ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders safe unique visible descriptors: [{"name":"safe-command","description":"Open \u001b]8;;https://example.test\u0007link\u001b]8;;\u0007 now\u001b[2J","hasSubcommands":false}] 14ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders safe unique visible descriptors: [{"name":"visible","description":"Visible","hasSubcommands":false},{"name":"retired","description":"Retired","hasSubcommands":false,"hidden":true}] 8ms
+stderr | unknown test
+[sqlite-test-lifecycle] src/cli/program/help.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > renders safe unique visible descriptors: [{"name":" alpha ","description":"First alpha","hasSubcommands":false},{"name":"alpha","description":"Ignored normalized duplicate","hasSubcommands":false}] 10ms
+ ✓ |cli| src/cli/program/help.test.ts > configureProgramHelp > root help > rejects unsafe command names before emitting help 9ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > formats off tagline mode 8ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > formats default tagline mode 25ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > selects a complete index or falls back for 0 7ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > selects a complete index or falls back for 1abc 31ms
+ ✓ |cli| src/cli/banner.test.ts > formatCliBannerLine > drops decorative emoji for generic Linux terminals 3ms
+ ✓ |cli| src/cli/banner.test.ts > future holiday tagline windows (2028-2030) > activates Diwali on 2029-10-5 64ms
+ ✓ |cli| src/cli/banner.test.ts > future holiday tagline windows (2028-2030) > activates Diwali on 2030-9-25 44ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '--json' ] 106ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '--json=true' ] 129ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '--version' ] 104ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '-V' ] 101ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ '-v' ] 155ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > respects banner suppression for [ 'acp', '-v' ] 125ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > does not write a banner without a TTY 111ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps seasonal mascot artwork out of MORPHEUS throughout Thu Feb 26 2026 00:00:00 GMT+0000 (Coordinated Universal Time) 160ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps seasonal mascot artwork out of MORPHEUS throughout Thu Feb 26 2026 23:59:00 GMT+0000 (Coordinated Universal Time) 194ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of plain terminals 160ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of off mode 140ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of default mode 123ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of non-lobster days 176ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of CI 130ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > keeps lobster day out of tests 110ms
+ ✓ |cli| src/cli/banner.test.ts > emitCliBanner > emits only once per module instance 167ms
+
+ Test Files  2 passed (2)
+      Tests  37 passed (37)
+   Start at  11:21:57
+   Duration  11.64s (worker 42%, tests 27%, transform 26%, setup 4%, import 1%)
+
+[test] starting test/vitest/vitest.ui.config.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - JSON import "./control-ui-i18n-config.json" without import attributes (scripts/lib/control-ui-i18n-sync-plan.ts:2:41). Add `with { type: 'json' }`
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > repairs a Node-style storage accessor without invoking its unsafe getter 17ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > prepares registered English namespaces before publishing a locale without loading unopened ones 6ms
+stderr | unknown test
+[sqlite-test-lifecycle] ui/src/i18n/lib/translate.test.ts: retiring openclaw.agentDatabaseReaders
+
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps late namespace results scoped to their locale and retries a failed namespace 75ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > deduplicates an in-flight target and permits retry after the shared load settles 15ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > persists the latest explicit request 2ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > persists the latest system request 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps explicit recovery preference 6ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > keeps system recovery preference 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > ignores a stale locale load's failure 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > ignores a stale locale load's success 1ms
+ ✓ |ui| ui/src/i18n/lib/translate.test.ts > rebrands catalog templates without changing user values or technical command identifiers 10ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > uses MORPHY only when no custom agent name is available 4ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > truncates names without splitting a surrogate pair 1ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > preserves a maximum-size encoded local avatar above the old UI limit 10ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects oversized data URLs instead of truncating them into corrupt images 14ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects unsupported URI avatars instead of displaying them as text: data:text/plain,avatar 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects unsupported URI avatars instead of displaying them as text: https://example.com/avatar.png 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > rejects unsupported URI avatars instead of displaying them as text: javascript:alert(1) 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > preserves same-origin Control UI avatar routes 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > keeps short text avatars 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > drops sentence-like text that exceeds the text-avatar limit 0ms
+ ✓ |ui| ui/src/lib/assistant-identity.test.ts > normalizeAssistantIdentity > drops avatars containing newlines 0ms
+
+ Test Files  2 passed (2)
+      Tests  22 passed (22)
+   Start at  11:22:11
+   Duration  4.92s (worker 76%, transform 16%, tests 5%, setup 3%, import 1%)
+
+[test] passed 3 Vitest shards in 28.38s

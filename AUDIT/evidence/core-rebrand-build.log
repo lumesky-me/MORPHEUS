@@ -1,0 +1,231 @@
+$ node --import ./scripts/tsx.mjs scripts/build-all.mts
+[build-all] native-protocol
+[native-protocol] swift: generated
+[native-protocol] kotlin: generated
+[build-all] native-protocol done in 4.68s
+[build-all] runtime:scripts:check
+[build-all] runtime:scripts:check done in 22.6s
+[build-all] plugins:assets:build
+[clawrouter] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/clawrouter
+[knowledge] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/knowledge
+[mcp-relay] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/mcp-relay
+[memory-core] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/memory-core
+[nostr] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/nostr
+[whatsapp] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/whatsapp
+[workboard] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/workboard
+[x] build: cd ../.. && node --import ./scripts/tsx.mjs scripts/build-plugin-control-ui.mts extensions/x
+[build-all] plugins:assets:build done in 1m 38.2s
+[build-all] tsdown-ai
+
+ WARN  TypeScript 7.0 does not yet have a stable API and is experimental. Some options will be unavailable.
+
+[tsdown-build] still running pid=25226; no output for 58s
+[tsdown-build] still running pid=25226; no output for 55s
+[tsdown-build] still running pid=25226; no output for 30s
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 142.8s of this 143.9s build (99%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin openclaw-native-declarations buildStart (95%, 136.4s, 1 call)
+Additional callback time came from the callbacks below and from callbacks under 1s.
+3 callbacks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - plugin tsdown:deps resolveId (942 calls)
+  - plugin rolldown-plugin-dts:resolver resolveId (1032 calls)
+  - plugin rolldown-plugin-dts:fake-js transform (148 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+[tsdown-build] invocation 1/1 finished in 146.0s
+[build-all] tsdown-ai done in 2m 44.9s
+[build-all] tsdown-packages
+
+ WARN  TypeScript 7.0 does not yet have a stable API and is experimental. Some options will be unavailable.
+
+[tsdown-build] still running pid=32368; no output for 58s
+[tsdown-build] still running pid=32368; no output for 30s
+[tsdown-build] still running pid=32368; no output for 30s
+[tsdown-build] still running pid=32368; no output for 30s
+[tsdown-build] invocation 1/1 finished in 158.3s
+[build-all] tsdown-packages done in 2m 58.6s
+[build-all] tsdown
+[tsdown-build] invocation 1/2 finished in 0.8s
+extensions/browser/src/browser/page-function-runtime.ts (13:31) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m extensions/browser/src/browser/page-function-runtime.ts:13:32 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m13 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mc[0m[38;5;249ma[0m[38;5;249mn[0m[38;5;249md[0m[38;5;249mi[0m[38;5;249md[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mk[0m[38;5;249mn[0m[38;5;249mo[0m[38;5;249mw[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249m`[0m[38;5;249m"[0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249m [0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m"[0m[38;5;249m;[0m[38;5;249m\[0m[38;5;249mn[0m[38;5;249m([0m[38;5;249m$[0m[38;5;249m{[0m[38;5;249mo[0m[38;5;249mp[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m.[0m[38;5;249mf[0m[38;5;249mn[0m[38;5;249mS[0m[38;5;249mo[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m}[0m[38;5;249m)[0m[38;5;249m`[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m   │[0m                                ──┬─  
+ [38;5;240m   │[0m                                  ╰─── Use of direct `eval` here.
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/playwright-core@1.64.1_patch_hash=eedf680682a6840d82c6ad530a60875857aa8c0372785acf8e8e5df9c2e3ac16/node_modules/playwright-core/lib/coreBundle.js (68254:28) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+       [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/playwright-core@1.64.1_patch_hash=eedf680682a6840d82c6ad530a60875857aa8c0372785acf8e8e5df9c2e3ac16/node_modules/playwright-core/lib/coreBundle.js:68254:29 [38;5;246m][0m
+       [38;5;246m│[0m
+ [38;5;246m68254 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249m`[0m[38;5;249m([0m[38;5;249m$[0m[38;5;249m{[0m[38;5;249me[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249mr[0m[38;5;249m}[0m[38;5;249m)[0m[38;5;249m`[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m      │[0m                             ──┬─  
+ [38;5;240m      │[0m                               ╰─── Use of direct `eval` here.
+ [38;5;240m      │[0m 
+ [38;5;240m      │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m───────╯[0m
+
+node_modules/.pnpm/playwright-core@1.64.1_patch_hash=eedf680682a6840d82c6ad530a60875857aa8c0372785acf8e8e5df9c2e3ac16/node_modules/playwright-core/lib/coreBundle.js (68261:28) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+       [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/playwright-core@1.64.1_patch_hash=eedf680682a6840d82c6ad530a60875857aa8c0372785acf8e8e5df9c2e3ac16/node_modules/playwright-core/lib/coreBundle.js:68261:29 [38;5;246m][0m
+       [38;5;246m│[0m
+ [38;5;246m68261 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249m`[0m[38;5;249m([0m[38;5;249m$[0m[38;5;249m{[0m[38;5;249me[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249mr[0m[38;5;249m}[0m[38;5;249m)[0m[38;5;249m`[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m      │[0m                             ──┬─  
+ [38;5;240m      │[0m                               ╰─── Use of direct `eval` here.
+ [38;5;240m      │[0m 
+ [38;5;240m      │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m───────╯[0m
+
+node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js (2400:30) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js:2400:31 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m2400 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mA[0m[38;5;249mS[0m[38;5;249mM[0m[38;5;249m_[0m[38;5;249mC[0m[38;5;249mO[0m[38;5;249mN[0m[38;5;249mS[0m[38;5;249mT[0m[38;5;249mS[0m[38;5;249m[[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m][0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249mf[0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m     │[0m                               ──┬─  
+ [38;5;240m     │[0m                                 ╰─── Use of direct `eval` here.
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m──────╯[0m
+
+node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js (2423:32) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js:2423:33 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m2423 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249mu[0m[38;5;249ml[0m[38;5;249me[0m[38;5;249mE[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249ms[0m[38;5;249m[[0m[38;5;249mn[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249m][0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249mf[0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m     │[0m                                 ──┬─  
+ [38;5;240m     │[0m                                   ╰─── Use of direct `eval` here.
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m──────╯[0m
+
+node_modules/.pnpm/@acemir+cssom@0.9.32/node_modules/@acemir/cssom/lib/errorUtils.js (31:8) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@acemir+cssom@0.9.32/node_modules/@acemir/cssom/lib/errorUtils.js:31:9 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m31 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0meval[38;5;249m([0m[38;5;249me[0m[38;5;249mr[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mT[0m[38;5;249my[0m[38;5;249mp[0m[38;5;249me[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m   │[0m            ──┬─  
+ [38;5;240m   │[0m              ╰─── Use of direct `eval` here.
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js (2400:30) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js:2400:31 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m2400 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mA[0m[38;5;249mS[0m[38;5;249mM[0m[38;5;249m_[0m[38;5;249mC[0m[38;5;249mO[0m[38;5;249mN[0m[38;5;249mS[0m[38;5;249mT[0m[38;5;249mS[0m[38;5;249m[[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m][0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249mf[0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m     │[0m                               ──┬─  
+ [38;5;240m     │[0m                                 ╰─── Use of direct `eval` here.
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m──────╯[0m
+
+node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js (2423:32) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/web-tree-sitter@0.27.1/node_modules/web-tree-sitter/web-tree-sitter.js:2423:33 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m2423 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249mu[0m[38;5;249ml[0m[38;5;249me[0m[38;5;249mE[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249ms[0m[38;5;249m[[0m[38;5;249mn[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249m][0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249mf[0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m     │[0m                                 ──┬─  
+ [38;5;240m     │[0m                                   ╰─── Use of direct `eval` here.
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m──────╯[0m
+
+extensions/browser/src/browser/page-function-runtime.ts (13:31) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m extensions/browser/src/browser/page-function-runtime.ts:13:32 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m13 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mc[0m[38;5;249ma[0m[38;5;249mn[0m[38;5;249md[0m[38;5;249mi[0m[38;5;249md[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mk[0m[38;5;249mn[0m[38;5;249mo[0m[38;5;249mw[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249m`[0m[38;5;249m"[0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249m [0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m"[0m[38;5;249m;[0m[38;5;249m\[0m[38;5;249mn[0m[38;5;249m([0m[38;5;249m$[0m[38;5;249m{[0m[38;5;249mo[0m[38;5;249mp[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m.[0m[38;5;249mf[0m[38;5;249mn[0m[38;5;249mS[0m[38;5;249mo[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m}[0m[38;5;249m)[0m[38;5;249m`[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m   │[0m                                ──┬─  
+ [38;5;240m   │[0m                                  ╰─── Use of direct `eval` here.
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m────╯[0m
+
+[tsdown-build] invocation 2/2 finished in 62.8s
+[build-all] tsdown done in 1m 6.6s
+[build-all] external-plugins:local-dist
+[plugin-npm-runtime-build] build assets diffs: node --import tsx ../../scripts/build-diffs-viewer-runtime.mts curated
+[plugin-npm-runtime-build] build assets diffs-language-pack: node --import tsx ../../scripts/build-diffs-viewer-runtime.mts full
+[plugin-npm-runtime-build] build assets discord: node --import ../../scripts/tsx.mjs ../../scripts/build-discord-activity-sdk.mts
+[external-plugin-local-dist] built 102 plugins in 10165ms
+[build-all] external-plugins:local-dist done in 10.9s
+[build-all] write-unified-entry-dts
+[tsdown-unified] openclaw-dts: cache miss (record-unavailable)
+
+ WARN  TypeScript 7.0 does not yet have a stable API and is experimental. Some options will be unavailable.
+
+[tsdown-build] still running pid=34463; no output for 59s
+[tsdown-build] still running pid=34463; no output for 30s
+
+ ERROR  Error: Build failed with 1 error:
+
+[plugin openclaw-native-declarations]
+Error: /workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2-crypto.ts@138: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/relay-auth-v2-crypto.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/relay-auth-v2-crypto.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2-crypto.ts@372: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/relay-auth-v2-crypto.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/relay-auth-v2-crypto.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2-websocket.ts@264: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@29: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@2513: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@2549: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@2603: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@2636: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@2687: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@2735: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3005: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3044: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3118: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3174: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3562: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3616: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3649: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3700: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3748: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3779: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3808: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3859: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3892: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3932: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@3987: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@4018: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@4045: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@4353: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@4427: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/auth-v2.ts@4483: error TS18046: 'record' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/owner-auth-client.ts@212: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/owner-client.ts@270: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/owner-server.ts@181: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@29: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@2878: error TS18046: 'tab' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@2903: error TS18046: 'tab' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@2931: error TS18046: 'tab' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@2970: error TS18046: 'tab' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@3000: error TS18046: 'tab' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-protocol.ts@3040: error TS18046: 'tab' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/extensions/browser/src/browser/extension-relay/relay-server.ts@783: error TS7016: Could not find a declaration file for module '../../../chrome-extension/modules/strict-json.js'. '/workspace/MORPHEUS/components/core/extensions/browser/chrome-extension/modules/strict-json.js' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/ui/src/i18n/lib/translate.ts@8986: error TS18046: 'value' is of type 'unknown'.
+/workspace/MORPHEUS/components/core/ui/src/i18n/lib/translate.ts@9015: error TS7006: Parameter '_' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/ui/src/i18n/lib/translate.ts@9018: error TS7006: Parameter 'k' implicitly has an 'any' type.
+/workspace/MORPHEUS/components/core/ui/src/i18n/lib/translate.ts@9059: error TS2322: Type 'unknown' is not assignable to type 'string'.
+    at compileNativeProject (file:///workspace/MORPHEUS/components/core/node_modules/.unrun/tsdown.config.ts.4840f4c8150e43b69d1e01410dd2c8a0.mjs:2832:28)
+    at async emitNativeDeclarations (file:///workspace/MORPHEUS/components/core/node_modules/.unrun/tsdown.config.ts.4840f4c8150e43b69d1e01410dd2c8a0.mjs:2883:22)
+    at async PluginContextImpl.handler (file:///workspace/MORPHEUS/components/core/node_modules/.unrun/tsdown.config.ts.4840f4c8150e43b69d1e01410dd2c8a0.mjs:3018:20)
+    at async plugin (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/bindingify-input-options-BMZwyvQ7.mjs:1606:3)
+    at async plugin.<computed> (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/bindingify-input-options-BMZwyvQ7.mjs:2284:12)
+    at aggregateBindingErrorsIntoJsError (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/error-D0SD8_tL.mjs:49:18)
+    at unwrapBindingResult (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/error-D0SD8_tL.mjs:19:128)
+    at #build (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/shared/rolldown-CMhwwZPA.mjs:145:34)
+    at async build (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/rolldown@1.2.15/node_modules/rolldown/dist/index.mjs:46:22)
+    at async Promise.all (index 0)
+    at async Object.runBuild (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/style-Cl932eax.mjs:57:11)
+    at async buildSingle (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/build-B3hcYrTt.mjs:811:19)
+    at async Promise.all (index 0)
+    at async buildWithConfigs (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/build-B3hcYrTt.mjs:758:18)
+    at async build$1 (file:///workspace/MORPHEUS/components/core/node_modules/.pnpm/tsdown@0.23.2_tsx@4.23.15_typescript@7.1.0-dev.20261016.1_unrun@0.3.1/node_modules/tsdown/dist/build-B3hcYrTt.mjs:713:9)
+
+[tsdown-build] child result pid=34463: {"status":1,"signal":null,"parentSignal":null,"timedOut":false,"cleanup":"none","observedProcessState":"dead","observationScope":"process-group","finalStatus":1}
+[tsdown-build] invocation 1/1 finished in 114.4s
+Error: Declaration build failed with exit 1
+    at publishStagedDeclarations (/workspace/MORPHEUS/components/core/scripts/lib/declaration-stage.mts:69:27)
+    at async <anonymous> (/workspace/MORPHEUS/components/core/scripts/lib/tsdown-declaration-writer.mts:180:7)
+    at async withDistArtifactOwnership (/workspace/MORPHEUS/components/core/scripts/lib/dist-artifact-lock.mts:193:14)
+    at async writeTsdownDeclarations (/workspace/MORPHEUS/components/core/scripts/lib/tsdown-declaration-writer.mts:46:5)
+    at async <anonymous> (/workspace/MORPHEUS/components/core/scripts/write-unified-entry-dts.ts:5:1) {
+  exitCode: 1
+}
+[build-all] write-unified-entry-dts failed after 2m 1.6s
+[build-all] phase timings: total 11m 11.9s; slowest tsdown-packages 2m 58.6s; tsdown-ai 2m 44.9s; write-unified-entry-dts (failed) 2m 1.6s; plugins:assets:build 1m 38.2s; tsdown 1m 6.6s; runtime:scripts:check 22.6s; external-plugins:local-dist 10.9s; native-protocol 4.68s
+[ELIFECYCLE] Command failed with exit code 1.

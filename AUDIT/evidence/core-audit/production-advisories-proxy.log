@@ -1,0 +1,11 @@
+Found 9 high or higher advisories from npm bulk in production dependencies (upstream repository advisories not checked):
+- HIGH @azure/msal-node · id=1243111 · title=MSAL Node authorization code flow may disclose parameters to an attacker-controlled endpoint · range=>=5.0.0-beta.0 <7.1.0 · url=https://github.com/advisories/GHSA-xcx6-jx8p-x3h5
+- HIGH follow-redirects · id=1244003 · title=follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects · range=>=1.16.0 <=1.16.1 · url=https://github.com/advisories/GHSA-mrwp-f3q8-3g9p
+- HIGH joi · id=1244007 · title=joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service · range=>=18.0.0 <18.3.1 · url=https://github.com/advisories/GHSA-4528-x5fx-h6hg
+- HIGH re2js · id=1243620 · title=RE2JS: Quadratic-time denial of service in re2js lookbehind matching · range=>=2.2.0 <2.8.7 · url=https://github.com/advisories/GHSA-gg6h-894w-4m9c
+- HIGH undici · id=1243112 · title=undici vulnerable to Denial of Service via unhandled error on excessive content-encodings · range=>=8.0.0 <8.12.2 · url=https://github.com/advisories/GHSA-xjj6-f33q-929c
+- HIGH undici · id=1243472 · title=undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects · range=>=8.0.0 <8.12.2 · url=https://github.com/advisories/GHSA-4w7w-5xrc-9h26
+- HIGH undici · id=1243474 · title=undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent · range=>=8.0.0 <8.12.2 · url=https://github.com/advisories/GHSA-2m5v-pch6-74hx
+- HIGH undici · id=1243477 · title=undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation · range=>=8.0.0 <8.12.2 · url=https://github.com/advisories/GHSA-qrxm-fqhp-jwvm
+- HIGH zod · id=1243066 · title=Zod can exhaust memory while validating oversized constrained collections · range=<4.6.6 · url=https://github.com/advisories/GHSA-mrhx-c7xc-m3w5
+[pnpm-audit-prod] FAILED (exit 1)

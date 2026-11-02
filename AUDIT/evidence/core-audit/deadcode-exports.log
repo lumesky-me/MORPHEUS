@@ -1,0 +1,19 @@
+$ node --import ./scripts/tsx.mjs scripts/check-deadcode-exports.mts
+[deadcode] Knip script unused-export scan passed with 0 entries.
+[deadcode] Knip production unused-export scan still running after 60s.
+[deadcode] Knip full-tree unused-export scan still running after 60s.
+[deadcode] Knip production unused-export scan still running after 120s.
+[deadcode] Knip full-tree unused-export scan still running after 120s.
+[deadcode] Knip production unused-export scan still running after 180s.
+[deadcode] Knip full-tree unused-export scan still running after 180s.
+[deadcode] Knip production unused-export scan still running after 240s.
+[deadcode] Knip full-tree unused-export scan still running after 240s.
+[deadcode] Knip production unused-export scan still running after 300s.
+[deadcode] Knip full-tree unused-export scan still running after 300s.
+[deadcode] Knip production unused-export scan still running after 395s.
+[deadcode] Knip full-tree unused-export scan still running after 395s.
+[deadcode] Knip production unused-export scan still running after 455s.
+[deadcode] Knip full-tree unused-export scan still running after 455s.
+[deadcode] Knip production unused-export scan passed with 0 entries.
+[deadcode] Knip full-tree unused-export scan still running after 515s.
+[deadcode] Knip full-tree unused-export scan passed with 0 entries.

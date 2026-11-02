@@ -1,0 +1,211 @@
+$ node scripts/test-projects.mts src/infra/net/ssrf.test.ts src/infra/net/fetch-guard.ssrf.test.ts src/infra/exec-approvals-authorization.worker.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.infra.config.ts
+
+ RUN  v5.0.5 /tmp/morpheus-upstream-core
+
+[vitest] still running with no output for 30000ms.
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js (48:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js:48:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m48 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js (11:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js:11:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m11 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js (6:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js:6:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m6 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js (9:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js:9:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m9 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js (12:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js:12:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m12 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+[vitest] still running with no output for 60000ms.
+[vitest-workers] prepared e640d44b3b10 in 61268ms (14804 inputs, 23275 outputs)
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > blocks private URLs and redacts their path, query and fragment from audit logs 93ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects IPv6 metadata despite ULA opt-in before dispatch 28ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects HTTP requiring explicit-proxy pinning before dispatch 9ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects metadata behind exact-origin trust before dispatch 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects private proxy despite target origin trust before dispatch 3ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not carry exact-origin trust across a redirect to another private port 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not promote exact-origin trust into access to 64:ff9b::a9fe:a9fe 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not promote exact-origin trust into access to 64:ff9b:1:808:808:808:a9fe:a9fe 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not promote exact-origin trust into access to 100.100.100.200 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > fails closed when the runtime rejects the pinned dispatcher 7ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > ignores dispatcher support markers on explicit ambient fetch 7ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > keeps explicit proxy transport policy with DNS pinning disabled 7ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rewrites 303 PUT (cross-origin=false, replay=false) 6ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rewrites 308 POST (cross-origin=true, replay=false) 7ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rewrites 307 POST (cross-origin=true, replay=true) 40ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > strips sensitive headers and symbols across origins without mutating caller headers 7ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > never restores authorization on an HTTPS-to-HTTP downgrade 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects redirects violating /must use https/i 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects redirects violating /redirect loop/i 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects redirects violating /too many redirects/i 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > preserves redirects when response body cancellation rejects 6ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > settles redirects before retained capture cancellation (location: /next) 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > settles redirects before retained capture cancellation (location: undefined) 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects timed-out fetches even when dispatcher close stalls 15ms
+ × |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes strict with active=true and NO_PROXY=true 38ms
+   → expected "vi.fn()" to be called 1 times, but got 0 times
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes trusted_env_proxy with active=false and NO_PROXY=false 5ms
+ × |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes trusted_env_proxy with active=false and NO_PROXY=true 3ms
+   → expected "vi.fn()" to be called 1 times, but got 0 times
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > rechecks redirect destinations before managed-proxy dispatch 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > enforces trusted env hostname policy { hostnameAllowlist: [Array] } before dispatch 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > enforces trusted env hostname policy { blockedHostnames: [Array] } before dispatch 3ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > keeps target allowlists separate from explicitly allowed private proxies 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > reselects proxy policy after redirects and pins direct targets 6ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > applies  loopback policy through dashboard readiness 6ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > applies proxy loopback policy through dashboard readiness 5ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > applies block loopback policy through dashboard readiness 3ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > routes IPv6 loopback through the exact configured-origin policy 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > routes mixed loopback/public DNS through the exact configured-origin policy 3ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > routes public configured origin through the exact configured-origin policy 2ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > keeps target TLS on the managed loopback hop despite NO_PROXY 3ms
+ × |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > ignores hidden bypass markers on the public guard 3ms
+   → expected "vi.fn()" to be called once, but got 0 times
+ × |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > does not carry direct routing across redirects to another loopback port 3ms
+   → expected "vi.fn()" to be called once, but got 2 times
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > blocks a private DNS rebind before consulting a warm dispatcher 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=undefined and stream=undefined deadlines separate (pinned=true) 31ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=5000 and stream=undefined deadlines separate (pinned=true) 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=2000000 and stream=undefined deadlines separate (pinned=true) 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=undefined and stream=2000000 deadlines separate (pinned=false) 4ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > propagates a final dispatch rejection without sending the request 8ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > aborts stalled DNS from the caller before dispatch 9ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > aborts stalled DNS from the deadline before dispatch 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > classifies blocked ip literals as private 77ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > function ssrfPolicyFromHttpBaseUrlAllowedHostname(baseUrl) {
+	const parsed = parseHttpBaseUrl(baseUrl);
+	return parsed ? { allowedHostnames: [parsed.hostname] } : undefined;
+} normalizes HTTP base URLs and rejects invalid inputs 4ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > function ssrfPolicyFromHttpBaseUrlAllowedOrigin(baseUrl) {
+	const origin = normalizeSsrFPolicyOrigin(baseUrl);
+	return origin ? { allowedOrigins: [origin] } : undefined;
+} normalizes HTTP base URLs and rejects invalid inputs 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > function ssrfPolicyFromHttpBaseUrlFakeIpHostnameAllowlist(baseUrl) {
+	const parsed = parseHttpBaseUrl(baseUrl);
+	return parsed ? {
+		allowRfc2544BenchmarkRange: true,
+		allowIpv6UniqueLocalRange: true,
+		hostnameAllowlist: [parsed.hostname]
+	} : undefined;
+} normalizes HTTP base URLs and rejects invalid inputs 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > trusts only exact origins: http://10.0.0.5:4321 / http://10.0.0.5:1234 4ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > trusts only exact origins: http://[fd00::1]:11434 / http://[fd00::1]:11434 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > blocks reserved hostname with repeated trailing dots 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > applies independent fake-IP exemptions for ::ffff:198.18.0.1 4ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > applies independent fake-IP exemptions for fdff::dead:beef 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > applies independent fake-IP exemptions for 198.18.0.1 25ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares allowedOrigins semantically 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares allowedHostnames semantically 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares hostnameAllowlist semantically 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares blockedHostnames semantically 15ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares policy {} / {"blockedHostnames":[]} 9ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares policy {} / {"blockedHostnames":["a"]} 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares policy {"blockedHostnames":["a"]} / {"blockedHostnames":["*.test"]} 4ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares policy {"dangerouslyAllowPrivateNetwork":true} / {"dangerouslyAllowPrivateNetwork":true,"allowRfc2544BenchmarkRange":true} 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares policy {"allowPrivateNetwork":true} / {"allowPrivateNetwork":true,"allowIpv6UniqueLocalRange":true} 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > compares policy {"allowIpv6UniqueLocalRange":true} / {"allowIpv6UniqueLocalRange":true} 2ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > retains every configured block when combining policies and trust exceptions 4ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > detaches the DNS abort listener after success 42ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > detaches the DNS abort listener after cancel 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > prefers IPv4 for single lookups and exposes both validated families 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > supports IPv6-only DNS answers for all-address lookups 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > rejects unsafe DNS or literals for example.com 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > rejects unsafe DNS or literals for 8.8.2056 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > rejects unsafe DNS or literals for localhost 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > fails loud when a pinned lookup is created without any addresses 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > blocks configured pattern  TRACKER.Example.COM...  /  tracker.example.com.  before DNS and allow rules 5ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > blocks configured pattern ads.example.com / *.example.com before DNS and allow rules 3ms
+ ✓ |infra| src/infra/net/ssrf.test.ts > SSRF policy and pinning > uses DNS family metadata for ordering (not address string heuristics) 6ms
+ ✓ |infra| src/infra/exec-approvals-authorization.worker.test.ts > does not acquire writer admission for an unchanged authorization batch 199ms
+ ✓ |infra| src/infra/exec-approvals-authorization.worker.test.ts > coalesces usage writes and rereads policy after writer admission 162ms
+ ✓ |infra| src/infra/exec-approvals-authorization.worker.test.ts > commits accepted usage once and preserves the agent deletion fence 85ms
+ ✓ |infra| src/infra/exec-approvals-authorization.worker.test.ts > rejects explicit-approval usage without its delayed policy snapshot 93ms
+ ✓ |infra| src/infra/exec-approvals-authorization.worker.test.ts > rejects auto-review usage without its delayed policy snapshot 121ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes strict with active=true and NO_PROXY=true
+ FAIL  |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes trusted_env_proxy with active=false and NO_PROXY=true
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ src/infra/net/fetch-guard.ssrf.test.ts:542:24
+    540|       const fetchImpl = dispatchFetch();
+    541|       const result = await guardedRequest(fetchImpl, { lookupFn, mode …
+    542|       expect(lookupFn).toHaveBeenCalledTimes(proxy ? 0 : 1);
+       |                        ^
+    543|       expect(agentCtor).toHaveBeenCalledTimes(proxy ? 0 : 1);
+    544|       expect(proxyAgentCtor).toHaveBeenCalledTimes(proxy ? 1 : 0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > ignores hidden bypass markers on the public guard
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ src/infra/net/fetch-guard.ssrf.test.ts:744:35
+    742|     };
+    743|     const result = await fetchWithSsrFGuard(options);
+    744|     expect(envHttpProxyAgentCtor).toHaveBeenCalledOnce();
+       |                                   ^
+    745|     expect(agentCtor).not.toHaveBeenCalled();
+    746|     await result.release();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > does not carry direct routing across redirects to another loopback port
+AssertionError: expected "vi.fn()" to be called once, but got 2 times
+ ❯ src/infra/net/fetch-guard.ssrf.test.ts:758:23
+    756|     expect(result.finalUrl).toBe(`${nextBase}/api/embed`);
+    757|     expect(fetchImpl).toHaveBeenCalledTimes(2);
+    758|     expect(agentCtor).toHaveBeenCalledOnce();
+       |                       ^
+    759|     expect(envHttpProxyAgentCtor).toHaveBeenCalledOnce();
+    760|     await result.release();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  4 failed | 82 passed (86)
+   Start at  11:20:07
+   Duration  89.99s (transform 92%, import 4%, setup 2%, tests 2%)
+
+[vitest-workers] verifying completed generation before cleanup
+[test] failed 1 Vitest shard in 96.79s
+[test] FAILED (exit 1)
+[ELIFECYCLE] Test failed. See above for more details.

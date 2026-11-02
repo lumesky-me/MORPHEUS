@@ -1,0 +1,11 @@
+  Determining projects to restore...
+  Restored /tmp/morpheus-upstream-windows/src/OpenClaw.Chat/OpenClaw.Chat.csproj (in 508 ms).
+  1 of 2 projects are up-to-date for restore.
+  OpenClaw.Shared -> /tmp/morpheus-upstream-windows/src/OpenClaw.Shared/bin/Debug/net10.0/OpenClaw.Shared.dll
+  OpenClaw.Chat -> /tmp/morpheus-upstream-windows/src/OpenClaw.Chat/bin/Debug/net10.0/OpenClaw.Chat.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.36

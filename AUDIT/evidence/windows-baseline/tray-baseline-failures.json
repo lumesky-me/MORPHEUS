@@ -1,0 +1,610 @@
+[
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.PreparationConsumesOnlyAfterFreshReadyMountAndNeverOpensAFabricatedDestination",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\App.xaml.cs\", retiredPattern: \"\\\\bShowWebChat\\\\b\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\App.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InstallerIssAssertionTests.RunAppLocal_ExplicitArm64Runtime_WinsOverEmulatedX64Shell",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.Listener_AcceptsNextForwardWhileConfirmationIsPending",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\Chat\\\\ChatComposerContro\"\u00b7\u00b7\u00b7, retiredPattern: \"\\\\b(?:AddAttachment|_catalogOperation)\\\\b\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Chat\\ChatComposerController.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.AccessReview_UsesOneCombinedPageAndOneDraftWithoutEarlyPersistence",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.Gallery_CoversCurrentCapabilitiesWithoutRetiredPrivacyPreview",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/tests\\OpenClaw.Tray.UITests\\OnboardingSetupGalleryData.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.StatusBadgeIconFactoryTests.CreateIcoBytes_ProducesValidMultiSizeIcon",
+    "message": "System.TypeInitializationException : The type initializer for 'Windows.Win32.PInvokeGdiPlus' threw an exception."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.NativeInstallAndUse_TransfersReviewedConsentWithoutReturningToDiscovery",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.InstallReview_UsesDraftRequirementsWithoutImplicitConsentAndPreservesDetailOrigin",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\GatewaySetupPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InnoMigrationContractTests.CleanupScript_StillDeletesAnOrdinaryIdentityDirectory",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'powershell.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.DuplicateRegistrations_DeduplicatePathsWithWindowsCaseSemantics",
+    "message": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\Chat\\\\ReactorChatHostExt\"\u00b7\u00b7\u00b7, retiredPattern: \"\\\\b(?:onSettingsClick|SettingsNavigation|AttachFil\"\u00b7\u00b7\u00b7)",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Chat\\ReactorChatHostExtensions.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.IsolatedHostDisablesStartupWithoutWeakeningRegistrationGuard",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\WindowManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: False, hasGatewayUrl: True, hasTokens: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-5b395a33'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.IsolatedWindowsRegistrationTests.KeepaliveIsolationGate_PrecedesLegacyDiscoveryAndCleanup",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src/OpenClaw.Tray.WinUI/Services\\WslGatewayKeepAliveService.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.NativeEditor_IsTypedAndDrainedBeforeTheRunLockIsReleased",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.IsolatedWindowsRegistrationTests.StartupMutators_RejectBeforeAnyWindowsAccess(signature: \"Task SetAutoStartAsync\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src/OpenClaw.Tray.WinUI/Services\\AutoStartManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.StatusBadgeIconFactoryTests.Compose_UsesDistinctColorPerAccent",
+    "message": "System.TypeInitializationException : The type initializer for 'Windows.Win32.PInvokeGdiPlus' threw an exception."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Skills, persistedValue: 4, page: \"skills\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.PageTransitions_RespectWindowsAnimationPreference",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.StatusBadgeIconFactoryTests.Compose_DrawsDotInBottomRightCorner",
+    "message": "System.TypeInitializationException : The type initializer for 'Windows.Win32.PInvokeGdiPlus' threw an exception."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.ChangedOnboardingPages_PreserveCenteredLargeMascotsAndFixedFooters",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Telegram, persistedValue: 2, page: \"channels\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingCopyRefinementTests.PresetCopyNamesOnlySelectableCapabilities_AndKeepsStableKeys",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingCopyRefinementTests.RetiredSetupResources_AreRemovedWithoutLosingCurrentRecoveryOrSettingsCopy",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.EveryInstallRequirement_HasLocalizedBlockerReasonAndAction",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: False)",
+    "message": "Assert.Empty() Failure: Collection was not empty"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InnoMigrationContractTests.GatewayUninstall_TreatsAWslLessHostAsNothingToRemove",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredPopupAndMultiHostPickerContracts_DoNotReturnToChatOwners",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\App.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.AiPage_UsesTypedSameWindowHostAndNeverOwnsRuntimeOrGatewayRegistration",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\AiSetupPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt",
+    "message": "System.Exception : Busy cannot report a new failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.ProviderProof_CapturesOwnedWindowAndVerifiesRenderedDialogText",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/tests\\OpenClaw.Tray.UITests\\OnboardingArtworkRenderingTests.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InnoMigrationContractTests.CleanupScript_DoesNotDeleteThroughAJunction(junctionAt: \"gateways\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.TimeoutPhasesHaveLocalizedUserGuidanceWithoutRenderingRawErrors(phase: \"ModelVerification\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_ListenerStartsLate_RetriesAndDispatchesDefaultHub",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InnoMigrationContractTests.CleanupScript_DoesNotDeleteThroughAJunction(junctionAt: \"child\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\Services\\\\IWindowManager\"\u00b7\u00b7\u00b7, retiredPattern: \"\\\\bShowHubChatAndStartVoice\\\\b\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\IWindowManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WindowManagerTests.NativeLocalAiSettingsEntry_BindsRouteBeforeWizardAndPreservesExistingChoices",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.RetiredWindowsAccessPreview_CannotReintroduceProbesOrAnExtraSetupStage",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingCopyRefinementTests.WelcomeAndGatewayCopyIsTruthfulLocalizedAndUsesRepositorySafetyUrl",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.GatewayDirectConnectServiceTests.Connect_FailureFromUrlLessProfile_DoesNotPersistSetupGateway",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'netstat' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingCopyRefinementTests.CapabilityPageHasNoWindowsAccessControlOrProbeHooks",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"GatewaySetupPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\GatewaySetupPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"GatewaySetupDetailPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\GatewaySetupDetailPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.OnlyExplicitManagedUseCarriesRuntimeAndReconciliationRequirements",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\AiSetupPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.BothRegistrations_AddOnlyTheirFourPrivateStateLeaves",
+    "message": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.TimeoutPhasesHaveLocalizedUserGuidanceWithoutRenderingRawErrors(phase: \"PageDrain\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.CandidateCreationReturnsItsBaselineWithoutAnUnlockedPostCopyRead",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\GatewayDirectConnectService.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.PipelineRegistryWriters_ProduceTheExpectedAdoptionSnapshot",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine\\CleanupStaleGatewayStep.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.StopAsync_CancelsPendingConfirmationAndPreventsLateDispatch",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"WizardPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\WizardPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"SecurityNoticePage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\SecurityNoticePage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"success\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Chat, persistedValue: 0, page: \"chat\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.DashboardAction_LivesInConnectionCard",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\ConnectionPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"canceled\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\Services\\\\WindowManager.\"\u00b7\u00b7\u00b7, retiredPattern: \"\\\\bShowHubChatAndStartVoice\\\\b\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\WindowManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SuccessfulInstallation_UsesAiSetupWithoutAMilestoneClick",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\ProgressPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: \"openclaw://chat\", protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: \"chat\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.NativeAndGatewayFreeCompletion_NeverEntersWslWorkspaceFinalization",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ExclusiveLease_RejectsInflightDuplicateAndReplayAfterConsume",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.ConcurrentNativeActivation_DoesNotQueueAnotherLaunch",
+    "message": "System.ArgumentException : The value cannot be an empty string or composed entirely of whitespace. (Parameter 'notification.Title')"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"storage-refresh-after-success\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: WhatsApp, persistedValue: 1, page: \"channels\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.IsolatedWindowsRegistrationTests.NativeRegistrationAndNotificationBoundaries_AreGuarded(path: \"Services\\\\DeepLinkHandler.cs\", guard: \"if \\\\(AppIdentity.IsIsolated\\\\)\\\\s*\\\\{\\\\s*Logger.I\"\u00b7\u00b7\u00b7)",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src/OpenClaw.Tray.WinUI/Services\\DeepLinkHandler.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"AiReadyPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\AiReadyPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.SkillsEntryIsBoundReadOnlyAndWaitedBeforeReceiptConsumption",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\SkillsPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.ReadinessObserversSubscribeBeforeAdmissionAndFenceManagerReplacement",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\SetupReadyObservation.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: True, hasGatewayUrl: False, hasTokens: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-c0d225c3'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.StatusBadgeIconFactoryTests.Compose_NullColor_RendersPlainLobsterWithNoBadge",
+    "message": "System.TypeInitializationException : The type initializer for 'Windows.Win32.PInvokeGdiPlus' threw an exception."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.SingleRegistration_UsesWindowsReportedFamilyRatherThanAPublisherHash(development: True)",
+    "message": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupOwnership_ClosesCombinedCapabilitiesReview",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.ForwardLaunchToPrimaryAsync_NoArgumentLaunch_DispatchesDefaultHub",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.NativeRestartWaitsBeforeServicesAndNeverFallsThroughToForwardingOnFailure",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\App.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.Completion_PreservesWorkspaceAndStartupOwnership",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.IsolatedWindowsRegistrationTests.StartupMutators_RejectBeforeAnyWindowsAccess(signature: \"void SetAutoStart\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src/OpenClaw.Tray.WinUI/Services\\AutoStartManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: True, argument: null, protocolUri: \"openclaw://settings\", postSetupLaunch: null, shouldDispatch: True, expectedPage: \"settings\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingCopyRefinementTests.CapabilityPageHasNoGatewayInstallationDisclosure",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: True, hasGatewayUrl: False, hasTokens: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-beeeb0f8'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.AiHeaderBand_UsesSharedCenteredArtworkAndDoesNotPromiseAContinueGate",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\AiSetupPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Channels, persistedValue: 3, page: \"channels\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.LoadingShellPreservesShutdownOrderingAndAppearsBeforeReplacementRuntimeConstruction",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\App.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.CapabilityProfiles_UseThreeNativeChoicesAndLegalInlineFineTuneItems",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_AlreadyCleanSettings_DoesNotRewrite(preserveNodeSettings: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-a3fd9fc1'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.CiNugetCacheWorkflowTests.CoreCacheKey_HashesEveryRestoreGraphManifest",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.NativeChannelFocusUsesBoundFreshMetadataAndNeverStartsAuthentication",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\ChannelsPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_AlreadyCleanSettings_DoesNotRewrite(preserveNodeSettings: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-2540d938'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SettingsManagerIsolationTests.SandboxSettings_PersistInSelectedProfileAndFeedRuntimePolicy(packagePrivateLayout: True)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.SetupWindow_DrainsDepartedAiPagesAndCancelledPipelineBeforeUnlock",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\SetupWindow.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.HostedSetupUsesSettingsOwnerAndClassicStartupFailureIsSeparateFromRestartFailure",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\WindowManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.Observation_DoesNotCallMutatingRuntimeRefreshOrAnySetupAction",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\SetupLocalAiHost.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.Builder_PreservesFutureLeavesAndOwnedPackageScratchWithoutCreatingStateOrBroadDenies",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.NativeSetupRestart_UsesTheSameReceiptForInitialAndSecondaryLaunch",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.FinishingAndReadyHaveLocalizedCopyAndNoFinalizationEntryAfterRestart",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.SharedLoadingSurfaceOmitsSubstepSubtitleButPreservesAccessibleActivityAndMeasurements",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Controls\\SetupLoadingView.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"duplicate-click\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.StatusBadgeIconFactoryTests.CreateIcoBytes_NullColor_ProducesValidPlainIcon",
+    "message": "System.TypeInitializationException : The type initializer for 'Windows.Win32.PInvokeGdiPlus' threw an exception."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.ForwardThenListen_DispatchesRouteFromForwardedDeepLink",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupDashboardHandoffStoreTests.ConcurrentFirstAcquisitionCannotGrantTwoExecutionWindows",
+    "message": "Assert.Single() Failure: The collection did not contain any matching items"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.LoadingSubstepsHaveCopyInEverySupportedLocale",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.IsolatedWindowsRegistrationTests.NativeRegistrationAndNotificationBoundaries_AreGuarded(path: \"Services\\\\ToastService.cs\", guard: \"if \\\\(AppIdentity.IsIsolated\\\\)\\\\s*\\\\{\\\\s*Logger.I\"\u00b7\u00b7\u00b7)",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src/OpenClaw.Tray.WinUI/Services\\ToastService.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.FreshCapture_ObservesNewInstallAndDetachesBothContextCollections",
+    "message": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.SingleRegistration_UsesWindowsReportedFamilyRatherThanAPublisherHash(development: False)",
+    "message": "System.NotSupportedException : Companion package-state protection could not be resolved. Check this Windows user's Companion registrations and local app data access, then retry."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"preview-failure\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: True)",
+    "message": "Assert.Empty() Failure: Collection was not empty"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.NativeOwnershipDiscoveryIsReadOnlyAndGuidanceIsLocalized",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\LocalAiGatewayLifecycle.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: False, hasGatewayUrl: False, hasTokens: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-6cfd38cc'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SettingsManagerIsolationTests.ExplicitSavedGateway_ReceivesCredentialOnItsSocket_RollbackDoesNotOpenSetupPort",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'netstat' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.MxcCompanionPackagePathsTests.Runner_RefreshesInventoryPerCommandAndBlocksFailuresBeforeNativeAdmission",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_WriteFailure_ReportsWarningAndPreservesOriginal(preserveNodeSettings: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-9b98b969'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InnoMigrationContractTests.GatewayUninstall_PassesWslControlFlagsUnquoted",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.GatewayDirectConnectServiceTests.NativeHost_RollbackPersistenceFailureRemainsExplicitAndCannotAdvance",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.TimeoutPhasesHaveLocalizedUserGuidanceWithoutRenderingRawErrors(phase: \"Connection\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.EachRenderer_ConsumesAppPendingSessionWithoutHubFallback(signature: \"private void ShowReactorSurface()\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\ChatPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: True, hasGatewayUrl: True, hasTokens: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-94357900'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"CapabilitiesPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\CapabilitiesPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: True, hasGatewayUrl: True, hasTokens: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-4cef3fca'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"failure\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.ExistingGateway_DoesNotImplicitlyInvokeClassicSettingsFallback",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\WelcomePage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.SetupChatWarningsAreLocalizedAndRecheckIsSeparateFromLegacyRetryAndReceiptOwnership",
+    "message": "System.IO.DirectoryNotFoundException : Could not find a part of the path '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.TimeoutPhasesHaveLocalizedUserGuidanceWithoutRenderingRawErrors(phase: \"ModelRecovery\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.NewSetupCopy_IsAvailableInAllSixLocales",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.TimeoutPhasesHaveLocalizedUserGuidanceWithoutRenderingRawErrors(phase: \"GatewayStartup\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Strings\\en-us\\Resources.resw'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\Pages\\\\ChatPage.xaml.cs\", retiredPattern: \"\\\\bonSettingsClick\\\\b\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\ChatPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: null, protocolUri: null, postSetupLaunch: null, shouldDispatch: True, expectedPage: null)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.CompletionActivation_HasNoSupersededBrowserFallback",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\App.ActivationRouter.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: False, hasGatewayUrl: False, hasTokens: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-706bebd9'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.RetiredChatCallbacksAndRoutes_DoNotReturnToTheirOwners(file: \"src\\\\OpenClaw.Tray.WinUI\\\\Chat\\\\ChatComposerHostAc\"\u00b7\u00b7\u00b7, retiredPattern: \"\\\\bSettingsNavigation\\\\b\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Chat\\ChatComposerHostActions.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.EachRenderer_ConsumesAppPendingSessionWithoutHubFallback(signature: \"private void ShowWebViewSurface(\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\ChatPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: \"--background\", protocolUri: \"openclaw://settings\", postSetupLaunch: null, shouldDispatch: True, expectedPage: \"settings\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.InnoMigrationContractTests.CleanupScript_DoesNotDeleteThroughAJunction(junctionAt: \"identity\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SetupNativeHandoffTests.DuplicateBusyActivationCannotCloseTheAdmittedPresentation",
+    "message": "System.Exception : No failure expected"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"AiSetupPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\AiSetupPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"WelcomePage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\WelcomePage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.SettingsChangeThatStartsPrefetch_AttachesOpenVoiceSettingsPage(scenario: \"prefetch-join-tts-enable\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_WriteFailure_ReportsWarningAndPreservesOriginal(preserveNodeSettings: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-a48ad9a6'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.InitialAndSecondaryLaunches_PreserveStartupKindAndExplicitIntent(startupTask: False, argument: \"--post-setup-restart\", protocolUri: null, postSetupLaunch: \"chat\", shouldDispatch: True, expectedPage: \"chat\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.SettingsManagerIsolationTests.SandboxSettings_PersistInSelectedProfileAndFeedRuntimePolicy(packagePrivateLayout: False)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.LocalAiOnboardingOwnershipTests.WslObservation_StartsBeforeConnectionAndIsNotRepeatedAfterAdmission",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\AiSetupPage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.Completion_RestartsWithTheRouteSpecificDestination",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\App.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingPresentationContractTests.SetupPages_UseVectorMascotAndRouteDrivenProgress(page: \"ProgressPage\")",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\ProgressPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.OnboardingCopyRefinementTests.BadgeObservationClearsOldAnnouncementAndGuardsActualEligibility",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\WelcomePage.xaml.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.StatusBadgeIconFactoryTests.Compose_ErrorState_DrawsRedDotWithWhiteDash",
+    "message": "System.TypeInitializationException : The type initializer for 'Windows.Win32.PInvokeGdiPlus' threw an exception."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.SettingsChangeThatStartsPrefetch_AttachesOpenVoiceSettingsPage(scenario: \"prefetch-join-provider-change\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.NativeConnectionProgress_HasItsOwnRowAboveWrappableActions",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.SetupEngine.UI\\Pages\\SetupNativeConnectionPage.xaml'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.UninstallOnboardingSettingsTests.Reset_RemovesLegacyCredentialsWithoutChangingOtherPreferences(preserveNodeSettings: False, hasGatewayUrl: True, hasTokens: True)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'System32/WindowsPowerShell/v1.0/powershell.exe' with working directory '/tmp/uninstall-settings-dd701c2e'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.ActivationRouterTests.MigrationShutdown_DisabledReceiverDoesNotDisruptSubsequentActivation",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.Presentation.SettingsPersistenceNotificationTests.TypedStoreRollbackAndExplicitReloadPreserveExternalFieldsAndProtectedSecrets",
+    "message": "System.PlatformNotSupportedException : Windows Data Protection API is required for protected settings secrets."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.NativeCompletionPresentationTests.NativeChatHandoff_UsesWorkspaceBindingWithoutReopeningCompanionChat",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Services\\WindowManager.cs'."
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.KokoroDownloadOwnershipTests.PreviewCompletion_PreservesPendingDownloadAndTerminalState(scenario: \"storage-failure\")",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'pwsh' with working directory '/tmp/morpheus-upstream-windows'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Tray.Tests.WorkspaceChatRemovalContractTests.NativeSetupBinding_UsesWorkspaceExplicitAuthorityPathInsteadOfFrameNavigation",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/src\\OpenClaw.Tray.WinUI\\Pages\\ChatPage.xaml.cs'."
+  }
+]

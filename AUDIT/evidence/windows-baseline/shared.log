@@ -1,0 +1,27 @@
+
+Welcome to .NET 10.0!
+---------------------
+SDK Version: 10.0.400
+
+----------------
+Installed an ASP.NET Core HTTPS development certificate.
+To trust the certificate, run 'dotnet dev-certs https --trust'
+Learn about HTTPS: https://aka.ms/dotnet-https
+
+----------------
+Write your first app: https://aka.ms/dotnet-hello-world
+Find out what's new: https://aka.ms/dotnet-whats-new
+Explore documentation: https://aka.ms/dotnet-docs
+Report issues and find source on GitHub: https://github.com/dotnet/core
+Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli
+--------------------------------------------------------------------------------------
+  Determining projects to restore...
+  Retrying 'FindPackagesByIdAsync' for source 'https://api.nuget.org/v3-flatcontainer/system.numerics.tensors/index.json'.
+  Response status code does not indicate success: 503 (Service Unavailable).
+  Restored /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/OpenClaw.Shared.TestHost.csproj (in 11.38 sec).
+  Restored /tmp/morpheus-upstream-windows/tests/OpenClaw.TestSupport/OpenClaw.TestSupport.csproj (in 11.41 sec).
+  Restored /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/OpenClaw.Shared.Tests.csproj (in 11.39 sec).
+  Restored /tmp/morpheus-upstream-windows/src/OpenClaw.Shared/OpenClaw.Shared.csproj (in 11.35 sec).
+  Restored /tmp/morpheus-upstream-windows/src/OpenClaw.Cli/OpenClaw.Cli.csproj (in 4 ms).
+  /usr/bin/sh: 2: /tmp/MSBuildTempYOkKB1/tmp216d273c22764f3794f752a5b7dd7231.exec.cmd: dotnet: not found
+/workspace/morpheus-tools/nuget/gitversion.msbuild/6.8.2/tools/GitVersion.MsBuild.targets(32,9): error MSB3073: The command "dotnet --roll-forward Major "/workspace/morpheus-tools/nuget/gitversion.msbuild/6.8.2/tools/net8.0/gitversion.dll" "/tmp/morpheus-upstream-windows/src/OpenClaw.Shared"  -output file -outputfile "obj/gitversion.json"" exited with code 127. [/tmp/morpheus-upstream-windows/src/OpenClaw.Shared/OpenClaw.Shared.csproj]

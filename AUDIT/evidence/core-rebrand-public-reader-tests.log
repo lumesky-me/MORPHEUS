@@ -1,0 +1,127 @@
+$ node scripts/test-projects.mts src/gateway/control-ui-public-session-render.test.ts src/gateway/control-ui-public-session-card-render.test.ts src/gateway/control-ui-public-session-entry.test.ts src/gateway/control-ui-public-chat.http.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.gateway.config.ts
+[vitest] still running with no output for 30000ms.
+
+ RUN  v5.0.5 /workspace/MORPHEUS/components/core
+
+[vitest] still running with no output for 30000ms.
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > renders hosted shortcodes with the public widget URL and preserves surrounding text 1208ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > merges a nested receipt into its same-turn shortcode and inherits its title 71ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > renders standalone tool receipts at their position and deduplicates across turns 33ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > keeps code literal and excludes non-inline receipts 83ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > links non-hosted embeds without loading them and omits private Gateway pages 31ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > renders mixed widget and link embeds in shortcode order 59ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > retains shortcode-only messages and requires a mapped widget URL to render frames 36ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > adds only a protected login handoff, including unavailable conversations 42ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > publishes only user and assistant conversation text without internal input or metadata 33ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > groups tool work between every assistant message with bounded unmasked summaries 16ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > links user, assistant, and tool images only through entry-scoped public media 6ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > retains audio-only and video-only messages as filename chips without publishing their media 8ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > omits local and remote media directives while preserving fenced examples 36ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > renders inert Markdown without executable markup, automatic image loads, or unsafe links 14ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > bounds the newest public messages and visibly marks omitted history or text 82ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-render.test.ts > public session document > keeps whole characters when the document budget leaves one code unit 28ms
+[vitest] still running with no output for 30000ms.
+[vitest] still running with no output for 60000ms.
+[vitest] still running with no output for 90000ms.
+[vitest] still running with no output for 120000ms.
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js (48:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js:48:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m48 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js (6:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js:6:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m6 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js (11:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js:11:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m11 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js (12:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js:12:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m12 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js (9:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js:9:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m9 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[vitest-workers] prepared 8b49c94f625c in 134034ms (14803 inputs, 23275 outputs)
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > renders widgets with document-scoped links on the canonical chat route 1668ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > keeps published text available when no token identity is present 261ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > reloads the exact short-session address produced by new-session navigation 1456ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > reloads a new bot while its preferred chat face is still resolving 294ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > reloads a chat through the exact recovery URL without exposing its private transcript 248ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > offers a token browser-credential handoff (secureProxy=false) 225ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > offers a password browser-credential handoff (secureProxy=false) 255ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > offers a token browser-credential handoff (secureProxy=true) 216ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > offers a password browser-credential handoff (secureProxy=true) 227ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > retains an existing dashboard presentation link without mixing cached login destinations 246ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > serves a bounded reader, ignores forged identity, and probes only the protected entry 249ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > makes private, missing, and revoked sessions indistinguishable but keeps Log in 197ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > revalidates publication before conditional reuse 295ms
+ ✓ |gateway-core| src/gateway/control-ui-public-chat.http.test.ts > canonical anonymous HTTP entry > rejects HEAD and malformed query work before reading any session 228ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resizes only the sending widget frame and ignores unrelated or invalid messages 245ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > does not present network failures as denied access 75ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > does not present server failures as denied access 59ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > leaves a public transcript readable while the optional handoff is pending 49ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves cached token only after the access probe 65ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves signed-out probe only after the access probe 66ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves proxy login redirect only after the access probe 34ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves paired device only after the access probe 122ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves query scope only after the access probe 85ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves token fragment only after the access probe 86ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves loopback fragment only after the access probe 59ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves root mount only after the access probe 52ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves authenticated proxy only after the access probe 35ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves empty token only after the access probe 31ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves another gateway only after the access probe 36ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves another mount with query scope only after the access probe 33ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves another scheme only after the access probe 33ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves malformed storage only after the access probe 30ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves cleared device token only after the access probe 32ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves blocked storage only after the access probe 46ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-entry.test.ts > public reader operator handoff > resolves denied HTTP identity despite cached credentials only after the access probe 26ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-card-render.test.ts > public session preview card > uses the headline until a recorded worktree has changes 34ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-card-render.test.ts > public session preview card > omits unknown optional facts and includes only recorded checks 6ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-card-render.test.ts > public session preview card > keeps untrusted text inert in every card field 8ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-card-render.test.ts > public session preview card > wraps and positions long preview text (unspaced: true) 6ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-card-render.test.ts > public session preview card > wraps and positions long preview text (unspaced: false) 6ms
+ ✓ |gateway-core| src/gateway/control-ui-public-session-card-render.test.ts > public session preview card > renders bundled fonts into a 1200 by 630 PNG through the worker 136ms
+
+ Test Files  4 passed (4)
+      Tests  57 passed (57)
+   Start at  11:27:39
+   Duration  209.35s (transform 85%, worker 6%, tests 5%, import 4%, setup 1%)
+
+[vitest-workers] verifying completed generation before cleanup
+[test] passed 1 Vitest shard in 287.10s

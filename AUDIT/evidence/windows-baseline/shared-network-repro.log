@@ -1,0 +1,47 @@
+Test run for /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/OpenClaw.Shared.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:06.65]     OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Binary) [FAIL]
+  Failed OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Binary) [3 s]
+  Error Message:
+   System.OperationCanceledException : The operation was canceled.
+  Stack Trace:
+     at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(Boolean useManagedWebSocket, Nullable`1 queuedMessageType) in /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/WebSocketClientBaseTests.cs:line 140
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:09.67]     OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Text) [FAIL]
+  Failed OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Text) [3 s]
+  Error Message:
+   System.OperationCanceledException : The operation was canceled.
+  Stack Trace:
+     at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(Boolean useManagedWebSocket, Nullable`1 queuedMessageType) in /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/WebSocketClientBaseTests.cs:line 140
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:12.74]     OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: null) [FAIL]
+  Failed OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: null) [3 s]
+  Error Message:
+   System.OperationCanceledException : The operation was canceled.
+  Stack Trace:
+     at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(Boolean useManagedWebSocket, Nullable`1 queuedMessageType) in /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/WebSocketClientBaseTests.cs:line 140
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:12.93]     OpenClaw.Shared.Tests.McpHttpServerTests.Post_WithLocalhostHost_Accepted [FAIL]
+  Failed OpenClaw.Shared.Tests.McpHttpServerTests.Post_WithLocalhostHost_Accepted [89 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: OK
+Actual:   NotFound
+  Stack Trace:
+     at OpenClaw.Shared.Tests.McpHttpServerTests.Post_WithLocalhostHost_Accepted() in /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/McpHttpServerTests.cs:line 244
+--- End of stack trace from previous location ---
+Results File: /workspace/morpheus-evidence/windows-baseline/shared-network-repro.trx
+
+Failed!  - Failed:     4, Passed:     3, Skipped:     0, Total:     7, Duration: 9 s - OpenClaw.Shared.Tests.dll (net10.0)

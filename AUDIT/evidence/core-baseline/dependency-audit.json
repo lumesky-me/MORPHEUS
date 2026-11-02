@@ -1,0 +1,450 @@
+{
+  "advisories": {
+    "1243066": {
+      "findings": [
+        {
+          "version": "3.25.76",
+          "paths": [
+            "extensions__discord>@discord/embedded-app-sdk>zod"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "version": "4.3.6",
+          "paths": [
+            "extensions__copilot>@github/copilot-sdk>zod"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243066,
+      "title": "Zod can exhaust memory while validating oversized constrained collections",
+      "module_name": "zod",
+      "vulnerable_versions": "<4.6.6",
+      "patched_versions": ">=4.6.6",
+      "severity": "high",
+      "cwe": "CWE-770",
+      "github_advisory_id": "GHSA-mrhx-c7xc-m3w5",
+      "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5"
+    },
+    "1243077": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243077,
+      "title": "undici vulnerable to Denial of Service via unbounded memory in the EventSource parser",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "moderate",
+      "cwe": "CWE-770",
+      "github_advisory_id": "GHSA-4qv8-2p9j-2685",
+      "url": "https://github.com/advisories/GHSA-4qv8-2p9j-2685"
+    },
+    "1243080": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243080,
+      "title": "undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "moderate",
+      "cwe": "CWE-178",
+      "github_advisory_id": "GHSA-f72v-6w45-q472",
+      "url": "https://github.com/advisories/GHSA-f72v-6w45-q472"
+    },
+    "1243091": {
+      "findings": [
+        {
+          "version": "10.1.0",
+          "paths": [
+            "extensions__imap>mailauth>nodemailer"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243091,
+      "title": "Nodemailer: A nested comment ends early in addressparser, releasing the rest of the comment as a recipient",
+      "module_name": "nodemailer",
+      "vulnerable_versions": ">=3.0.0 <10.1.4",
+      "patched_versions": ">=10.1.4",
+      "severity": "moderate",
+      "cwe": "CWE-20, CWE-436",
+      "github_advisory_id": "GHSA-8c8m-p3m8-cjg8",
+      "url": "https://github.com/advisories/GHSA-8c8m-p3m8-cjg8"
+    },
+    "1243092": {
+      "findings": [
+        {
+          "version": "10.1.0",
+          "paths": [
+            "extensions__imap>mailauth>nodemailer"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243092,
+      "title": "Nodemailer: A \";\" inside a quoted string or comment ends an address group early in addressparser, turning display text into a recipient",
+      "module_name": "nodemailer",
+      "vulnerable_versions": ">=3.0.0 <10.1.4",
+      "patched_versions": ">=10.1.4",
+      "severity": "moderate",
+      "cwe": "CWE-20, CWE-436",
+      "github_advisory_id": "GHSA-m943-m63m-w62w",
+      "url": "https://github.com/advisories/GHSA-m943-m63m-w62w"
+    },
+    "1243093": {
+      "findings": [
+        {
+          "version": "10.1.0",
+          "paths": [
+            "extensions__imap>mailauth>nodemailer"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243093,
+      "title": "Nodemailer: A \">\" inside a quoted local part ends an angle-addr early in addressparser, delivering to a domain the header does not name",
+      "module_name": "nodemailer",
+      "vulnerable_versions": ">=3.0.0 <10.1.4",
+      "patched_versions": ">=10.1.4",
+      "severity": "moderate",
+      "cwe": "CWE-20, CWE-436",
+      "github_advisory_id": "GHSA-85x2-q946-cp5h",
+      "url": "https://github.com/advisories/GHSA-85x2-q946-cp5h"
+    },
+    "1243111": {
+      "findings": [
+        {
+          "version": "5.6.0",
+          "paths": [
+            "extensions__msteams>@microsoft/teams.apps>@azure/msal-node"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "version": "6.0.1",
+          "paths": [
+            "extensions__msteams>@azure/identity>@azure/msal-node"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243111,
+      "title": "MSAL Node authorization code flow may disclose parameters to an attacker-controlled endpoint",
+      "module_name": "@azure/msal-node",
+      "vulnerable_versions": ">=5.0.0-beta.0 <7.1.0",
+      "patched_versions": ">=7.1.0",
+      "severity": "high",
+      "cwe": "CWE-346",
+      "github_advisory_id": "GHSA-xcx6-jx8p-x3h5",
+      "url": "https://github.com/advisories/GHSA-xcx6-jx8p-x3h5"
+    },
+    "1243112": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243112,
+      "title": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "high",
+      "cwe": "CWE-248, CWE-459",
+      "github_advisory_id": "GHSA-xjj6-f33q-929c",
+      "url": "https://github.com/advisories/GHSA-xjj6-f33q-929c"
+    },
+    "1243472": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243472,
+      "title": "undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "high",
+      "cwe": "CWE-346, CWE-524",
+      "github_advisory_id": "GHSA-4w7w-5xrc-9h26",
+      "url": "https://github.com/advisories/GHSA-4w7w-5xrc-9h26"
+    },
+    "1243474": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243474,
+      "title": "undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "high",
+      "cwe": "CWE-295",
+      "github_advisory_id": "GHSA-2m5v-pch6-74hx",
+      "url": "https://github.com/advisories/GHSA-2m5v-pch6-74hx"
+    },
+    "1243477": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243477,
+      "title": "undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "high",
+      "cwe": "CWE-248, CWE-617",
+      "github_advisory_id": "GHSA-qrxm-fqhp-jwvm",
+      "url": "https://github.com/advisories/GHSA-qrxm-fqhp-jwvm"
+    },
+    "1243480": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243480,
+      "title": "undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "moderate",
+      "cwe": "CWE-400, CWE-405, CWE-770",
+      "github_advisory_id": "GHSA-9fm3-97px-rjf6",
+      "url": "https://github.com/advisories/GHSA-9fm3-97px-rjf6"
+    },
+    "1243483": {
+      "findings": [
+        {
+          "version": "8.11.2",
+          "paths": [
+            "extensions__imap>mailauth>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243483,
+      "title": "undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor",
+      "module_name": "undici",
+      "vulnerable_versions": ">=8.0.0 <8.12.2",
+      "patched_versions": ">=8.12.2",
+      "severity": "moderate",
+      "cwe": "CWE-248",
+      "github_advisory_id": "GHSA-55wc-3pg8-jfw6",
+      "url": "https://github.com/advisories/GHSA-55wc-3pg8-jfw6"
+    },
+    "1243620": {
+      "findings": [
+        {
+          "version": "2.8.6",
+          "paths": [
+            "extensions__qa-lab>@openclaw/crabline>re2js",
+            ".>@openclaw/crabline>re2js"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243620,
+      "title": "RE2JS: Quadratic-time denial of service in re2js lookbehind matching",
+      "module_name": "re2js",
+      "vulnerable_versions": ">=2.2.0 <2.8.7",
+      "patched_versions": ">=2.8.7",
+      "severity": "high",
+      "cwe": "CWE-407, CWE-1333",
+      "github_advisory_id": "GHSA-gg6h-894w-4m9c",
+      "url": "https://github.com/advisories/GHSA-gg6h-894w-4m9c"
+    },
+    "1244003": {
+      "findings": [
+        {
+          "version": "1.16.1",
+          "paths": [
+            "extensions__feishu>@larksuiteoapi/node-sdk>axios>follow-redirects",
+            "extensions__msteams>@microsoft/teams.apps>@microsoft/teams.common>axios>follow-redirects",
+            "extensions__msteams>@microsoft/teams.apps>axios>follow-redirects",
+            "extensions__msteams>@microsoft/teams.apps>@microsoft/teams.graph>@microsoft/teams.common>axios>follow-redirects",
+            "extensions__msteams>@microsoft/teams.apps>@microsoft/teams.api>@microsoft/teams.common>axios>follow-redirects",
+            "extensions__msteams>@microsoft/teams.api>@microsoft/teams.common>axios>follow-redirects",
+            "extensions__msteams>@microsoft/teams.common>axios>follow-redirects"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1244003,
+      "title": "follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects",
+      "module_name": "follow-redirects",
+      "vulnerable_versions": ">=1.16.0 <=1.16.1",
+      "patched_versions": ">=1.16.2",
+      "severity": "high",
+      "cwe": "CWE-201",
+      "github_advisory_id": "GHSA-mrwp-f3q8-3g9p",
+      "url": "https://github.com/advisories/GHSA-mrwp-f3q8-3g9p"
+    },
+    "1244007": {
+      "findings": [
+        {
+          "version": "18.2.9",
+          "paths": [
+            "extensions__imap>mailauth>joi"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1244007,
+      "title": "joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service",
+      "module_name": "joi",
+      "vulnerable_versions": ">=18.0.0 <18.3.1",
+      "patched_versions": ">=18.3.1",
+      "severity": "high",
+      "cwe": "CWE-1333",
+      "github_advisory_id": "GHSA-4528-x5fx-h6hg",
+      "url": "https://github.com/advisories/GHSA-4528-x5fx-h6hg"
+    },
+    "1244012": {
+      "findings": [
+        {
+          "version": "10.2.6",
+          "paths": [
+            "extensions__file-transfer>minimatch",
+            "tools__solid-lint>eslint>@eslint/config-array>minimatch",
+            "tools__solid-lint>eslint>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>eslint>@eslint/config-array>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>eslint>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch",
+            "tools__solid-lint>eslint-plugin-solid>@typescript-eslint/utils>eslint>minimatch",
+            ".>minimatch",
+            ".>sigstore>@sigstore/tuf>tuf-js>@tufjs/models>minimatch",
+            ".>sigstore>@sigstore/sign>make-fetch-happen>cacache>glob>minimatch"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1244012,
+      "title": "minimatch has potential denial of service via globparts amplification",
+      "module_name": "minimatch",
+      "vulnerable_versions": "<11.0.1",
+      "patched_versions": ">=11.0.1",
+      "severity": "moderate",
+      "cwe": "CWE-405",
+      "github_advisory_id": "GHSA-g3hv-75wg-m249",
+      "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+    },
+    "1244013": {
+      "findings": [
+        {
+          "version": "13.0.6",
+          "paths": [
+            ".>sigstore>@sigstore/sign>make-fetch-happen>cacache>glob"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1244013,
+      "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+      "module_name": "glob",
+      "vulnerable_versions": ">=9.0.0 <=14.0.1",
+      "patched_versions": ">=14.0.2",
+      "severity": "moderate",
+      "cwe": "CWE-400",
+      "github_advisory_id": "GHSA-3g3m-2fjr-6pw4",
+      "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4"
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 9,
+      "high": 9,
+      "critical": 0
+    },
+    "dependencies": 1051,
+    "devDependencies": 500,
+    "optionalDependencies": 359,
+    "totalDependencies": 1764
+  }
+}

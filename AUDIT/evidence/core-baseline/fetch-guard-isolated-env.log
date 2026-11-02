@@ -1,0 +1,121 @@
+$ node scripts/test-projects.mts src/infra/net/fetch-guard.ssrf.test.ts --maxWorkers=1
+[test] starting test/vitest/vitest.infra.config.ts
+
+ RUN  v5.0.5 /tmp/morpheus-upstream-core
+
+[vitest] still running with no output for 30000ms.
+[vitest] still running with no output for 60000ms.
+[vitest] still running with no output for 90000ms.
+[vitest] still running with no output for 120000ms.
+[vitest] still running with no output for 150000ms.
+[vitest] still running with no output for 180000ms.
+[vitest] still running with no output for 210000ms.
+[vitest] still running with no output for 240000ms.
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js (48:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/resolve-evaluate-options.js:48:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m48 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js (6:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-create.js:6:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m6 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js (11:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@mdx-js+mdx@3.1.1_supports-color@10.2.2/node_modules/@mdx-js/mdx/lib/util/estree-util-is-declaration.js:11:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m11 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js (12:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js" may not be preserved when bundling.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/comment.js:12:1 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m12 │[0m ''
+ [38;5;240m   │[0m ─┬  
+ [38;5;240m   │[0m  ╰── module level directive may not be preserved
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m────╯[0m
+
+node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js (9:0) [33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "" in "node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/hast-util-to-estree@3.1.3_supports-color@10.2.2/node_modules/hast-util-to-estree/lib/handlers/text.js:9:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m9 │[0m ''
+ [38;5;240m  │[0m ─┬  
+ [38;5;240m  │[0m  ╰── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[vitest-workers] prepared 571f396e221f in 300021ms (14804 inputs, 23275 outputs)
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > blocks private URLs and redacts their path, query and fragment from audit logs 158ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects IPv6 metadata despite ULA opt-in before dispatch 19ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects HTTP requiring explicit-proxy pinning before dispatch 17ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects metadata behind exact-origin trust before dispatch 15ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > rejects private proxy despite target origin trust before dispatch 12ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not carry exact-origin trust across a redirect to another private port 57ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not promote exact-origin trust into access to 64:ff9b::a9fe:a9fe 21ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not promote exact-origin trust into access to 64:ff9b:1:808:808:808:a9fe:a9fe 11ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > does not promote exact-origin trust into access to 100.100.100.200 19ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > fails closed when the runtime rejects the pinned dispatcher 146ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > ignores dispatcher support markers on explicit ambient fetch 36ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > guarded fetch policy > keeps explicit proxy transport policy with DNS pinning disabled 17ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rewrites 303 PUT (cross-origin=false, replay=false) 44ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rewrites 308 POST (cross-origin=true, replay=false) 23ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rewrites 307 POST (cross-origin=true, replay=true) 22ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > strips sensitive headers and symbols across origins without mutating caller headers 60ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > never restores authorization on an HTTPS-to-HTTP downgrade 13ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects redirects violating /must use https/i 21ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects redirects violating /redirect loop/i 46ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects redirects violating /too many redirects/i 15ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > preserves redirects when response body cancellation rejects 18ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > settles redirects before retained capture cancellation (location: /next) 14ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > settles redirects before retained capture cancellation (location: undefined) 16ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > redirect boundaries > rejects timed-out fetches even when dispatcher close stalls 88ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes strict with active=true and NO_PROXY=true 51ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes trusted_env_proxy with active=false and NO_PROXY=false 22ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > routes trusted_env_proxy with active=false and NO_PROXY=true 19ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > rechecks redirect destinations before managed-proxy dispatch 10ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > enforces trusted env hostname policy { hostnameAllowlist: [Array] } before dispatch 58ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > enforces trusted env hostname policy { blockedHostnames: [Array] } before dispatch 16ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > keeps target allowlists separate from explicitly allowed private proxies 11ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > proxy routing and trust > reselects proxy policy after redirects and pins direct targets 23ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > applies  loopback policy through dashboard readiness 50ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > applies proxy loopback policy through dashboard readiness 29ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > applies block loopback policy through dashboard readiness 9ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > routes IPv6 loopback through the exact configured-origin policy 46ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > routes mixed loopback/public DNS through the exact configured-origin policy 26ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > routes public configured origin through the exact configured-origin policy 14ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > keeps target TLS on the managed loopback hop despite NO_PROXY 26ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > ignores hidden bypass markers on the public guard 48ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > configured local-origin bypass > does not carry direct routing across redirects to another loopback port 20ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > blocks a private DNS rebind before consulting a warm dispatcher 62ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=undefined and stream=undefined deadlines separate (pinned=true) 30ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=5000 and stream=undefined deadlines separate (pinned=true) 7ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=2000000 and stream=undefined deadlines separate (pinned=true) 22ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > keeps request=undefined and stream=2000000 deadlines separate (pinned=false) 38ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > propagates a final dispatch rejection without sending the request 19ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > aborts stalled DNS from the caller before dispatch 22ms
+ ✓ |infra| src/infra/net/fetch-guard.ssrf.test.ts > request lifecycle > aborts stalled DNS from the deadline before dispatch 13ms
+
+ Test Files  1 passed (1)
+      Tests  49 passed (49)
+   Start at  11:22:40
+   Duration  325.74s (transform 98%, import 1%, tests 1%)
+
+[vitest-workers] verifying completed generation before cleanup
+[test] passed 1 Vitest shard in 338.33s

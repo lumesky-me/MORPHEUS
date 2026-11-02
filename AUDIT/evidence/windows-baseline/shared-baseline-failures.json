@@ -1,0 +1,1342 @@
+[
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsInteriorSpacingChangesThatPreserveTokens(respaced: \" C:\\\\tools\\\\tool.exe --flag\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.EffectiveAccessHonorsExplicitChildrenOfUserDeniedParents(access: ReadOnly)",
+    "message": "System.NotSupportedException : Folder grants must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.CompanionCleanupState_StaysProtectedUnderOpenAndExplicitGrants(exists: True)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.NormalizedAliasesUseOneRowAndAnEditUpdatesEveryRepresentedSource",
+    "message": "Assert.Single() Failure: The collection contained 3 items"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.RuntimeProof_AllowAlways_PersistsAndRecordsLastUsed",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415919130)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: True, unsupportedWindows: True, mode: \"/d/s/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_StoreBecomesUnavailable_FailsWithoutPolicyDenial(failure: UnsupportedVersion)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeSynchronousReadersUseSdkClosersAndPreserveShortDeadlineOutput(rootExited: True)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415931418)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OrdinaryPathIgnoresUndefinedReparseTag(undefinedTag: 2684354572)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.CarrierPayloadWithExplicitRelativePath_IsNotTreatedAsAmbiguous",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.MissingDescendantsFollowNearestVerifiedExistingParentWithoutCreatingState(logical: \"C:\\\\profile\\\\AppData\\\\Roaming\\\\future\\\\nested\\\\sta\"\u00b7\u00b7\u00b7)",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.DirectMultilineArgv_RoundTrips(argument: \"\\r\\n\")",
+    "message": "System.DllNotFoundException : Unable to load shared library 'shell32.dll' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: "
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_AskFallbackTightenedBeforeLaunch_FailsRevalidation",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAnyOtherDifferenceFromTheRequest(index: 4, replacement: \"C:\\\\tools\\\\other.exe --flag\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.MetadataQueryErrorsAreNotTreatedAsMissing(error: 5)",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.SecurityFull_AskOff_ReturnsAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415964186)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsStoreTests.RecordAllowlistUseAsync_BestEffort_IoExceptionReturnsFalse",
+    "message": "Assert.False() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.HuggingFaceHubCacheTests.ResolveCacheRoot_ExpandsWindowsEnvironmentVariables",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowAlways_CommandHost_PersistsWithItsArgumentsPinned",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415935514)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.LegacyV1Rule_IsIgnoredAndRequiresFreshV2Decision(action: \"deny\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OwnedJunctionAndSymbolicLinkAreRejectedWithoutFollowingTheirChildren(symbolic: False)",
+    "message": "System.ComponentModel.Win32Exception : An error occurred trying to start process 'cmd.exe' with working directory '/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0'. No such file or directory"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserNoAccessAllowsAnExplicitChildAndOwnedScratchButNotUnlistedCwdOrImage(childAccess: ReadOnly)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAnyOtherDifferenceFromTheRequest(index: 4, replacement: \"C:\\\\tools\\\\tool.exe --flag && whoami.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.NoAccessOverridesAPresetAndRemainsVisibleAndReversible(name: \"Profile\")",
+    "message": "System.NotSupportedException : Folder grants must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.RealCoordinator_PolicyTightenedDuringPrompt_IsDefiniteDenial(gatewayEvent: True)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.LegacyPathOnlyEntryForAnOrdinaryExecutable_StillMatches(target: \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.MultiElementCarrierTail_Binds",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowAlways_Allowlist_PersistsEntry",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserFiles_SelectedWriteChildKeepsParentReadOnly",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WindowsPathSafetyTests.Containment_DoesNotTreatSiblingPrefixAsDescendant",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415939610)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.LegacyPathOnlyEntryForAnOrdinaryExecutable_StillMatches(target: \"C:\\\\tools\\\\ripgrep\\\\rg.exe\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.CarrierPayloadShadowedByInheritedDirectory_PinsResolvedPath",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.HuggingFaceHubCacheTests.ResolveCacheRoot_UsesHuggingFacePrecedence",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Presets_KeepWindowsApiCompatibilityAndIndependentRestrictions(preset: Strict)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.ResolutionErrorsBlockInsteadOfDroppingProtection(error: 5)",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.PinnedCarrier_DoesNotRewriteArgumentsThatRepeatTheExecutableText",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PermissionsChangedDuringAdmission_RejectsPendingCommand",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.DeviceIdentityFailClosedTests.StoreDeviceTokenForRole_WhenAtomicReplaceFails_PreservesDurableAndInMemoryToken(role: \"operator\")",
+    "message": "Assert.Throws() Failure: No exception was thrown"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.DllInitializationFailure_PreservesResultWithoutGuessingCause(exitCode: -1073741502, stderr: \"native detail\", hasHint: True)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.EditedKnownFolderReplacesGeneratedEntryWithoutChangingOtherRoots(preset: Open, access: ReadOnly)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.PowerShell_DefaultAndRetiredSettingsUseTheSameContainedCompatibilityPolicy(json: \"{\\\"SystemRunAllowWindowsUi\\\":false}\")",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.DirectMultilineArgv_RoundTrips(argument: \"\\r\")",
+    "message": "System.DllNotFoundException : Unable to load shared library 'shell32.dll' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: "
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415939610)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OrdinaryPathIgnoresUndefinedReparseTag(undefinedTag: 4294967295)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.LegacyV1Rule_IsIgnoredAndRequiresFreshV2Decision(action: \"allow\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415955994)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PhysicalResolutionFailureNeverSpawnsOrDowngradesToHost(failScratch: True)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: False, unsupportedWindows: False, mode: \"x/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_PolicyTightenedDuringPrompt_FailsClosed",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeSpawnFailure_IsExplicitNeverFallback",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeRunningRootIsObservedBeforeFinalizationStarts",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415951898)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.WindowsCodeHost_AllowAlwaysBindsToTheApprovedPayloadOnly(payload: \"regsvr32.exe /s payload.dll\")",
+    "message": "Assert.Single() Failure: The collection was empty"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.UntrustedCmdCopyCarrier_DoesNotBindInnerExecutable",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/cmd.exe'."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.TrailingBackslash_DoesNotBind",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeSynchronousReadersUseSdkClosersAndPreserveShortDeadlineOutput(rootExited: False)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.RelocatedCmdImage_IsNotATrustedCarrier",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.PinnedCarrier_PreservesPayloadArgumentsExactly",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.ResolutionErrorsBlockInsteadOfDroppingProtection(error: 32)",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Resolver_AbsolutePath_ResolvesToSelf",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.MetadataQueryErrorsAreNotTreatedAsMissing(error: 32)",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415972378)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415964186)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.NativeComExtensionTarget_DoesNotBind",
+    "message": "Native Windows .com target was not found: chcp.com"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.NativeMetadataQueryNeedsAttributesOnlyAndDoesNotReadFileData",
+    "message": "System.PlatformNotSupportedException : Windows metadata proof requires Windows."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.AcceptedTabGrammar_MatchesRealCmdChildArgv",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAPinnedNameWithADifferentStem(requestName: \"tool.v2\", resolvedPath: \"C:\\\\tools\\\\tool.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeFinalizationFailureIsSurfacedAndReadersAreOwned",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_AskOnMissAllowlistMiss_MarksAllowAlwaysAvailable",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ExplicitGrants_AllowCwdWithoutChangingAccess(access: ReadWrite)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_StoreBecomesUnavailable_FailsWithoutPolicyDenial(failure: ReadFailed)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.ApprovalRevokedDuringNativeAdmission_IsRevalidatedBeforeSpawn",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.BuilderKeepsBothDenySpellingsAndAllowsOnlyExplicitUnprotectedSibling(scope: UserFilesReadWrite, channel: \"dev\")",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.InvalidPhysicalNamesBlockProtection(final: null)",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.PhysicalProtectionDoesNotFollowAnUnverifiedReparseAncestor",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AuditSuppression_NotAutoAllowed_UnderSecurityFullAskOff",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ProspectiveUserDenyKeepsExactBoundaryAndMissingParentsFailWithoutBroadening",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedMultilinePowerShell_ReachesRunnerVerbatim(prompt: True, unsupportedWindows: True)",
+    "message": "Uncontained compatibility execution failed. Verify the approved executable and working folder before retrying."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowOnce_DoesNotPersistEntry",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Normalizer_BashUppercaseC_IsNoclobberNotInline",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.StoredHostnameRule_CanonicalCmdCarrier_AuthorizesInnerAndPreservesCarrier",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_StoreBecomesUnavailable_FailsWithoutPolicyDenial(failure: UntrustedPath)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeReaderFailureTerminatesRootAndInterruptsOtherReader",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415927322)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UnsupportedWindows_ExitedRootDoesNotWaitForDescendantPipe(pipe: \"stdout\", length: 1)",
+    "message": "/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: True, unsupportedWindows: False, mode: \"/d/s/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Text)",
+    "message": "System.OperationCanceledException : The operation was canceled."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.PinnedCarrier_PreservesTokenizedTailArity",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsInteriorSpacingChangesThatPreserveTokens(respaced: \"C:\\\\tools\\\\tool.exe  --flag\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2PipelineIntegrationTests.AttackCommand_ReachesDialogSanitized_AllowOnceProducesAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.LegacyPathOnlyEntryForACommandHostWithComExtension_StillMatches",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.DeniedChildCannotBorrowBroaderWriteGrantForCwdOrExecutable",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAnyOtherDifferenceFromTheRequest(index: 4, replacement: \"C:\\\\tools\\\\tool.exe --other\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsInteriorSpacingChangesThatPreserveTokens(respaced: \"C:\\\\tools\\\\tool.exe --flag \")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.HuggingFaceHubCacheTests.ResolveCacheRoot_ExpandsUserProfilePrefix",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.Timeout_IsNotCallerCancellation_UsesOneDeadline",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.BuilderKeepsBothDenySpellingsAndAllowsOnlyExplicitUnprotectedSibling(scope: UserFilesReadOnly, channel: \"store\")",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserDeniesRequireTheSameNoFollowAdmissionAsGrants",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Allow_PreApproved_CarriesCanonicalArgvPayload",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.BuilderBroadensMissingPhysicalAndLogicalParentsIndependentlyWithoutRemovingEitherDeny",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowAlways_CanonicalHostname_PersistsInnerExecutableAndPreservesCarrier",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.RootsWithoutDedicatedFieldsUseAnExplicitPathAndCanReset(name: \"Profile\")",
+    "message": "System.NotSupportedException : Folder grants must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.RealCoordinator_StoreMalformedDuringPrompt_IsNotDefiniteDenial(gatewayEvent: True)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UnsupportedWindows_ExitedRootDoesNotWaitForDescendantPipe(pipe: \"both\", length: 3)",
+    "message": "/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415947802)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsStoreTests.AddAllowlistEntryAsync_BestEffort_IoExceptionReturnsFalse",
+    "message": "Assert.False() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.FixedRuntimeSamePathRemainsReadOnlyRatherThanShowingAnIneffectiveWriteGrant",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Normalizer_PowerShellFileArgument_IsNotWrapper",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ExactCustomProfileOverrideAndKnownAliasesProduceOneEffectiveSdkEntry",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.EffectiveAccessDenyBeatsBroaderAndSamePathGrants",
+    "message": "System.NotSupportedException : Folder grants must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Presets_KeepWindowsApiCompatibilityAndIndependentRestrictions(preset: Open)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UnsupportedWindows_DeadlinePreservesCollectedOutput",
+    "message": "/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UserFilesScope_UsesInjectedSyntheticPolicy(scope: UserFilesReadWrite)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.ExplicitlyApprovedSiblingRestoresAMatchForAQuarantinedHost",
+    "message": "Assert.Same() Failure: Values are not the same instance"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415935514)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsInteriorSpacingChangesThatPreserveTokens(respaced: \"C:\\\\tools\\\\tool.exe\\t--flag\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415972378)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_StoreBecomesUnavailable_DoesNotClaimPolicyRevocation(failure: UnsupportedVersion)",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.SdkPrelaunchRevalidation_PreservesOnlyConfirmedDenialOnWire(gatewayEvent: True, unsupportedWindows: False, policyDenied: False)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: True, unsupportedWindows: False, mode: \"x/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.PhysicalProtectionComesFromObservedMetadataNotAnIdentityFormula(channel: \"dev\")",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.NoAccessOverridesOpenKnownRootWithoutDenyingOtherListedFolders",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.EntryWithBlankSourceAndNoArgumentBinding_IsStillHandWritten(source: \"   \")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.MissingProtectedParents_DenyFirstMissingAncestorWithoutCreatingOrDroppingProtection",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OrdinaryPathIgnoresUndefinedReparseTag(undefinedTag: 2684354563)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ExecutableAliasesEndingDotOrSpace_AreRejected(relative: \"directory \\\\app.exe\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.EightLateLaunches_HoldCapacityUntilActualCleanupCompletes",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Network_InternetOnlyNeverEnablesIngressOrLoopback(internet: True, action: Allow)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.SdkPrelaunchRevalidation_PreservesOnlyConfirmedDenialOnWire(gatewayEvent: False, unsupportedWindows: False, policyDenied: False)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_RevalidationStoreFailure_IsNotAConfirmedPolicyDenial",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.DirectMultilineArgv_RoundTrips(argument: \"first\\n\\\"second\\\"\\\\\")",
+    "message": "System.DllNotFoundException : Unable to load shared library 'shell32.dll' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: "
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.ConflictingDuplicateCustomPathsStayReadOnlyUntilExplicitlyEdited",
+    "message": "Assert.Single() Failure: The collection contained 2 items"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedMultilinePowerShell_ReachesRunnerVerbatim(prompt: True, unsupportedWindows: False)",
+    "message": "Windows folder metadata is required for MXC admission."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415919130)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.BoundEntry_AuthorizesOnlyTheApprovedArguments",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.BinderAndMxcBuilder_AgreeOnCarrierRecognition(argv: [\"C:\\\\Windows\\\\System32\\\\cmd.exe\", \"/d\", \"/s\", \"/c\", \"hostname.exe\"], isCarrier: True)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowOnce_AllowlistSatisfied_RecordsUseInPostPass2Branch",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.NetworkExecutable_DoesNotBind(path: \"\\\\\\\\127.0.0.1\\\\c$\\\\Windows\\\\System32\\\\hostname.exe\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.BareCmdResolvingOutsideSystemDirectory_ExecutesTheSystemImage",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2PipelineIntegrationTests.DialogAllowOnce_ReturnsAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.WindowsCodeHost_AllowAlwaysBindsToTheApprovedPayloadOnly(payload: \"rundll32.exe payload.dll,EntryPoint\")",
+    "message": "Assert.Single() Failure: The collection was empty"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PackagedScratchUsesVerifiedPhysicalGrantWhileLogicalCleanupRemainsOwned(cancelLateSpawn: True)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.WindowsCodeHost_BindsOnlyToTheApprovedPayload(payload: \"mshta.exe https://example.invalid/payload.hta\", image: \"mshta.exe\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeRootExitKeepsFinalizationOwnedUntilItCompletes(cancel: False)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.WildcardAllowlistHit_RecordsUseOnWildcardBucketEntry",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Strict_DoesNotImplicitlyGrantPersonalTools",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_PolicyUnchanged_AllowsAfterCurrencyRecheck",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.NonCmdWhitespace_DoesNotBind",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.WindowsCodeHost_AllowAlwaysBindsToTheApprovedPayloadOnly(payload: \"mshta.exe https://example.invalid/payload.hta\")",
+    "message": "Assert.Single() Failure: The collection was empty"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.ResolveForAllowlist_PositionalPowerShellScriptName_IsImplicitCommand",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WindowsPathSafetyTests.IsSafeSegment_RejectsUnsafeWindowsSegments(value: \"dir\\\\model\")",
+    "message": "Assert.False() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Resolver_RelativePath_ResolvedToAbsoluteWithCwd",
+    "message": "Assert.NotNull() Failure: Value of type 'Nullable<ExecCommandResolution>' does not have a value"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.TrustedCarrier_KeepsTransportSeparateFromIdentity",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415980570)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.ConfirmedUnsupportedWindows_ExecutesApprovedCarrierWithHostDiagnostics",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.StoredWhereRule_TabDelimitedArgument_AuthorizesInnerAndPreservesCarrier",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.CarrierPayloadShadowedByCurrentDirectory_PinsResolvedPath",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.DirectInvocation_ExecutesItselfWithNoTransportIndirection",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.AbsolutePathCmdCarrier_Binds",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.CanPresent_AllowOnce_ReturnsAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.StoredAllowlist_HandWrittenPathOnlyRule_AuthorizesOrdinaryExecutable",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeRootExitKeepsFinalizationOwnedUntilItCompletes(cancel: True)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WindowsPathSafetyTests.IsSafeSegment_RejectsUnsafeWindowsSegments(value: \"model:stream\")",
+    "message": "Assert.False() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.InvalidPhysicalNamesBlockProtection(final: \"relative\")",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedMultilinePowerShell_ReachesRunnerVerbatim(prompt: False, unsupportedWindows: True)",
+    "message": "Uncontained compatibility execution failed. Verify the approved executable and working folder before retrying."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.PhysicalDenyExpansionDoesNotGrantMappedOrSubstAliases(logical: \"S:\\\\state\", physicalRoot: \"\\\\\\\\?\\\\C:\\\\owned\\\\subst-root\")",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserDenyExceptionsNeverOverrideImmutableProtectedGrandchildren",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PrelaunchRevalidation_BlocksWithoutConfusingFailureAndPolicyDenial(unsupportedWindows: False, policyDenied: False)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.UnavailableRootAndNondirectoryComponentsBlockProtection",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.WindowsCodeHost_BindsOnlyToTheApprovedPayload(payload: \"rundll32.exe payload.dll,EntryPoint\", image: \"rundll32.exe\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.MissingDescendantsFollowNearestVerifiedExistingParentWithoutCreatingState(logical: \"C:\\\\profile\\\\AppData\\\\Roaming\\\\future\")",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.EightFinalizations_HoldCapacityUntilActualCleanupCompletes",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415927322)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.NoFile_AttendedPrompt_AllowsOnce",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_StoreBecomesUnavailable_DoesNotClaimPolicyRevocation(failure: ReadFailed)",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2PipelineIntegrationTests.CommandHost_AllowOnce_YieldsExecutionForThisInvocationOnly",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415923226)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.TabDelimitedLiteralArguments_Bind",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.MappedDriveAndSubstMismatchIdentifiesComponentAndPhysicalAliasReason(requested: \"M:\\\\\", final: \"\\\\\\\\?\\\\UNC\\\\server\\\\share\")",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedMultilinePowerShell_ReachesRunnerVerbatim(prompt: False, unsupportedWindows: False)",
+    "message": "Windows folder metadata is required for MXC admission."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationPipelineOwnershipTests.BindableCommand_YieldsExactlyOneDurableIdentity",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ProcessImagePathTests.Read_InvalidHandle_ReportsNativeError",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_StoreBecomesUnavailable_FailsWithoutPolicyDenial(failure: MalformedJson)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ExecutableAliasesEndingDotOrSpace_AreRejected(relative: \"directory.\\\\app.exe\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeRootExitRetainsStatusWhenFinalizationCrossesDeadline(exit: 7)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: False, unsupportedWindows: True, mode: \"/d/s/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Allow_PostPrompt_CarriesCanonicalArgvPayload",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_AcceptsAVersionedNameThatGainedItsResolvedExtension(requestName: \"tool.v2\", resolvedPath: \"C:\\\\tools\\\\tool.v2.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.EntryWithBlankSourceAndNoArgumentBinding_IsStillHandWritten(source: \"\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ClipboardAndUi_KeepIndependentPermissions(mode: Read, clipboard: Read)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowPreapproved_RecordsAllowlistUse",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.HuggingFaceHubCacheTests.TryGetBlobPath_UsesPinnedDigestWithoutTrustingExistingContent",
+    "message": "The Hugging Face hub cache root must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.DeviceIdentityFailClosedTests.StoreDeviceTokenForRole_WhenAtomicReplaceFails_PreservesDurableAndInMemoryToken(role: \"node\")",
+    "message": "Assert.Throws() Failure: No exception was thrown"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Normalizer_PowerShellHostGrammar_DoesNotHideInlineCommand",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAPinnedNameWithADifferentStem(requestName: \"tool\", resolvedPath: \"C:\\\\tools\\\\other.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.MalformedFolderPath_ReportsPolicyErrorBeforeSpawn",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.LogInjection_ControlCharsInCommand_SanitizedInLog",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.DllInitializationFailure_PreservesResultWithoutGuessingCause(exitCode: -1073741502, stderr: \"\", hasHint: True)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415976474)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: Binary)",
+    "message": "System.OperationCanceledException : The operation was canceled."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.CustomReadOnlyChildUnderOpenRetainsProtectedDeniesAndOutsideScopeChecks",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowAlways_Idempotent_SingleEntry",
+    "message": "Assert.Single() Failure: The collection was empty"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415968282)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415955994)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.QuotedExecutableToken_DoesNotBind",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: False, unsupportedWindows: True, mode: \"x/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UnsupportedWindows_ExitedRootDoesNotWaitForDescendantPipe(pipe: \"stderr\", length: 2)",
+    "message": "/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_StoreBecomesUnavailable_DoesNotClaimPolicyRevocation(failure: UntrustedPath)",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserFiles_IncludeProfileAndResolvedRedirectedFoldersNotVolumes(scope: UserFilesReadWrite)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.RootsWithoutDedicatedFieldsUseAnExplicitPathAndCanReset(name: \"OneDrive\")",
+    "message": "System.NotSupportedException : Folder grants must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.PowerShell_DefaultAndRetiredSettingsUseTheSameContainedCompatibilityPolicy(json: \"{\\\"SystemRunAllowWindowsUi\\\":true}\")",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.McpHttpServerTests.Post_WithLocalhostHost_Accepted",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.MetadataQueryErrorsAreNotTreatedAsMissing(error: 4392)",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.StoredWhereRule_MultiElementCarrierTail_AuthorizesInnerAndPreservesCarrier",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415923226)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Strict_UsesSdkDefaultEnvironmentAndOnlyGrantsScratchAndRuntime",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.HeadlessAllowlistFallback_HandWrittenPathOnlyRule_AuthorizesOrdinaryExecutable",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.HuggingFaceHubCacheTests.ResolveCacheRoot_FallsBackThroughLegacyHomeXdgAndProfile",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.CancellationDuringLateSpawn_ReturnsPromptlyAndRetainsScratchUntilProcessOwned",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.VolumeRoots_AreNeverEmittedOrUsedAsCwdAuthority",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_AcceptsAVersionedNameThatGainedItsResolvedExtension(requestName: \"clang-15.0\", resolvedPath: \"C:\\\\tools\\\\clang-15.0.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.PowerShell_DefaultAndRetiredSettingsUseTheSameContainedCompatibilityPolicy(json: \"{}\")",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_UnbindableShellCommand_StillShowsResolvedPath",
+    "message": "Assert.False() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.MissingLeafStillValidatesItsExistingCloudAncestor",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.EightActiveCommands_ReportBusyWithoutClaimingCleanupOrContainment",
+    "message": "Assert.ThrowsAny() Failure: No exception was thrown"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OwnedJunctionAndSymbolicLinkAreRejectedWithoutFollowingTheirChildren(symbolic: True)",
+    "message": "System.NotSupportedException : Windows folder metadata is required for MXC admission."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.CloudAdmissionDoesNotAutoGrantCwdOrAcceptProtectedFolderGrants",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserFiles_IncludeProfileAndResolvedRedirectedFoldersNotVolumes(scope: UserFilesReadOnly)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.RealCoordinator_StoreMalformedDuringPrompt_IsNotDefiniteDenial(gatewayEvent: False)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UnsupportedWindows_DeadlineRetainsHostModeAndCleansOwnedProcess",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.CarrierPayloadWithoutCurrentDirectoryShadow_StillBinds",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AbsolutePathCmdCarrier_StoredRule_AuthorizesInnerAndPreservesCarrier",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.CarrierPayloadResolvingToPathWithSpace_DoesNotBind",
+    "message": "System.IO.FileNotFoundException : Could not find file '/tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/hostname.exe'."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.UserNoAccessAllowsAnExplicitChildAndOwnedScratchButNotUnlistedCwdOrImage(childAccess: ReadWrite)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Allow_Payload_IsAcceptedByDirectArgvRunner",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.MappedDriveAndSubstMismatchIdentifiesComponentAndPhysicalAliasReason(requested: \"S:\\\\\", final: \"\\\\\\\\?\\\\C:\\\\owned\\\\subst-target\")",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.HeadlessFullWithAllowlistFallback_HandWrittenPathOnlyRule_AuthorizesOrdinaryExecutable",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.DeadlinePreservesCollectedOutputWithoutWaitingForBlockedNativeKill",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415943706)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.CompanionCleanupState_StaysProtectedUnderOpenAndExplicitGrants(exists: False)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.ABoundEntryIsPreferredOverAHandWrittenPathOnlyEntry",
+    "message": "Assert.Same() Failure: Values are not the same instance"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OnlyEquivalentFinalPathSpellingsAreNormalized(requested: \"C:\\\\owned\\\\cloud\\\\\", final: \"\\\\\\\\?\\\\c:\\\\OWNED\\\\cloud\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.RealCoordinator_PolicyTightenedDuringPrompt_IsDefiniteDenial(gatewayEvent: False)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.ExecutableExtensionTarget_Binds",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAnyOtherDifferenceFromTheRequest(index: 4, replacement: \"tool.exe --flag\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Cwd_RequiresExistingGrant_DoesNotAutoGrant",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415951898)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2PipelineIntegrationTests.ApprovedExecution_CarriesCanonicalArgv_ForActualExecution",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_CanonicalSingleCommand_MarksAllowAlwaysAvailable",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.NulBearingArgument_CannotShareABindingWithSplitArguments",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ClipboardAndUi_KeepIndependentPermissions(mode: None, clipboard: None)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.PhysicalDenyExpansionDoesNotGrantMappedOrSubstAliases(logical: \"M:\\\\state\", physicalRoot: \"\\\\\\\\?\\\\UNC\\\\server\\\\share\")",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415943706)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.DllInitializationFailure_PreservesResultWithoutGuessingCause(exitCode: 42, stderr: \"native detail\", hasHint: False)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Network_InternetOnlyNeverEnablesIngressOrLoopback(internet: False, action: Deny)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PrelaunchRevalidation_BlocksWithoutConfusingFailureAndPolicyDenial(unsupportedWindows: False, policyDenied: True)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2PipelineIntegrationTests.CommandHost_AllowAlwaysUnderFull_AllowsOnceWithoutPersistence",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.QuarantinedKnownFolderErrorsDoNotChangeAnIndependentExplicitGrant",
+    "message": "Assert.Null() Failure: Value is not null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.SystemDirectoryCmd_IsTrustedCarrier",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.WindowsCodeHost_BindsOnlyToTheApprovedPayload(payload: \"regsvr32.exe /s payload.dll\", image: \"regsvr32.exe\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.PinnedCarrier_IgnoresShadowInsertedAfterApproval",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAnyOtherDifferenceFromTheRequest(index: 3, replacement: \"/k\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415947802)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ClipboardAndUi_KeepIndependentPermissions(mode: Both, clipboard: All)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ExplicitGrants_AllowCwdWithoutChangingAccess(access: ReadOnly)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.OwnedScratchMustAlreadyExistUnlikeProspectiveProtection",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.NetworkExecutable_DoesNotBind(path: \"\\\\\\\\fileserver\\\\tools\\\\hostname.exe\")",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.LegacyPathOnlyEntryForAnOrdinaryExecutable_StillMatches(target: \"C:\\\\Windows\\\\System32\\\\hostname.exe\")",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowAlways_UnderSecurityFull_PersistsNothing",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PhysicalResolutionFailureNeverSpawnsOrDowngradesToHost(failScratch: False)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.PackagedScratchUsesVerifiedPhysicalGrantWhileLogicalCleanupRemainsOwned(cancelLateSpawn: False)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.RunningCommand_KeepsPolicyWhenSettingsChange",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ExplicitAllowAlways_RestoresReuseForAQuarantinedHost",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Concurrency_FiveConcurrentRequests_AllReturnValidResults",
+    "message": "Assert.All() Failure: 5 out of 5 items in the collection did not pass."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeRootExitRetainsStatusWhenFinalizationCrossesDeadline(exit: 0)",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AskAlways_CannotPresent_FallbackFull_ReturnsAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AncestorsAreValidatedBeforeAnyDescendantMetadataIsOpened",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.ApprovedCommand_ExecutesOnceWithTypedRequestAndMapsNonzero",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_PreservesTheRequestsOwnSwitchSpelling",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: False, unsupportedWindows: False, mode: \"/d/s/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.FallbackDecision_AskFallbackAllowlist_Matched_ReturnsAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.ExtendedDosSpellingsUseTheSameLexicalBoundaryAsSdkAndProtectedPaths",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ApprovedCombinedCmdSwitches_AreRejectedBeforeLaunch(prompt: True, unsupportedWindows: True, mode: \"x/c\")",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ExecutableTraversal_IsCheckedAgainstNormalizedScope",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Fallback_AllowlistSatisfied_RecordsUse",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415976474)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.DuplicateNoAccessBeatsReadWriteAndReadOnlyButNotByConvertingBlocked",
+    "message": "Assert.Single() Failure: The collection contained 3 items"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.MissingRedirectedFolder_BlocksWithActionableReason",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.InvalidPhysicalNamesBlockProtection(final: \"\")",
+    "message": "Assert.Throws() Failure: Exception type was not an exact match"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ProcessImagePathTests.Read_BeforeLoaderInitialization_ReturnsObservedImage",
+    "message": "System.DllNotFoundException : Unable to load shared library 'kernel32.dll' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: "
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415931418)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.DirectMultilineArgv_RoundTrips(argument: \"\\n\")",
+    "message": "System.DllNotFoundException : Unable to load shared library 'shell32.dll' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: "
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UserFilesScope_UsesInjectedSyntheticPolicy(scope: UserFilesReadOnly)",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_RejectsAPinnedNameWithADifferentStem(requestName: \"python3.11\", resolvedPath: \"C:\\\\tools\\\\python3.12.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ClipboardAndUi_KeepIndependentPermissions(mode: Write, clipboard: Write)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.SdkPrelaunchRevalidation_PreservesOnlyConfirmedDenialOnWire(gatewayEvent: True, unsupportedWindows: False, policyDenied: True)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415968282)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.EditedKnownFolderReplacesGeneratedEntryWithoutChangingOtherRoots(preset: Balanced, access: ReadWrite)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.UnsupportedWindows_PreservesApprovedCwdAndBoundsOutput",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_MatchesTheRequestItWasBuiltFrom",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_AcceptsAVersionedNameThatGainedItsResolvedExtension(requestName: \"python3.11\", resolvedPath: \"C:\\\\tools\\\\python3.11.exe\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.BoundCommand_PinsItsArguments_SoADifferentInvocationIsNotAuthorized",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415960090)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.CancellationWithBlockedKill_ReturnsPromptlyAndCleanupRetainsOwnership",
+    "message": "System.TimeoutException : The operation has timed out."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.Presets_KeepWindowsApiCompatibilityAndIndependentRestrictions(preset: Balanced)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.CanonicalCmdHostname_BindsResolvedExecutable",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderPermissionsTests.EffectiveAccessHonorsExplicitChildrenOfUserDeniedParents(access: ReadWrite)",
+    "message": "System.NotSupportedException : Folder grants must be fully qualified."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeRootObservationFailureStillKillsFinalizesAndClosesReaders",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.Prompt_StoreBecomesUnavailable_DoesNotClaimPolicyRevocation(failure: MalformedJson)",
+    "message": "Assert.Equal() Failure: Strings differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.ExistingValidV2_WinsOverLegacyV1",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.AcceptedMultiElementTail_MatchesRealCmdChildArgv",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.AcceptedSpaceGrammar_MatchesRealCmdChildArgv",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ProcessImagePathTests.Read_CurrentProcess_PreservesCallerHandle",
+    "message": "System.DllNotFoundException : Unable to load shared library 'kernel32.dll' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: "
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.WebSocketClientBaseTests.LoopbackFixture_ClientInitiatedClose_SendsCloseFrameAndTransportEof(useManagedWebSocket: False, queuedMessageType: null)",
+    "message": "System.OperationCanceledException : The operation was canceled."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.CanonicalCmdCarrierTests.PinnedCarrier_AcceptsTheExtensionABareNameGainsWhenResolved",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.CanPresent_AllowAlways_ReturnsAllow",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.AllSixteenCloudDirectoryTagsAreAdmittedAtMatchingFinalPath(tag: 2415960090)",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.NodeExecDenialWireTests.SdkPrelaunchRevalidation_PreservesOnlyConfirmedDenialOnWire(gatewayEvent: False, unsupportedWindows: False, policyDenied: True)",
+    "message": "Assert.Contains() Failure: Sub-string not found"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Resolver_CustomPathEnv_FindsExecutableInCustomDir",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcRequestBuilderTests.ProtectedRoots_AreEmittedEvenWhenAbsent_ParentGrantKeepsNativeExceptions",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.OrdinaryUnpackagedPathsStayUnchangedAndDeduplicated",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.AllowAlways_SecurityFull_DoesNotPersist",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.ProductBuilderUsesCloudAdmissionForReadOnlyReadWriteAndCwdWithoutWeakeningDenies(tag: 2415980570)",
+    "message": "System.NotSupportedException : The approved executable must have a fully qualified path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecReusableCommandBinderTests.RenamedCodeHost_IsStillBoundToItsArguments",
+    "message": "Argument test host was not built: /tmp/morpheus-upstream-windows/tests/OpenClaw.Shared.TestHost/bin/Debug/net10.0/OpenClaw.Shared.TestHost.exe"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalsCoordinatorTests.PreApproved_UnchangedPolicy_PassesExecutionBoundaryRevalidation",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecApprovalV2NormalizationTests.Normalizer_PowerShellPositionalScript_KeepsLaterSwitchAsScriptArgument",
+    "message": "Assert.Equal() Failure: Values differ"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcPhysicalPathsTests.PhysicalProtectionComesFromObservedMetadataNotAnIdentityFormula(channel: \"store\")",
+    "message": "System.ArgumentException : Folder metadata must name an absolute path."
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcFolderAdmissionTests.OnlyEquivalentFinalPathSpellingsAreNormalized(requested: \"\\\\\\\\server\\\\share\\\\folder\", final: \"\\\\\\\\?\\\\UNC\\\\server\\\\share\\\\folder\")",
+    "message": "Assert.True() Failure"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.ExecAllowlistArgBindingTests.HandWrittenEntryWithNoArgumentBinding_IsHonored",
+    "message": "Assert.NotNull() Failure: Value is null"
+  },
+  {
+    "test": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerTests.NativeReaderAndKillFailuresRetainOwnershipUntilFinalizationSettles",
+    "message": "System.TimeoutException : The operation has timed out."
+  }
+]
