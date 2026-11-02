@@ -5,7 +5,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 
-export type OrbActivity = "idle" | "speaking";
+export type OrbActivity = "idle" | "speaking" | "thinking" | "processing";
 
 export interface OrbSceneApi {
   /** Presentation input only; the caller must supply genuine application activity. */
@@ -17,7 +17,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
   let activity: OrbActivity = "idle";
   let activityLight = 0;
   function setActivity(value: OrbActivity) {
-    activity = value === "speaking" ? "speaking" : "idle";
+    activity = value === "speaking" || value === "thinking" || value === "processing" ? value : "idle";
   }
   const width = container.clientWidth;
   const height = container.clientHeight;
@@ -657,10 +657,16 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     rafId = requestAnimationFrame(animate);
     const delta = Math.min(clock.getDelta(), 0.1);
     const t = clock.elapsedTime;
-    const targetLight = activity === "speaking" ? 1 : 0;
+    const targetLight = activity === "idle" ? 0 : 1;
     activityLight += (targetLight - activityLight) * (1 - Math.exp(-delta * 10));
 
-    // Shell orientations remain fixed; internal energy effects continue below.
+    // Original ambient shells are independent of activity; the camera stays locked.
+    outerShell.rotation.y += 0.0015;
+    outerShell.rotation.x = Math.sin(t * 0.08) * 0.05;
+    panelGroup.rotation.y += 0.0018;
+    panelGroup.rotation.x = Math.sin(t * 0.08 + 0.5) * 0.04;
+    shell2.rotation.y -= 0.001;
+    shell2.rotation.z = Math.sin(t * 0.12) * 0.03;
     // Inner core — opposite, faster
     innerCore.rotation.y -= 0.005;
     innerCore.rotation.z += 0.002;
@@ -670,22 +676,23 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     icoWire.rotation.x += 0.008;
     icoWire.rotation.y += 0.012;
 
-    // Core pulse — dramatic surges but mostly transparent
+    // Continuous 2.4-second core-only surge. A nonzero floor sustains active energy.
+    // Smooth activityLight fades the loop in/out; it never changes ring materials.
     const wave1 = Math.sin(t * 1.2);
-    const wave3 = Math.pow(Math.max(0, Math.sin(t * 0.4)), 5); // rare big surge
-    const wave4 = Math.pow(Math.max(0, Math.sin(t * 0.7 + 2)), 8); // mega surge
-    const fadeOut = activityLight * Math.pow(Math.max(0, Math.sin(t * 0.25)), 3); // periodic full transparency
-    const surge = activityLight * (0.25 + wave3 * 1.5 + wave4 * 2.0);
+    const phase = t * Math.PI * 2 / 2.4;
+    const wave3 = Math.pow(Math.max(0, Math.sin(phase)), 5);
+    const wave4 = Math.pow(Math.max(0, Math.sin(phase + 2)), 8);
+    const surge = activityLight * (0.4 + wave3 * 1.5 + wave4 * 2.0);
     const coreScale = 1 + surge + Math.sin(t * 5) * 0.05;
     coreSphere.scale.setScalar(coreScale);
     // Opacity: mostly very low (0-0.15), sometimes fully transparent, brief bright on surge
     const coreOpacity = Math.max(
       0,
-      (0.08 + wave1 * 0.05 + surge * 0.2) * (1 - fadeOut * 0.95),
+      0.08 + wave1 * 0.05 + surge * 0.2,
     );
     coreSphereMat.opacity = Math.min(0.6, coreOpacity);
     glowSphere.scale.setScalar(1 + surge * 0.8);
-    glowSphereMat.opacity = Math.max(0, (0.03 + surge * 0.08) * (1 - fadeOut * 0.9));
+    glowSphereMat.opacity = Math.max(0, 0.03 + surge * 0.08);
     // Icosahedron wireframe stays visible even when glow fades
     icoWire.scale.setScalar(1);
     icoWireMat.opacity = 0.5;
