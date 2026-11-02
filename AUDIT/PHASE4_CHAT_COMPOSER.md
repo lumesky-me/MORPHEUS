@@ -41,4 +41,4 @@ Open `http://127.0.0.1:4174/` and press **Ctrl+F5**. This uses a separate port f
 
 ## Publication
 
-Implementation and verification are committed on the existing branch. The exact published SHA is recorded in the delivery message and publication note. Prior commits and reports are preserved; no force push or main merge.
+Implementation and verification are committed on the existing branch. Implementation commit `e064df7cdade56c1adf8482631db76692eb7d46b` was pushed successfully to `lumesky-me/MORPHEUS` and verified with `git ls-remote`. This note is recorded in a subsequent documentation commit. Prior commits and reports are preserved; no force push or main merge.
