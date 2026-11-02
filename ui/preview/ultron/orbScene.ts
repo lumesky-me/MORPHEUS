@@ -13,6 +13,7 @@ export interface OrbSceneApi {
   zoomIn(): void;
   zoomOut(): void;
   resetView(): void;
+  saveView(): boolean;
   dispose(): void;
 }
 
@@ -87,7 +88,8 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
 
   // Controls
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
+  controls.enableDamping = false;
+  controls.autoRotate = false;
   controls.dampingFactor = 0.04;
   controls.minDistance = MIN_DISTANCE;
   controls.maxDistance = MAX_DISTANCE;
@@ -683,12 +685,37 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     camera.position.copy(controls.target).add(offsetScratch);
   }
 
+  const viewKey = "morpheus.ultron.view.v1";
+  type SavedView = { position: number[]; target: number[]; up: number[]; zoom: number };
+  function readView(): SavedView | null {
+    try {
+      const value = JSON.parse(localStorage.getItem(viewKey) || "null");
+      if (!value || ![value.position, value.target, value.up].every(v =>
+          Array.isArray(v) && v.length === 3 && v.every(Number.isFinite)) ||
+          !Number.isFinite(value.zoom) || value.zoom <= 0) return null;
+      const distance = new THREE.Vector3().fromArray(value.position).distanceTo(new THREE.Vector3().fromArray(value.target));
+      if (distance < MIN_DISTANCE || distance > MAX_DISTANCE || new THREE.Vector3().fromArray(value.up).lengthSq() < .001) return null;
+      return value;
+    } catch { return null; }
+  }
+  let preferred = readView();
+  function saveView() {
+    controls.update();
+    const value = { position: camera.position.toArray(), target: controls.target.toArray(), up: camera.up.toArray(), zoom: camera.zoom };
+    preferred = value;
+    try { localStorage.setItem(viewKey, JSON.stringify(value)); return true; }
+    catch { return false; }
+  }
   function resetView() {
-    camera.position.copy(HOME_POSITION);
-    controls.target.set(0, 0, 0);
+    camera.position.fromArray(preferred?.position ?? HOME_POSITION.toArray());
+    controls.target.fromArray(preferred?.target ?? [0, 0, 0]);
+    camera.up.fromArray(preferred?.up ?? [0, 1, 0]);
+    camera.zoom = preferred?.zoom ?? 1;
+    camera.updateProjectionMatrix();
     camera.lookAt(controls.target);
     controls.update();
   }
+  resetView();
 
   // ═══════════════════════════════════════════════
   // ANIMATION
@@ -703,18 +730,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     rafId = requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
 
-    // Outer shell rotation
-    outerShell.rotation.y += 0.0015;
-    outerShell.rotation.x = Math.sin(t * 0.08) * 0.05;
-
-    // Panel group follows shell but with slight offset
-    panelGroup.rotation.y += 0.0018;
-    panelGroup.rotation.x = Math.sin(t * 0.08 + 0.5) * 0.04;
-
-    // Secondary shell counter-rotates slowly
-    shell2.rotation.y -= 0.001;
-    shell2.rotation.z = Math.sin(t * 0.12) * 0.03;
-
+    // Shell orientations remain fixed; internal energy effects continue below.
     // Inner core — opposite, faster
     innerCore.rotation.y -= 0.005;
     innerCore.rotation.z += 0.002;
@@ -853,6 +869,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     zoomIn: () => zoomBy(0.65),
     zoomOut: () => zoomBy(1.55),
     resetView,
+    saveView,
     dispose,
   };
 }

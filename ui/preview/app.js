@@ -70,3 +70,11 @@ $('orb-gestures').onclick=async()=>{
  try{await tracker.start();$('orb-gestures').textContent='Disable gestures';}catch(e){stopGestures();$('orb-status').textContent='Camera or hand tracking unavailable';}
 };
 $('home').addEventListener('keydown',e=>{if((e.key==='g'||e.key==='G')&&!e.repeat){e.preventDefault();$('orb-gestures').click();}});
+
+// Save only from Home, never from editable controls or repeated key events.
+document.addEventListener('keydown',e=>{
+ if(e.key.toLowerCase()!=='p'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||$('home').hidden||!orb)return;
+ if(e.composedPath().some(el=>el instanceof HTMLElement&&(el.matches('input,textarea,select')||el.isContentEditable)))return;
+ e.preventDefault();
+ $('orb-status').textContent=orb.saveView()?'Default view saved':'View saved for this visit; browser storage unavailable';
+});
