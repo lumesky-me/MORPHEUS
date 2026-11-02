@@ -1,0 +1,1 @@
+PASS: rendered idle/listening/thinking/idle and rapid cancellation transitions; no page errors. Activity supplied only by test harness, not real voice.

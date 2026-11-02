@@ -48,7 +48,7 @@ let orbLoading=false;
 let orb;let tracker;
 function stopGestures(){tracker?.stop();tracker=null;$('orb-gestures').textContent='Enable gestures';$('orb-status').textContent='';}
 function syncOrb(){
- if(!$('home').hidden&&!orb&&createOrbScene){try{orb=createOrbScene($('ultron-orb'));}catch(e){$('ultron-orb').textContent='WebGL is unavailable in this browser.';console.error(e);}}
+ if(!$('home').hidden&&!orb&&createOrbScene){try{orb=createOrbScene($('ultron-orb'));orb.setActivity('idle');}catch(e){$('ultron-orb').textContent='WebGL is unavailable in this browser.';console.error(e);}}
  if($('home').hidden&&orb){stopGestures();orb.dispose();orb=null;}
 }
 async function loadOrb(){

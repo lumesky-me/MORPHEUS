@@ -5,7 +5,11 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 
+export type OrbActivity = "idle" | "listening" | "thinking";
+
 export interface OrbSceneApi {
+  /** Presentation input only; the caller must supply genuine application activity. */
+  setActivity(activity: OrbActivity): void;
   /** Rotate the camera around the orb by the given angles (radians). */
   rotateBy(deltaTheta: number, deltaPhi: number): void;
   /** Multiply the camera distance by `factor` (<1 zooms in, >1 zooms out). */
@@ -22,6 +26,11 @@ const MIN_DISTANCE = 0.6;
 const MAX_DISTANCE = 40;
 
 export function createOrbScene(container: HTMLElement): OrbSceneApi {
+  let activity: OrbActivity = "idle";
+  let activityLight = 0;
+  function setActivity(value: OrbActivity) {
+    activity = value === "listening" || value === "thinking" ? value : "idle";
+  }
   const width = container.clientWidth;
   const height = container.clientHeight;
 
@@ -728,7 +737,10 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
   function animate() {
     if (disposed) return;
     rafId = requestAnimationFrame(animate);
-    const t = clock.getElapsedTime();
+    const delta = Math.min(clock.getDelta(), 0.1);
+    const t = clock.elapsedTime;
+    const targetLight = activity === "idle" ? 0 : activity === "listening" ? .75 : 1;
+    activityLight += (targetLight - activityLight) * (1 - Math.exp(-delta * 10));
 
     // Shell orientations remain fixed; internal energy effects continue below.
     // Inner core — opposite, faster
@@ -744,21 +756,21 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     const wave1 = Math.sin(t * 1.2);
     const wave3 = Math.pow(Math.max(0, Math.sin(t * 0.4)), 5); // rare big surge
     const wave4 = Math.pow(Math.max(0, Math.sin(t * 0.7 + 2)), 8); // mega surge
-    const fadeOut = Math.pow(Math.max(0, Math.sin(t * 0.25)), 3); // periodic full transparency
-    const surge = wave3 * 1.5 + wave4 * 2.0;
-    const coreScale = 1 + surge + Math.sin(t * 5) * 0.05;
+    const fadeOut = activityLight * Math.pow(Math.max(0, Math.sin(t * 0.25)), 3); // periodic full transparency
+    const surge = activityLight * (0.25 + wave3 * 1.5 + wave4 * 2.0);
+    const coreScale = 1 + surge + Math.sin(t * 1.2) * 0.008;
     coreSphere.scale.setScalar(coreScale);
     // Opacity: mostly very low (0-0.15), sometimes fully transparent, brief bright on surge
     const coreOpacity = Math.max(
       0,
-      (0.08 + wave1 * 0.05 + surge * 0.2) * (1 - fadeOut * 0.95),
+      (0.04 + wave1 * 0.008 + surge * 0.2) * (1 - fadeOut * 0.95),
     );
     coreSphereMat.opacity = Math.min(0.6, coreOpacity);
     glowSphere.scale.setScalar(1 + surge * 0.8);
     glowSphereMat.opacity = Math.max(0, (0.03 + surge * 0.08) * (1 - fadeOut * 0.9));
     // Icosahedron wireframe stays visible even when glow fades
     icoWire.scale.setScalar(1 + surge * 0.6);
-    icoWireMat.opacity = Math.min(1, 0.5 + surge * 0.4);
+    icoWireMat.opacity = Math.min(1, 0.28 + surge * 0.4);
 
     // Debris orbits
     debris.forEach((d) => {
@@ -819,7 +831,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     }
 
     // Bloom pulse
-    bloom.strength = 0.8 + Math.sin(t * 0.8) * 0.15;
+    bloom.strength = 0.45 + Math.sin(t * 0.8) * 0.025 + activityLight * (0.3 + Math.sin(t * 1.6) * 0.15);
 
     // Update chromatic aberration time
     chromaticPass.uniforms.uTime.value = t;
@@ -864,6 +876,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
   }
 
   return {
+    setActivity,
     rotateBy,
     zoomBy,
     zoomIn: () => zoomBy(0.65),
