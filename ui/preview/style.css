@@ -621,3 +621,7 @@ dialog button{
 .core-touch.pressed::after{animation:orb-feedback .65s ease-out}
 @keyframes orb-feedback{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.core-touch.pressed::after{animation:none;opacity:.5}}
+
+#home:not([hidden]){position:relative;display:block;padding:0}#ultron-orb{position:absolute;inset:0}#ultron-orb canvas{display:block}.orb-controls{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px}.orb-controls button{background:var(--panel);padding:7px 12px}.empty-conversation .morphy-core{pointer-events:auto}#chat[hidden] .core-orbit,#chat[hidden] .core-base{animation-play-state:paused}
+
+.empty-conversation .morphy-core{width:min(298px,100%,calc((100dvh - 170px)*.62))}.orb-controls{max-width:95%;flex-wrap:wrap;justify-content:center}

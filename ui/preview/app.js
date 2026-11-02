@@ -42,3 +42,23 @@ coreTouch.addEventListener('click',()=>{
  coreTouch.classList.add('pressed');
  corePulseTimer=setTimeout(()=>coreTouch.classList.remove('pressed'),650);
 });
+
+import {createOrbScene,HandTracker} from './ultron/orb.js';
+let orb;let tracker;
+function stopGestures(){tracker?.stop();tracker=null;$('orb-gestures').textContent='Enable gestures';$('orb-status').textContent='';}
+function syncOrb(){
+ if(!$('home').hidden&&!orb){try{orb=createOrbScene($('ultron-orb'));}catch(e){$('ultron-orb').textContent='WebGL is unavailable in this browser.';console.error(e);}}
+ if($('home').hidden&&orb){stopGestures();orb.dispose();orb=null;}
+}
+new MutationObserver(syncOrb).observe($('home'),{attributes:true,attributeFilter:['hidden']});syncOrb();
+$('orb-in').onclick=()=>orb?.zoomIn();$('orb-out').onclick=()=>orb?.zoomOut();$('orb-reset').onclick=()=>orb?.resetView();
+$('ultron-orb').onkeydown=e=>{if(['+','=','-','_','r','R'].includes(e.key)){e.preventDefault();if('+= '.includes(e.key))orb?.zoomIn();else if('-_'.includes(e.key))orb?.zoomOut();else orb?.resetView();}};
+new MutationObserver(()=>{$('empty-conversation').hidden=$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});
+
+$('orb-gestures').onclick=async()=>{
+ if(tracker){stopGestures();return;}
+ $('orb-status').textContent='Starting camera…';
+ tracker=new HandTracker($('orb-video'),$('orb-overlay'),{onRotate:(x,y)=>orb?.rotateBy(x,y),onZoom:f=>orb?.zoomBy(f),onStatus:s=>{$('orb-status').textContent=s.mode;}});
+ try{await tracker.start();$('orb-gestures').textContent='Disable gestures';}catch(e){stopGestures();$('orb-status').textContent='Camera or hand tracking unavailable';}
+};
+$('home').addEventListener('keydown',e=>{if((e.key==='g'||e.key==='G')&&!e.repeat){e.preventDefault();$('orb-gestures').click();}});
