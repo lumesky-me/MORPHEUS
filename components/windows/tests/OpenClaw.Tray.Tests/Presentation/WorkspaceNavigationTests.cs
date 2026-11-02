@@ -795,7 +795,7 @@ public sealed class WorkspaceNavigationTests
         Assert.Equal("NavigationView", host.Parent!.Parent!.Name.LocalName);
         var home = doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "EmptyHome");
         Assert.DoesNotContain(home.Descendants(), e => e.Name.LocalName is "Button" or "TextBox" or "TextBlock" or "ListView");
-        Assert.Empty(home.Descendants());
+        Assert.Equal("MorphyAnimatedCore", Assert.Single(home.Elements()).Name.LocalName);
         var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
         Assert.Contains("_chat.SuspendSurface();", code);
         Assert.Contains("ContentHost.Children.Contains(_chat)", code);

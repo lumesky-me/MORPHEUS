@@ -1243,3 +1243,7 @@ Dialogs share the same neutral surface and violet focus treatment. Loading and
 errors use real runtime state; no synthetic task or connection data is added.
 Motion is limited to 120-150ms color/border transitions and disabled by reduced
 motion. High-contrast native resources and browser forced colors remain supported.
+
+### MORPHEUS Home core artwork
+
+The existing Home landing contains only the decorative `MorphyAnimatedCore`, not a dashboard. Its 480-unit shared SVG layers use violet artwork gradients (#7731d5 through #f5cfff), a dark orb, and translucent broad strokes for restrained bloom. These are illustration colors, not replacements for semantic theme brushes. Three rings rotate in 64/46/32 seconds, with the middle ring reversed; the central emblem never rotates. An 8-second opacity breath is optional motion. Browser reduced-motion and Windows animation settings disable all motion. Navigation pauses/stops the Home-only animation. The native control uses the same SVG files and independent transform storyboards, without a browser engine or per-frame application timer.

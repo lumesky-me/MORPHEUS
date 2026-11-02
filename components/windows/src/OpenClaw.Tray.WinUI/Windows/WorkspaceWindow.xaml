@@ -79,7 +79,7 @@
                 <Button x:Name="SettingsRailButton" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE713;"/></Button>
             </StackPanel>
         </Grid>
-        <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome"/>
+        <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:MorphyAnimatedCore x:Name="HomeCore"/></Grid>
 
         <NavigationView x:Name="NavView" Grid.Column="1"
                         AutomationProperties.AutomationId="WorkspaceNavigation"

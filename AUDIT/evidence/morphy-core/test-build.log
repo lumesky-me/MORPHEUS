@@ -1,0 +1,10 @@
+  OpenClaw.Shared -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Shared/bin/Debug/net10.0/OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.TestSupport/bin/Debug/net10.0/OpenClaw.TestSupport.dll
+  OpenClaw.Connection -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Connection/bin/Debug/net10.0/OpenClaw.Connection.dll
+  OpenClaw.Tray.Tests -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:35.04

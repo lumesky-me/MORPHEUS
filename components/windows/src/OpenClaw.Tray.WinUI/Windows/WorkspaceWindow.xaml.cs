@@ -430,6 +430,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         _pendingSettingsRequest.Clear();
         LeaveSettings();
         var isHome = Destination.Page == WorkspacePageId.Home;
+        HomeCore.SetActive(isHome);
         NavView.Visibility = isHome ? Visibility.Collapsed : Visibility.Visible;
         EmptyHome.Visibility = isHome ? Visibility.Visible : Visibility.Collapsed;
         CollapsePaneButton.IsEnabled = Destination.Page == WorkspacePageId.Chat;
@@ -1256,6 +1257,7 @@ public sealed partial class WorkspaceWindow : WindowEx
     private void OnClosed(object sender, WindowEventArgs args)
     {
         IsClosed = true;
+        HomeCore.Dispose();
         _identity.SetConnection(null, ConnectionStatus.Disconnected);
         _state.PropertyChanged -= OnStateChanged;
         _notifications.Changed -= OnNotificationsChanged;

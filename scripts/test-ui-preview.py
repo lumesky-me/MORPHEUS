@@ -11,8 +11,9 @@ with sync_playwright() as p:
     console_errors=[];page.on('console',lambda m:console_errors.append(m.text) if m.type=='error' else None)
     page.goto('http://127.0.0.1:4173');page.wait_for_load_state('networkidle')
     assert page.locator('#home').is_visible() and page.locator('#sidebar-toggle').is_disabled()
-    assert page.locator('#home').inner_text()==''
-    assert page.locator('#home > *').count()==0
+    assert page.locator('#home .morphy-core').is_visible()
+    assert page.locator('#home figcaption').inner_text()=='MORPHY'
+    assert page.locator('#home > *').count()==1
     page.screenshot(path=str(out/'home-preview.png'))
     page.get_by_role('button',name='Chat',exact=True).click()
     assert page.locator('#chat').is_visible() and page.locator('#sidebar-toggle').is_enabled()
@@ -47,4 +48,4 @@ with sync_playwright() as p:
     for path in ['/.git/config','/AUDIT/PHASE3_IMPLEMENTATION_RESULTS.md','/../components/windows/README.md','/secrets']:
         assert page.request.get('http://127.0.0.1:4173'+path).status==404
     browser.close()
-print('PASS: browser navigation, empty Home, sidebar, draft retention, honest native handoffs, exact More entries, search, 6 viewports, no page errors, server allowlist')
+print('PASS: browser navigation, Home core, sidebar, draft retention, honest native handoffs, exact More entries, search, 6 viewports, no page errors, server allowlist')

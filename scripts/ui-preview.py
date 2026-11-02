@@ -10,7 +10,7 @@ FILES['/']=FILES['/index.html']
 FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'
 for size in (16,24,32,48,64,128,256,512):
     FILES[f'/assets/crest-{size}.png']=ROOT/f'components/windows/src/OpenClaw.Tray.WinUI/Assets/Morpheus/crest-{size}.png'
-for name in ('logo-slot.svg','conversation-ring.svg','canvas-lighting.svg'):
+for name in ('logo-slot.svg','conversation-ring.svg','canvas-lighting.svg','morphy-core-base.svg','morphy-core-outer.svg','morphy-core-middle.svg','morphy-core-inner.svg'):
     FILES['/assets/'+name]=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/Morpheus'/name
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):

@@ -1,0 +1,4 @@
+Test run for /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   130, Skipped:     0, Total:   130, Duration: 290 ms - OpenClaw.Tray.Tests.dll (net10.0)

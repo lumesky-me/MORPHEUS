@@ -1,0 +1,23 @@
+{
+  "browser_home": "passed",
+  "browser_regression": "passed",
+  "icon_transparency_and_sizes": "passed",
+  "focused_native_source_contracts": {
+    "passed": 130,
+    "failed": 0,
+    "skipped": 0
+  },
+  "full_shared": {
+    "passed": 4484,
+    "failed": 335,
+    "skipped": 25
+  },
+  "full_tray": {
+    "passed": 4675,
+    "failed": 168,
+    "skipped": 3
+  },
+  "native_winui_build_and_runtime": "blocked: Linux host without PowerShell/Windows tooling",
+  "native_csharp_syntax_errors": 0,
+  "source_inventory": "no missing upstream files; licenses preserved"
+}

@@ -18,6 +18,7 @@ def main():
     parser.add_argument("--record-redesign", action="store_true", help="Record redesign delta while preserving the earlier Phase 4 manifest")
     parser.add_argument("--record-refinement", action="store_true", help="Record focused UI refinement delta without changing prior manifests")
     parser.add_argument("--record-composer", action="store_true", help="Record final composer/rail UI delta while retaining earlier layers")
+    parser.add_argument("--record-home-core", action="store_true", help="Record Home artwork and branding delta, preserving prior layers")
     args = parser.parse_args()
     if args.record_phase3 and (EVIDENCE / "phase4" / "source-delta.json").exists():
         raise SystemExit("Preserve historical Phase 3 evidence; use --record-phase4")
@@ -102,6 +103,8 @@ def main():
             if value is None: expected.pop(key, None)
             else: expected[key] = value
     composer = EVIDENCE / "phase4-composer" / "source-delta.json"
+    if args.record_composer and (EVIDENCE / "morphy-core" / "source-delta.json").exists():
+        raise SystemExit("Preserve the composer layer; use --record-home-core")
     if args.record_composer:
         overrides = {key: value for key, value in delta.items() if expected.get(key) != value}
         overrides.update({key: None for key in expected if key not in delta})
@@ -109,6 +112,16 @@ def main():
         composer.write_text(json.dumps(overrides, indent=2, sort_keys=True) + "\n")
     if composer.exists():
         for key, value in json.loads(composer.read_text()).items():
+            if value is None: expected.pop(key, None)
+            else: expected[key] = value
+    home_core = EVIDENCE / "morphy-core" / "source-delta.json"
+    if args.record_home_core:
+        overrides = {key: value for key, value in delta.items() if expected.get(key) != value}
+        overrides.update({key: None for key in expected if key not in delta})
+        home_core.parent.mkdir(parents=True, exist_ok=True)
+        home_core.write_text(json.dumps(overrides, indent=2, sort_keys=True) + "\n")
+    if home_core.exists():
+        for key, value in json.loads(home_core.read_text()).items():
             if value is None: expected.pop(key, None)
             else: expected[key] = value
     if expected != delta:

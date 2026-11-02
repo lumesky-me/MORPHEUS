@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480"><defs><radialGradient id="halo"><stop stop-color="#8829ee" stop-opacity=".25"/><stop offset=".65" stop-color="#7322dd" stop-opacity=".12"/><stop offset="1" stop-color="#7322dd" stop-opacity="0"/></radialGradient><radialGradient id="orb" cx=".5" cy=".6" r=".65"><stop stop-color="#090611"/><stop offset=".72" stop-color="#160b28"/><stop offset=".95" stop-color="#50217e"/><stop offset="1" stop-color="#b573f5"/></radialGradient><linearGradient id="emblem" x2="0" y2="1"><stop stop-color="#fff0ff"/><stop offset=".45" stop-color="#da90ff"/><stop offset="1" stop-color="#8736ee"/></linearGradient></defs>
+<circle cx="240" cy="240" r="240" fill="url(#halo)"/>
+<g fill="none" stroke="#6627b5"><circle cx="240" cy="240" r="213" opacity=".22"/><circle cx="240" cy="240" r="180" opacity=".3"/><circle cx="240" cy="240" r="155" opacity=".23"/><circle cx="240" cy="240" r="132" opacity=".35"/></g>
+<circle cx="240" cy="240" r="87" fill="url(#orb)" stroke="#9850e0" stroke-opacity=".55"/>
+<!-- Stationary vector interpretation of the supplied MORPHY emblem. -->
+<path d="M200 205 C183 226 188 251 199 251 C208 248 208 267 218 276 C213 252 228 246 240 255 C252 246 267 252 262 276 C272 267 272 248 281 251 C292 251 297 226 280 205 C283 225 266 232 251 237 C245 239 241 244 240 250 C239 244 235 239 229 237 C214 232 197 225 200 205Z" fill="url(#emblem)" stroke="#e6b2ff" stroke-width=".65"/>
+</svg>
