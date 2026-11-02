@@ -69,6 +69,7 @@ public sealed class ChatComposerSession : IDisposable
         {
             Revision = Interlocked.Increment(ref _inputRevision),
         });
+        Controller.ObserveVoiceConversation(inputs);
         Placement?.ApplyInputs(inputs);
     }
 

@@ -158,7 +158,7 @@ public sealed class AudioPipeline : IAsyncDisposable
 
             // Calculate silence threshold: how many VAD chunks = silence timeout
             float chunkDurationSec = (float)VadChunkSamples / PipelineSampleRate;
-            _silenceChunksThreshold = Math.Max(1, (int)(options.SilenceTimeoutSeconds / chunkDurationSec));
+            _silenceChunksThreshold = SpeechEndpointPolicy.SilenceChunks(options.SilenceTimeoutSeconds, chunkDurationSec);
 
             SetState(AudioPipelineState.Starting);
 
@@ -560,21 +560,17 @@ public sealed class AudioPipeline : IAsyncDisposable
             // so the final utterance isn't dropped when the pipeline cancel
             // token is about to fire.
             var token = overrideToken ?? _cts?.Token ?? CancellationToken.None;
-            var results = await _stt.TranscribeAsync(samples, _options.Language, token);
-
-            if (results.Count == 0)
+            void OnSegment(TranscriptionResult result)
             {
-                SafeRaiseDiag("No speech recognized in segment");
-            }
-
-            foreach (var result in results)
-            {
-                _logger.Info($"Transcription: \"{result.Text}\"");
+                _logger.Debug($"Transcription received: {result.Text.Length} characters");
                 try { TranscriptionReady?.Invoke(result); } catch (Exception ex)
                 {
                     _logger.Error("TranscriptionReady handler failed", ex);
                 }
             }
+
+            var results = await _stt.TranscribeAsync(samples, _options.Language, OnSegment, token);
+            if (results.Count == 0) SafeRaiseDiag("No speech recognized in segment");
 
             // Emit a single completed-utterance event so consumers that care
             // about "the full thing the user just said" (chat submission,

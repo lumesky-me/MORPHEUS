@@ -52,10 +52,16 @@ public sealed class SpeechToTextService : ISpeechToTextService
     /// Transcribe raw 16 kHz mono PCM float samples.
     /// Returns all detected segments.
     /// </summary>
-    public async Task<List<TranscriptionResult>> TranscribeAsync(
+    public Task<List<TranscriptionResult>> TranscribeAsync(
         float[] samples,
         string language = "auto",
         CancellationToken cancellationToken = default)
+        => TranscribeAsync(samples, language, onSegment: null, cancellationToken);
+
+    // Whisper yields decoded segments from the captured utterance. These are not
+    // microphone-time interim hypotheses, and must not create separate agent turns.
+    public async Task<List<TranscriptionResult>> TranscribeAsync(float[] samples, string language,
+        Action<TranscriptionResult>? onSegment, CancellationToken cancellationToken)
     {
         if (_factory == null)
             throw new InvalidOperationException("No Whisper model is loaded. Call LoadModel first.");
@@ -83,13 +89,15 @@ public sealed class SpeechToTextService : ISpeechToTextService
                 var text = segment.Text?.Trim();
                 if (!string.IsNullOrEmpty(text))
                 {
-                    results.Add(new TranscriptionResult
+                    var result = new TranscriptionResult
                     {
                         Text = text,
                         Start = segment.Start,
                         End = segment.End,
                         Language = whisperLang
-                    });
+                    };
+                    results.Add(result);
+                    onSegment?.Invoke(result);
                 }
             }
 

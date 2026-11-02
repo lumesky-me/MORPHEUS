@@ -17,6 +17,8 @@ namespace OpenClawTray.Services;
 
 public sealed class TextToSpeechService : IDisposable
 {
+    private readonly OpenClaw.Shared.Audio.SpeechPlaybackLifetime _speechLifetime = new();
+    public event Action<bool>? SpeakingChanged;
     private readonly IOpenClawLogger _logger;
     private readonly SettingsManager _settings;
     private readonly ElevenLabsTextToSpeechClient _elevenLabsClient;
@@ -58,6 +60,9 @@ public sealed class TextToSpeechService : IDisposable
 
     public async Task<TtsSpeakResult> SpeakAsync(TtsSpeakArgs args, CancellationToken cancellationToken = default)
     {
+        using var operation = _speechLifetime.Begin(args.Interrupt, cancellationToken);
+        cancellationToken = operation.Token;
+        cancellationToken.ThrowIfCancellationRequested();
         // Resolve the provider that should actually serve this call. When the
         // configured/default provider isn't usable (no ElevenLabs key, Piper
         // voice not downloaded), fall back to Windows TTS so the assistant can
@@ -467,8 +472,7 @@ public sealed class TextToSpeechService : IDisposable
         bool interrupt,
         CancellationToken cancellationToken)
     {
-        if (interrupt)
-            InterruptActivePlayback();
+        cancellationToken.ThrowIfCancellationRequested();
 
         await _playbackGate.WaitAsync(cancellationToken).ConfigureAwait(false);
 
@@ -488,7 +492,9 @@ public sealed class TextToSpeechService : IDisposable
                 _activeCompletion = completion;
             }
 
+            cancellationToken.ThrowIfCancellationRequested();
             player.Play();
+            try { SpeakingChanged?.Invoke(true); } catch (Exception ex) { _logger.Debug($"Speech state observer failed: {ex.Message}"); }
 
             using var cancellationRegistration = cancellationToken.Register(
                 static state => ((TaskCompletionSource<bool>)state!).TrySetCanceled(),
@@ -513,6 +519,7 @@ public sealed class TextToSpeechService : IDisposable
                 player.Dispose();
             }
 
+            try { SpeakingChanged?.Invoke(false); } catch (Exception ex) { _logger.Debug($"Speech state observer failed: {ex.Message}"); }
             _playbackGate.Release();
         }
     }
@@ -533,10 +540,11 @@ public sealed class TextToSpeechService : IDisposable
     }
 
     /// <summary>Stops any currently playing TTS audio immediately.</summary>
-    public void StopSpeaking() => InterruptActivePlayback();
+    public void StopSpeaking() => _speechLifetime.Stop();
 
     public void Dispose()
     {
+        _speechLifetime.Dispose();
         InterruptActivePlayback();
         Volatile.Write(ref _piperShuttingDown, 1);
         // Playback may still release the gate after an interrupt during shutdown.

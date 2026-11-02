@@ -23,6 +23,9 @@ namespace OpenClawTray.Chat;
 /// mechanics, reset/history state, and permission identity; this controller only
 /// converts operation outcomes into typed results applied to the view model.
 /// </remarks>
+internal enum VoiceInteractionError { SubmissionUnconfirmed, InputUnavailable }
+internal sealed record VoiceInteractionSnapshot(string State, string? Transcript = null, VoiceInteractionError? Error = null, string? Response = null);
+
 internal sealed partial class ChatComposerController : IDisposable
 {
     private readonly record struct ModelCatalogRequestKey(
@@ -31,6 +34,44 @@ internal sealed partial class ChatComposerController : IDisposable
         string? Provider,
         string? AgentId,
         long Revision);
+
+    private VoiceInteractionSnapshot _voicePresentation = new("idle");
+    // Presentation only. Conversation state and persistence remain provider-owned.
+    internal VoiceInteractionSnapshot VoiceInteraction => _vm.Inputs?.TurnActive == true
+        && _voicePresentation.State is "idle" or "processing"
+        ? _voicePresentation with { State = "working" } : _voicePresentation;
+    internal void ClearVoicePresentation()
+    {
+        _voicePresentation = new("idle");
+        _voiceResponseBaselineId = _vm.Inputs?.LatestAssistantResponse?.Id;
+    }
+    private string? _voiceResponseBaselineId;
+    internal void ObserveVoiceConversation(ChatComposerInputs inputs)
+    {
+        if (_voiceThreadId is not null && inputs.CurrentThread.Id != _voiceThreadId)
+        {
+            CancelVoiceRecording();
+            ClearVoicePresentation();
+            return;
+        }
+        if (_voicePresentation.State is "processing" or "working"
+            && inputs.LatestAssistantResponse is { } response
+            && response.Id != _voiceResponseBaselineId)
+        {
+            _voicePresentation = _voicePresentation with
+            {
+                State = inputs.TurnActive ? "working" : "idle",
+                Response = response.Text,
+            };
+        }
+        if (_voicePresentation.State == "processing" && inputs.TurnActive)
+            _voicePresentation = _voicePresentation with { State = "working" };
+        else if (_voicePresentation.State == "working" && !inputs.TurnActive)
+            _voicePresentation = _voicePresentation with { State = "idle" };
+    }
+    private string? _voiceThreadId;
+
+    internal void StartVoiceConversation() => StartVoiceCapture(submitFinal: true);
 
     private readonly ChatComposerViewModel _vm;
     private readonly IChatComposerRuntimePort _port;
@@ -505,7 +546,10 @@ internal sealed partial class ChatComposerController : IDisposable
     /// assigns a new monotonic operation ID, and fences the eventual completion so a
     /// stale capture (superseded, unmounted, or disposed) cannot mutate the view model.
     /// No-ops after disposal.</summary>
-    public void StartVoiceRecording()
+    public void StartVoiceRecording() => StartVoiceCapture(
+        string.Equals(Environment.GetEnvironmentVariable("MORPHEUS_VOICE_AUTOSEND"), "1", StringComparison.Ordinal));
+
+    private void StartVoiceCapture(bool submitFinal)
     {
         if (_disposed || _hostActions.VoiceCaptureRequest is not { } request || _vm.IsRecording)
             return;
@@ -519,11 +563,25 @@ internal sealed partial class ChatComposerController : IDisposable
         Task<string?> requestTask;
         int operation;
         int generationAtStart;
+        string? threadAtStart;
+        long draftAtStart;
 
         lock (_operationGate)
         {
-            if (_disposed || !_composerVisible || _vm.IsRecording)
+            if (_disposed || !_composerVisible || _vm.IsRecording || _voiceCancellation is not null)
                 return;
+            // First-message materialization stays with ordinary compose/dictation.
+            // Automatic submission requires an existing canonical conversation.
+            if (submitFinal && _vm.Inputs?.PlacementTargetIsNew == true)
+                submitFinal = false;
+            if (submitFinal && (_vm.Inputs?.ConnectionState != "connected"
+                || !string.IsNullOrWhiteSpace(_vm.Draft) || _vm.PendingAttachments.Count != 0))
+                return;
+            threadAtStart = _vm.Inputs?.CurrentThread.Id;
+            _voiceThreadId = threadAtStart;
+            _voiceResponseBaselineId = _vm.Inputs?.LatestAssistantResponse?.Id;
+            draftAtStart = _vm.DraftRevision;
+            _voicePresentation = new("listening");
 
             cancellation = new CancellationTokenSource();
             superseded = _voiceCancellation;
@@ -550,7 +608,8 @@ internal sealed partial class ChatComposerController : IDisposable
         // linearized above; all awaiting and cancellation happen after releasing
         // the operation gate.
         TryCancel(superseded);
-        _ = ReceiveVoiceAsync(requestTask, cancellation, operation, generationAtStart);
+        _ = ReceiveVoiceAsync(requestTask, cancellation, operation, generationAtStart,
+            submitFinal, threadAtStart, draftAtStart);
     }
 
     /// <summary>Requests cancellation of the in-flight voice capture. The capture's
@@ -633,11 +692,12 @@ internal sealed partial class ChatComposerController : IDisposable
         Task<string?> requestTask,
         CancellationTokenSource cancellation,
         int operation,
-        int generationAtStart)
+        int generationAtStart, bool submitFinal, string? threadId, long draftRevision)
     {
         try
         {
             var transcript = await requestTask.ConfigureAwait(true);
+            bool send = false;
             lock (_operationGate)
             {
                 var stoppedByUser = _voiceStopOperation == operation;
@@ -648,13 +708,37 @@ internal sealed partial class ChatComposerController : IDisposable
                     && (!cancellation.IsCancellationRequested || stoppedByUser)
                     && !string.IsNullOrWhiteSpace(transcript))
                 {
-                    _vm.AppendVoiceTranscript(transcript);
+                    if (!submitFinal)
+                        _vm.AppendVoiceTranscript(transcript);
+                    else if (!cancellation.IsCancellationRequested
+                        && _vm.Inputs?.CurrentThread.Id == threadId
+                        && _vm.Inputs?.ConnectionState == "connected"
+                        && _vm.DraftRevision == draftRevision && _vm.PendingAttachments.Count == 0)
+                    {
+                        _vm.SetRecording(false);
+                        _vm.SetDraft(transcript);
+                        _voicePresentation = new("processing", transcript);
+                        send = true;
+                    }
+                    else _voicePresentation = new("idle");
                 }
             }
+            if (send && !_disposed && generationAtStart == _generation
+                && !cancellation.IsCancellationRequested && _vm.Inputs?.CurrentThread.Id == threadId)
+            {
+                var accepted = await SendAsync().ConfigureAwait(true);
+                if (!_disposed && operation == _voiceOperation && generationAtStart == _generation
+                    && !accepted && _voicePresentation.Response is null)
+                        _voicePresentation = new("error", transcript, VoiceInteractionError.SubmissionUnconfirmed);
+            }
+            else if (!_disposed && operation == _voiceOperation)
+                _voicePresentation = new("idle");
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
         {
+            if (!_disposed && operation == _voiceOperation)
+                _voicePresentation = new("error", Error: VoiceInteractionError.InputUnavailable);
             OpenClawTray.Services.Logger.Debug($"Reactor chat composer voice request failed: {ex.Message}");
         }
         finally
@@ -668,6 +752,7 @@ internal sealed partial class ChatComposerController : IDisposable
                     && _voiceOperation == operation)
                 {
                     _vm.SetRecording(false);
+                    if (_voicePresentation.State == "listening") _voicePresentation = new("idle");
                 }
             }
 
@@ -748,6 +833,7 @@ internal sealed partial class ChatComposerController : IDisposable
                 return;
 
             _disposed = true;
+            _voicePresentation = new("idle");
             _generation++;
             voiceCancellation = _voiceCancellation;
             _voiceCancellation = null;

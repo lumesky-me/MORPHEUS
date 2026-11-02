@@ -13,6 +13,7 @@ EVIDENCE = ROOT / "AUDIT" / "evidence"
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--record", action="store_true", help="Record reviewed downstream hashes; does not change source")
+    parser.add_argument("--record-phase3", action="store_true", help="Record the reviewed Phase 3 delta without replacing historical Phase 1 evidence")
     args = parser.parse_args()
     inventory = json.loads(gzip.decompress((EVIDENCE / "upstream-inventory.json.gz").read_bytes()))
     delta = {}
@@ -38,10 +39,26 @@ def main():
     if missing:
         raise SystemExit("Missing imported files:\n" + "\n".join(missing))
     manifest = EVIDENCE / "rebrand-manifest.json"
+    phase3 = EVIDENCE / "phase3" / "source-delta.json"
+    expected = json.loads(manifest.read_text())
+    if args.record_phase3:
+        overrides = {key: value for key, value in delta.items() if expected.get(key) != value}
+        overrides.update({key: None for key in expected if key not in delta})
+        phase3.parent.mkdir(parents=True, exist_ok=True)
+        phase3.write_text(json.dumps(overrides, indent=2, sort_keys=True) + "\n")
     if args.record:
+        if phase3.exists():
+            raise SystemExit("Preserve the historical Phase 1 manifest; use --record-phase3 for reviewed changes")
         manifest.write_text(json.dumps(delta, indent=2, sort_keys=True) + "\n")
-    elif json.loads(manifest.read_text()) != delta:
-        raise SystemExit("Downstream delta differs from the recorded reviewed manifest")
+        expected = delta
+    if phase3.exists():
+        for key, value in json.loads(phase3.read_text()).items():
+            if value is None:
+                expected.pop(key, None)
+            else:
+                expected[key] = value
+    if expected != delta:
+        raise SystemExit("Downstream delta differs from the recorded reviewed manifests")
     for component in inventory:
         if (ROOT / "components" / component / ".git").exists():
             raise SystemExit("Nested upstream Git metadata must not be imported")

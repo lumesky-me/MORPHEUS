@@ -163,7 +163,7 @@ public class SettingsManager
     /// <summary>Whisper model size: "tiny", "base", or "small".</summary>
     public string SttModelName { get => string.IsNullOrWhiteSpace(_data.SttModelName) ? "base" : _data.SttModelName; set => _data = _data with { SttModelName = value }; }
     /// <summary>Seconds of silence before auto-submit in voice chat mode.</summary>
-    public float SttSilenceTimeout { get => _data.SttSilenceTimeout > 0 ? _data.SttSilenceTimeout : 1.5f; set => _data = _data with { SttSilenceTimeout = value }; }
+    public float SttSilenceTimeout { get => SpeechEndpointPolicy.Normalize(_data.SttSilenceTimeout); set => _data = _data with { SttSilenceTimeout = value }; }
     /// <summary>Enable TTS playback of responses during voice sessions.</summary>
     public bool VoiceTtsEnabled { get => _data.VoiceTtsEnabled; set => _data = _data with { VoiceTtsEnabled = value }; }
     /// <summary>Show tool-call and usage chips inline in the chat timeline.</summary>
@@ -360,7 +360,7 @@ public class SettingsManager
         NodeSttEnabled = false,
         SttLanguage = "auto",
         SttModelName = "base",
-        SttSilenceTimeout = 1.5f,
+        SttSilenceTimeout = SpeechEndpointPolicy.DefaultSilenceSeconds,
         VoiceTtsEnabled = false,
         VoiceAudioFeedback = true,
         NodeTtsEnabled = false,
@@ -416,7 +416,7 @@ public class SettingsManager
             NotificationSound = loaded.NotificationSound ?? defaults.NotificationSound,
             SttLanguage = string.IsNullOrWhiteSpace(loaded.SttLanguage) ? defaults.SttLanguage : loaded.SttLanguage,
             SttModelName = string.IsNullOrWhiteSpace(loaded.SttModelName) ? defaults.SttModelName : loaded.SttModelName,
-            SttSilenceTimeout = loaded.SttSilenceTimeout > 0 ? loaded.SttSilenceTimeout : defaults.SttSilenceTimeout,
+            SttSilenceTimeout = SpeechEndpointPolicy.Normalize(loaded.SttSilenceTimeout),
             TtsProvider = MigrateTtsProvider(loaded, settingsDirectory, defaults.TtsProvider),
             TtsElevenLabsApiKey = elevenLabs.Plaintext ?? defaults.TtsElevenLabsApiKey,
             TtsElevenLabsModel = loaded.TtsElevenLabsModel ?? defaults.TtsElevenLabsModel,

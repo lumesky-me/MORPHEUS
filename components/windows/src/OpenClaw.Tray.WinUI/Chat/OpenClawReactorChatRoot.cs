@@ -363,6 +363,7 @@ public sealed class OpenClawReactorChatRoot : Component<OpenClawReactorChatRootP
                     && nativeProvider?.SupportsSessionScopedModelCatalog == true,
                 ModelCatalogRevision: nativeProvider?.ModelCatalogRevision ?? 0)
             {
+                LatestAssistantResponse = entries.LastOrDefault(entry => entry.Kind == ChatTimelineItemKind.Assistant && !entry.IsStreaming),
                 IsVisible = composerVisible,
                 ShowPlacementPickers = placementHistoryReady && mode == ReactorChatTimelineMode.Empty,
                 PlacementTargetIsEmpty = isEmptyConversation,

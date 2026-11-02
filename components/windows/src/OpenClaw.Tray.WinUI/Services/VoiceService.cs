@@ -271,7 +271,14 @@ public sealed class VoiceService : IAsyncDisposable
         var pipeline = _pipelineFactory(_stt);
         WirePipelineEvents(pipeline);
         if (onTranscription is not null)
-            pipeline.TranscriptionReady += result => onTranscription(result.Text);
+        {
+            var preview = new List<string>();
+            pipeline.TranscriptionReady += result =>
+            {
+                preview.Add(result.Text);
+                onTranscription(string.Join(" ", preview));
+            };
+        }
         if (onAudioLevel is not null)
             pipeline.AudioLevelChanged += onAudioLevel;
         var tcs = new TaskCompletionSource<SttListenResult>();
@@ -304,7 +311,7 @@ public sealed class VoiceService : IAsyncDisposable
         var options = new AudioPipelineOptions
         {
             Language = args.Language,
-            SilenceTimeoutSeconds = 2.0f,
+            SilenceTimeoutSeconds = _settings.SttSilenceTimeout,
             VadThreshold = 0.5f
         };
 

@@ -164,7 +164,7 @@
                     <TextBlock x:Uid="VoiceSettingsPage_VoiceChatHeader" x:Name="VoiceChatHeaderText" Text="Voice Chat" Style="{StaticResource BodyStrongTextBlockStyle}"/>
 
                     <Slider x:Uid="VoiceSettingsPage_SilenceSlider" x:Name="SilenceSlider" Header="Silence timeout (seconds)"
-                            Minimum="0.5" Maximum="5" StepFrequency="0.5"
+                            Minimum="0.5" Maximum="5" StepFrequency="0.1"
                             ValueChanged="OnSilenceChanged" Width="250"
                             HorizontalAlignment="Left"/>
 

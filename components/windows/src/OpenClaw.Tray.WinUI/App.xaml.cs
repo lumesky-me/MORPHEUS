@@ -3088,7 +3088,11 @@ public partial class App : Application, OpenClawTray.Services.IAppCommands, IPer
             // TTS: read response aloud whenever chat TTS is enabled and ready (any chat surface).
             if (SpeechSetupReadiness.IsAutomaticChatTtsEnabled(_settings))
             {
-                _ = (_chatCoordinator?.SpeakResponseAsync(speechText) ?? Task.CompletedTask);
+                OnUiThread(() =>
+                {
+                    if (ChatNotificationSpeechText.ShouldSpeak(notification, _windowManager?.CurrentChatSessionKey))
+                        _ = (_chatCoordinator?.SpeakResponseAsync(speechText) ?? Task.CompletedTask);
+                });
             }
         }
 

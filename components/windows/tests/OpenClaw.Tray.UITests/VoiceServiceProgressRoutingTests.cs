@@ -15,6 +15,60 @@ public sealed class VoiceServiceProgressRoutingTests
     private const int ListenTimeoutMs = 30000;
 
     [Fact]
+    public async Task DecodedPreviewNeverFinalizesOrDuplicatesTheUtterance()
+    {
+        await using var harness = new Harness(holdFirstTranscription: true, preview: true);
+        var preview = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
+        int finals = 0;
+        harness.Service.UtteranceCompleted += _ => Interlocked.Increment(ref finals);
+        var listen = harness.ListenA(text => preview.TrySetResult(text), _ => { });
+        await harness.FirstListening.Task.WaitAsync(Deadline);
+        harness.CaptureA.EmitSamples(20 * 512, 2000);
+        harness.CaptureA.EmitSamples(29 * 512, 0);
+        Assert.Equal("synthetic decoded preview", await preview.Task.WaitAsync(Deadline));
+        Assert.False(listen.IsCompleted);
+        Assert.Equal(0, finals);
+        harness.Transcriber.ReleaseFirst();
+        var result = await listen.WaitAsync(Deadline);
+        Assert.Equal("A partial from shutdown", result.Text);
+        Assert.Equal(1, finals);
+    }
+
+    [Theory]
+    [InlineData(0.9f, 29)]
+    [InlineData(1.5f, 47)]
+    public async Task NativeListen_UsesConfiguredSilenceBeforeFinalizing(float silence, int chunks)
+    {
+        await using var harness = new Harness(holdFirstTranscription: false, silence: silence);
+        var listen = harness.ListenA(_ => { }, _ => { });
+        await harness.FirstListening.Task.WaitAsync(Deadline);
+        harness.CaptureA.EmitSamples(20 * 512, 2000);
+        harness.CaptureA.EmitSamples((chunks - 1) * 512, 0);
+        Assert.False(listen.IsCompleted);
+        harness.CaptureA.EmitSamples(512, 0);
+        var result = await listen.WaitAsync(Deadline);
+        Assert.False(string.IsNullOrWhiteSpace(result.Text));
+    }
+
+    [Fact]
+    public async Task ShortAndLongSpeechWithOrdinaryPauseProduceOneFinal()
+    {
+        await using var harness = new Harness(holdFirstTranscription: false);
+        int finals = 0;
+        harness.Service.UtteranceCompleted += _ => Interlocked.Increment(ref finals);
+        var listen = harness.ListenA(_ => { }, _ => { });
+        await harness.FirstListening.Task.WaitAsync(Deadline);
+        harness.CaptureA.EmitSamples(10 * 512, 2000);
+        harness.CaptureA.EmitSamples(5 * 512, 0);
+        Assert.False(listen.IsCompleted);
+        Assert.False(harness.Transcriber.FirstStarted.Task.IsCompleted);
+        harness.CaptureA.EmitSamples(100 * 512, 2000);
+        harness.CaptureA.EmitSamples(29 * 512, 0);
+        await listen.WaitAsync(Deadline);
+        Assert.Equal(1, finals);
+    }
+
+    [Fact]
     public async Task CancelledFlush_DoesNotReachReplacementPreviewOrFinishReplacementListen()
     {
         await using var harness = new Harness(holdFirstTranscription: true);
@@ -113,12 +167,12 @@ public sealed class VoiceServiceProgressRoutingTests
         public ControlledTranscriber Transcriber { get; }
         public VoiceService Service { get; }
 
-        public Harness(bool holdFirstTranscription)
+        public Harness(bool holdFirstTranscription, float silence = 0.9f, bool preview = false)
         {
-            Transcriber = new ControlledTranscriber(holdFirstTranscription);
+            Transcriber = new ControlledTranscriber(holdFirstTranscription, preview);
             var captures = new ConcurrentQueue<IAudioCapture>([CaptureA, CaptureB]);
             var logger = new OpenClaw.Shared.NullLogger();
-            Service = new VoiceService(logger, new SettingsManager(_directory.Path), Transcriber,
+            Service = new VoiceService(logger, new SettingsManager(_directory.Path) { SttSilenceTimeout = silence }, Transcriber,
                 new WhisperModelManager(_directory.Path, logger),
                 backend => new AudioPipeline(logger, backend,
                     () => captures.TryDequeue(out var capture) ? capture : throw new InvalidOperationException("Unexpected capture."),
@@ -160,7 +214,7 @@ public sealed class VoiceServiceProgressRoutingTests
         }
     }
 
-    private sealed class ControlledTranscriber(bool holdFirst) : ISpeechToTextService
+    private sealed class ControlledTranscriber(bool holdFirst, bool preview) : ISpeechToTextService
     {
         private readonly TaskCompletionSource<List<TranscriptionResult>> _first =
             new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -180,6 +234,14 @@ public sealed class VoiceServiceProgressRoutingTests
                 return Task.FromResult(Result("A partial from shutdown"));
             }
             return Task.FromResult(Result("B own transcription"));
+        }
+        public async Task<List<TranscriptionResult>> TranscribeAsync(float[] samples, string language,
+            Action<TranscriptionResult>? onSegment, CancellationToken cancellationToken)
+        {
+            if (preview) onSegment?.Invoke(Result("synthetic decoded preview")[0]);
+            var results = await TranscribeAsync(samples, language, cancellationToken);
+            foreach (var result in results) onSegment?.Invoke(result);
+            return results;
         }
         public void ReleaseFirst() => _first.TrySetResult(Result("A partial from shutdown"));
         private static List<TranscriptionResult> Result(string text) =>

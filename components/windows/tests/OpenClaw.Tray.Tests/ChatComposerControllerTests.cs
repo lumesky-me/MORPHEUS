@@ -62,6 +62,140 @@ public sealed class ChatComposerControllerTests
         return (vm, controller, port, actions);
     }
 
+
+    [Fact]
+    public void SessionSwitchStopsCaptureWithoutSendingOrCancelingAgentTask()
+    {
+        CancellationToken captureToken = default;
+        var final = new TaskCompletionSource<string?>();
+        var (_, controller, port, _) = MakeController(new(null, null, (token, _) => { captureToken = token; return final.Task; }, null));
+        controller.StartVoiceConversation();
+        controller.ObserveVoiceConversation(MakeInputs(revision: 2, thread: MakeThread("other")));
+        Assert.True(captureToken.IsCancellationRequested);
+        final.SetResult("stale speech");
+        Assert.Equal(0, port.SendMessageCallCount);
+        Assert.Equal(0, port.StopCallCount);
+    }
+
+    [Fact]
+    public void VoiceConversation_DoesNotSendExistingTypedDraftOrAttachments()
+    {
+        int captures = 0;
+        var (vm, controller, port, _) = MakeController(new(null, null, (_, _) => { captures++; return Task.FromResult<string?>("voice"); }, null));
+        vm.SetDraft("unfinished typed message");
+        controller.StartVoiceConversation();
+        Assert.Equal(0, captures);
+        Assert.Equal("unfinished typed message", vm.Draft);
+        Assert.Equal(0, port.SendMessageCallCount);
+    }
+
+    [Fact]
+    public void VoiceConversation_ProviderErrorCleansRecordingAndReportsError()
+    {
+        var (_, controller, port, _) = MakeController(new(null, null, (_, _) => throw new InvalidOperationException("microphone unavailable"), null));
+        controller.StartVoiceConversation();
+        Assert.Equal("error", controller.VoiceInteraction.State);
+        Assert.Equal(0, port.SendMessageCallCount);
+    }
+
+    [Fact]
+    public void VoiceFinalBeforeAcceptanceSurvivesAcknowledgement()
+    {
+        var final = new TaskCompletionSource<string?>();
+        var (_, controller, port, _) = MakeController(new(null, null, (_, _) => final.Task, null));
+        port.SendMessageGate = new TaskCompletionSource<bool>();
+        controller.StartVoiceConversation();
+        final.SetResult("do the work");
+        controller.ObserveVoiceConversation(MakeInputs() with { LatestAssistantResponse = new("fast-final", ChatTimelineItemKind.Assistant, "actual final") });
+        port.SendMessageGate.SetResult(true);
+        Assert.Equal("actual final", controller.VoiceInteraction.Response);
+        Assert.Equal("idle", controller.VoiceInteraction.State);
+    }
+
+    [Fact]
+    public void FirstConversationRetainsNormalDictationMaterialization()
+    {
+        var final = new TaskCompletionSource<string?>();
+        var (vm, controller, port, _) = MakeController(new(null, null, (_, _) => final.Task, null));
+        vm.ApplyInputs(MakeInputs(revision: 2) with { PlacementTargetIsNew = true });
+        controller.StartVoiceConversation();
+        final.SetResult("first message");
+        Assert.Equal("first message", vm.Draft);
+        Assert.Equal(0, port.SendMessageCallCount);
+    }
+
+    [Fact]
+    public void VoicePresentation_UsesActualAssistantFinalAndClearDoesNotResubmit()
+    {
+        var final = new TaskCompletionSource<string?>();
+        var (vm, controller, port, _) = MakeController(new(null, null, (_, _) => final.Task, null));
+        controller.StartVoiceConversation();
+        final.SetResult("explain the result");
+        controller.ObserveVoiceConversation(MakeInputs() with { LatestAssistantResponse = new("reply-1", ChatTimelineItemKind.Assistant, "actual generated answer") });
+        Assert.Equal("actual generated answer", controller.VoiceInteraction.Response);
+        Assert.Equal("idle", controller.VoiceInteraction.State);
+        controller.ClearVoicePresentation();
+        Assert.Null(controller.VoiceInteraction.Response);
+        Assert.Equal(1, port.SendMessageCallCount);
+        Assert.Equal(0, port.StopCallCount);
+    }
+
+    [Fact]
+    public async Task VoiceConversation_SubmitsFinalOnceToExistingSessionAndClearIsVisualOnly()
+    {
+        var final = new TaskCompletionSource<string?>();
+        int captures = 0;
+        var (vm, controller, port, _) = MakeController(new(null, null, (_, _) => { captures++; return final.Task; }, null));
+        controller.StartVoiceConversation();
+        controller.StartVoiceConversation();
+        Assert.Equal(1, captures);
+        Assert.Equal(0, port.SendMessageCallCount);
+        final.SetResult("inspect memory usage");
+        Assert.Equal(1, port.SendMessageCallCount);
+        Assert.Equal("session-1", port.LastSendMessageCall!.Value.ThreadId);
+        Assert.Equal("inspect memory usage", port.LastSendMessageCall.Value.Message);
+        controller.ClearVoicePresentation();
+        Assert.Null(controller.VoiceInteraction.Transcript);
+        Assert.Equal(1, port.SendMessageCallCount);
+        Assert.Equal(0, port.StopCallCount);
+        await Task.CompletedTask;
+    }
+
+    [Theory]
+    [InlineData("cancel")]
+    [InlineData("switch")]
+    [InlineData("edit")]
+    [InlineData("disconnect")]
+    [InlineData("empty")]
+    public void VoiceConversation_NeverSubmitsStaleCanceledOrEmptyFinal(string change)
+    {
+        var final = new TaskCompletionSource<string?>();
+        var (vm, controller, port, _) = MakeController(new(null, null, (_, _) => final.Task, null));
+        controller.StartVoiceConversation();
+        if (change == "cancel") controller.StopVoiceRecording();
+        if (change == "edit") vm.SetDraft("typed edit");
+        if (change == "switch") vm.ApplyInputs(MakeInputs(revision: 2, thread: MakeThread("another")));
+        if (change == "disconnect") vm.ApplyInputs(MakeInputs(revision: 2, connectionState: "disconnected"));
+        final.SetResult(change == "empty" ? " " : "late speech");
+        Assert.Equal(0, port.SendMessageCallCount);
+    }
+
+    [Fact]
+    public void VoiceConversation_UncertainSendIsNotRetriedAndDraftIsRetained()
+    {
+        var final = new TaskCompletionSource<string?>();
+        var (vm, controller, port, _) = MakeController(new(null, null, (_, _) => final.Task, null));
+        port.SendMessageGate = new TaskCompletionSource<bool>();
+        controller.StartVoiceConversation();
+        final.SetResult("do the task");
+        Assert.False(vm.IsRecording);
+        Assert.Equal(1, port.SendMessageCallCount);
+        port.SendMessageGate.SetException(new TimeoutException("unknown delivery"));
+        Assert.Equal("do the task", vm.Draft);
+        controller.StartVoiceConversation();
+        Assert.Equal(1, port.SendMessageCallCount);
+        Assert.Equal("error", controller.VoiceInteraction.State);
+    }
     [Fact]
     public async Task SendAsync_EmptySubmitIsBlocked()
     {

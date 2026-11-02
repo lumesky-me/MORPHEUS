@@ -50,7 +50,7 @@ public sealed class AudioPipelineOptions
     public string Language { get; init; } = "auto";
 
     /// <summary>Seconds of silence before a speech segment is finalized.</summary>
-    public float SilenceTimeoutSeconds { get; init; } = 1.5f;
+    public float SilenceTimeoutSeconds { get; init; } = SpeechEndpointPolicy.DefaultSilenceSeconds;
 
     /// <summary>Optional audio device ID. Null = system default microphone.</summary>
     public string? DeviceId { get; init; }

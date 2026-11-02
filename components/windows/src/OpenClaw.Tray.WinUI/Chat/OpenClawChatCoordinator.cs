@@ -35,12 +35,7 @@ public sealed class OpenClawChatCoordinator : IDisposable
         set
         {
             _isMuted = value;
-            if (value)
-            {
-                // Stop any currently playing speech immediately
-                try { (_nodeServiceAccessor()?.TextToSpeech ?? GetFallbackTextToSpeechService()).StopSpeaking(); }
-                catch (Exception ex) { _logger.Debug($"OpenClawChatCoordinator: StopSpeaking during mute failed: {ex.Message}"); }
-            }
+            if (value) StopSpeaking();
         }
     }
 
@@ -69,6 +64,7 @@ public sealed class OpenClawChatCoordinator : IDisposable
 
     public void SetOperatorClient(OpenClawGatewayClient? client)
     {
+        StopSpeaking();
         OpenClawChatDataProvider? oldProvider;
 
         lock (_gate)
@@ -112,7 +108,12 @@ public sealed class OpenClawChatCoordinator : IDisposable
     /// <summary>Stops any currently playing TTS audio immediately.</summary>
     public void StopSpeaking()
     {
-        try { (_nodeServiceAccessor()?.TextToSpeech ?? GetFallbackTextToSpeechService()).StopSpeaking(); }
+        try
+        {
+            var speech = _nodeServiceAccessor()?.TextToSpeech;
+            if (speech is null) lock (_gate) speech = _fallbackTextToSpeech;
+            speech?.StopSpeaking();
+        }
         catch (Exception ex) { _logger.Debug($"OpenClawChatCoordinator.StopSpeaking failed: {ex.Message}"); }
     }
 
@@ -133,7 +134,7 @@ public sealed class OpenClawChatCoordinator : IDisposable
                 voiceService.IsMutedForPlayback = true;
             }
 
-            var speakText = SanitizeForSpeech(text);
+            var speakText = SanitizeForSpeech(OpenClaw.Shared.ExecApprovals.ExecApprovalSecretRedactor.Redact(text));
             if (string.IsNullOrWhiteSpace(speakText)) return;
             var speakArgs = new TtsSpeakArgs
             {

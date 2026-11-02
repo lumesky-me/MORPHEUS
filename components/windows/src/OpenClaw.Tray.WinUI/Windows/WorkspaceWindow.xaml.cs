@@ -137,6 +137,17 @@ public sealed partial class WorkspaceWindow : WindowEx
         _ = RefreshAsync();
     }
 
+    internal string? CurrentConversationSessionKey => _navigation.ChatDestination.SessionKey;
+    private string? _speechSessionKey;
+    private void SynchronizeSpeechSession()
+    {
+        var current = CurrentConversationSessionKey;
+        if (string.Equals(current, _speechSessionKey, StringComparison.Ordinal)) return;
+        _speechSessionKey = current;
+        CurrentApp.StopChatSpeaking();
+    }
+
+
     internal void Navigate(WorkspaceDestination destination, bool preserveConversation = true)
     {
         if (preserveConversation && destination is { Page: WorkspacePageId.Home, SessionKey: null })
@@ -310,6 +321,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         if (IsClosed || !_navigation.SelectChatSession(sessionKey, previousSessionKey))
             return;
 
+        SynchronizeSpeechSession();
         var session = _state.Sessions.FirstOrDefault(session => session.Key == sessionKey)
             ?? new SessionInfo { Key = sessionKey };
         _agentId = SessionDisplayResolver.Resolve(session).AgentId;
@@ -389,6 +401,7 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void RenderDestination()
     {
+        SynchronizeSpeechSession();
         _chat.InvalidatePendingSessionNavigation();
         _chat.RetainNativeSetupForDestination(Destination);
         if (Destination.Page == WorkspacePageId.Settings)

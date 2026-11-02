@@ -6,6 +6,18 @@ public sealed class SpeechInputContractTests
         => File.ReadAllText(Path.Combine(new[] { TestRepositoryPaths.GetRepositoryRoot() }.Concat(parts).ToArray()));
 
     [Fact]
+    public void SilenceDefaultIs900msAndSavedUserChoiceSurvivesReload()
+    {
+        using var directory = new OpenClaw.TestSupport.TempDirectory();
+        var settings = new OpenClawTray.Services.SettingsManager(directory.Path);
+        Assert.Equal(0.9f, settings.SttSilenceTimeout);
+        settings.SttSilenceTimeout = 1.5f;
+        settings.Save();
+        var reloaded = new OpenClawTray.Services.SettingsManager(directory.Path);
+        Assert.Equal(1.5f, reloaded.SttSilenceTimeout);
+    }
+
+    [Fact]
     public void VoiceService_DoesNotLoadNativeVad_OnRecordStartup()
     {
         var cs = Read("src", "OpenClaw.Tray.WinUI", "Services", "VoiceService.cs");

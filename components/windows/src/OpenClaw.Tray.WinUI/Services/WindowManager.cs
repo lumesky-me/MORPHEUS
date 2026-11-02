@@ -984,6 +984,8 @@ internal sealed class WindowManager : IWindowManager
             _workspaceWindow?.ChatPage.QueueSession(sessionKey);
     }
 
+    internal string? CurrentChatSessionKey => _workspaceWindow?.CurrentConversationSessionKey;
+
     public void ShowWorkspaceChatAndStartVoice()
     {
         if (_isShuttingDown)

@@ -1,0 +1,90 @@
+{
+  "windows/src/OpenClaw.Shared/Audio/AudioModels.cs": {
+    "sha256": "fd8d804efe18bb9f0e63ddab8193f785fc462b93c99886da98be28bb6f611485",
+    "upstream_blob": "8016ead85658877b949060765077366d4763dda4"
+  },
+  "windows/src/OpenClaw.Shared/Audio/ISpeechToTextService.cs": {
+    "sha256": "2c4c35145d3fefc2aeb945860bd2438ed93e8f04f45075499f1332d7f839ad0b",
+    "upstream_blob": "e114b747009e3a211cf49ef2063ec28b87c585af"
+  },
+  "windows/src/OpenClaw.Shared/Audio/SpeechToTextService.cs": {
+    "sha256": "60212607fc3298a1211eb3fd80328bef5cf128d832487faf0258d2013b570cdc",
+    "upstream_blob": "8e979956687f7b369fb4216355b4b233459b2300"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/App.xaml.cs": {
+    "sha256": "624334287196e62c11bc92c4b62b0449867ce5a204492daba8f6b8e2133e6708",
+    "upstream_blob": "1765e3f6e6186c1e8723a9519dfcb54b9699e3e8"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/ChatComposerController.cs": {
+    "sha256": "74d231584838e4d72d6014913a1d800e8de650d739e4c85138ac7f5b86b595f7",
+    "upstream_blob": "6f534f93edf6f7e7c2bf56864a687d9c20ffcb4e"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/ChatComposerInputs.cs": {
+    "sha256": "df77ca0ea8596b352aa3065c379508d297af603232f5e17fd7194f04ccc86c3f",
+    "upstream_blob": "de6529958887925afd76f51f7d85c0e2d8d37336"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/ChatComposerSession.cs": {
+    "sha256": "deafba1c9a5655c2902f2d3afef147838cec7a5286fcf915039e77298638f945",
+    "upstream_blob": "b9b9db04093d6b057dfe768a76f7d45816612ae2"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/OpenClawChatCoordinator.cs": {
+    "sha256": "d05ffcec0a9be3c715c7dba0204b8cfc4856c1bf3ddaee7eaba82adb8c0f3686",
+    "upstream_blob": "54a075db72835601ab939eaa24f5f22961ea3230"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/OpenClawReactorChatRoot.cs": {
+    "sha256": "c5a100c2e8b7d58a2c9c29cff09df77ace2a619f94151effdbd866336bf9e477",
+    "upstream_blob": "bb4f40aadb988f187668ef7ba668e8109334ca90"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Pages/VoiceSettingsPage.xaml": {
+    "sha256": "5465a253990fc4396b0841f561d2e363b439bd6dc411f80f5d928796c0f26665",
+    "upstream_blob": "60a9c8f5c4aa49054164ab929c681ab1a0debd37"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Services/AudioPipeline.cs": {
+    "sha256": "32d82bfeec1f41b34041a31f67d0b904770c7a2c61f18f0ba237418100910525",
+    "upstream_blob": "e344a92603bd90811077a9a04731e8b418b2ca08"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Services/ChatNotificationSpeechText.cs": {
+    "sha256": "4aaa04e7a1d21b62707948ae34b36bb0bb3d381811a2ed7ee54fe3232263245c",
+    "upstream_blob": "09a64614181be0a93e069983af1a5b027d693060"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Services/SettingsManager.cs": {
+    "sha256": "d715b85592b0aaff8ef1feafb7db9e36819eb295be3868aa63cad6c3dc17f57b",
+    "upstream_blob": "3a9d1d3911dc4e55b13ae41eb45c9593d1e22f9e"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Services/TextToSpeech/TextToSpeechService.cs": {
+    "sha256": "d4fa26117213b568ba3f969004dba3863cc561e08e323d0984f0946d24c40d2e",
+    "upstream_blob": "2b285f8c25d2273ecae6d52efb7273323898a2c0"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Services/VoiceService.cs": {
+    "sha256": "99d2e16a62f55560ae4103b9859b0fca977e7d8439cd72b24224757c651c8400",
+    "upstream_blob": "a35004fb6f2a0cb3388292f6a7beff3cdc834589"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Services/WindowManager.cs": {
+    "sha256": "5a19ab97d8f5423f7c9c652bec45699f43f1627a5eedce05ba639c8647d9f294",
+    "upstream_blob": "f937dc8a6eb2be187cfd4d38cc7a1264ecd886d1"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Windows/WorkspaceWindow.xaml.cs": {
+    "sha256": "43ca5de1544e68982afab30668d3b180af34b6c34d9f195b39111620169993fc",
+    "upstream_blob": "51efe92e7c29b45e46da22aa06e298a8cd62f089"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/ChatComposerControllerTests.cs": {
+    "sha256": "76e438fe013687f025c75880d418df945bc60d899997a1c8db6ca76166bf76cc",
+    "upstream_blob": "8f7b7f2f643a06c242f2a35ddb5d2a78fa2f6576"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/OpenClaw.Tray.Tests.csproj": {
+    "sha256": "332328f9bebeaa8905003bd95b3d033f7f7c19b65dd9465e3b63b85b8cc995cc",
+    "upstream_blob": "ba4ea55adbbfd2aa1492818ba8ccc7088b6948e4"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/Services/ChatNotificationSpeechTextTests.cs": {
+    "sha256": "5abbda192b88c01dfd19586fc4833336e93b662861a9e7a91029ff4d39e7584b",
+    "upstream_blob": "68f403223f19f495cf623a2db626b11cdf17177c"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/SpeechInputContractTests.cs": {
+    "sha256": "9fc68a96b742771f30a1bb46726b38e8cf1d89a91feca53c0a2065beb0170220",
+    "upstream_blob": "d2e17c9923047c2e67a0c404e84a0e2bad5ac868"
+  },
+  "windows/tests/OpenClaw.Tray.UITests/VoiceServiceProgressRoutingTests.cs": {
+    "sha256": "0733d2a4adf26f5c6a76eaf94d568e4fb862e68116e20a9d90b9dad3914d983f",
+    "upstream_blob": "2cd71a5ec0bfbf83a9b212ea658bf296c3ae9c88"
+  }
+}

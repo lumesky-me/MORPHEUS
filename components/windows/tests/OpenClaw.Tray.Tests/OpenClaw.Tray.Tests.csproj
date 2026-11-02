@@ -18,6 +18,15 @@
     <DefineConstants>$(DefineConstants);DEV_BUILD</DefineConstants>
   </PropertyGroup>
 
+  <!-- Exercise the shipped capture/service owners with existing synthetic audio fixtures on portable hosts. -->
+  <ItemGroup>
+    <PackageReference Include="NAudio.Wasapi" Version="2.3.0" />
+    <Compile Include="..\..\src\OpenClaw.Tray.WinUI\Services\AudioPipeline.cs" Link="Services\AudioPipeline.cs" />
+    <Compile Include="..\..\src\OpenClaw.Tray.WinUI\Services\VoiceService.cs" Link="Services\VoiceService.cs" />
+    <Compile Include="..\OpenClaw.Tray.UITests\VoiceServiceProgressRoutingTests.cs" Link="Voice\VoiceServiceProgressRoutingTests.cs" />
+    <Compile Include="..\OpenClaw.Tray.UITests\AudioPipelineFirstAudioTimeoutTests.cs" Link="Voice\AudioPipelineFirstAudioTimeoutTests.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="OpenTelemetry" Version="1.16.0" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.16.0" />
