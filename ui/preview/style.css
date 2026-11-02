@@ -601,14 +601,15 @@ dialog button{
 /* MorphyAnimatedCore: shared vector layers, compositor-only idle motion. */
 #home:not([hidden]){display:grid;place-items:center;overflow:hidden;padding:24px}
 .morphy-core{margin:0;width:min(480px,100%,calc(100dvh - 170px));text-align:center;pointer-events:none}
-.morphy-core-art{position:relative;width:100%;aspect-ratio:1}
-.morphy-core-art img{position:absolute;inset:0;width:100%;height:100%}
-.core-orbit{animation:core-orbit 64s linear infinite;will-change:transform}
+.core-stage{position:relative;width:100%;aspect-ratio:1}
+.morphy-core-art{display:block;width:100%;height:100%}
+.core-emblem{position:absolute;left:35%;top:35%;width:30%;height:30%;object-fit:contain}
+.core-orbit{transform-box:view-box;transform-origin:240px 240px;animation:core-orbit 64s linear infinite;will-change:transform}
 .core-middle{animation-duration:46s;animation-direction:reverse}
 .core-inner{animation-duration:32s}
 .core-base{animation:core-breathe 8s ease-in-out infinite alternate}
 .morphy-core figcaption{margin-top:4px;padding-left:.4em;letter-spacing:.4em;font-size:13px;font-weight:600;color:#d7bcef}
-#home[hidden] .morphy-core-art img{animation-play-state:paused}
+#home[hidden] .core-orbit,#home[hidden] .core-base{animation-play-state:paused}
 @keyframes core-orbit{to{transform:rotate(360deg)}}
 @keyframes core-breathe{from{opacity:.86}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){.morphy-core-art img{animation:none;will-change:auto}}
+@media(prefers-reduced-motion:reduce){.core-orbit,.core-base{animation:none;will-change:auto}}
