@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:OpenClawTray.Controls"
     xmlns:winex="using:WinUIEx"
-    MinWidth="800" MinHeight="560">
+    MinWidth="500" MinHeight="560">
     <Window.SystemBackdrop><MicaBackdrop/></Window.SystemBackdrop>
     <Grid x:Name="Root" RequestedTheme="Dark" Background="{ThemeResource MorpheusBackgroundBrush}" PreviewKeyDown="OnKeyDown">
         <Grid.Resources>
@@ -38,7 +38,7 @@
         </Grid.RowDefinitions>
         <TitleBar x:Name="WorkspaceTitleBar" Height="48" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
             <TitleBar.Content><StackPanel Orientation="Horizontal" Spacing="12">
-                <Image Width="25" Height="25"><Image.Source><SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg"/></Image.Source></Image>
+                <Image Width="25" Height="25" Source="ms-appx:///Assets/Morpheus/crest-64.png" AutomationProperties.Name="MORPHEUS"/>
                 <TextBlock Text="MORPHEUS" CharacterSpacing="100" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}"/>
         <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"

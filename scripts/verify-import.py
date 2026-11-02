@@ -16,6 +16,7 @@ def main():
     parser.add_argument("--record-phase3", action="store_true", help="Record the reviewed Phase 3 delta without replacing historical Phase 1 evidence")
     parser.add_argument("--record-phase4", action="store_true", help="Record the reviewed Phase 4 delta without replacing earlier evidence")
     parser.add_argument("--record-redesign", action="store_true", help="Record redesign delta while preserving the earlier Phase 4 manifest")
+    parser.add_argument("--record-refinement", action="store_true", help="Record focused UI refinement delta without changing prior manifests")
     args = parser.parse_args()
     if args.record_phase3 and (EVIDENCE / "phase4" / "source-delta.json").exists():
         raise SystemExit("Preserve historical Phase 3 evidence; use --record-phase4")
@@ -76,6 +77,8 @@ def main():
             else:
                 expected[key] = value
     redesign = EVIDENCE / "phase4-redesign" / "source-delta.json"
+    if args.record_redesign and (EVIDENCE / "phase4-refinement" / "source-delta.json").exists():
+        raise SystemExit("Preserve the redesign layer; use --record-refinement")
     if args.record_redesign:
         overrides = {key: value for key, value in delta.items() if expected.get(key) != value}
         overrides.update({key: None for key in expected if key not in delta})
@@ -83,6 +86,16 @@ def main():
         redesign.write_text(json.dumps(overrides, indent=2, sort_keys=True) + "\n")
     if redesign.exists():
         for key, value in json.loads(redesign.read_text()).items():
+            if value is None: expected.pop(key, None)
+            else: expected[key] = value
+    refinement = EVIDENCE / "phase4-refinement" / "source-delta.json"
+    if args.record_refinement:
+        overrides = {key: value for key, value in delta.items() if expected.get(key) != value}
+        overrides.update({key: None for key in expected if key not in delta})
+        refinement.parent.mkdir(parents=True, exist_ok=True)
+        refinement.write_text(json.dumps(overrides, indent=2, sort_keys=True) + "\n")
+    if refinement.exists():
+        for key, value in json.loads(refinement.read_text()).items():
             if value is None: expected.pop(key, None)
             else: expected[key] = value
     if expected != delta:

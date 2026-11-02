@@ -39,7 +39,7 @@ public sealed class BrandMarkContractTests
     {
         Assert.DoesNotContain("controls:BrandMark", ReadTrayFile("Controls", "SettingsShellView.xaml"));
         Assert.Contains("<TitleBar ", ReadTrayFile("Windows", "WorkspaceWindow.xaml"));
-        Assert.Contains("Assets/Morpheus/logo-slot.svg", ReadTrayFile("Windows", "WorkspaceWindow.xaml"));
+        Assert.Contains("Assets/Morpheus/crest-64.png", ReadTrayFile("Windows", "WorkspaceWindow.xaml"));
         Assert.Contains("SetTitleBar(WorkspaceTitleBar)", ReadTrayFile("Windows", "WorkspaceWindow.xaml.cs"));
         Assert.Contains("controls:BrandMark", ReadTrayFile("Pages", "AgentEventsPage.xaml"));
 

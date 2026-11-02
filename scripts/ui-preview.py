@@ -5,14 +5,15 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import argparse,mimetypes,webbrowser
 ROOT=Path(__file__).resolve().parents[1]
-FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css')}
+FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js')}
 FILES['/']=FILES['/index.html']
+FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'
+for size in (16,24,32,48,64,128,256,512):
+    FILES[f'/assets/crest-{size}.png']=ROOT/f'components/windows/src/OpenClaw.Tray.WinUI/Assets/Morpheus/crest-{size}.png'
 for name in ('logo-slot.svg','conversation-ring.svg','canvas-lighting.svg'):
     FILES['/assets/'+name]=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/Morpheus'/name
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if urlsplit(self.path).path == '/favicon.ico':
-            self.send_response(204);self.end_headers();return
         file=FILES.get(urlsplit(self.path).path)
         if file is None:self.send_error(404);return
         content=file.read_bytes();self.send_response(200)

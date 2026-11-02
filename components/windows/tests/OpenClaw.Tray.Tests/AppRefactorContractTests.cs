@@ -2080,7 +2080,7 @@ public sealed class AppRefactorContractTests
         Assert.DoesNotContain("AppWindow.SetIcon", view);
         Assert.DoesNotContain("UpdateTitleBarStatus", view);
         Assert.Contains("SetTitleBar(WorkspaceTitleBar)", workspace);
-        Assert.Contains("Assets/Morpheus/logo-slot.svg", File.ReadAllText(Path.Combine(root, "src", "OpenClaw.Tray.WinUI", "Windows", "WorkspaceWindow.xaml")));
+        Assert.Contains("Assets/Morpheus/crest-64.png", File.ReadAllText(Path.Combine(root, "src", "OpenClaw.Tray.WinUI", "Windows", "WorkspaceWindow.xaml")));
     }
 
     [Fact]

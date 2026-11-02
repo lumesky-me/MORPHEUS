@@ -27,7 +27,8 @@ xaml='''<!-- Generated from ui/shared/tokens.json. -->
 </ResourceDictionary>
 '''
 geometry='// Generated from ui/shared/tokens.json.\nnamespace OpenClawTray.Presentation;\ninternal static class MorpheusLayout\n{\n'+''.join(f'    internal const double {key[0].upper()+key[1:]} = {value};\n' for key,value in t.items() if isinstance(value,(int,float)))+'}\n'
-files={r/'components/windows/src/OpenClaw.Tray.WinUI/Presentation/MorpheusLayout.cs':geometry,r/'ui/preview/tokens.css':css,r/'components/windows/src/OpenClaw.Tray.WinUI/Themes/MorpheusResources.xaml':xaml}
+breakpoint_js=f'// Generated from ui/shared/tokens.json.\nexport const sidebarBreakpoint = {t["sidebarBreakpoint"]};\n'
+files={r/'ui/preview/layout.js':breakpoint_js,r/'components/windows/src/OpenClaw.Tray.WinUI/Presentation/MorpheusLayout.cs':geometry,r/'ui/preview/tokens.css':css,r/'components/windows/src/OpenClaw.Tray.WinUI/Themes/MorpheusResources.xaml':xaml}
 for p,content in files.items():
     if '--check' in sys.argv:
         if not p.exists() or p.read_text()!=content: raise SystemExit(f'Regenerate UI theme: {p}')

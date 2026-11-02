@@ -8,4 +8,5 @@ internal static class MorpheusLayout
     internal const double Radius = 12;
     internal const double ReadingWidth = 800;
     internal const double ComposerRadius = 12;
+    internal const double SidebarBreakpoint = 1024;
 }

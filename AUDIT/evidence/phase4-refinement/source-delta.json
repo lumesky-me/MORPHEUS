@@ -1,0 +1,58 @@
+{
+  "windows/src/OpenClaw.Tray.WinUI/Assets/LockScreenLogo.png": {
+    "sha256": "9ef0f2ac7e872a2d8c5899e098c9e5d9f5885a63d3440878256ab2bf34468ca9",
+    "upstream_blob": "38bfc9ef66b22f1acb793b084790072d47a60dc5"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Square150x150Logo.png": {
+    "sha256": "1abe531a65a9e1372f93b081c8b90d5f357bc57c8ead8b0bf5940ae2df433d52",
+    "upstream_blob": "2b00b9ebe96500470f56638d8ab79e7f2bcc95a8"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Square44x44Logo.png": {
+    "sha256": "ad0456de7ec073ccb4ae02dd5c5eda737bcd8a502e0ee42df6159705558f9856",
+    "upstream_blob": "96e1518e92dc2e7d4275bfa467263c49f840fa10"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Square44x44Logo.targetsize-24_altform-unplated.png": {
+    "sha256": "9ef0f2ac7e872a2d8c5899e098c9e5d9f5885a63d3440878256ab2bf34468ca9",
+    "upstream_blob": "fe849f7afcb44490f31ec89ddfe0a4aeae87caac"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Square44x44Logo.targetsize-256_altform-unplated.png": {
+    "sha256": "be64f07234a22b0310ebdf3cb4f6dad72666909a79263740528b5f62a946a39a",
+    "upstream_blob": "caac317597d2673784e9fd5437b329eee0a3e5dd"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Square44x44Logo.targetsize-32_altform-unplated.png": {
+    "sha256": "92b329739a0f656797b56dffe933bec1c92abff33cf3db54dae1b2213295850f",
+    "upstream_blob": "e112742b9327bd7e01f252009350e0555c994ff4"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Square44x44Logo.targetsize-48_altform-unplated.png": {
+    "sha256": "c1bec1ac2d9d4d844b50f7e1ba433e8a426ab573cb293f9794d8d3f7e32e8ce1",
+    "upstream_blob": "c0155168b34d7f3555b1adf7cc3df442681a03e3"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/StoreLogo.png": {
+    "sha256": "86a78e85c1f6184253b0fd0e6c48ef1e71d2acdf1655329a0a452adbccf2a9a0",
+    "upstream_blob": "d8400bef0462192b84cf969d0974e0c9b613a2f7"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/Wide310x150Logo.png": {
+    "sha256": "31c26a2d313bb523dc0d98f11bf9bdace8070426c7d4f319633be17873213331",
+    "upstream_blob": "92d81377f0336bacf67fcba51e9b0aabfa14c64e"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico": {
+    "sha256": "2dfaefd0027e14b35da965e6c925b3819e75640c0dbfbdfcbe39cd7ff38eb31e",
+    "upstream_blob": "19f51459c37c640668aff52a6684dbc52ca233b4"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Windows/WorkspaceWindow.xaml": {
+    "sha256": "c90c732db215f5ec61ab27848f1612872386b0bfc637f66604c5a21a1f2c6a38",
+    "upstream_blob": "c3b4761f6dd62a6469cda43a6e1da23ce4502e51"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Windows/WorkspaceWindow.xaml.cs": {
+    "sha256": "a2ef1eafba66d2a4d4830dbd217328e5551359d7df264fe192d8bf2ba02a7328",
+    "upstream_blob": "51efe92e7c29b45e46da22aa06e298a8cd62f089"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/AppRefactorContractTests.cs": {
+    "sha256": "c4ca1f3ad8c34c0f87780f54179a6fd0c28665059a47f1ac6773edf084e4017b",
+    "upstream_blob": "5160198cc18a0c09e3f8283da855ef6ddc42e1a5"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/BrandMarkContractTests.cs": {
+    "sha256": "2d303717fa36f5b6f9587831bfdc49659ea901b38433faeb1da16b40b080578e",
+    "upstream_blob": "615383a289d59d290f2a1de276c5c95788f87131"
+  }
+}

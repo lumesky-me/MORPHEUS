@@ -35,13 +35,12 @@ with sync_playwright() as p:
         page.set_viewport_size({'width':size[0],'height':size[1]})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.screenshot(path=str(out/f'chat-{size[0]}.png'))
-        if size[0]<700:
-            page.locator('#sidebar-toggle').click()
+        if size[0]<1024:
+            if page.locator('.conversations').is_visible():page.locator('#sidebar-toggle').click()
             assert page.locator('#draft').is_visible()
             bounds=page.locator('#draft').bounding_box()
             assert bounds and bounds['x']>=0 and bounds['x']+bounds['width']<=size[0]
             page.screenshot(path=str(out/f'chat-reading-{size[0]}.png'))
-            page.locator('#sidebar-toggle').click()
     assert not errors,errors
     assert not failed_assets,failed_assets
     assert not console_errors,console_errors

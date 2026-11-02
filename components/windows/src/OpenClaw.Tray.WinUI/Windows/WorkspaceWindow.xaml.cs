@@ -108,6 +108,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         Title = Text("Title");
         this.SetWindowSize(1280, 860);
         ExtendsContentIntoTitleBar = true;
+        AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Tall;
         this.SetIcon("Assets\\openclaw.ico");
         SetTitleBar(WorkspaceTitleBar);
         NewAgentLabel.Text = LocalizationHelper.GetString("AgentCreation_Title");
@@ -131,6 +132,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         _chat.SessionSelected += OnChatSessionSelected;
         Closed += OnClosed;
         Root.Loaded += OnLoaded;
+        Root.SizeChanged += (_, _) => ApplyAdaptiveSidebar();
         RefreshSidebar();
     }
 
@@ -431,8 +433,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         NavView.Visibility = isHome ? Visibility.Collapsed : Visibility.Visible;
         EmptyHome.Visibility = isHome ? Visibility.Visible : Visibility.Collapsed;
         CollapsePaneButton.IsEnabled = Destination.Page == WorkspacePageId.Chat;
-        NavView.IsPaneOpen = Destination.Page == WorkspacePageId.Chat && _conversationPaneOpen;
-        NavView.IsPaneVisible = NavView.IsPaneOpen;
+        ApplyAdaptiveSidebar(force: true);
         if (isHome)
         {
             _chat.SuspendSurface();
@@ -1080,7 +1081,8 @@ public sealed partial class WorkspaceWindow : WindowEx
     private void OnTogglePane(object sender, RoutedEventArgs e)
     {
         if (Destination.Page != WorkspacePageId.Chat) return;
-        _conversationPaneOpen = !NavView.IsPaneOpen;
+        if (Root.ActualWidth >= MorpheusLayout.SidebarBreakpoint)
+            _conversationPaneOpen = !NavView.IsPaneOpen;
         var open = !NavView.IsPaneOpen;
         if (open)
         {
@@ -1093,6 +1095,19 @@ public sealed partial class WorkspaceWindow : WindowEx
                 CollapsePaneButton.Focus(FocusState.Programmatic);
         });
     }
+    private bool? _sidebarOverlay;
+    private void ApplyAdaptiveSidebar(bool force = false)
+    {
+        var overlay = Root.ActualWidth > 0 && Root.ActualWidth < MorpheusLayout.SidebarBreakpoint;
+        NavView.PaneDisplayMode = overlay ? NavigationViewPaneDisplayMode.LeftMinimal : NavigationViewPaneDisplayMode.Left;
+        if (force || _sidebarOverlay != overlay || Destination.Page != WorkspacePageId.Chat)
+        {
+            NavView.IsPaneOpen = Destination.Page == WorkspacePageId.Chat && !overlay && _conversationPaneOpen;
+            NavView.IsPaneVisible = NavView.IsPaneOpen;
+        }
+        _sidebarOverlay = overlay;
+    }
+
     private void UpdatePanePresentation()
     {
         ReopenPaneButton.Visibility = Visibility.Collapsed;
