@@ -4,7 +4,7 @@
     "upstream_blob": "5b805d38976f337db040d0268ebb6a826e96759d"
   },
   "windows/docs/ARCHITECTURE.md": {
-    "sha256": "7c38ca62e264a72ca95182d388299bbd85c9a361708cbdc426dd4ed3955a3ff7",
+    "sha256": "6b3825cd951e77d8b85e7c41a715eb66746a062b9f8838979b118733e91938a0",
     "upstream_blob": "ffcd05e3d64d8f2d500b9cf2986045b66e00eae7"
   },
   "windows/docs/CHAT_VISUAL_DESIGN.md": {
@@ -32,7 +32,7 @@
     "upstream_blob": "900e5a0d2e122662eb942167de0c292286623bd8"
   },
   "windows/src/OpenClaw.Tray.WinUI/Presentation/WorkspaceNavigation.cs": {
-    "sha256": "0eaf600ec9b8e19f4f4e7b7f122bafd259934373aaf16cbbe7ca0ad0c6f98ef2",
+    "sha256": "73a624221dbbde5fe7978961f45eea4ae5afb068905e773341dcde9b37e6d406",
     "upstream_blob": "d3f384e1b746ae3c283ed71c95c1ff715ad33d12"
   },
   "windows/src/OpenClaw.Tray.WinUI/Services/WindowManager.cs": {
@@ -68,7 +68,7 @@
     "upstream_blob": "c3b4761f6dd62a6469cda43a6e1da23ce4502e51"
   },
   "windows/src/OpenClaw.Tray.WinUI/Windows/WorkspaceWindow.xaml.cs": {
-    "sha256": "2ba73207863d22bc55bb9c077043a2994cb693ea72ef09dc8b07572fe0487a32",
+    "sha256": "13d5f1571ad2d2b6034937bc08ed260219f0ac5d49ae0e12f5931f7fc1666ef9",
     "upstream_blob": "51efe92e7c29b45e46da22aa06e298a8cd62f089"
   },
   "windows/tests/OpenClaw.Tray.Tests/AppRefactorContractTests.cs": {

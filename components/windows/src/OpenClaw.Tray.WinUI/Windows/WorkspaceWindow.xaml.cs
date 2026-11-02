@@ -76,6 +76,8 @@ public sealed partial class WorkspaceWindow : WindowEx
         _state = state;
         _openSettingsWindow = openSettingsWindow;
         _openWorkspaceRoute = openWorkspaceRoute;
+        if (openWorkspaceRoute is not null)
+            _navigation = new(WorkspaceDestination.Settings("settings"));
         _notifications = notifications;
         _openTimeline = openTimeline;
         _identity = new WorkspaceIdentitySource(UpdateOwnerIdentity,

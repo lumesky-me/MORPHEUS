@@ -651,5 +651,27 @@
     },
     "failed_tests": [],
     "scope": "Final cold command-center routing fix; full-suite results predate this narrow fix."
+  },
+  "tray_scoped_closeout": {
+    "counters": {
+      "total": "1095",
+      "executed": "1095",
+      "passed": "1095",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "failed_tests": [],
+    "scope": "After final command-center routing and separate Settings history fixes."
   }
 }

@@ -46,7 +46,7 @@ The session menu owner still supports Pin/Unpin, rename, read/unread, archive/un
 
 Inspection found that the actual Phase 3 source embedded Settings as a sibling inside WorkspaceWindow; it did not contain the separate Settings window described in the brief. Phase 4 reuses the complete view in a second native host rather than replacing its settings implementation.
 
-WindowManager owns host reuse, activation, status/theme updates and shutdown. Settings routes back to Home, Chat, sessions and notifications forward to the primary window; the Settings host does not mount a second conversation. Native setup Settings destinations use that same host and its readiness wait. Main-window close does not reset an active Settings scope. The Settings owner disposes its view and resets its scope on close. These changes have portable source-contract coverage and need multi-window Windows runtime proof.
+WindowManager owns host reuse, activation, status/theme updates and shutdown. Settings routes back to Home, Chat, sessions and notifications forward to the primary window; the Settings host does not mount a second conversation. Its history starts at Settings, so Back cannot expose a second Home shell. Native setup Settings destinations use that same host and its readiness wait. Main-window close does not reset an active Settings scope. The Settings owner disposes its view and resets its scope on close. These changes have portable source-contract coverage and need multi-window Windows runtime proof.
 
 No Gateway, agent runtime, authentication, model-provider protocol, chat persistence, permission/sandbox, memory or speech-engine implementation was changed. The existing provider send path, idempotency/cancellation protections, tool output and Phase 3 opt-in voice auto-send remain in place. Other agents and personality files were not edited. No paid model call, physical microphone capture, speaker playback or model download occurred.
 
@@ -66,7 +66,7 @@ Observed alignment: shared title bar, inset left rail, bottom status/settings gr
 
 ## Validation
 
-The final focused Tray selection passed **1094 tests, 0 failed, 0 skipped**. Shared speech/redaction passed **148 tests, 0 failed, 0 skipped**. The full Tray suite ran **4845 tests: 4674 passed, 168 failed, 3 skipped**. The full Shared suite ran **4844 tests: 4484 passed, 335 failed, 25 skipped**. These selections overlap and must not be added together. After final source review corrected cold command-center routing through the primary workspace, the rebuilt affected shell/navigation selection passed **147 tests, 0 failed, 0 skipped**. Full-suite results above predate that narrow final routing fix.
+The final focused Tray selection, including the Settings-history regression, passed **1095 tests, 0 failed, 0 skipped**. Shared speech/redaction passed **148 tests, 0 failed, 0 skipped**. The full Tray suite ran **4845 tests: 4674 passed, 168 failed, 3 skipped**. The full Shared suite ran **4844 tests: 4484 passed, 335 failed, 25 skipped**. These selections overlap and must not be added together. After final source review corrected cold command-center routing through the primary workspace, the rebuilt affected shell/navigation selection passed **147 tests, 0 failed, 0 skipped**. A final broader focused rerun after both command-center and Settings-history fixes passed all 1095 selected tests. Full-suite results above predate these narrow final routing/history fixes.
 
 Final counters and failure names are recorded in `evidence/phase4/validation.json`. Captured logs preserve failed as well as passing runs; trailing whitespace is normalized. Browser checks cover empty Home, default route, Chat navigation, sidebar persistence and Home gating, draft retention, exact More labels, native handoffs, search presentation, responsive overflow, no JavaScript page errors and file-serving restrictions.
 
@@ -88,7 +88,11 @@ The browser is ready for visual iteration. Final native acceptance criteria rema
 
 Repository: https://github.com/lumesky-me/MORPHEUS
 
-Branch: `phase-4-ui`. Implementation commit and final publication receipt are recorded after validation in this report's final checkpoint note and the adjacent machine-readable receipt.
+Published branch: https://github.com/lumesky-me/MORPHEUS/tree/phase-4-ui
+
+Implementation commit: `b7ee1f10c25b1aebe5873ceb7652c74bf41c7f56` (67 files). Initial push succeeded and a fresh fetch verified the same remote SHA, expected files and Phase 1-3 ancestry. The publication receipt is [publication.json](evidence/phase4/publication.json). This report, receipt and final Settings-history invariant are finalized by subsequent checkpoints on the same branch; the final branch HEAD is reported in the delivery message. No force push or merge into main was performed.
+
+Author and committer: `lumesky-me <343106658+lumesky-me@users.noreply.github.com>`. Publishing used the existing platform-managed HTTPS Git connection authorized for this exact repository. Personal pushing-account identity and token type could not be independently verified. No credentials were replaced and no conflicting personal identity was detected.
 
 All earlier audit reports and evidence remain intact. Original upstream paths, licenses and notices are checked by `scripts/verify-import.py`; a separate Phase 4 delta layer preserves historical Phase 1 and Phase 3 manifests. New SVG artwork and preview source introduce no third-party engine or runtime dependency. Playwright is existing development tooling, not an application dependency.
 

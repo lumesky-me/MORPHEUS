@@ -105,7 +105,10 @@ internal sealed class WorkspaceNavigationHistory
 {
     private readonly Stack<WorkspaceDestination> _back = new();
     private readonly Stack<WorkspaceDestination> _forward = new();
-    public WorkspaceDestination Current { get; private set; } = new(WorkspacePageId.Home);
+    public WorkspaceNavigationHistory(WorkspaceDestination? initial = null) =>
+        SetCurrent(initial ?? new(WorkspacePageId.Home));
+
+    public WorkspaceDestination Current { get; private set; } = null!;
     public WorkspaceDestination ChatDestination { get; private set; } = new(WorkspacePageId.Chat);
     public bool CanGoBack => _back.Count > 0;
     public bool CanGoForward => _forward.Count > 0;

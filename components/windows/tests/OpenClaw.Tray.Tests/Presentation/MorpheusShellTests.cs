@@ -13,6 +13,19 @@ public sealed class MorpheusShellTests
         Assert.Equal(visible, ChatVisibilityPolicy.IsWorkspaceChatVisible(false, true, false, Enum.Parse<WorkspacePageId>(page)));
 
     [Fact]
+    public void SeparateSettingsHistory_NeverGoesBackToASecondHome()
+    {
+        var history = new WorkspaceNavigationHistory(WorkspaceDestination.Settings("settings"));
+        Assert.False(history.CanGoBack);
+        history.Navigate(WorkspaceDestination.Settings("voice"));
+        Assert.True(history.GoBack());
+        Assert.Equal(WorkspaceDestination.Settings("settings"), history.Current);
+        Assert.False(history.GoBack());
+        Assert.True(history.GoForward());
+        Assert.Equal(WorkspaceDestination.Settings("voice"), history.Current);
+    }
+
+    [Fact]
     public void SettingsHostRoutesBackToPrimaryAndOwnsItsLifecycle()
     {
         // Retirement: replace source guards with native multi-window fixture proof on a Windows host.
@@ -33,5 +46,6 @@ public sealed class MorpheusShellTests
         Assert.Contains("_settingsWorkspaceWindow is null || _settingsWorkspaceWindow.IsClosed", manager);
         Assert.DoesNotContain("new OpenClawGatewayClient", workspace);
         Assert.Contains("new SettingsShellView", workspace);
+        Assert.Contains("_navigation = new(WorkspaceDestination.Settings(\"settings\"))", workspace);
     }
 }
