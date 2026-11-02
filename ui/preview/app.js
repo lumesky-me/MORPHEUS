@@ -43,47 +43,18 @@ coreTouch.addEventListener('click',()=>{
  corePulseTimer=setTimeout(()=>coreTouch.classList.remove('pressed'),650);
 });
 
-let createOrbScene,HandTracker;
+let createOrbScene;
 let orbLoading=false;
-let orb;let tracker;
-function stopGestures(){tracker?.stop();tracker=null;$('orb-gestures').textContent='Enable gestures';$('orb-status').textContent='';}
+let orb;
 function syncOrb(){
  if(!$('home').hidden&&!orb&&createOrbScene){try{orb=createOrbScene($('ultron-orb'));orb.setActivity('idle');}catch(e){$('ultron-orb').textContent='WebGL is unavailable in this browser.';console.error(e);}}
- if($('home').hidden&&orb){stopGestures();orb.dispose();orb=null;}
+ if($('home').hidden&&orb){orb.dispose();orb=null;}
 }
 async function loadOrb(){
  if(orbLoading)return;orbLoading=true;
- try{({createOrbScene,HandTracker}=await import('./ultron/orb.js'));syncOrb();}
+ try{({createOrbScene}=await import('./ultron/orb.js'));syncOrb();}
  catch(e){$('orb-status').textContent='Orb failed to load. Stop and restart the preview server, then refresh.';console.error(e);}
 }
 loadOrb();
 new MutationObserver(syncOrb).observe($('home'),{attributes:true,attributeFilter:['hidden']});syncOrb();
-$('orb-in').onclick=()=>orb?.zoomIn();$('orb-out').onclick=()=>orb?.zoomOut();$('orb-reset').onclick=()=>orb?.resetView();
-$('ultron-orb').onkeydown=e=>{if(['+','=','-','_','r','R'].includes(e.key)){e.preventDefault();if('+= '.includes(e.key))orb?.zoomIn();else if('-_'.includes(e.key))orb?.zoomOut();else orb?.resetView();}};
 new MutationObserver(()=>{$('empty-conversation').hidden=$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});
-
-$('orb-gestures').onclick=async()=>{
- if(tracker){stopGestures();return;}
- if(!HandTracker){$('orb-status').textContent='Orb is not loaded. Restart the preview server.';return;}
- $('orb-status').textContent='Starting camera…';
- tracker=new HandTracker($('orb-video'),$('orb-overlay'),{onRotate:(x,y)=>orb?.rotateBy(x,y),onZoom:f=>orb?.zoomBy(f),onStatus:s=>{$('orb-status').textContent=s.mode;}});
- try{await tracker.start();$('orb-gestures').textContent='Disable gestures';}catch(e){stopGestures();$('orb-status').textContent='Camera or hand tracking unavailable';}
-};
-$('home').addEventListener('keydown',e=>{if((e.key==='g'||e.key==='G')&&!e.repeat){e.preventDefault();$('orb-gestures').click();}});
-
-// Save only from Home, never from editable controls or repeated key events.
-document.addEventListener('keydown',e=>{
- if(e.key.toLowerCase()!=='p'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||$('home').hidden||!orb)return;
- if(e.composedPath().some(el=>el instanceof HTMLElement&&(el.matches('input,textarea,select')||el.isContentEditable)))return;
- e.preventDefault();
- $('orb-status').textContent=orb.saveView()?'Default view saved':'View saved for this visit; browser storage unavailable';
-});
-
-// Temporary, read-only export. Remove after the approved camera is captured.
-$('orb-export').onclick=()=>{
- try {
-  const raw=localStorage.getItem('morpheus.ultron.view.v1');
-  if(!raw){handoff('No saved view on this address','Open the exact browser profile and localhost port where you pressed P, then export there. Your view has not been changed.');return;}
-  handoff('Saved camera values: copy and send these',raw);
- }catch{handoff('Saved view unavailable','Browser storage could not be read. Your view has not been changed.');}
-};

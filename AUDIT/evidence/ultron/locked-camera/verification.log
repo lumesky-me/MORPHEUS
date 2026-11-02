@@ -1,0 +1,1 @@
+PASS exact approved camera despite conflicting storage; drag/wheel/P/zoom/reset keys cannot move it; animation loop advances; normal/compact aspect; refresh and Home/Chat recreation preserve orientation.
