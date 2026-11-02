@@ -2,7 +2,7 @@ namespace OpenClawTray.Presentation;
 
 internal enum WorkspacePageId
 {
-    Home, Notifications, Settings
+    Home, Chat, Notifications, Settings
 }
 
 internal enum CompanionPageId
@@ -32,6 +32,7 @@ internal static class WorkspaceNavigation
         new Dictionary<string, WorkspacePageId>(StringComparer.Ordinal)
         {
             ["home"] = WorkspacePageId.Home,
+            ["chat"] = WorkspacePageId.Chat,
             ["notifications"] = WorkspacePageId.Notifications,
         };
 
@@ -54,7 +55,7 @@ internal static class WorkspaceNavigation
         }
 
         if (tag!.StartsWith("workspace:", StringComparison.Ordinal))
-            throw new ArgumentException("Unknown Workspace route. Use workspace:home or workspace:notifications.", nameof(tag));
+            throw new ArgumentException("Unknown Workspace route. Use workspace:home, workspace:chat or workspace:notifications.", nameof(tag));
 
         openCompanion(tag);
     }
@@ -62,7 +63,12 @@ internal static class WorkspaceNavigation
     public static bool TryResolveWorkspace(string? tag, out WorkspaceDestination destination)
     {
         destination = new(WorkspacePageId.Home);
-        if (tag is null or "hub" or "home" or "workspace" or "chat")
+        if (tag == "chat")
+        {
+            destination = new(WorkspacePageId.Chat);
+            return true;
+        }
+        if (tag is null or "hub" or "home" or "workspace")
             return true;
 
         if (!tag.StartsWith("workspace:", StringComparison.Ordinal))
@@ -73,7 +79,7 @@ internal static class WorkspaceNavigation
             destination = new(page);
             return true;
         }
-        // Old prototype links return to chat, never adding removed surfaces to history.
+        // Old prototype links return to Home, never adding removed surfaces to history.
         // Unprefixed companion routes retain their existing settings-page meaning.
         return DeprecatedRoutes.Contains(route);
     }
@@ -100,20 +106,20 @@ internal sealed class WorkspaceNavigationHistory
     private readonly Stack<WorkspaceDestination> _back = new();
     private readonly Stack<WorkspaceDestination> _forward = new();
     public WorkspaceDestination Current { get; private set; } = new(WorkspacePageId.Home);
-    public WorkspaceDestination ChatDestination { get; private set; } = new(WorkspacePageId.Home);
+    public WorkspaceDestination ChatDestination { get; private set; } = new(WorkspacePageId.Chat);
     public bool CanGoBack => _back.Count > 0;
     public bool CanGoForward => _forward.Count > 0;
 
     public bool SelectChatSession(string sessionKey, string? previousSessionKey = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sessionKey);
-        var destination = new WorkspaceDestination(WorkspacePageId.Home, sessionKey);
-        if (Current.Page == WorkspacePageId.Home)
+        var destination = new WorkspaceDestination(WorkspacePageId.Chat, sessionKey);
+        if (Current.Page == WorkspacePageId.Chat)
         {
             // Initial cached/default selection lives in the composer until its first handoff.
             var bindPrevious = Current.SessionKey is null && !string.IsNullOrWhiteSpace(previousSessionKey);
             if (bindPrevious)
-                SetCurrent(new(WorkspacePageId.Home, previousSessionKey));
+                SetCurrent(new(WorkspacePageId.Chat, previousSessionKey));
             return Navigate(destination) || bindPrevious;
         }
         if (ChatDestination == destination)
@@ -127,7 +133,7 @@ internal sealed class WorkspaceNavigationHistory
 
     public bool RemoveSession(string key, string? replacementKey)
     {
-        var replacement = new WorkspaceDestination(WorkspacePageId.Home, replacementKey);
+        var replacement = new WorkspaceDestination(WorkspacePageId.Chat, replacementKey);
         var wasCurrent = Current.SessionKey == key;
         RemoveFrom(_back, key);
         RemoveFrom(_forward, key);
@@ -240,7 +246,7 @@ internal sealed class WorkspaceNavigationHistory
     private void SetCurrent(WorkspaceDestination destination)
     {
         Current = destination;
-        if (destination.Page == WorkspacePageId.Home)
+        if (destination.Page == WorkspacePageId.Chat)
             ChatDestination = destination;
     }
 }

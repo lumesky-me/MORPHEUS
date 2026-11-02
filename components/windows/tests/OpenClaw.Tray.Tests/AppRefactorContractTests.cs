@@ -2079,8 +2079,8 @@ public sealed class AppRefactorContractTests
         Assert.DoesNotContain("StatusBadgeIconFactory", view);
         Assert.DoesNotContain("AppWindow.SetIcon", view);
         Assert.DoesNotContain("UpdateTitleBarStatus", view);
-        Assert.Contains("WorkspaceTitleBar.IconSource = new BitmapIconSource", workspace);
-        Assert.Contains("new Uri(BrandAssets.RedBotMarkUri)", workspace);
+        Assert.Contains("SetTitleBar(WorkspaceTitleBar)", workspace);
+        Assert.Contains("Assets/Morpheus/logo-slot.svg", File.ReadAllText(Path.Combine(root, "src", "OpenClaw.Tray.WinUI", "Windows", "WorkspaceWindow.xaml")));
     }
 
     [Fact]

@@ -13,8 +13,8 @@ public sealed class WorkspaceNavigationTests
     public void RemovedSession_CannotReturnThroughHistory(string? replacement)
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "kept"));
-        history.Navigate(new(WorkspacePageId.Home, "removed"));
+        history.Navigate(new(WorkspacePageId.Chat, "kept"));
+        history.Navigate(new(WorkspacePageId.Chat, "removed"));
         history.Navigate(new(WorkspacePageId.Notifications));
         history.GoBack();
         Assert.True(history.RemoveSession("removed", replacement));
@@ -27,11 +27,30 @@ public sealed class WorkspaceNavigationTests
     }
 
     [Fact]
+    public void EmptyHome_PreservesCanonicalConversationAndLaterSessionCompletion()
+    {
+        var history = new WorkspaceNavigationHistory();
+        Assert.Equal(WorkspacePageId.Home, history.Current.Page);
+        history.Navigate(new(WorkspacePageId.Chat, "agent:main:retained"));
+        history.Navigate(new(WorkspacePageId.Home));
+        Assert.Null(history.Current.SessionKey);
+        Assert.Equal("agent:main:retained", history.ChatDestination.SessionKey);
+        history.SelectChatSession("agent:main:materialized");
+        Assert.Equal(WorkspacePageId.Home, history.Current.Page);
+        history.Navigate(history.ChatDestination);
+        Assert.Equal(new(WorkspacePageId.Chat, "agent:main:materialized"), history.Current);
+        history.Navigate(new(WorkspacePageId.Home));
+        history.RemoveSession("agent:main:materialized", "agent:main:replacement");
+        Assert.Equal(WorkspacePageId.Home, history.Current.Page);
+        Assert.Equal("agent:main:replacement", history.ChatDestination.SessionKey);
+    }
+
+    [Fact]
     public void RemovingRememberedChat_PreservesNotificationsAndUnrelatedHistory()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "kept"));
-        history.Navigate(new(WorkspacePageId.Home, "removed"));
+        history.Navigate(new(WorkspacePageId.Chat, "kept"));
+        history.Navigate(new(WorkspacePageId.Chat, "removed"));
         history.Navigate(new(WorkspacePageId.Notifications));
         Assert.False(history.RemoveSession("removed", null));
         Assert.Equal(WorkspacePageId.Notifications, history.Current.Page);
@@ -43,9 +62,9 @@ public sealed class WorkspaceNavigationTests
     [Fact]
     public void Workspace_OnlyHomeAndFooterNotificationsHaveRoutableDestinations()
     {
-        Assert.Equal(new[] { WorkspacePageId.Home, WorkspacePageId.Notifications, WorkspacePageId.Settings },
+        Assert.Equal(new[] { WorkspacePageId.Home, WorkspacePageId.Chat, WorkspacePageId.Notifications, WorkspacePageId.Settings },
             Enum.GetValues<WorkspacePageId>());
-        Assert.Equal(new[] { "home", "notifications" }, WorkspaceNavigation.Routes.Keys);
+        Assert.Equal(new[] { "home", "chat", "notifications" }, WorkspaceNavigation.Routes.Keys);
         foreach (var (tag, page) in WorkspaceNavigation.Routes)
         {
             Assert.True(WorkspaceNavigation.TryResolveWorkspace($"workspace:{tag}", out var destination));
@@ -79,15 +98,15 @@ public sealed class WorkspaceNavigationTests
     public void Settings_ReturnsToExactPriorChat_AndForwardRestoresSection()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "chat-a"));
+        history.Navigate(new(WorkspacePageId.Chat, "chat-a"));
         history.Navigate(WorkspaceDestination.Settings("connection"));
         history.Navigate(WorkspaceDestination.Settings("permissions"));
-        Assert.Equal(new(WorkspacePageId.Home, "chat-a"), history.ChatDestination);
+        Assert.Equal(new(WorkspacePageId.Chat, "chat-a"), history.ChatDestination);
 
         Assert.True(history.GoBack());
         Assert.Equal(WorkspaceDestination.Settings("connection"), history.Current);
         Assert.True(history.GoBack());
-        Assert.Equal(new(WorkspacePageId.Home, "chat-a"), history.Current);
+        Assert.Equal(new(WorkspacePageId.Chat, "chat-a"), history.Current);
         Assert.True(history.GoForward());
         Assert.True(history.GoForward());
         Assert.Equal(WorkspaceDestination.Settings("permissions"), history.Current);
@@ -98,18 +117,18 @@ public sealed class WorkspaceNavigationTests
     public void ChatSessionCompletingInSettings_DoesNotReplaceSettings()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "chat-a"));
+        history.Navigate(new(WorkspacePageId.Chat, "chat-a"));
         history.Navigate(WorkspaceDestination.Settings("connection"));
         Assert.True(history.SelectChatSession("chat-b"));
         Assert.Equal(WorkspaceDestination.Settings("connection"), history.Current);
-        Assert.Equal(new(WorkspacePageId.Home, "chat-b"), history.ChatDestination);
+        Assert.Equal(new(WorkspacePageId.Chat, "chat-b"), history.ChatDestination);
     }
 
     [Fact]
     public void RemoveSettingsEntries_PrunesOnlyMatchingSectionsFromBothStacks()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "chat-a"));
+        history.Navigate(new(WorkspacePageId.Chat, "chat-a"));
         history.Navigate(WorkspaceDestination.Settings("sessions"));
         history.Navigate(WorkspaceDestination.Settings("connection"));
         history.Navigate(WorkspaceDestination.Settings("channels"));
@@ -117,7 +136,7 @@ public sealed class WorkspaceNavigationTests
         history.RemoveSettingsEntries(tag => tag is "sessions" or "channels");
         Assert.False(history.CanGoForward);
         Assert.True(history.GoBack());
-        Assert.Equal(new(WorkspacePageId.Home, "chat-a"), history.Current);
+        Assert.Equal(new(WorkspacePageId.Chat, "chat-a"), history.Current);
         Assert.True(history.GoForward());
         Assert.Equal(WorkspaceDestination.Settings("connection"), history.Current);
     }
@@ -126,10 +145,10 @@ public sealed class WorkspaceNavigationTests
     public void RemovedSession_IsPrunedAroundSettingsEntries()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "removed"));
+        history.Navigate(new(WorkspacePageId.Chat, "removed"));
         history.Navigate(WorkspaceDestination.Settings("connection"));
         Assert.False(history.RemoveSession("removed", "kept"));
-        Assert.Equal(new(WorkspacePageId.Home, "kept"), history.ChatDestination);
+        Assert.Equal(new(WorkspacePageId.Chat, "kept"), history.ChatDestination);
         Assert.True(history.GoBack());
         Assert.Equal(WorkspacePageId.Home, history.Current.Page);
         Assert.NotEqual("removed", history.Current.SessionKey);
@@ -139,28 +158,28 @@ public sealed class WorkspaceNavigationTests
     public void PruneSettings_ReplacesPrunedCurrentWithFallbackWithoutAddingHistory()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "chat-a"));
+        history.Navigate(new(WorkspacePageId.Chat, "chat-a"));
         history.Navigate(WorkspaceDestination.Settings("connection"));
         history.Navigate(WorkspaceDestination.Settings("channels"));
         Assert.True(history.PruneSettings(tag => tag == "channels", WorkspaceDestination.Settings("connection")));
         Assert.Equal(WorkspaceDestination.Settings("connection"), history.Current);
         // The adjacent duplicate "connection" entry collapses so Back skips to chat.
         Assert.True(history.GoBack());
-        Assert.Equal(new(WorkspacePageId.Home, "chat-a"), history.Current);
+        Assert.Equal(new(WorkspacePageId.Chat, "chat-a"), history.Current);
     }
 
     [Fact]
     public void PruneSettings_WithCurrentFallback_KeepsCurrentAndCollapsesAdjacentDuplicates()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "chat-a"));
+        history.Navigate(new(WorkspacePageId.Chat, "chat-a"));
         history.Navigate(WorkspaceDestination.Settings("settings"));
         history.Navigate(WorkspaceDestination.Settings("channels"));
         history.Navigate(WorkspaceDestination.Settings("settings"));
         Assert.False(history.PruneSettings(tag => tag == "channels", history.Current));
         Assert.Equal(WorkspaceDestination.Settings("settings"), history.Current);
         Assert.True(history.GoBack());
-        Assert.Equal(new(WorkspacePageId.Home, "chat-a"), history.Current);
+        Assert.Equal(new(WorkspacePageId.Chat, "chat-a"), history.Current);
     }
 
     [Fact]
@@ -562,7 +581,7 @@ public sealed class WorkspaceNavigationTests
     public void LandingAndChat_OpenWorkspace(string? route)
     {
         Assert.True(WorkspaceNavigation.TryResolveWorkspace(route, out var destination));
-        Assert.Equal(WorkspacePageId.Home, destination.Page);
+        Assert.Equal(route == "chat" ? WorkspacePageId.Chat : WorkspacePageId.Home, destination.Page);
     }
 
     [Theory]
@@ -627,8 +646,8 @@ public sealed class WorkspaceNavigationTests
     public void SessionHistory_RestoresExactKeysAndClearsForwardOnlyForNewDestinations()
     {
         var history = new WorkspaceNavigationHistory();
-        var first = new WorkspaceDestination(WorkspacePageId.Home, "agent:main:first");
-        var second = new WorkspaceDestination(WorkspacePageId.Home, "agent:research:second");
+        var first = new WorkspaceDestination(WorkspacePageId.Chat, "agent:main:first");
+        var second = new WorkspaceDestination(WorkspacePageId.Chat, "agent:research:second");
         Assert.True(history.Navigate(first));
         Assert.True(history.Navigate(second));
         Assert.False(history.Navigate(second));
@@ -645,7 +664,7 @@ public sealed class WorkspaceNavigationTests
         Assert.True(history.GoBack());
         Assert.Equal(first, history.Current);
         Assert.Equal(first, history.ChatDestination);
-        Assert.True(history.Navigate(new(WorkspacePageId.Home, "agent:main:third")));
+        Assert.True(history.Navigate(new(WorkspacePageId.Chat, "agent:main:third")));
         Assert.False(history.CanGoForward);
         Assert.True(history.GoBack());
         Assert.Equal(first, history.Current);
@@ -658,7 +677,7 @@ public sealed class WorkspaceNavigationTests
     public void SessionHistory_IsAppliedBeforeChatInitializationWithoutIntermediateHomeRoute()
     {
         var source = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
-        Assert.Contains("Navigate(new(WorkspacePageId.Home, sessionKey))", source);
+        Assert.Contains("Navigate(new(WorkspacePageId.Chat, sessionKey))", source);
         var render = source[source.IndexOf("private void RenderDestination()", StringComparison.Ordinal)..
             source.IndexOf("private void UpdateNavigationSelection()", StringComparison.Ordinal)];
         Assert.Contains("_chat.QueueSession(sessionKey)", render);
@@ -675,74 +694,33 @@ public sealed class WorkspaceNavigationTests
     [Fact]
     public void WorkspaceNavigation_UsesCompanionNativeControlAndExistingColourfulAssets()
     {
-        var document = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
+        var doc = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
         XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
-        var navigation = Assert.Single(document.Descendants(), element => element.Name.LocalName == "NavigationView");
-        Assert.Equal("Left", (string?)navigation.Attribute("PaneDisplayMode"));
-        Assert.Equal("False", (string?)navigation.Attribute("IsSettingsVisible"));
-        var items = navigation.Descendants().Where(element => element.Name.LocalName == "NavigationViewItem" && element.Attribute("Tag") is not null).ToArray();
-        Assert.Equal("home", (string?)Assert.Single(items).Attribute("Tag"));
-        foreach (var item in items)
-        {
-            Assert.Contains(item.Descendants(), element => element.Name.LocalName == "ImageIcon");
-            Assert.True(WorkspaceNavigation.Routes.ContainsKey((string)item.Attribute("Tag")!));
-        }
-        foreach (var image in navigation.Descendants().Where(element => element.Name.LocalName == "SvgImageSource"))
+        Assert.Single(doc.Descendants(), e => e.Name.LocalName == "NavigationView");
+        foreach (var image in doc.Descendants().Where(e => e.Name.LocalName == "SvgImageSource"))
         {
             var asset = ((string)image.Attribute("UriSource")!)["ms-appx:///".Length..];
             Assert.True(File.Exists(Path.Combine(TestRepositoryPaths.GetRepositoryRoot(), "src", "OpenClaw.Tray.WinUI", asset)));
         }
-        foreach (var (name, slot) in new[]
-        {
-            ("AssistantSelector", "NavigationView.PaneHeader"),
-            ("SessionsHeader", "NavigationView.MenuItems"),
-            ("OwnerButton", "NavigationView.PaneFooter"),
-            ("NotificationsButton", "NavigationView.PaneFooter")
-        })
-        {
-            var control = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == name);
-            Assert.Contains(control.Ancestors(), element => element.Name.LocalName == slot);
-        }
-        Assert.DoesNotContain(document.Descendants(), element => (string?)element.Attribute(x + "Name") == "PinnedList");
-        Assert.Equal("False", (string?)navigation.Attribute("IsPaneToggleButtonVisible"));
-        Assert.Contains("var open = !NavView.IsPaneOpen", File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs")));
+        Assert.Contains(doc.Descendants(), e => (string?)e.Attribute(x + "Name") == "MoreButton");
+        var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
+        Assert.Contains("item.ContextFlyout = _sessionMenu.CreateFlyout(session)", code);
+        Assert.Contains("WorkspaceItemsSync.Arrange(NavView.MenuItems", code);
     }
 
     [Fact]
     public void HiddenPane_UsesZeroWidthAndReopenRowWithoutCoveringContent()
     {
-        var document = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
+        var doc = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
         XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
-        var navigation = document.Descendants().Single(element => element.Name.LocalName == "NavigationView");
+        var navigation = doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "NavView");
         Assert.Equal("0", (string?)navigation.Attribute("CompactPaneLength"));
-        var reopen = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "ReopenPaneButton");
-        Assert.Equal("Button", reopen.Name.LocalName);
-        Assert.Equal("{StaticResource SubtleButtonStyle}", (string?)reopen.Attribute("Style"));
-        Assert.Equal("Collapsed", (string?)reopen.Attribute("Visibility"));
-        var content = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "ContentHost");
-        var slot = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "ReopenPaneSlot");
-        Assert.Same(slot.Parent, content.Parent);
-        Assert.Equal("56", (string?)slot.Attribute("Height"));
-        var collapse = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "CollapsePaneButton");
-        Assert.Same(reopen.Parent, collapse.Parent);
-        Assert.Same(reopen.Parent, navigation.Parent);
-        Assert.Equal((string?)collapse.Attribute("Margin"), (string?)reopen.Attribute("Margin"));
-        Assert.Equal("2", (string?)content.Attribute("Grid.Row"));
-        Assert.DoesNotContain(document.Descendants(), element => element.Name.LocalName == "NavigationView.FooterMenuItems");
+        var toggle = doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "CollapsePaneButton");
+        Assert.Contains(toggle.Ancestors(), e => e.Name.LocalName == "TitleBar");
         var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
-        Assert.Equal("OnPaneClosed", (string?)navigation.Attribute("PaneClosed"));
-        var duration = document.Descendants().Single(element =>
-            (string?)element.Attribute(x + "Key") == "SplitViewPaneAnimationOpenDuration");
-        Assert.Equal("00:00:00.16", duration.Value);
-        Assert.DoesNotContain("DispatcherQueueTimer", code);
+        Assert.Contains("if (Destination.Page != WorkspacePageId.Chat) return;", code);
         Assert.Contains("NavView.IsPaneVisible = false", code);
-        Assert.DoesNotContain("NavigationViewPaneDisplayMode.LeftMinimal", code);
-        Assert.DoesNotContain("NavView.CompactPaneLength =", code);
-        Assert.Contains("CollapsePaneButton : ReopenPaneButton).Focus(FocusState.Programmatic)", code);
-        var toggle = code[code.IndexOf("private void OnTogglePane", StringComparison.Ordinal)..
-            code.IndexOf("private void UpdatePanePresentation", StringComparison.Ordinal)];
-        Assert.DoesNotContain("IsPaneVisible = false", toggle);
-        Assert.DoesNotContain("LeftMinimal", toggle);
+        Assert.Contains("_conversationPaneOpen", code);
     }
 
     [Fact]
@@ -752,7 +730,7 @@ public sealed class WorkspaceNavigationTests
         XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
         var background = document.Descendants().Single(element =>
             (string?)element.Attribute(x + "Key") == "NavigationViewDefaultPaneBackground");
-        Assert.Equal("NavigationViewExpandedPaneBackground", (string?)background.Attribute("ResourceKey"));
+        Assert.Equal("MorpheusSurfaceBrush", (string?)background.Attribute("ResourceKey"));
         Assert.Equal("0", document.Descendants().Single(element =>
             (string?)element.Attribute(x + "Key") == "NavigationViewBorderThickness").Value);
         var home = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "HomeItem");
@@ -769,57 +747,18 @@ public sealed class WorkspaceNavigationTests
     [Fact]
     public void WorkspaceChrome_UsesNativeTitleBarAndTwoRowNavigationWithSubtleActions()
     {
-        var document = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
+        var doc = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
         XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
-        var title = document.Descendants().Single(element => element.Name.LocalName == "TitleBar");
-        Assert.Equal("MORPHEUS", (string?)title.Attribute("Title"));
-        Assert.DoesNotContain(title.Descendants(), element => element.Name.LocalName == "Button");
-        Assert.DoesNotContain(title.Descendants(), element => element.Name.LocalName == "TextBlock");
-        foreach (var name in new[] { "BackButton", "ForwardButton" })
-        {
-            var button = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == name);
-            Assert.Contains(button.Ancestors(), element => (string?)element.Attribute(x + "Name") == "NavigationToolbar");
-            Assert.Equal("Right", (string?)button.Parent!.Attribute("HorizontalAlignment"));
-        }
-        var toolbar = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "NavigationToolbar");
-        Assert.Contains(toolbar.Ancestors(), element => element.Name.LocalName == "NavigationView.PaneHeader");
-        var toggle = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "CollapsePaneButton");
-        Assert.Equal("Left", (string?)toggle.Attribute("HorizontalAlignment"));
-        Assert.Contains(toggle.Descendants(), element => (string?)element.Attribute("Glyph") == "\uE90C");
-        var assistant = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "AssistantSelector");
-        Assert.Equal("ComboBox", assistant.Name.LocalName);
-        Assert.Equal("Transparent", (string?)assistant.Attribute("Background"));
-        Assert.Equal("0", (string?)assistant.Attribute("BorderThickness"));
-        Assert.DoesNotContain(assistant.Descendants(), element => element.Name.LocalName == "ControlTemplate");
-        Assert.Contains(assistant.Descendants(), element => (string?)element.Attribute("ResourceKey") == "SubtleFillColorSecondaryBrush");
-        Assert.Contains(assistant.Descendants(), element => (string?)element.Attribute("ResourceKey") == "SubtleFillColorTertiaryBrush");
-        var headers = document.Descendants().Where(element => element.Name.LocalName == "NavigationViewItemHeader").ToArray();
-        Assert.DoesNotContain(headers, element => (string?)element.Attribute(x + "Name") == "PagesHeader");
-        var sessions = headers.Single(element => (string?)element.Attribute(x + "Name") == "SessionsHeader");
-        Assert.Equal("home", (string?)sessions.ElementsBeforeSelf().Last().Attribute("Tag"));
-        Assert.Equal("True", (string?)sessions.Attribute("IsEnabled"));
-        Assert.Contains(sessions.Descendants(), element => element.Name.LocalName == "ContentPresenter"
-            && (string?)element.Attribute("Content") == "{TemplateBinding Content}");
-        Assert.Contains(sessions.Descendants(), element => element.Name.LocalName == "TextBlock"
-            && (string?)element.Attribute("Style") == "{StaticResource NavigationViewItemHeaderTextStyle}");
-        Assert.Contains(sessions.Descendants(), element => element.Name.LocalName == "Setter"
-            && (string?)element.Attribute("Target") == "HeaderContent.Visibility"
-            && (string?)element.Attribute("Value") == "Collapsed");
-        var newAgent = assistant.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "NewAgentOption");
-        Assert.Equal("ComboBoxItem", newAgent.Name.LocalName);
-        Assert.DoesNotContain(document.Descendants(), element => (string?)element.Attribute(x + "Name") == "NewConversationButton");
+        var title = doc.Descendants().Single(e => e.Name.LocalName == "TitleBar");
+        Assert.Contains(title.Descendants(), e => (string?)e.Attribute("Text") == "MORPHEUS");
+        foreach (var name in new[] { "CollapsePaneButton", "NotificationsButton" })
+            Assert.Contains(title.Descendants(), e => (string?)e.Attribute(x + "Name") == name);
+        foreach (var name in new[] { "BackButton", "ForwardButton", "AssistantSelector" })
+            Assert.Equal("Collapsed", (string?)doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == name).Attribute("Visibility"));
         var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
-        Assert.Contains("desiredItems.Add(NewAgentOption)", code);
-        Assert.DoesNotContain("AssistantSelector.Items.Clear()", code);
-        Assert.Contains("RestoreAssistantSelection();", code);
-        Assert.Contains("ReferenceEquals(AssistantSelector.SelectedItem, NewAgentOption)", code);
-        Assert.Contains("AsyncEventHandlerGuard.Run(NewAgentAsync", code);
-        Assert.Contains("new AgentCreationDialog", code);
-        foreach (var name in new[] { "NewSessionButton", "BackButton", "ForwardButton" })
-        {
-            var button = document.Descendants().Single(element => (string?)element.Attribute(x + "Name") == name);
-            Assert.Equal("{StaticResource SubtleButtonStyle}", (string?)button.Attribute("Style"));
-        }
+        Assert.Contains("SetTitleBar(WorkspaceTitleBar)", code);
+        Assert.Contains("OnSchedulerClick", code);
+        Assert.Contains("OpenCompanion(CompanionPageId.Cron)", code);
     }
 
     [Fact]
@@ -852,23 +791,14 @@ public sealed class WorkspaceNavigationTests
     {
         var doc = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
         XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
-        Assert.Single(doc.Descendants(), element => element.Name.LocalName == "MicaBackdrop");
-        var host = doc.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "ContentHost");
-        var layout = host.Parent!;
-        Assert.Equal("Grid", layout.Name.LocalName);
-        Assert.Equal("NavigationView", layout.Parent!.Name.LocalName);
-        foreach (var element in host.AncestorsAndSelf())
-            Assert.Null(element.Attribute("Background"));
-        Assert.Null(layout.Attribute("CornerRadius"));
-        Assert.Null(layout.Attribute("Margin"));
-        var titleBar = doc.Descendants().Single(element => element.Name.LocalName == "TitleBar");
-        Assert.Null(titleBar.Attribute("Background"));
-        Assert.DoesNotContain(doc.Descendants(), element =>
-            (string?)element.Attribute(x + "Key") == "NavigationViewContentBackground");
-
-        Assert.False(File.Exists(Source("Pages", "WorkspaceContentPage.xaml")));
-        Assert.False(File.Exists(Source("Pages", "WorkspaceContentPage.xaml.cs")));
-        Assert.False(File.Exists(Source("Controls", "WorkspacePageRenderer.cs")));
+        var host = doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "ContentHost");
+        Assert.Equal("NavigationView", host.Parent!.Parent!.Name.LocalName);
+        var home = doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "EmptyHome");
+        Assert.DoesNotContain(home.Descendants(), e => e.Name.LocalName is "Button" or "TextBox" or "TextBlock" or "ListView");
+        Assert.Contains(home.Descendants(), e => e.Name.LocalName == "SvgImageSource");
+        var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
+        Assert.Contains("_chat.SuspendSurface();", code);
+        Assert.Contains("ContentHost.Children.Contains(_chat)", code);
     }
 
     [Fact]
@@ -876,57 +806,23 @@ public sealed class WorkspaceNavigationTests
     {
         var doc = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
         XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
-        var owner = doc.Descendants().Single(node => (string?)node.Attribute(x + "Name") == "OwnerButton");
-        var bell = doc.Descendants().Single(node => (string?)node.Attribute(x + "Name") == "NotificationsButton");
-        Assert.Same(owner.Parent, bell.Parent);
-        Assert.Equal("1", (string?)bell.Attribute("Grid.Column"));
-        Assert.Null(bell.Attribute("Click"));
-        var flyout = Assert.Single(bell.Descendants(), element => element.Name.LocalName == "Flyout");
-        Assert.Equal("OnNotificationsOpening", (string?)flyout.Attribute("Opening"));
-        Assert.Equal("OnNotificationsClosed", (string?)flyout.Attribute("Closed"));
-        Assert.Single(doc.Descendants(), node => (string?)node.Attribute(x + "Name") == "NotificationsButton");
-        Assert.Equal("{StaticResource SubtleButtonStyle}", (string?)owner.Attribute("Style"));
-        Assert.Equal("{StaticResource SubtleButtonStyle}", (string?)bell.Attribute("Style"));
-        Assert.Single(owner.Descendants(), element => element.Name.LocalName == "PersonPicture");
-        var statusDot = Assert.Single(owner.Descendants(), element => element.Name.LocalName == "FontIcon");
-        Assert.Equal("OwnerStatusDot", (string?)statusDot.Attribute(x + "Name"));
-        Assert.DoesNotContain(doc.Descendants(), element => (string?)element.Attribute(x + "Key") == "WorkspaceSubtleButton");
+        var bell = doc.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "NotificationsButton");
+        Assert.Contains(bell.Ancestors(), e => e.Name.LocalName == "TitleBar");
+        Assert.Contains(bell.Descendants(), e => e.Name.LocalName == "NotificationFlyoutContent");
         var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
-        Assert.Contains("OwnerButton.Flyout = menu", code);
-        Assert.Contains("OpenCompanion(CompanionPageId.Usage)", code);
-        Assert.Contains("OpenCompanion(CompanionPageId.Channels)", code);
-        Assert.Contains("OpenCompanion(CompanionPageId.About)", code);
-        Assert.Contains("Add(\"GetApps\", () => _ = OpenLinkAsync(\"https://docs.openclaw.ai/platforms\")", code);
-        Assert.Contains("OpenLinkAsync(\"https://github.com/openclaw/openclaw-windows-node\")", code);
-        Assert.Contains("help.Items.Add(github)", code);
-        Assert.DoesNotContain("WebView", File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml")));
+        Assert.Contains("_notifications.Snapshot.ActiveNotifications.Count", code);
+        Assert.Contains("NotificationContent.Initialize(_notifications", code);
     }
 
     [Fact]
     public void OwnerFooterStatusDot_PrecedesTextAndSharesLiveThemeResources()
     {
-        var doc = XDocument.Load(Source("Windows", "WorkspaceWindow.xaml"));
-        XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
-        var dot = doc.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "OwnerStatusDot");
-        var detail = doc.Descendants().Single(element => (string?)element.Attribute(x + "Name") == "OwnerDetail");
-        Assert.Same(dot.Parent, detail.Parent);
-        Assert.Equal("4", (string?)dot.Parent!.Attribute("ColumnSpacing"));
-        Assert.Equal("1", (string?)detail.Attribute("Grid.Column"));
-        Assert.Equal("FontIcon", dot.Name.LocalName);
-        Assert.Equal("Raw", (string?)dot.Attribute("AutomationProperties.AccessibilityView"));
-        Assert.Equal("False", (string?)dot.Attribute("IsHitTestVisible"));
-        Assert.Equal("{StaticResource ConnectionBadgeNeutral}", (string?)dot.Attribute("Style"));
-        Assert.Equal("CharacterEllipsis", (string?)detail.Attribute("TextTrimming"));
         var code = File.ReadAllText(Source("Windows", "WorkspaceWindow.xaml.cs"));
-        Assert.Contains("OwnerStatusDot.Style = (Style)Root.Resources[$\"ConnectionBadge{accent}\"];", code);
-        Assert.Contains("_connectionStatusIcon.Style = (Style)Root.Resources[$\"ConnectionBadge{accent}\"];", code);
-        foreach (var accent in new[] { "Neutral", "Success", "Caution", "Critical" })
-        {
-            var style = doc.Descendants().Single(element => (string?)element.Attribute(x + "Key") == $"ConnectionBadge{accent}");
-            Assert.Contains(style.Elements(), setter =>
-                (string?)setter.Attribute("Property") == "Foreground" &&
-                (string?)setter.Attribute("Value") == $"{{ThemeResource SystemFillColor{accent}Brush}}");
-        }
+        Assert.Contains("ConnectionStatusPresenter.Pill(snapshot?.OverallState, status)", code);
+        Assert.Contains("ConnectionDot.Style", code);
+        Assert.Contains("ToolTipService.SetToolTip(ConnectionButton, label)", code);
+        Assert.Contains("_gatewayStatusFlyout.ShowAt(ConnectionButton)", code);
+        Assert.Contains("_state.PropertyChanged += OnStateChanged", code);
     }
 
     [Fact]
@@ -1144,7 +1040,7 @@ public sealed class WorkspaceNavigationTests
         foreach (var accent in new[] { "Neutral", "Success", "Caution", "Critical" })
         {
             var style = document.Descendants().Single(element => (string?)element.Attribute(x + "Key") == $"ConnectionBadge{accent}");
-            Assert.Equal($"{{ThemeResource SystemFillColor{accent}Brush}}",
+            Assert.Equal(accent switch { "Success" => "{ThemeResource MorpheusHealthyBrush}", "Caution" => "{ThemeResource MorpheusWarningBrush}", "Critical" => "{ThemeResource MorpheusCriticalBrush}", _ => $"{{ThemeResource SystemFillColor{accent}Brush}}" },
                 (string?)Assert.Single(style.Elements()).Attribute("Value"));
         }
         var badge = XDocument.Load(Source("Controls", "AgentIdentityBadge.xaml"));

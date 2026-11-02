@@ -29,24 +29,18 @@ internal static class ReactorChatWelcome
     ];
 
     internal static Element Header(WorkspaceAgent agent, double viewportWidth) =>
-        VStack(8,
-            NativeChatWelcomeAvatarElement.NativeChatWelcomeAvatar()
-                .Set(avatar => avatar.Update(agent, ChatVisuals.WelcomeAvatarSize(viewportWidth)))
-                .Size(ChatVisuals.WelcomeAvatarSize(viewportWidth), ChatVisuals.WelcomeAvatarSize(viewportWidth))
-                .HAlign(HorizontalAlignment.Center).Margin(0, 0, 0, 8)
-                .AccessibilityView(AccessibilityView.Raw)
-                .AutomationId("ChatWelcomeAvatar"),
-            TextBlock(agent.Name)
-                .FontSize(24).FontWeight(FontWeights.SemiBold)
-                .TextWrapping(TextWrapping.Wrap)
+        VStack(12,
+            Image("ms-appx:///Assets/Morpheus/conversation-ring.svg").Set(image => image.Source = new Microsoft.UI.Xaml.Media.Imaging.SvgImageSource(
+                new Uri("ms-appx:///Assets/Morpheus/conversation-ring.svg")))
+                .Size(200, 200).HAlign(HorizontalAlignment.Center)
+                .AccessibilityView(AccessibilityView.Raw),
+            TextBlock("M O R P H E U S").FontSize(32)
                 .TextAlignment(TextAlignment.Center).HAlign(HorizontalAlignment.Stretch)
                 .AutomationId("ChatWelcomeAgent"),
-            TextBlock(LocalizationHelper.GetString("Chat_ZeroState_WelcomeSubtitle"))
+            TextBlock(LocalizationHelper.GetString("MorpheusStartConversation"))
                 .FontSize(14).Foreground(Theme.Ref("ChatSecondaryTextBrush"))
-                .TextWrapping(TextWrapping.Wrap)
                 .TextAlignment(TextAlignment.Center).HAlign(HorizontalAlignment.Stretch)
                 .AutomationId("ChatWelcomeHint"))
-            .Margin(0, 0, 0, 16)
             .HAlign(HorizontalAlignment.Stretch);
 
     internal static Element Secondary(

@@ -1,0 +1,5 @@
+Test run for /workspace/MORPHEUS/components/windows/tests/OpenClaw.Shared.Tests/bin/Debug/net10.0/OpenClaw.Shared.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: /workspace/MORPHEUS/components/windows/tests/OpenClaw.Shared.Tests/TestResults/phase4-shared-scoped.trx
+
+Passed!  - Failed:     0, Passed:   148, Skipped:     0, Total:   148, Duration: 461 ms - OpenClaw.Shared.Tests.dll (net10.0)

@@ -7,37 +7,83 @@
     xmlns:winex="using:WinUIEx"
     MinWidth="800" MinHeight="560">
     <Window.SystemBackdrop><MicaBackdrop/></Window.SystemBackdrop>
-    <Grid x:Name="Root" PreviewKeyDown="OnKeyDown">
+    <Grid x:Name="Root" RequestedTheme="Dark" Background="{ThemeResource MorpheusBackgroundBrush}" PreviewKeyDown="OnKeyDown">
         <Grid.Resources>
+            <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries><ResourceDictionary Source="ms-appx:///Themes/MorpheusResources.xaml"/></ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="AgentIdentityTemplate">
                 <controls:AgentIdentityBadge/>
             </DataTemplate>
             <Style x:Key="ConnectionBadgeIcon" TargetType="FontIcon">
                 <Setter Property="Glyph" Value="&#xE91F;"/>
-                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="FontSize" Value="24"/>
             </Style>
             <Style x:Key="ConnectionBadgeNeutral" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
                 <Setter Property="Foreground" Value="{ThemeResource SystemFillColorNeutralBrush}"/>
             </Style>
             <Style x:Key="ConnectionBadgeSuccess" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
-                <Setter Property="Foreground" Value="{ThemeResource SystemFillColorSuccessBrush}"/>
+                <Setter Property="Foreground" Value="{ThemeResource MorpheusHealthyBrush}"/>
             </Style>
             <Style x:Key="ConnectionBadgeCaution" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
-                <Setter Property="Foreground" Value="{ThemeResource SystemFillColorCautionBrush}"/>
+                <Setter Property="Foreground" Value="{ThemeResource MorpheusWarningBrush}"/>
             </Style>
             <Style x:Key="ConnectionBadgeCritical" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
-                <Setter Property="Foreground" Value="{ThemeResource SystemFillColorCriticalBrush}"/>
+                <Setter Property="Foreground" Value="{ThemeResource MorpheusCriticalBrush}"/>
             </Style>
+                    </ResourceDictionary>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TitleBar x:Name="WorkspaceTitleBar" Title="MORPHEUS" AutomationProperties.AutomationId="WorkspaceTitleBar"/>
-        <Grid x:Name="NavigationSection" Grid.Row="1">
-        <NavigationView x:Name="NavView"
+        <TitleBar x:Name="WorkspaceTitleBar" Height="62" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
+            <TitleBar.Content><StackPanel Orientation="Horizontal" Spacing="12">
+                <Image Width="38" Height="38"><Image.Source><SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg"/></Image.Source></Image>
+                <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}"/>
+        <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
+                AutomationProperties.AutomationId="WorkspaceTogglePane"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0"
+                Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+            <FontIcon Glyph="&#xE90C;" FontSize="16"/>
+        </Button>                    <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton"
+                            Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}"
+                            CornerRadius="{ThemeResource ControlCornerRadius}"
+                            Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center"
+                            AutomationProperties.AutomationId="WorkspaceNotifications">
+                        <Grid>
+                            <FontIcon Glyph="&#xE7F4;" FontSize="22"
+                                       AutomationProperties.AccessibilityView="Raw"/>
+                            <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed"
+                                       HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0"/>
+                        </Grid>
+                        <Button.Flyout>
+                            <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft"
+                                    Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+                                <controls:NotificationFlyoutContent x:Name="NotificationContent"/>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button></StackPanel></TitleBar.Content></TitleBar>
+        <Grid x:Name="NavigationSection" Grid.Row="1" Margin="10,4,10,10" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="94"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+        <Grid Padding="12,24,12,18" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
+            <StackPanel Spacing="16">
+                <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE80F;"/></Button>
+                <Button x:Name="ChatRailButton" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE8F2;"/></Button>
+                <Button x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE823;"/></Button>
+                <Button x:Name="MoreButton" x:Uid="MorpheusMore" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE712;"/></Button>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" Spacing="12">
+                <Border Height="1" Margin="8,0,8,8" Background="{ThemeResource MorpheusBorderBrush}"/>
+                <Button x:Name="ConnectionButton" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}"><FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/></Button>
+                <Button x:Name="SettingsRailButton" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE713;"/></Button>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><Image Stretch="Fill" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw"><Image.Source><SvgImageSource UriSource="ms-appx:///Assets/Morpheus/canvas-lighting.svg"/></Image.Source></Image></Grid>
+
+        <NavigationView x:Name="NavView" Grid.Column="1"
                         AutomationProperties.AutomationId="WorkspaceNavigation"
-                        PaneDisplayMode="Left" OpenPaneLength="256" CompactPaneLength="0"
+                        PaneDisplayMode="Left" OpenPaneLength="344" CompactPaneLength="0"
                         IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                         IsPaneToggleButtonVisible="False" IsPaneOpen="True"
                         PaneClosed="OnPaneClosed"
@@ -46,7 +92,7 @@
                 <x:String x:Key="SplitViewPaneAnimationOpenDuration">00:00:00.16</x:String>
                 <x:String x:Key="SplitViewPaneAnimationOpenPreDuration">00:00:00.15999</x:String>
                 <x:String x:Key="SplitViewPaneAnimationCloseDuration">00:00:00.16</x:String>
-                <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="NavigationViewExpandedPaneBackground"/>
+                <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="MorpheusSurfaceBrush"/>
                 <Thickness x:Key="NavigationViewBorderThickness">0</Thickness>
                 <Thickness x:Key="NavigationViewPaneContentGridMargin">0</Thickness>
                 <x:Double x:Key="NavigationViewItemOnLeftIconBoxHeight">22</x:Double>
@@ -56,52 +102,24 @@
             </NavigationView.Resources>
             <NavigationView.PaneHeader>
                 <StackPanel Margin="4,8,4,8" Spacing="8">
-                    <Grid x:Name="NavigationToolbar" Height="40">
+                    <Grid x:Name="NavigationToolbar" Visibility="Collapsed" Height="0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
-                            <Button x:Name="BackButton" x:Uid="NavBackButton" Click="OnBack"
+                            <Button Visibility="Collapsed" x:Name="BackButton" x:Uid="NavBackButton" Click="OnBack"
                                     Height="40"
                                     Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceBack"
                                     IsEnabled="False">
                                 <FontIcon Glyph="&#xE76B;" FontSize="16"/>
                             </Button>
-                            <Button x:Name="ForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward"
+                            <Button Visibility="Collapsed" x:Name="ForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward"
                                     Height="40"
                                     Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceForward"
                                     IsEnabled="False">
                                 <FontIcon Glyph="&#xE76C;" FontSize="16"/>
                             </Button>
-                            <Button x:Name="WorkspaceSearchButton" Height="40"
-                                    Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSearch">
-                                <FontIcon Glyph="&#xE721;" FontSize="16"/>
-                                <Button.Flyout>
-                                    <Flyout x:Name="WorkspaceSearchFlyout" Placement="BottomEdgeAlignedLeft"
-                                            Opening="OnWorkspaceSearchOpening" Opened="OnWorkspaceSearchOpened">
-                                        <AutoSuggestBox x:Name="WorkspaceSearchBox"
-                                                        AutomationProperties.AutomationId="WorkspaceSearchBox"
-                                                        QueryIcon="Find" TextMemberPath="Title" Width="320"
-                                                        PreviewKeyDown="OnWorkspaceSearchKeyDown"
-                                                        TextChanged="OnWorkspaceSearchTextChanged"
-                                                        SuggestionChosen="OnWorkspaceSearchSuggestionChosen"
-                                                        QuerySubmitted="OnWorkspaceSearchQuerySubmitted">
-                                            <AutoSuggestBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal" Spacing="8" Padding="4">
-                                                        <TextBlock Text="{Binding Icon}" FontSize="14" VerticalAlignment="Center"/>
-                                                        <StackPanel>
-                                                            <TextBlock Text="{Binding Title}" Style="{StaticResource BodyTextBlockStyle}"/>
-                                                            <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}"
-                                                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                                                        </StackPanel>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </AutoSuggestBox.ItemTemplate>
-                                        </AutoSuggestBox>
-                                    </Flyout>
-                                </Button.Flyout>
-                            </Button>
+
                         </StackPanel>
                     </Grid>
-                    <ComboBox x:Name="AssistantSelector" x:Uid="WorkspaceShell_Assistant"
+                    <ComboBox Visibility="Collapsed" x:Name="AssistantSelector" x:Uid="WorkspaceShell_Assistant"
                               Padding="4,8,28,8"
                               HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="OnAssistantChanged"
                               Background="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}"
@@ -123,7 +141,7 @@
                 </StackPanel>
             </NavigationView.PaneHeader>
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="HomeItem" Tag="home" Padding="0" AutomationProperties.AutomationId="WorkspaceNavHome">
+                <NavigationViewItem Visibility="Collapsed" x:Name="HomeItem" Tag="home" Padding="0" AutomationProperties.AutomationId="WorkspaceNavHome">
                     <NavigationViewItem.Resources>
                         <Thickness x:Key="NavigationViewItemContentPresenterMargin">0,-1,8,-1</Thickness>
                     </NavigationViewItem.Resources>
@@ -160,10 +178,39 @@
                         </ControlTemplate>
                     </NavigationViewItemHeader.Template>
                     <Grid ColumnSpacing="8">
-                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                        <TextBlock x:Uid="WorkspaceShell_SessionsLabel" Text="Sessions" VerticalAlignment="Center"
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBlock x:Uid="MorpheusChats" FontSize="28" Text="Chats" VerticalAlignment="Center"
                                    Style="{StaticResource NavigationViewItemHeaderTextStyle}"/>
-                        <Button x:Name="NewSessionButton" x:Uid="WorkspaceShell_NewConversation" Grid.Column="1" Click="OnNewConversation"
+                                                    <Button x:Name="WorkspaceSearchButton" Grid.Column="1" Height="40"
+                                    Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSearch">
+                                <FontIcon Glyph="&#xE721;" FontSize="16"/>
+                                <Button.Flyout>
+                                    <Flyout x:Name="WorkspaceSearchFlyout" Placement="BottomEdgeAlignedLeft"
+                                            Opening="OnWorkspaceSearchOpening" Opened="OnWorkspaceSearchOpened">
+                                        <AutoSuggestBox x:Name="WorkspaceSearchBox"
+                                                        AutomationProperties.AutomationId="WorkspaceSearchBox"
+                                                        QueryIcon="Find" TextMemberPath="Title" Width="320"
+                                                        PreviewKeyDown="OnWorkspaceSearchKeyDown"
+                                                        TextChanged="OnWorkspaceSearchTextChanged"
+                                                        SuggestionChosen="OnWorkspaceSearchSuggestionChosen"
+                                                        QuerySubmitted="OnWorkspaceSearchQuerySubmitted">
+                                            <AutoSuggestBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Spacing="8" Padding="4">
+                                                        <TextBlock Text="{Binding Icon}" FontSize="14" VerticalAlignment="Center"/>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Title}" Style="{StaticResource BodyTextBlockStyle}"/>
+                                                            <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}"
+                                                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </AutoSuggestBox.ItemTemplate>
+                                        </AutoSuggestBox>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+                        <Button x:Name="NewSessionButton" x:Uid="WorkspaceShell_NewConversation" Grid.Column="2" Click="OnNewConversation"
                                 Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}"
                                 CornerRadius="{ThemeResource ControlCornerRadius}"
                                 Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSessionsAdd">
@@ -174,7 +221,7 @@
                 <NavigationViewItemHeader x:Name="SessionsEmpty" FontWeight="Normal"/>
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
-                <Grid x:Name="ExpandedFooter" ColumnSpacing="4" Margin="4,8,4,8">
+                <Grid Visibility="Collapsed" x:Name="ExpandedFooter" ColumnSpacing="4" Margin="4,8,4,8">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                     <Button x:Name="OwnerButton" Style="{StaticResource SubtleButtonStyle}" Padding="8" HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Stretch" AutomationProperties.AutomationId="WorkspaceOwner">
@@ -195,24 +242,7 @@
                             </StackPanel>
                         </Grid>
                     </Button>
-                    <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Grid.Column="1"
-                            Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}"
-                            CornerRadius="{ThemeResource ControlCornerRadius}"
-                            Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center"
-                            AutomationProperties.AutomationId="WorkspaceNotifications">
-                        <Grid>
-                            <ImageIcon Source="{StaticResource Notifications_Icon}" Width="20" Height="20"
-                                       AutomationProperties.AccessibilityView="Raw"/>
-                            <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed"
-                                       HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0"/>
-                        </Grid>
-                        <Button.Flyout>
-                            <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft"
-                                    Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
-                                <controls:NotificationFlyoutContent x:Name="NotificationContent"/>
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
+
                 </Grid>
             </NavigationView.PaneFooter>
             <Grid>
@@ -223,15 +253,10 @@
                 </Grid.RowDefinitions>
                 <Grid x:Name="ReopenPaneSlot" Height="56" Visibility="Collapsed"/>
                 <InfoBar x:Name="OperationInfo" Grid.Row="1" IsOpen="False" IsClosable="True" Severity="Error"/>
-                <Grid x:Name="ContentHost" Grid.Row="2" AutomationProperties.AutomationId="WorkspaceContent"/>
+                <Grid x:Name="ContentHost" Grid.Row="2" Margin="12,14,12,14" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusBorderBrush}" AutomationProperties.AutomationId="WorkspaceContent"/>
             </Grid>
         </NavigationView>
-        <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
-                AutomationProperties.AutomationId="WorkspaceTogglePane"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,8,0,0"
-                Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
-            <FontIcon Glyph="&#xE90C;" FontSize="16"/>
-        </Button>
+
         <Button x:Name="ReopenPaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
                 AutomationProperties.AutomationId="WorkspaceReopenPane"
                 Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,8,0,0"

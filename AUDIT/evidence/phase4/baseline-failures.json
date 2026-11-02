@@ -1,0 +1,31 @@
+{
+  "source_commit": "e127aa55ccb641e2333cd156078b687be4f6fb3a",
+  "baseline_failure_names": [
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.ConcurrentNativeActivation_DoesNotQueueAnotherLaunch",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.DuplicateBusyActivationCannotCloseTheAdmittedPresentation",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: False)",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: True)",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Channels, persistedValue: 3, page: \"channels\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Chat, persistedValue: 0, page: \"chat\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Skills, persistedValue: 4, page: \"skills\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Telegram, persistedValue: 2, page: \"channels\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: WhatsApp, persistedValue: 1, page: \"channels\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.PreparationConsumesOnlyAfterFreshReadyMountAndNeverOpensAFabricatedDestination",
+    "OpenClaw.Tray.Tests.WindowManagerTests.NativeLocalAiSettingsEntry_BindsRouteBeforeWizardAndPreservesExistingChoices"
+  ],
+  "focused_failure_names": [
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.ConcurrentNativeActivation_DoesNotQueueAnotherLaunch",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.DuplicateBusyActivationCannotCloseTheAdmittedPresentation",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: False)",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: True)",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Channels, persistedValue: 3, page: \"channels\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Chat, persistedValue: 0, page: \"chat\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Skills, persistedValue: 4, page: \"skills\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Telegram, persistedValue: 2, page: \"channels\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: WhatsApp, persistedValue: 1, page: \"channels\")",
+    "OpenClaw.Tray.Tests.SetupNativeHandoffTests.PreparationConsumesOnlyAfterFreshReadyMountAndNeverOpensAFabricatedDestination"
+  ],
+  "focused_failures_reproduced_on_baseline": true
+}

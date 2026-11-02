@@ -1198,3 +1198,25 @@ The design files are the source of truth for design, and are framework-agnostic.
 - Both port targets build and package through **[winapp (WinAppCli)](https://github.com/microsoft/WinAppCli)**, the Windows App Development CLI, which also generates app identity, manifests, and certificates.
 
 Colors are preview swatches: bind their mapped `resource` keys rather than hard-coding hex values. Preserve the light, dark, and high-contrast mappings. The shipping implementation is canonical; component patterns are not shipping code. When you need a value the design doesn't cover, add it here first, then port it into the native/Reactor implementation via the matching reference above.
+
+
+## MORPHEUS workspace, Phase 4
+
+The approved MORPHEUS references override the upstream Fluent palette for the
+main workspace. `ui/shared/tokens.json` at the MORPHEUS repository root is the
+portable workspace palette and geometry source. `scripts/generate-ui-theme.py`
+generates browser CSS and native MorpheusResources.xaml; run `--check` to detect
+drift. Existing native templates retain keyboard, focus and high-contrast
+behavior. Settings keeps its complete native presentation.
+
+The shared shell has a 62-DIP title bar, 94-DIP rail and 344-DIP conversation
+sidebar. Deep purple canvas, near-black surface, thin purple border and soft
+accent lighting follow the corrected Home reference. Home contains background
+art only. Chat uses the shared ring/crescent SVG in its empty state. Assets are
+real vectors, never reference screenshots used as clickable backgrounds.
+
+The neutral `Assets/Morpheus/logo-slot.svg` is replaceable; it is not an approved
+new logo. Supply the approved standalone asset before final brand acceptance.
+Native chat keeps its existing model, reasoning, placement and permission
+controls for functional preservation; this adds options beyond the minimal
+reference composer. Native pixel proof remains required on Windows.

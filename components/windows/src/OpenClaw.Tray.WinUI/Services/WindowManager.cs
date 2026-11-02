@@ -50,6 +50,7 @@ internal sealed class WindowManager : IWindowManager
     private readonly WindowManagerCallbacks _callbacks;
     private Window? _keepAliveWindow;
     private WorkspaceWindow? _workspaceWindow;
+    private WorkspaceWindow? _settingsWorkspaceWindow;
     private Window? _lastActiveMainWindow;
     private ConnectionStatusWindow? _connectionStatusWindow;
     private SetupWindow? _setupWindow;
@@ -73,12 +74,13 @@ internal sealed class WindowManager : IWindowManager
         _callbacks = callbacks;
     }
 
-    // Member names keep the historical "Hub" prefix; the surface they describe is the single
-    // Workspace window, which hosts chat and Settings.
+    // Historical Hub names cover the primary workspace and separate full Settings host.
+    // Conversation identity and voice routing always belong to the primary workspace.
     public Window? ActiveHubWindow =>
         _isShuttingDown ? null :
             _lastActiveMainWindow is WorkspaceWindow { IsClosed: false } workspace ? workspace :
-            _workspaceWindow is { IsClosed: false } ? _workspaceWindow : null;
+            _workspaceWindow is { IsClosed: false } ? _workspaceWindow :
+            _settingsWorkspaceWindow is { IsClosed: false } ? _settingsWorkspaceWindow : null;
 
     public bool IsHubOpen => !_isShuttingDown && _workspaceWindow is { IsClosed: false };
 
@@ -212,7 +214,9 @@ internal sealed class WindowManager : IWindowManager
         else
             ShowWorkspace(WorkspaceDestination.Settings("settings"), activate: false, preserveCurrent: false, nativeRequest: request,
                 settingsTag: request.PageTag);
-        if (_workspaceWindow is not { } workspace)
+        var target = request.WorkspaceDestination is { Page: not WorkspacePageId.Settings }
+            ? _workspaceWindow : _settingsWorkspaceWindow;
+        if (target is not { } workspace)
             throw new InvalidOperationException("The native window is unavailable.");
         await workspace.WaitForNativeSetupAsync(request, ct);
         window = workspace;
@@ -457,6 +461,11 @@ internal sealed class WindowManager : IWindowManager
         WorkspaceDestination destination, bool activate, bool preserveCurrent,
         SetupNativeNavigationRequest? nativeRequest = null, string? settingsTag = null)
     {
+        if (destination.Page == WorkspacePageId.Settings)
+        {
+            ShowSeparateSettings(settingsTag ?? destination.CompanionTag ?? "settings", nativeRequest, activate);
+            return;
+        }
         if (_workspaceWindow is null || _workspaceWindow.IsClosed)
         {
             if (_callbacks.GetAppState() is not { } state ||
@@ -466,7 +475,7 @@ internal sealed class WindowManager : IWindowManager
                 return;
             }
 
-            _workspaceWindow = new WorkspaceWindow(state, notifications, ShowConnectionStatus);
+            _workspaceWindow = new WorkspaceWindow(state, notifications, ShowConnectionStatus, tag => ShowSeparateSettings(tag));
             _callbacks.ApplyTheme(_workspaceWindow);
             _workspaceWindow.SettingsSaved += OnWorkspaceSettingsSaved;
             _workspaceWindow.Closed += OnWorkspaceClosed;
@@ -484,7 +493,7 @@ internal sealed class WindowManager : IWindowManager
         }
         else if (!preserveCurrent)
         {
-            if (destination.Page == WorkspacePageId.Home &&
+            if (destination.Page == WorkspacePageId.Chat &&
                 _callbacks.GetPendingChatSessionKey() is { Length: > 0 } sessionKey)
                 _workspaceWindow.SelectSession(sessionKey);
             else
@@ -504,6 +513,46 @@ internal sealed class WindowManager : IWindowManager
             _workspaceWindow.AppWindow.Show(activateWindow: false);
     }
 
+    private void ShowSeparateSettings(string tag, SetupNativeNavigationRequest? nativeRequest = null, bool activate = true)
+    {
+        if (_isShuttingDown) return;
+        if (tag == "command-center" && nativeRequest is null)
+        {
+            ShowWorkspace(new(WorkspacePageId.Home), activate, preserveCurrent: true);
+            _workspaceWindow?.OpenCommandCenter();
+            return;
+        }
+        if (_settingsWorkspaceWindow is null || _settingsWorkspaceWindow.IsClosed)
+        {
+            if (_callbacks.GetAppState() is not { } state ||
+                _callbacks.GetAppNotificationService() is not { } notifications) return;
+            _settingsWorkspaceWindow = new WorkspaceWindow(state, notifications, ShowConnectionStatus, openWorkspaceRoute: destination => ShowWorkspace(destination, activate: true, preserveCurrent: false));
+            _callbacks.ApplyTheme(_settingsWorkspaceWindow);
+            _settingsWorkspaceWindow.SettingsSaved += OnWorkspaceSettingsSaved;
+            _settingsWorkspaceWindow.Activated += OnMainWindowActivated;
+            _settingsWorkspaceWindow.Closed += (sender, _) =>
+            {
+                if (sender is WorkspaceWindow window)
+                {
+                    window.SettingsSaved -= OnWorkspaceSettingsSaved;
+                    window.Activated -= OnMainWindowActivated;
+                }
+                if (ReferenceEquals(sender, _lastActiveMainWindow)) _lastActiveMainWindow = null;
+                if (ReferenceEquals(sender, _settingsWorkspaceWindow)) _settingsWorkspaceWindow = null;
+            };
+        }
+        if (nativeRequest is not null) _settingsWorkspaceWindow.NavigateNativeSetup(nativeRequest);
+        else _settingsWorkspaceWindow.OpenSettings(tag);
+        if (_settingsWorkspaceWindow.AppWindow.Presenter is Microsoft.UI.Windowing.OverlappedPresenter presenter &&
+            presenter.State == Microsoft.UI.Windowing.OverlappedPresenterState.Minimized) presenter.Restore();
+        if (activate)
+        {
+            _lastActiveMainWindow = _settingsWorkspaceWindow;
+            _settingsWorkspaceWindow.Activate();
+        }
+        else _settingsWorkspaceWindow.AppWindow.Show(activateWindow: false);
+    }
+
     private void OnWorkspaceSettingsSaved(object? sender, EventArgs e) => _callbacks.SettingsSaved(sender, e);
 
     private void OnWorkspaceClosed(object sender, WindowEventArgs args)
@@ -519,7 +568,7 @@ internal sealed class WindowManager : IWindowManager
         if (ReferenceEquals(sender, _workspaceWindow))
         {
             _workspaceWindow = null;
-            ResetNavigationScope();
+            if (_settingsWorkspaceWindow is null || _settingsWorkspaceWindow.IsClosed) ResetNavigationScope();
         }
     }
 
@@ -954,6 +1003,9 @@ internal sealed class WindowManager : IWindowManager
 
         _callbacks.ApplyTheme(_keepAliveWindow);
         _callbacks.ApplyTheme(_workspaceWindow);
+        _workspaceWindow?.ApplyWorkspaceTheme();
+        _callbacks.ApplyTheme(_settingsWorkspaceWindow);
+        _settingsWorkspaceWindow?.ApplyWorkspaceTheme();
         _callbacks.ApplyTheme(_connectionStatusWindow);
         _callbacks.ApplyTheme(_setupWindow);
         _callbacks.ApplyTheme(_readyWindow);
@@ -967,6 +1019,7 @@ internal sealed class WindowManager : IWindowManager
         if (!_isShuttingDown)
         {
             _workspaceWindow?.UpdateConnectionStatus(snapshot, status);
+            _settingsWorkspaceWindow?.UpdateConnectionStatus(snapshot, status);
         }
     }
 
@@ -975,6 +1028,7 @@ internal sealed class WindowManager : IWindowManager
         if (!_isShuttingDown)
         {
             _workspaceWindow?.SettingsView?.RefreshDiagnosticsNavVisibility();
+            _settingsWorkspaceWindow?.SettingsView?.RefreshDiagnosticsNavVisibility();
         }
     }
 
@@ -1016,6 +1070,8 @@ internal sealed class WindowManager : IWindowManager
     private async Task CloseOwnedWindowsAsync()
     {
         List<Exception>? failures = null;
+        TryClose("Settings window", () => _settingsWorkspaceWindow?.Close(), ref failures);
+        _settingsWorkspaceWindow = null;
 
         if (_workspaceWindow is not null)
         {

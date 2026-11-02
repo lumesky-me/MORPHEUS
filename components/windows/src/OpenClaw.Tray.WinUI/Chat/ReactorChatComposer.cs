@@ -776,11 +776,6 @@ internal sealed class ReactorChatComposer : Component<ReactorChatComposerViewPro
         var surfaces = new List<Element>();
         var agentId = inputs.CurrentThread.AgentId;
         var catalog = placement?.State.Catalog;
-        surfaces.Add(inputs.ShowPlacementPickers
-            ? ReactorChatWelcome.Header(
-                ChatWelcomePresentation.AgentIdentity(catalog, agentId),
-                viewportWidth)
-            : Empty());
         if (inputs.ShowPlacementPickers && placement is not null)
         {
             Element LocationPicker(bool environment)

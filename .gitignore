@@ -22,3 +22,9 @@ __pycache__/
 .cache/
 .DS_Store
 Thumbs.db
+
+# Phase 4 static preview export (source and curated evidence stay tracked)
+/artifacts/ui-preview/
+
+# Native tooling local cache
+**/.mono/

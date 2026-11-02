@@ -6,16 +6,18 @@ presentation follows the reading rhythm of the published 2026.9.4 web chat
 replacing Windows chrome, native input, or gateway contracts.
 The question dock geometry and working claw motion additionally follow the
 October 2026 Control UI at `db2d951fd047a9e6a03b73d41c8e5757506dedf9`.
-Backplates and accents stay native: WinUI owns the surfaces and Windows supplies
-the accent color, rather than the web client's orange/red palette.
+MORPHEUS Phase 4 scopes a purple palette to the workspace through generated
+MorpheusResources.xaml aliases. Native templates and explicit high-contrast
+resources remain in place. See DESIGN.md and the root UI_PREVIEW.md for the
+shared-token approach and native proof limitations.
 This source-derived presentation does not imply pixel-identical macOS text
 rasterization, a copied user avatar or the web client's personalized background.
 
 ## Geometry and typography
 
-`ChatVisuals` owns the shared geometry. The reading surface is capped at 768
+`ChatVisuals` owns the shared geometry. The reading surface is capped at 1100
 pixels. Transcript prose is inset 16 pixels from the aligned composer edge.
-Outer gutters are 12 pixels below 640 pixels and 40 pixels above it. The native
+Outer gutters are 12 pixels below 640 pixels and 20 pixels above it. The native
 annotated rail overlays only the unused right gutter, leaving transcript and
 composer centered on the viewport, including while the rail is focused.
 The avatar is omitted below 960 pixels; at wider sizes its balanced side slots

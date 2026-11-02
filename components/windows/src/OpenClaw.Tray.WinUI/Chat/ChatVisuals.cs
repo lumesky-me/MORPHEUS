@@ -10,7 +10,7 @@ namespace OpenClawTray.Chat;
 /// <summary>Shared native chat geometry. See docs/CHAT_VISUAL_DESIGN.md.</summary>
 internal static class ChatVisuals
 {
-    internal const double ReadingWidth = 768;
+    internal const double ReadingWidth = 1100;
     internal const double ProseInset = 16;
     internal const double ComposerRadius = 20;
     internal const double SurfaceRadius = 12;
@@ -28,7 +28,7 @@ internal static class ChatVisuals
     internal const double AvatarSlot = 44;
 
     internal static double WelcomeAvatarSize(double width) => width <= 768 ? 64 : 96;
-    internal static double Gutter(double width) => width < FooterBreakpoint ? 12 : 40;
+    internal static double Gutter(double width) => width < FooterBreakpoint ? 12 : 20;
     internal static double RailWidth(double width) => width < FooterBreakpoint ? 24 : 32;
     internal static double ProseWidth(double width) =>
         Math.Min(ReadingWidth - 2 * ProseInset, width - 2 * (Gutter(width) + ProseInset));

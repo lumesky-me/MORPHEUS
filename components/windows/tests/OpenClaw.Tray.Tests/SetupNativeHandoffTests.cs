@@ -570,7 +570,7 @@ public sealed class SetupNativeHandoffTests
         {
             binding.Invalidate();
             var key = await created.Task;
-            history.Navigate(new(WorkspacePageId.Home, key));
+            history.Navigate(new(WorkspacePageId.Chat, key));
         }
 
         var creation = CreateSessionAsync();
@@ -657,14 +657,14 @@ public sealed class SetupNativeHandoffTests
         var request = new SetupNativeNavigationRequest(choice);
         if (destination == SetupNativeDestination.Chat)
         {
-            Assert.Equal(new WorkspaceDestination(WorkspacePageId.Home, choice.Target.SessionKey), request.WorkspaceDestination);
+            Assert.Equal(new WorkspaceDestination(WorkspacePageId.Chat, choice.Target.SessionKey), request.WorkspaceDestination);
             request.RequireWorkspaceDestination(request.WorkspaceDestination!);
         }
         else
         {
             Assert.Null(request.WorkspaceDestination);
             Assert.Throws<SetupNativeOwnershipException>(() =>
-                request.RequireWorkspaceDestination(new(WorkspacePageId.Home, choice.Target.SessionKey)));
+                request.RequireWorkspaceDestination(new(WorkspacePageId.Chat, choice.Target.SessionKey)));
         }
         var handle = store.Issue(choice);
         Assert.NotNull(SetupDashboardHandoff.ParseHandle(handle));
@@ -689,7 +689,7 @@ public sealed class SetupNativeHandoffTests
         history.Navigate(request.WorkspaceDestination!);
         request.RequireWorkspaceDestination(history.Current);
         history.Navigate(differentSession
-            ? new(WorkspacePageId.Home, "agent:primary:other")
+            ? new(WorkspacePageId.Chat, "agent:primary:other")
             : new(WorkspacePageId.Notifications));
         Assert.Throws<SetupNativeOwnershipException>(() => request.RequireWorkspaceDestination(history.Current));
         Assert.True(history.GoBack());

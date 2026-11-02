@@ -1,0 +1,115 @@
+  OpenClaw.Shared -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Shared/bin/Debug/net10.0/OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.TestSupport/bin/Debug/net10.0/OpenClaw.TestSupport.dll
+  OpenClaw.Connection -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Connection/bin/Debug/net10.0/OpenClaw.Connection.dll
+  OpenClaw.Tray.Tests -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll
+Test run for /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:01.61]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.PreparationConsumesOnlyAfterFreshReadyMountAndNeverOpensAFabricatedDestination [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.PreparationConsumesOnlyAfterFreshReadyMountAndNeverOpensAFabricatedDestination [6 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.PreparationConsumesOnlyAfterFreshReadyMountAndNeverOpensAFabricatedDestination() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 364
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:01.63]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.DuplicateBusyActivationCannotCloseTheAdmittedPresentation [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.DuplicateBusyActivationCannotCloseTheAdmittedPresentation [2 ms]
+  Error Message:
+   System.Exception : No failure expected
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.<>c.<DuplicateBusyActivationCannotCloseTheAdmittedPresentation>b__3_3(SetupNativeLaunchFailure _) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 138
+   at OpenClawTray.Services.SetupNativeHandoffLauncher.OpenAsync(SetupDashboardHandoffStore store, String handle, Boolean explicitRetry, CancellationToken ct, NativeRestartRecoveryStore restartRecovery) in /workspace/MORPHEUS/components/windows/src/OpenClaw.Tray.WinUI/Services/SetupNativeHandoffLauncher.cs:line 160
+   at OpenClaw.Tray.Tests.SetupNativeHandoffTests.DuplicateBusyActivationCannotCloseTheAdmittedPresentation() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 144
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:01.64]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Channels, persistedValue: 3, page: "channels") [FAIL]
+[xUnit.net 00:00:01.64]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Skills, persistedValue: 4, page: "skills") [FAIL]
+[xUnit.net 00:00:01.64]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Chat, persistedValue: 0, page: "chat") [FAIL]
+[xUnit.net 00:00:01.64]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Telegram, persistedValue: 2, page: "channels") [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Channels, persistedValue: 3, page: "channels") [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(SetupNativeDestination destination, Int32 persistedValue, String page) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 676
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Skills, persistedValue: 4, page: "skills") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(SetupNativeDestination destination, Int32 persistedValue, String page) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 676
+   at InvokeStub_SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Chat, persistedValue: 0, page: "chat") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(SetupNativeDestination destination, Int32 persistedValue, String page) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 676
+   at InvokeStub_SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: Telegram, persistedValue: 2, page: "channels") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(SetupNativeDestination destination, Int32 persistedValue, String page) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 676
+   at InvokeStub_SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.64]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: WhatsApp, persistedValue: 1, page: "channels") [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(destination: WhatsApp, persistedValue: 1, page: "channels") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Busy
+Actual:   Unavailable
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(SetupNativeDestination destination, Int32 persistedValue, String page) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 676
+   at InvokeStub_SetupNativeHandoffTests.NativeRecordIsVersionedAndCannotBecomeALegacyBrowserReceipt(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.70]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: False) [FAIL]
+[xUnit.net 00:00:01.71]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: True) [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: False) [2 ms]
+  Error Message:
+   Assert.Empty() Failure: Collection was not empty
+Collection: [Unavailable]
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(Boolean failVerification) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 56
+--- End of stack trace from previous location ---
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(failVerification: True) [2 ms]
+  Error Message:
+   Assert.Empty() Failure: Collection was not empty
+Collection: [Unavailable]
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.LegacyInFlightPresentationSurvivesDuplicateBusyWithoutAReadinessProof(Boolean failVerification) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 56
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:01.72]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.ConcurrentNativeActivation_DoesNotQueueAnotherLaunch [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.ConcurrentNativeActivation_DoesNotQueueAnotherLaunch [2 ms]
+  Error Message:
+   System.ArgumentException : The value cannot be an empty string or composed entirely of whitespace. (Parameter 'notification.Title')
+  Stack Trace:
+     at System.ArgumentException.ThrowNullOrWhiteSpaceException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrWhiteSpace(String argument, String paramName)
+   at OpenClawTray.Services.AppNotificationService.Normalize(AppNotification notification) in /workspace/MORPHEUS/components/windows/src/OpenClaw.Tray.WinUI/Services/AppNotificationService.cs:line 360
+   at OpenClawTray.Services.AppNotificationService.Show(AppNotification notification) in /workspace/MORPHEUS/components/windows/src/OpenClaw.Tray.WinUI/Services/AppNotificationService.cs:line 158
+   at OpenClaw.Tray.Tests.SetupNativeHandoffTests.<>c__DisplayClass33_0.<ConcurrentNativeActivation_DoesNotQueueAnotherLaunch>b__3(SetupNativeLaunchFailure failure) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 803
+   at OpenClawTray.Services.SetupNativeHandoffLauncher.OpenAsync(SetupDashboardHandoffStore store, String handle, Boolean explicitRetry, CancellationToken ct, NativeRestartRecoveryStore restartRecovery) in /workspace/MORPHEUS/components/windows/src/OpenClaw.Tray.WinUI/Services/SetupNativeHandoffLauncher.cs:line 160
+   at OpenClaw.Tray.Tests.SetupNativeHandoffTests.ConcurrentNativeActivation_DoesNotQueueAnotherLaunch() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 807
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:01.73]     OpenClaw.Tray.Tests.SetupNativeHandoffTests.GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt [FAIL]
+  Failed OpenClaw.Tray.Tests.SetupNativeHandoffTests.GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt [1 ms]
+  Error Message:
+   System.Exception : Busy cannot report a new failure
+  Stack Trace:
+     at OpenClaw.Tray.Tests.SetupNativeHandoffTests.<>c.<GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt>b__1_3(SetupNativeLaunchFailure _) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 88
+   at OpenClawTray.Services.SetupNativeHandoffLauncher.OpenAsync(SetupDashboardHandoffStore store, String handle, Boolean explicitRetry, CancellationToken ct, NativeRestartRecoveryStore restartRecovery) in /workspace/MORPHEUS/components/windows/src/OpenClaw.Tray.WinUI/Services/SetupNativeHandoffLauncher.cs:line 160
+   at OpenClaw.Tray.Tests.SetupNativeHandoffTests.GenuinelyUnboundBusyShellStillClosesWithoutDisturbingTheReceipt() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/SetupNativeHandoffTests.cs:line 96
+--- End of stack trace from previous location ---
+Results File: /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/TestResults/phase4-focused-final.trx
+
+Failed!  - Failed:    11, Passed:   918, Skipped:     0, Total:   929, Duration: 17 s - OpenClaw.Tray.Tests.dll (net10.0)

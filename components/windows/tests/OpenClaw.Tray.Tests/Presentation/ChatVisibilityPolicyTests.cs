@@ -13,11 +13,11 @@ public sealed class ChatVisibilityPolicyTests
     [InlineData(false, true, false, true, true, false)] // Shutdown
     [InlineData(true, false, false, false, false, false)] // Settings companion only
     public void OnlyVisibleWorkspaceChatSuppressesNotifications(
-        bool closed, bool visible, bool minimized, bool home,
+        bool closed, bool visible, bool minimized, bool chat,
         bool shuttingDown, bool expected)
     {
         var workspaceVisible = ChatVisibilityPolicy.IsWorkspaceChatVisible(
-            closed, visible, minimized, home ? WorkspacePageId.Home : WorkspacePageId.Notifications);
+            closed, visible, minimized, chat ? WorkspacePageId.Chat : WorkspacePageId.Notifications);
         Assert.Equal(expected, ChatVisibilityPolicy.IsChatVisible(shuttingDown, workspaceVisible));
     }
 

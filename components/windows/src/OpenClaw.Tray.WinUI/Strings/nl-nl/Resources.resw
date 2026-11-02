@@ -8237,4 +8237,14 @@ Ga na inschrijving terug naar Instellingen &gt; Windows Update en controleer op 
   <data name="Chat_Run_ElapsedSeconds" xml:space="preserve"><value>{2} s</value></data>
   <data name="Chat_Questions_Resolving" xml:space="preserve"><value>Deze vraag wordt afgehandeld. Vernieuw om de status te controleren.</value></data>
   <data name="Chat_Questions_InvalidAnswer" xml:space="preserve"><value>Kies een geldig antwoord voor elke vraag.</value></data>
+  <data name="MorpheusHome.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Start</value></data>
+  <data name="MorpheusChat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Gesprek</value></data>
+  <data name="MorpheusSchedule.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Geplande taken</value></data>
+  <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Meer</value></data>
+  <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Instellingen</value></data>
+  <data name="MorpheusChats.Text" xml:space="preserve"><value>Gesprekken</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>BEGIN EEN GESPREK</value></data>
+  <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>Gesprekken inklappen</value></data>
+  <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Gesprekken uitklappen</value></data>
+  <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Instellingen. Rechtsklik of Shift+F10 voor hulp en informatie.</value></data>
 </root>

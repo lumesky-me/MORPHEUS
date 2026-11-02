@@ -7,5 +7,5 @@ internal static class ChatVisibilityPolicy
 
     public static bool IsWorkspaceChatVisible(
         bool isClosed, bool isVisible, bool isMinimized, WorkspacePageId page) =>
-        !isClosed && isVisible && !isMinimized && page == WorkspacePageId.Home;
+        !isClosed && isVisible && !isMinimized && page == WorkspacePageId.Chat;
 }

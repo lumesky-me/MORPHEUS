@@ -1,0 +1,1285 @@
+  OpenClaw.Shared -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Shared/bin/Debug/net10.0/OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.TestSupport/bin/Debug/net10.0/OpenClaw.TestSupport.dll
+  OpenClaw.Connection -> /workspace/MORPHEUS/components/windows/src/OpenClaw.Connection/bin/Debug/net10.0/OpenClaw.Connection.dll
+  OpenClaw.Tray.Tests -> /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll
+Test run for /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/bin/Debug/net10.0/OpenClaw.Tray.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:01.38]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "more") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "more") [8 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "automation-detail") [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "systems") [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "system-detail") [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "portals") [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "canvas") [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "skills") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "automation-detail") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "systems") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "system-detail") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "portals") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "canvas") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "skills") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.ChatVisibilityPolicyTests.OnlyVisibleWorkspaceChatSuppressesNotifications(closed: False, visible: True, minimized: False, home: True, shuttingDown: False, expected: True) [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "agents") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.ChatVisibilityPolicyTests.OnlyVisibleWorkspaceChatSuppressesNotifications(closed: False, visible: True, minimized: False, home: True, shuttingDown: False, expected: True) [3 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: True
+Actual:   False
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.ChatVisibilityPolicyTests.OnlyVisibleWorkspaceChatSuppressesNotifications(Boolean closed, Boolean visible, Boolean minimized, Boolean home, Boolean shuttingDown, Boolean expected) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/ChatVisibilityPolicyTests.cs:line 21
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithManyArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "agents") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "automations") [FAIL]
+[xUnit.net 00:00:01.39]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "tasks") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "automations") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "tasks") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "plugins") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "meetings") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "dashboard-detail") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "apps") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "plugins") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "meetings") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "dashboard-detail") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "apps") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "sessions") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "usage") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "agent-detail") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "sessions") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "usage") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "agent-detail") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "activity") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "dashboards") [FAIL]
+[xUnit.net 00:00:01.40]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "writer-detail") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "activity") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "dashboards") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(route: "writer-detail") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 67
+   at InvokeStub_WorkspaceNavigationTests.DeprecatedWorkspaceLinks_ReturnHomeAndCannotResurrectRemovedPages(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.42]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceContentSurface_IsOwnedByNativeNavigationTemplate [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceContentSurface_IsOwnedByNativeNavigationTemplate [11 ms]
+  Error Message:
+   Assert.Null() Failure: Value is not null
+Expected: null
+Actual:   Background="{ThemeResource MorpheusCanvasBrush}"
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceContentSurface_IsOwnedByNativeNavigationTemplate() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 861
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.42]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.RemovedSession_IsPrunedAroundSettingsEntries [FAIL]
+[xUnit.net 00:00:01.43]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.OwnerFooterStatusDot_PrecedesTextAndSharesLiveThemeResources [FAIL]
+[xUnit.net 00:00:01.43]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: "workspace") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.RemovedSession_IsPrunedAroundSettingsEntries [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.RemovedSession_IsPrunedAroundSettingsEntries() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 134
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.OwnerFooterStatusDot_PrecedesTextAndSharesLiveThemeResources [6 ms]
+  Error Message:
+   Assert.Contains() Failure: Filter not matched in collection
+Collection: [<Setter Property="Foreground" Value="#24e600" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />]
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.OwnerFooterStatusDot_PrecedesTextAndSharesLiveThemeResources() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 926
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: "workspace") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 565
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.43]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: "hub") [FAIL]
+[xUnit.net 00:00:01.43]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: "home") [FAIL]
+[xUnit.net 00:00:01.44]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: null) [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: "hub") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 565
+   at InvokeStub_WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: "home") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 565
+   at InvokeStub_WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(route: null) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 565
+   at InvokeStub_WorkspaceNavigationTests.LandingAndChat_OpenWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.46]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceNavigation_UsesCompanionNativeControlAndExistingColourfulAssets [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceNavigation_UsesCompanionNativeControlAndExistingColourfulAssets [4 ms]
+  Error Message:
+   Assert.Contains() Failure: Filter not matched in collection
+Collection: [<StackPanel Orientation="Horizontal" Spacing="12" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Image Width="38" Height="38">
+    <Image.Source>
+      <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+    </Image.Source>
+  </Image>
+  <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+  <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+  <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontIcon Glyph="" FontSize="16" />
+  </Button>
+  <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+      <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+      <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+    </Grid>
+    <Button.Flyout>
+      <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+        <controls:NotificationFlyoutContent x:Name="NotificationContent" xmlns:controls="using:OpenClawTray.Controls" />
+      </Flyout>
+    </Button.Flyout>
+  </Button>
+</StackPanel>, <TitleBar.Content xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <StackPanel Orientation="Horizontal" Spacing="12">
+    <Image Width="38" Height="38">
+      <Image.Source>
+        <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+      </Image.Source>
+    </Image>
+    <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+    <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+    <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+      <FontIcon Glyph="" FontSize="16" />
+    </Button>
+    <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+      <Grid>
+        <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+        <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+      </Grid>
+      <Button.Flyout>
+        <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+          <controls:NotificationFlyoutContent x:Name="NotificationContent" xmlns:controls="using:OpenClawTray.Controls" />
+        </Flyout>
+      </Button.Flyout>
+    </Button>
+  </StackPanel>
+</TitleBar.Content>, <TitleBar x:Name="WorkspaceTitleBar" Height="62" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <TitleBar.Content>
+    <StackPanel Orientation="Horizontal" Spacing="12">
+      <Image Width="38" Height="38">
+        <Image.Source>
+          <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+        </Image.Source>
+      </Image>
+      <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+      <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+      <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+        <FontIcon Glyph="" FontSize="16" />
+      </Button>
+      <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications">
+        <Grid>
+          <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+          <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+        </Grid>
+        <Button.Flyout>
+          <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+            <controls:NotificationFlyoutContent x:Name="NotificationContent" xmlns:controls="using:OpenClawTray.Controls" />
+          </Flyout>
+        </Button.Flyout>
+      </Button>
+    </StackPanel>
+  </TitleBar.Content>
+</TitleBar>, <Grid x:Name="Root" RequestedTheme="Dark" Background="{ThemeResource MorpheusBackgroundBrush}" PreviewKeyDown="OnKeyDown" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Grid.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Themes/MorpheusResources.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <DataTemplate x:Key="AgentIdentityTemplate">
+        <controls:AgentIdentityBadge xmlns:controls="using:OpenClawTray.Controls" />
+      </DataTemplate>
+      <Style x:Key="ConnectionBadgeIcon" TargetType="FontIcon">
+        <Setter Property="Glyph" Value="" />
+        <Setter Property="FontSize" Value="24" />
+      </Style>
+      <Style x:Key="ConnectionBadgeNeutral" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+        <Setter Property="Foreground" Value="{ThemeResource SystemFillColorNeutralBrush}" />
+      </Style>
+      <Style x:Key="ConnectionBadgeSuccess" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+        <Setter Property="Foreground" Value="#24e600" />
+      </Style>
+      <Style x:Key="ConnectionBadgeCaution" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+        <Setter Property="Foreground" Value="#f2cc4d" />
+      </Style>
+      <Style x:Key="ConnectionBadgeCritical" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+        <Setter Property="Foreground" Value="#ef535d" />
+      </Style>
+    </ResourceDictionary>
+  </Grid.Resources>
+  <Grid.RowDefinitions>
+    <RowDefinition Height="Auto" />
+    <RowDefinition Height="*" />
+  </Grid.RowDefinitions>
+  <TitleBar x:Name="WorkspaceTitleBar" Height="62" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
+    <TitleBar.Content>
+      <StackPanel Orientation="Horizontal" Spacing="12">
+        <Image Width="38" Height="38">
+          <Image.Source>
+            <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+          </Image.Source>
+        </Image>
+        <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+        <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+        <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+          <FontIcon Glyph="" FontSize="16" />
+        </Button>
+        <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications">
+          <Grid>
+            <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+            <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+          </Grid>
+          <Button.Flyout>
+            <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+              <controls:NotificationFlyoutContent x:Name="NotificationContent" xmlns:controls="using:OpenClawTray.Controls" />
+            </Flyout>
+          </Button.Flyout>
+        </Button>
+      </StackPanel>
+    </TitleBar.Content>
+  </TitleBar>
+  <Grid x:Name="NavigationSection" Grid.Row="1" Margin="10,4,10,10" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="94" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid Padding="12,24,12,18" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
+      <StackPanel Spacing="16">
+        <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}">
+          <FontIcon Glyph="" />
+        </Button>
+        <Button x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}">
+          <FontIcon Glyph="" />
+        </Button>
+        <Button x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}">
+          <FontIcon Glyph="" />
+        </Button>
+        <Button x:Name="MoreButton" x:Uid="MorpheusMore" Style="{StaticResource MorpheusRailButton}">
+          <FontIcon Glyph="" />
+        </Button>
+      </StackPanel>
+      <StackPanel VerticalAlignment="Bottom" Spacing="12">
+        <Border Height="1" Margin="8,0,8,8" Background="{ThemeResource MorpheusBorderBrush}" />
+        <Button x:Name="ConnectionButton" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
+          <FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}" />
+        </Button>
+        <Button x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
+          <FontIcon Glyph="" />
+        </Button>
+      </StackPanel>
+    </Grid>
+    <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome">
+      <Image Stretch="Fill" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw">
+        <Image.Source>
+          <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/canvas-lighting.svg" />
+        </Image.Source>
+      </Image>
+    </Grid>
+    <NavigationView x:Name="NavView" Grid.Column="1" AutomationProperties.AutomationId="WorkspaceNavigation" PaneDisplayMode="Left" OpenPaneLength="344" CompactPaneLength="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsPaneToggleButtonVisible="False" IsPaneOpen="True" PaneClosed="OnPaneClosed" SelectionChanged="OnNavigationChanged">
+      <NavigationView.Resources>
+        <x:String x:Key="SplitViewPaneAnimationOpenDuration">00:00:00.16</x:String>
+        <x:String x:Key="SplitViewPaneAnimationOpenPreDuration">00:00:00.15999</x:String>
+        <x:String x:Key="SplitViewPaneAnimationCloseDuration">00:00:00.16</x:String>
+        <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="MorpheusSurfaceBrush" />
+        <Thickness x:Key="NavigationViewBorderThickness">0</Thickness>
+        <Thickness x:Key="NavigationViewPaneContentGridMargin">0</Thickness>
+        <x:Double x:Key="NavigationViewItemOnLeftIconBoxHeight">22</x:Double>
+        <Thickness x:Key="NavigationViewItemSeparatorMargin">0,2,0,2</Thickness>
+        <SvgImageSource x:Key="Chat_Icon" UriSource="ms-appx:///Assets/SidebarIcons/Chat.svg" />
+        <SvgImageSource x:Key="Notifications_Icon" UriSource="ms-appx:///Assets/SidebarIcons/Notifications.svg" />
+      </NavigationView.Resources>
+      <NavigationView.PaneHeader>
+        <StackPanel Margin="4,8,4,8" Spacing="8">
+          <Grid x:Name="NavigationToolbar" Height="40">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+              <Button Visibility="Collapsed" x:Name="BackButton" x:Uid="NavBackButton" Click="OnBack" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceBack" IsEnabled="False">
+                <FontIcon Glyph="" FontSize="16" />
+              </Button>
+              <Button Visibility="Collapsed" x:Name="ForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceForward" IsEnabled="False">
+                <FontIcon Glyph="" FontSize="16" />
+              </Button>
+              <Button x:Name="WorkspaceSearchButton" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSearch">
+                <FontIcon Glyph="" FontSize="16" />
+                <Button.Flyout>
+                  <Flyout x:Name="WorkspaceSearchFlyout" Placement="BottomEdgeAlignedLeft" Opening="OnWorkspaceSearchOpening" Opened="OnWorkspaceSearchOpened">
+                    <AutoSuggestBox x:Name="WorkspaceSearchBox" AutomationProperties.AutomationId="WorkspaceSearchBox" QueryIcon="Find" TextMemberPath="Title" Width="320" PreviewKeyDown="OnWorkspaceSearchKeyDown" TextChanged="OnWorkspaceSearchTextChanged" SuggestionChosen="OnWorkspaceSearchSuggestionChosen" QuerySubmitted="OnWorkspaceSearchQuerySubmitted">
+                      <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                          <StackPanel Orientation="Horizontal" Spacing="8" Padding="4">
+                            <TextBlock Text="{Binding Icon}" FontSize="14" VerticalAlignment="Center" />
+                            <StackPanel>
+                              <TextBlock Text="{Binding Title}" Style="{StaticResource BodyTextBlockStyle}" />
+                              <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                          </StackPanel>
+                        </DataTemplate>
+                      </AutoSuggestBox.ItemTemplate>
+                    </AutoSuggestBox>
+                  </Flyout>
+                </Button.Flyout>
+              </Button>
+            </StackPanel>
+          </Grid>
+          <ComboBox Visibility="Collapsed" x:Name="AssistantSelector" x:Uid="WorkspaceShell_Assistant" Padding="4,8,28,8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="OnAssistantChanged" Background="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" AutomationProperties.AutomationId="WorkspaceAssistantSelector">
+            <ComboBox.Resources>
+              <SolidColorBrush x:Key="ComboBoxBackground" Color="Transparent" />
+              <SolidColorBrush x:Key="ComboBoxBackgroundUnfocused" Color="Transparent" />
+              <StaticResource x:Key="ComboBoxBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+              <StaticResource x:Key="ComboBoxBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            </ComboBox.Resources>
+            <ComboBoxItem x:Name="NewAgentOption" Padding="2,8,12,8" Margin="-5,0,0,0" AutomationProperties.AutomationId="WorkspaceNewAgent">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <FontIcon Glyph="" FontSize="16" />
+                <TextBlock x:Name="NewAgentLabel" />
+              </StackPanel>
+            </ComboBoxItem>
+          </ComboBox>
+        </StackPanel>
+      </NavigationView.PaneHeader>
+      <NavigationView.MenuItems>
+        <NavigationViewItem Visibility="Collapsed" x:Name="HomeItem" Tag="home" Padding="0" AutomationProperties.AutomationId="WorkspaceNavHome">
+          <NavigationViewItem.Resources>
+            <Thickness x:Key="NavigationViewItemContentPresenterMargin">0,-1,8,-1</Thickness>
+          </NavigationViewItem.Resources>
+          <!-- The native iconless presenter already reserves an 8-DIP leading column. -->
+          <StackPanel Orientation="Horizontal" Spacing="16">
+            <Grid Width="24">
+              <ImageIcon x:Name="HomeIcon" Source="{StaticResource Chat_Icon}" Width="22" Height="22" AutomationProperties.AccessibilityView="Raw" />
+            </Grid>
+            <TextBlock x:Name="HomeLabel" VerticalAlignment="Center" />
+          </StackPanel>
+        </NavigationViewItem>
+        <NavigationViewItemHeader x:Name="SessionsHeader" IsEnabled="True">
+          <NavigationViewItemHeader.Resources>
+            <Thickness x:Key="NavigationViewItemInnerHeaderMargin">16,0,4,0</Thickness>
+          </NavigationViewItemHeader.Resources>
+          <NavigationViewItemHeader.Template>
+            <ControlTemplate TargetType="NavigationViewItemHeader">
+              <Grid>
+                <VisualStateManager.VisualStateGroups>
+                  <VisualStateGroup x:Name="PaneStates">
+                    <VisualState x:Name="HeaderTextVisible" />
+                    <VisualState x:Name="HeaderTextCollapsed">
+                      <VisualState.Setters>
+                        <Setter Target="HeaderContent.Visibility" Value="Collapsed" />
+                      </VisualState.Setters>
+                    </VisualState>
+                  </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ContentPresenter x:Name="HeaderContent" Content="{TemplateBinding Content}" Height="40" HorizontalContentAlignment="Stretch" Margin="{ThemeResource NavigationViewItemInnerHeaderMargin}" />
+              </Grid>
+            </ControlTemplate>
+          </NavigationViewItemHeader.Template>
+          <Grid ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Uid="MorpheusChats" Text="Chats" VerticalAlignment="Center" Style="{StaticResource NavigationViewItemHeaderTextStyle}" />
+            <Button x:Name="NewSessionButton" x:Uid="WorkspaceShell_NewConversation" Grid.Column="1" Click="OnNewConversation" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSessionsAdd">
+              <FontIcon Glyph="" FontSize="16" />
+            </Button>
+          </Grid>
+        </NavigationViewItemHeader>
+        <NavigationViewItemHeader x:Name="SessionsEmpty" FontWeight="Normal" />
+      </NavigationView.MenuItems>
+      <NavigationView.PaneFooter>
+        <Grid Visibility="Collapsed" x:Name="ExpandedFooter" ColumnSpacing="4" Margin="4,8,4,8">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Button x:Name="OwnerButton" Style="{StaticResource SubtleButtonStyle}" Padding="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" AutomationProperties.AutomationId="WorkspaceOwner">
+            <Grid ColumnSpacing="12">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <PersonPicture x:Name="OwnerPicture" Width="24" Height="24" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+              <StackPanel Grid.Column="1">
+                <TextBlock x:Name="OwnerName" TextTrimming="CharacterEllipsis" />
+                <Grid ColumnSpacing="4">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <FontIcon x:Name="OwnerStatusDot" Style="{StaticResource ConnectionBadgeNeutral}" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+                  <TextBlock x:Name="OwnerDetail" Grid.Column="1" TextTrimming="CharacterEllipsis" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </Grid>
+              </StackPanel>
+            </Grid>
+          </Button>
+        </Grid>
+      </NavigationView.PaneFooter>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ReopenPaneSlot" Height="56" Visibility="Collapsed" />
+        <InfoBar x:Name="OperationInfo" Grid.Row="1" IsOpen="False" IsClosable="True" Severity="Error" />
+        <Grid x:Name="ContentHost" Grid.Row="2" AutomationProperties.AutomationId="WorkspaceContent" />
+      </Grid>
+    </NavigationView>
+    <Button x:Name="ReopenPaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceReopenPane" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,8,0,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+      <FontIcon Glyph="" FontSize="16" />
+    </Button>
+  </Grid>
+  <Grid x:Name="SettingsSection" Grid.Row="1" Visibility="Collapsed" AutomationProperties.AutomationId="WorkspaceSettingsHost" />
+  <StackPanel x:Name="SettingsHistoryBar" Grid.Row="1" Orientation="Horizontal" Spacing="4" Margin="48,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed">
+    <Button x:Name="SettingsBackButton" x:Uid="NavBackButton" Click="OnBack" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="SettingsBack" IsEnabled="False">
+      <FontIcon Glyph="" FontSize="16" />
+    </Button>
+    <Button x:Name="SettingsForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="SettingsForward" IsEnabled="False">
+      <FontIcon Glyph="" FontSize="16" />
+    </Button>
+  </StackPanel>
+</Grid>, <winex:WindowEx x:Class="OpenClawTray.Windows.WorkspaceWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="using:OpenClawTray.Controls" xmlns:winex="using:WinUIEx" MinWidth="800" MinHeight="560">
+  <Window.SystemBackdrop>
+    <MicaBackdrop />
+  </Window.SystemBackdrop>
+  <Grid x:Name="Root" RequestedTheme="Dark" Background="{ThemeResource MorpheusBackgroundBrush}" PreviewKeyDown="OnKeyDown">
+    <Grid.Resources>
+      <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+          <ResourceDictionary Source="ms-appx:///Themes/MorpheusResources.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+        <DataTemplate x:Key="AgentIdentityTemplate">
+          <controls:AgentIdentityBadge />
+        </DataTemplate>
+        <Style x:Key="ConnectionBadgeIcon" TargetType="FontIcon">
+          <Setter Property="Glyph" Value="" />
+          <Setter Property="FontSize" Value="24" />
+        </Style>
+        <Style x:Key="ConnectionBadgeNeutral" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+          <Setter Property="Foreground" Value="{ThemeResource SystemFillColorNeutralBrush}" />
+        </Style>
+        <Style x:Key="ConnectionBadgeSuccess" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+          <Setter Property="Foreground" Value="#24e600" />
+        </Style>
+        <Style x:Key="ConnectionBadgeCaution" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+          <Setter Property="Foreground" Value="#f2cc4d" />
+        </Style>
+        <Style x:Key="ConnectionBadgeCritical" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
+          <Setter Property="Foreground" Value="#ef535d" />
+        </Style>
+      </ResourceDictionary>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TitleBar x:Name="WorkspaceTitleBar" Height="62" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
+      <TitleBar.Content>
+        <StackPanel Orientation="Horizontal" Spacing="12">
+          <Image Width="38" Height="38">
+            <Image.Source>
+              <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+            </Image.Source>
+          </Image>
+          <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+          <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+          <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+            <FontIcon Glyph="" FontSize="16" />
+          </Button>
+          <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications">
+            <Grid>
+              <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+              <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+            </Grid>
+            <Button.Flyout>
+              <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+                <controls:NotificationFlyoutContent x:Name="NotificationContent" />
+              </Flyout>
+            </Button.Flyout>
+          </Button>
+        </StackPanel>
+      </TitleBar.Content>
+    </TitleBar>
+    <Grid x:Name="NavigationSection" Grid.Row="1" Margin="10,4,10,10" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="94" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid Padding="12,24,12,18" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
+        <StackPanel Spacing="16">
+          <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}">
+            <FontIcon Glyph="" />
+          </Button>
+          <Button x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}">
+            <FontIcon Glyph="" />
+          </Button>
+          <Button x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}">
+            <FontIcon Glyph="" />
+          </Button>
+          <Button x:Name="MoreButton" x:Uid="MorpheusMore" Style="{StaticResource MorpheusRailButton}">
+            <FontIcon Glyph="" />
+          </Button>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Spacing="12">
+          <Border Height="1" Margin="8,0,8,8" Background="{ThemeResource MorpheusBorderBrush}" />
+          <Button x:Name="ConnectionButton" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
+            <FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}" />
+          </Button>
+          <Button x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
+            <FontIcon Glyph="" />
+          </Button>
+        </StackPanel>
+      </Grid>
+      <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome">
+        <Image Stretch="Fill" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw">
+          <Image.Source>
+            <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/canvas-lighting.svg" />
+          </Image.Source>
+        </Image>
+      </Grid>
+      <NavigationView x:Name="NavView" Grid.Column="1" AutomationProperties.AutomationId="WorkspaceNavigation" PaneDisplayMode="Left" OpenPaneLength="344" CompactPaneLength="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsPaneToggleButtonVisible="False" IsPaneOpen="True" PaneClosed="OnPaneClosed" SelectionChanged="OnNavigationChanged">
+        <NavigationView.Resources>
+          <x:String x:Key="SplitViewPaneAnimationOpenDuration">00:00:00.16</x:String>
+          <x:String x:Key="SplitViewPaneAnimationOpenPreDuration">00:00:00.15999</x:String>
+          <x:String x:Key="SplitViewPaneAnimationCloseDuration">00:00:00.16</x:String>
+          <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="MorpheusSurfaceBrush" />
+          <Thickness x:Key="NavigationViewBorderThickness">0</Thickness>
+          <Thickness x:Key="NavigationViewPaneContentGridMargin">0</Thickness>
+          <x:Double x:Key="NavigationViewItemOnLeftIconBoxHeight">22</x:Double>
+          <Thickness x:Key="NavigationViewItemSeparatorMargin">0,2,0,2</Thickness>
+          <SvgImageSource x:Key="Chat_Icon" UriSource="ms-appx:///Assets/SidebarIcons/Chat.svg" />
+          <SvgImageSource x:Key="Notifications_Icon" UriSource="ms-appx:///Assets/SidebarIcons/Notifications.svg" />
+        </NavigationView.Resources>
+        <NavigationView.PaneHeader>
+          <StackPanel Margin="4,8,4,8" Spacing="8">
+            <Grid x:Name="NavigationToolbar" Height="40">
+              <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+                <Button Visibility="Collapsed" x:Name="BackButton" x:Uid="NavBackButton" Click="OnBack" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceBack" IsEnabled="False">
+                  <FontIcon Glyph="" FontSize="16" />
+                </Button>
+                <Button Visibility="Collapsed" x:Name="ForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceForward" IsEnabled="False">
+                  <FontIcon Glyph="" FontSize="16" />
+                </Button>
+                <Button x:Name="WorkspaceSearchButton" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSearch">
+                  <FontIcon Glyph="" FontSize="16" />
+                  <Button.Flyout>
+                    <Flyout x:Name="WorkspaceSearchFlyout" Placement="BottomEdgeAlignedLeft" Opening="OnWorkspaceSearchOpening" Opened="OnWorkspaceSearchOpened">
+                      <AutoSuggestBox x:Name="WorkspaceSearchBox" AutomationProperties.AutomationId="WorkspaceSearchBox" QueryIcon="Find" TextMemberPath="Title" Width="320" PreviewKeyDown="OnWorkspaceSearchKeyDown" TextChanged="OnWorkspaceSearchTextChanged" SuggestionChosen="OnWorkspaceSearchSuggestionChosen" QuerySubmitted="OnWorkspaceSearchQuerySubmitted">
+                        <AutoSuggestBox.ItemTemplate>
+                          <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Padding="4">
+                              <TextBlock Text="{Binding Icon}" FontSize="14" VerticalAlignment="Center" />
+                              <StackPanel>
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                              </StackPanel>
+                            </StackPanel>
+                          </DataTemplate>
+                        </AutoSuggestBox.ItemTemplate>
+                      </AutoSuggestBox>
+                    </Flyout>
+                  </Button.Flyout>
+                </Button>
+              </StackPanel>
+            </Grid>
+            <ComboBox Visibility="Collapsed" x:Name="AssistantSelector" x:Uid="WorkspaceShell_Assistant" Padding="4,8,28,8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="OnAssistantChanged" Background="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" AutomationProperties.AutomationId="WorkspaceAssistantSelector">
+              <ComboBox.Resources>
+                <SolidColorBrush x:Key="ComboBoxBackground" Color="Transparent" />
+                <SolidColorBrush x:Key="ComboBoxBackgroundUnfocused" Color="Transparent" />
+                <StaticResource x:Key="ComboBoxBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+                <StaticResource x:Key="ComboBoxBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+              </ComboBox.Resources>
+              <ComboBoxItem x:Name="NewAgentOption" Padding="2,8,12,8" Margin="-5,0,0,0" AutomationProperties.AutomationId="WorkspaceNewAgent">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <FontIcon Glyph="" FontSize="16" />
+                  <TextBlock x:Name="NewAgentLabel" />
+                </StackPanel>
+              </ComboBoxItem>
+            </ComboBox>
+          </StackPanel>
+        </NavigationView.PaneHeader>
+        <NavigationView.MenuItems>
+          <NavigationViewItem Visibility="Collapsed" x:Name="HomeItem" Tag="home" Padding="0" AutomationProperties.AutomationId="WorkspaceNavHome">
+            <NavigationViewItem.Resources>
+              <Thickness x:Key="NavigationViewItemContentPresenterMargin">0,-1,8,-1</Thickness>
+            </NavigationViewItem.Resources>
+            <!-- The native iconless presenter already reserves an 8-DIP leading column. -->
+            <StackPanel Orientation="Horizontal" Spacing="16">
+              <Grid Width="24">
+                <ImageIcon x:Name="HomeIcon" Source="{StaticResource Chat_Icon}" Width="22" Height="22" AutomationProperties.AccessibilityView="Raw" />
+              </Grid>
+              <TextBlock x:Name="HomeLabel" VerticalAlignment="Center" />
+            </StackPanel>
+          </NavigationViewItem>
+          <NavigationViewItemHeader x:Name="SessionsHeader" IsEnabled="True">
+            <NavigationViewItemHeader.Resources>
+              <Thickness x:Key="NavigationViewItemInnerHeaderMargin">16,0,4,0</Thickness>
+            </NavigationViewItemHeader.Resources>
+            <NavigationViewItemHeader.Template>
+              <ControlTemplate TargetType="NavigationViewItemHeader">
+                <Grid>
+                  <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="PaneStates">
+                      <VisualState x:Name="HeaderTextVisible" />
+                      <VisualState x:Name="HeaderTextCollapsed">
+                        <VisualState.Setters>
+                          <Setter Target="HeaderContent.Visibility" Value="Collapsed" />
+                        </VisualState.Setters>
+                      </VisualState>
+                    </VisualStateGroup>
+                  </VisualStateManager.VisualStateGroups>
+                  <ContentPresenter x:Name="HeaderContent" Content="{TemplateBinding Content}" Height="40" HorizontalContentAlignment="Stretch" Margin="{ThemeResource NavigationViewItemInnerHeaderMargin}" />
+                </Grid>
+              </ControlTemplate>
+            </NavigationViewItemHeader.Template>
+            <Grid ColumnSpacing="8">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <TextBlock x:Uid="MorpheusChats" Text="Chats" VerticalAlignment="Center" Style="{StaticResource NavigationViewItemHeaderTextStyle}" />
+              <Button x:Name="NewSessionButton" x:Uid="WorkspaceShell_NewConversation" Grid.Column="1" Click="OnNewConversation" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSessionsAdd">
+                <FontIcon Glyph="" FontSize="16" />
+              </Button>
+            </Grid>
+          </NavigationViewItemHeader>
+          <NavigationViewItemHeader x:Name="SessionsEmpty" FontWeight="Normal" />
+        </NavigationView.MenuItems>
+        <NavigationView.PaneFooter>
+          <Grid Visibility="Collapsed" x:Name="ExpandedFooter" ColumnSpacing="4" Margin="4,8,4,8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="OwnerButton" Style="{StaticResource SubtleButtonStyle}" Padding="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" AutomationProperties.AutomationId="WorkspaceOwner">
+              <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="24" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <PersonPicture x:Name="OwnerPicture" Width="24" Height="24" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+                <StackPanel Grid.Column="1">
+                  <TextBlock x:Name="OwnerName" TextTrimming="CharacterEllipsis" />
+                  <Grid ColumnSpacing="4">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon x:Name="OwnerStatusDot" Style="{StaticResource ConnectionBadgeNeutral}" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+                    <TextBlock x:Name="OwnerDetail" Grid.Column="1" TextTrimming="CharacterEllipsis" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                  </Grid>
+                </StackPanel>
+              </Grid>
+            </Button>
+          </Grid>
+        </NavigationView.PaneFooter>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <Grid x:Name="ReopenPaneSlot" Height="56" Visibility="Collapsed" />
+          <InfoBar x:Name="OperationInfo" Grid.Row="1" IsOpen="False" IsClosable="True" Severity="Error" />
+          <Grid x:Name="ContentHost" Grid.Row="2" AutomationProperties.AutomationId="WorkspaceContent" />
+        </Grid>
+      </NavigationView>
+      <Button x:Name="ReopenPaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceReopenPane" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,8,0,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+        <FontIcon Glyph="" FontSize="16" />
+      </Button>
+    </Grid>
+    <Grid x:Name="SettingsSection" Grid.Row="1" Visibility="Collapsed" AutomationProperties.AutomationId="WorkspaceSettingsHost" />
+    <StackPanel x:Name="SettingsHistoryBar" Grid.Row="1" Orientation="Horizontal" Spacing="4" Margin="48,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed">
+      <Button x:Name="SettingsBackButton" x:Uid="NavBackButton" Click="OnBack" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="SettingsBack" IsEnabled="False">
+        <FontIcon Glyph="" FontSize="16" />
+      </Button>
+      <Button x:Name="SettingsForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="SettingsForward" IsEnabled="False">
+        <FontIcon Glyph="" FontSize="16" />
+      </Button>
+    </StackPanel>
+  </Grid>
+</winex:WindowEx>]
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceNavigation_UsesCompanionNativeControlAndExistingColourfulAssets() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 704
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "usage") [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "settings") [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "usage") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 582
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "settings") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 582
+   at InvokeStub_WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "agent:main:workspace") [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "connection") [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "about") [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "channels") [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.OwnerStatusAndAgentBadge_UseNativeControlsAndLiveSources [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.NativeFooter_NotificationsAreIndependentAndRightOfOwner [FAIL]
+[xUnit.net 00:00:01.48]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.HiddenPane_UsesZeroWidthAndReopenRowWithoutCoveringContent [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "agent:main:workspace") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 582
+   at InvokeStub_WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "connection") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 582
+   at InvokeStub_WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "about") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 582
+   at InvokeStub_WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(route: "channels") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(String route) in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 582
+   at InvokeStub_WorkspaceNavigationTests.CompanionRoutes_DoNotReplaceWorkspace(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.OwnerStatusAndAgentBadge_UseNativeControlsAndLiveSources [3 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+           ↓ (pos 0)
+Expected: "{ThemeResource SystemFillColorSuccessBrus"···
+Actual:   "#24e600"
+           ↑ (pos 0)
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.OwnerStatusAndAgentBadge_UseNativeControlsAndLiveSources() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 1147
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.NativeFooter_NotificationsAreIndependentAndRightOfOwner [2 ms]
+  Error Message:
+   Assert.Same() Failure: Values are not the same instance
+Expected: <Grid Visibility="Collapsed" x:Name="ExpandedFooter" ColumnSpacing="4" Margin="4,8,4,8" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="Auto" />
+  </Grid.ColumnDefinitions>
+  <Button x:Name="OwnerButton" Style="{StaticResource SubtleButtonStyle}" Padding="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" AutomationProperties.AutomationId="WorkspaceOwner">
+    <Grid ColumnSpacing="12">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="24" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <PersonPicture x:Name="OwnerPicture" Width="24" Height="24" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+      <StackPanel Grid.Column="1">
+        <TextBlock x:Name="OwnerName" TextTrimming="CharacterEllipsis" />
+        <Grid ColumnSpacing="4">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <FontIcon x:Name="OwnerStatusDot" Style="{StaticResource ConnectionBadgeNeutral}" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+          <TextBlock x:Name="OwnerDetail" Grid.Column="1" TextTrimming="CharacterEllipsis" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+        </Grid>
+      </StackPanel>
+    </Grid>
+  </Button>
+</Grid>
+Actual:   <StackPanel Orientation="Horizontal" Spacing="12" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Image Width="38" Height="38">
+    <Image.Source>
+      <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+    </Image.Source>
+  </Image>
+  <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+  <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+  <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontIcon Glyph="" FontSize="16" />
+  </Button>
+  <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+      <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+      <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+    </Grid>
+    <Button.Flyout>
+      <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+        <controls:NotificationFlyoutContent x:Name="NotificationContent" xmlns:controls="using:OpenClawTray.Controls" />
+      </Flyout>
+    </Button.Flyout>
+  </Button>
+</StackPanel>
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.NativeFooter_NotificationsAreIndependentAndRightOfOwner() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 881
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.HiddenPane_UsesZeroWidthAndReopenRowWithoutCoveringContent [2 ms]
+  Error Message:
+   Assert.Same() Failure: Values are not the same instance
+Expected: <Grid x:Name="NavigationSection" Grid.Row="1" Margin="10,4,10,10" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="94" />
+    <ColumnDefinition Width="*" />
+  </Grid.ColumnDefinitions>
+  <Grid Padding="12,24,12,18" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
+    <StackPanel Spacing="16">
+      <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}">
+        <FontIcon Glyph="" />
+      </Button>
+      <Button x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}">
+        <FontIcon Glyph="" />
+      </Button>
+      <Button x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}">
+        <FontIcon Glyph="" />
+      </Button>
+      <Button x:Name="MoreButton" x:Uid="MorpheusMore" Style="{StaticResource MorpheusRailButton}">
+        <FontIcon Glyph="" />
+      </Button>
+    </StackPanel>
+    <StackPanel VerticalAlignment="Bottom" Spacing="12">
+      <Border Height="1" Margin="8,0,8,8" Background="{ThemeResource MorpheusBorderBrush}" />
+      <Button x:Name="ConnectionButton" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
+        <FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}" />
+      </Button>
+      <Button x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
+        <FontIcon Glyph="" />
+      </Button>
+    </StackPanel>
+  </Grid>
+  <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome">
+    <Image Stretch="Fill" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw">
+      <Image.Source>
+        <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/canvas-lighting.svg" />
+      </Image.Source>
+    </Image>
+  </Grid>
+  <NavigationView x:Name="NavView" Grid.Column="1" AutomationProperties.AutomationId="WorkspaceNavigation" PaneDisplayMode="Left" OpenPaneLength="344" CompactPaneLength="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsPaneToggleButtonVisible="False" IsPaneOpen="True" PaneClosed="OnPaneClosed" SelectionChanged="OnNavigationChanged">
+    <NavigationView.Resources>
+      <x:String x:Key="SplitViewPaneAnimationOpenDuration">00:00:00.16</x:String>
+      <x:String x:Key="SplitViewPaneAnimationOpenPreDuration">00:00:00.15999</x:String>
+      <x:String x:Key="SplitViewPaneAnimationCloseDuration">00:00:00.16</x:String>
+      <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="MorpheusSurfaceBrush" />
+      <Thickness x:Key="NavigationViewBorderThickness">0</Thickness>
+      <Thickness x:Key="NavigationViewPaneContentGridMargin">0</Thickness>
+      <x:Double x:Key="NavigationViewItemOnLeftIconBoxHeight">22</x:Double>
+      <Thickness x:Key="NavigationViewItemSeparatorMargin">0,2,0,2</Thickness>
+      <SvgImageSource x:Key="Chat_Icon" UriSource="ms-appx:///Assets/SidebarIcons/Chat.svg" />
+      <SvgImageSource x:Key="Notifications_Icon" UriSource="ms-appx:///Assets/SidebarIcons/Notifications.svg" />
+    </NavigationView.Resources>
+    <NavigationView.PaneHeader>
+      <StackPanel Margin="4,8,4,8" Spacing="8">
+        <Grid x:Name="NavigationToolbar" Height="40">
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Visibility="Collapsed" x:Name="BackButton" x:Uid="NavBackButton" Click="OnBack" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceBack" IsEnabled="False">
+              <FontIcon Glyph="" FontSize="16" />
+            </Button>
+            <Button Visibility="Collapsed" x:Name="ForwardButton" x:Uid="WorkspaceShell_Forward" Click="OnForward" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceForward" IsEnabled="False">
+              <FontIcon Glyph="" FontSize="16" />
+            </Button>
+            <Button x:Name="WorkspaceSearchButton" Height="40" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSearch">
+              <FontIcon Glyph="" FontSize="16" />
+              <Button.Flyout>
+                <Flyout x:Name="WorkspaceSearchFlyout" Placement="BottomEdgeAlignedLeft" Opening="OnWorkspaceSearchOpening" Opened="OnWorkspaceSearchOpened">
+                  <AutoSuggestBox x:Name="WorkspaceSearchBox" AutomationProperties.AutomationId="WorkspaceSearchBox" QueryIcon="Find" TextMemberPath="Title" Width="320" PreviewKeyDown="OnWorkspaceSearchKeyDown" TextChanged="OnWorkspaceSearchTextChanged" SuggestionChosen="OnWorkspaceSearchSuggestionChosen" QuerySubmitted="OnWorkspaceSearchQuerySubmitted">
+                    <AutoSuggestBox.ItemTemplate>
+                      <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="8" Padding="4">
+                          <TextBlock Text="{Binding Icon}" FontSize="14" VerticalAlignment="Center" />
+                          <StackPanel>
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource BodyTextBlockStyle}" />
+                            <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                          </StackPanel>
+                        </StackPanel>
+                      </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                  </AutoSuggestBox>
+                </Flyout>
+              </Button.Flyout>
+            </Button>
+          </StackPanel>
+        </Grid>
+        <ComboBox Visibility="Collapsed" x:Name="AssistantSelector" x:Uid="WorkspaceShell_Assistant" Padding="4,8,28,8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="OnAssistantChanged" Background="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" AutomationProperties.AutomationId="WorkspaceAssistantSelector">
+          <ComboBox.Resources>
+            <SolidColorBrush x:Key="ComboBoxBackground" Color="Transparent" />
+            <SolidColorBrush x:Key="ComboBoxBackgroundUnfocused" Color="Transparent" />
+            <StaticResource x:Key="ComboBoxBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="ComboBoxBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+          </ComboBox.Resources>
+          <ComboBoxItem x:Name="NewAgentOption" Padding="2,8,12,8" Margin="-5,0,0,0" AutomationProperties.AutomationId="WorkspaceNewAgent">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <FontIcon Glyph="" FontSize="16" />
+              <TextBlock x:Name="NewAgentLabel" />
+            </StackPanel>
+          </ComboBoxItem>
+        </ComboBox>
+      </StackPanel>
+    </NavigationView.PaneHeader>
+    <NavigationView.MenuItems>
+      <NavigationViewItem Visibility="Collapsed" x:Name="HomeItem" Tag="home" Padding="0" AutomationProperties.AutomationId="WorkspaceNavHome">
+        <NavigationViewItem.Resources>
+          <Thickness x:Key="NavigationViewItemContentPresenterMargin">0,-1,8,-1</Thickness>
+        </NavigationViewItem.Resources>
+        <!-- The native iconless presenter already reserves an 8-DIP leading column. -->
+        <StackPanel Orientation="Horizontal" Spacing="16">
+          <Grid Width="24">
+            <ImageIcon x:Name="HomeIcon" Source="{StaticResource Chat_Icon}" Width="22" Height="22" AutomationProperties.AccessibilityView="Raw" />
+          </Grid>
+          <TextBlock x:Name="HomeLabel" VerticalAlignment="Center" />
+        </StackPanel>
+      </NavigationViewItem>
+      <NavigationViewItemHeader x:Name="SessionsHeader" IsEnabled="True">
+        <NavigationViewItemHeader.Resources>
+          <Thickness x:Key="NavigationViewItemInnerHeaderMargin">16,0,4,0</Thickness>
+        </NavigationViewItemHeader.Resources>
+        <NavigationViewItemHeader.Template>
+          <ControlTemplate TargetType="NavigationViewItemHeader">
+            <Grid>
+              <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="PaneStates">
+                  <VisualState x:Name="HeaderTextVisible" />
+                  <VisualState x:Name="HeaderTextCollapsed">
+                    <VisualState.Setters>
+                      <Setter Target="HeaderContent.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                  </VisualState>
+                </VisualStateGroup>
+              </VisualStateManager.VisualStateGroups>
+              <ContentPresenter x:Name="HeaderContent" Content="{TemplateBinding Content}" Height="40" HorizontalContentAlignment="Stretch" Margin="{ThemeResource NavigationViewItemInnerHeaderMargin}" />
+            </Grid>
+          </ControlTemplate>
+        </NavigationViewItemHeader.Template>
+        <Grid ColumnSpacing="8">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <TextBlock x:Uid="MorpheusChats" Text="Chats" VerticalAlignment="Center" Style="{StaticResource NavigationViewItemHeaderTextStyle}" />
+          <Button x:Name="NewSessionButton" x:Uid="WorkspaceShell_NewConversation" Grid.Column="1" Click="OnNewConversation" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSessionsAdd">
+            <FontIcon Glyph="" FontSize="16" />
+          </Button>
+        </Grid>
+      </NavigationViewItemHeader>
+      <NavigationViewItemHeader x:Name="SessionsEmpty" FontWeight="Normal" />
+    </NavigationView.MenuItems>
+    <NavigationView.PaneFooter>
+      <Grid Visibility="Collapsed" x:Name="ExpandedFooter" ColumnSpacing="4" Margin="4,8,4,8">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="OwnerButton" Style="{StaticResource SubtleButtonStyle}" Padding="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" AutomationProperties.AutomationId="WorkspaceOwner">
+          <Grid ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="24" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <PersonPicture x:Name="OwnerPicture" Width="24" Height="24" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+            <StackPanel Grid.Column="1">
+              <TextBlock x:Name="OwnerName" TextTrimming="CharacterEllipsis" />
+              <Grid ColumnSpacing="4">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FontIcon x:Name="OwnerStatusDot" Style="{StaticResource ConnectionBadgeNeutral}" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+                <TextBlock x:Name="OwnerDetail" Grid.Column="1" TextTrimming="CharacterEllipsis" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+              </Grid>
+            </StackPanel>
+          </Grid>
+        </Button>
+      </Grid>
+    </NavigationView.PaneFooter>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid x:Name="ReopenPaneSlot" Height="56" Visibility="Collapsed" />
+      <InfoBar x:Name="OperationInfo" Grid.Row="1" IsOpen="False" IsClosable="True" Severity="Error" />
+      <Grid x:Name="ContentHost" Grid.Row="2" AutomationProperties.AutomationId="WorkspaceContent" />
+    </Grid>
+  </NavigationView>
+  <Button x:Name="ReopenPaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceReopenPane" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,8,0,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+    <FontIcon Glyph="" FontSize="16" />
+  </Button>
+</Grid>
+Actual:   <StackPanel Orientation="Horizontal" Spacing="12" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Image Width="38" Height="38">
+    <Image.Source>
+      <SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg" />
+    </Image.Source>
+  </Image>
+  <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+  <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}" />
+  <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane" AutomationProperties.AutomationId="WorkspaceTogglePane" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontIcon Glyph="" FontSize="16" />
+  </Button>
+  <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton" Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center" AutomationProperties.AutomationId="WorkspaceNotifications" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+      <FontIcon Glyph="" FontSize="22" AutomationProperties.AccessibilityView="Raw" />
+      <InfoBadge x:Name="NotificationsBadge" Value="0" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-8,0" />
+    </Grid>
+    <Button.Flyout>
+      <Flyout x:Name="NotificationsFlyout" Placement="TopEdgeAlignedLeft" Opening="OnNotificationsOpening" Closed="OnNotificationsClosed">
+        <controls:NotificationFlyoutContent x:Name="NotificationContent" xmlns:controls="using:OpenClawTray.Controls" />
+      </Flyout>
+    </Button.Flyout>
+  </Button>
+</StackPanel>
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.HiddenPane_UsesZeroWidthAndReopenRowWithoutCoveringContent() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 727
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.49]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.RepeatedDestinations_DoNotGrowBackStack [FAIL]
+[xUnit.net 00:00:01.49]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.SettingsHistory_BackAndForwardWorkWithoutAnyGatewayState [FAIL]
+[xUnit.net 00:00:01.49]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.BackAndForward_PreserveIdentity_AndNewDestinationClearsForwardHistory [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.RepeatedDestinations_DoNotGrowBackStack [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.RepeatedDestinations_DoNotGrowBackStack() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 594
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.SettingsHistory_BackAndForwardWorkWithoutAnyGatewayState [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.SettingsHistory_BackAndForwardWorkWithoutAnyGatewayState() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 186
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.BackAndForward_PreserveIdentity_AndNewDestinationClearsForwardHistory [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Chat
+Actual:   Home
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.BackAndForward_PreserveIdentity_AndNewDestinationClearsForwardHistory() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 617
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.50]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceChrome_UsesNativeTitleBarAndTwoRowNavigationWithSubtleActions [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceChrome_UsesNativeTitleBarAndTwoRowNavigationWithSubtleActions [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+           ↓ (pos 0)
+Expected: "MORPHEUS"
+Actual:   ""
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.WorkspaceChrome_UsesNativeTitleBarAndTwoRowNavigationWithSubtleActions() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 775
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.57]     OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.Sidebar_UsesNativePaneFillAndPreservesSessionSelection [FAIL]
+  Failed OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.Sidebar_UsesNativePaneFillAndPreservesSessionSelection [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+           ↓ (pos 0)
+Expected: "NavigationViewExpandedPaneBackground"
+Actual:   "MorpheusSurfaceBrush"
+           ↑ (pos 0)
+  Stack Trace:
+     at OpenClaw.Tray.Tests.Presentation.WorkspaceNavigationTests.Sidebar_UsesNativePaneFillAndPreservesSessionSelection() in /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs:line 755
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+Results File: /workspace/MORPHEUS/components/windows/tests/OpenClaw.Tray.Tests/TestResults/phase4-shell.trx
+
+Failed!  - Failed:    43, Passed:   186, Skipped:     0, Total:   229, Duration: 352 ms - OpenClaw.Tray.Tests.dll (net10.0)

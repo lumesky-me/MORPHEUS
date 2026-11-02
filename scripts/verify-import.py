@@ -14,7 +14,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--record", action="store_true", help="Record reviewed downstream hashes; does not change source")
     parser.add_argument("--record-phase3", action="store_true", help="Record the reviewed Phase 3 delta without replacing historical Phase 1 evidence")
+    parser.add_argument("--record-phase4", action="store_true", help="Record the reviewed Phase 4 delta without replacing earlier evidence")
     args = parser.parse_args()
+    if args.record_phase3 and (EVIDENCE / "phase4" / "source-delta.json").exists():
+        raise SystemExit("Preserve historical Phase 3 evidence; use --record-phase4")
     inventory = json.loads(gzip.decompress((EVIDENCE / "upstream-inventory.json.gz").read_bytes()))
     delta = {}
     missing = []
@@ -53,6 +56,18 @@ def main():
         expected = delta
     if phase3.exists():
         for key, value in json.loads(phase3.read_text()).items():
+            if value is None:
+                expected.pop(key, None)
+            else:
+                expected[key] = value
+    phase4 = EVIDENCE / "phase4" / "source-delta.json"
+    if args.record_phase4:
+        overrides = {key: value for key, value in delta.items() if expected.get(key) != value}
+        overrides.update({key: None for key in expected if key not in delta})
+        phase4.parent.mkdir(parents=True, exist_ok=True)
+        phase4.write_text(json.dumps(overrides, indent=2, sort_keys=True) + "\n")
+    if phase4.exists():
+        for key, value in json.loads(phase4.read_text()).items():
             if value is None:
                 expected.pop(key, None)
             else:

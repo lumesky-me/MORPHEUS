@@ -8288,4 +8288,14 @@ Após a inscrição, volte para Configurações &gt; Windows Update e verifique 
   <data name="Chat_Run_ElapsedSeconds" xml:space="preserve"><value>{2} s</value></data>
   <data name="Chat_Questions_Resolving" xml:space="preserve"><value>Esta pergunta está sendo resolvida. Atualize para verificar seu status.</value></data>
   <data name="Chat_Questions_InvalidAnswer" xml:space="preserve"><value>Escolha uma resposta válida para cada pergunta.</value></data>
+  <data name="MorpheusHome.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Início</value></data>
+  <data name="MorpheusChat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Conversa</value></data>
+  <data name="MorpheusSchedule.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Tarefas agendadas</value></data>
+  <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Mais</value></data>
+  <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Configurações</value></data>
+  <data name="MorpheusChats.Text" xml:space="preserve"><value>Conversas</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>INICIAR UMA CONVERSA</value></data>
+  <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>Recolher conversas</value></data>
+  <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Expandir conversas</value></data>
+  <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Configurações. Clique com o botão direito ou pressione Shift+F10 para ajuda e Sobre.</value></data>
 </root>

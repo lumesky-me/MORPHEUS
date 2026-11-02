@@ -8236,4 +8236,14 @@
   <data name="Chat_Run_ElapsedSeconds" xml:space="preserve"><value>{2}秒</value></data>
   <data name="Chat_Questions_Resolving" xml:space="preserve"><value>正在處理此問題。請重新整理以查看其狀態。</value></data>
   <data name="Chat_Questions_InvalidAnswer" xml:space="preserve"><value>請為每個問題選擇有效的答案。</value></data>
+  <data name="MorpheusHome.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>首頁</value></data>
+  <data name="MorpheusChat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>聊天</value></data>
+  <data name="MorpheusSchedule.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>排程工作</value></data>
+  <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>更多</value></data>
+  <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>設定</value></data>
+  <data name="MorpheusChats.Text" xml:space="preserve"><value>聊天</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>開始對話</value></data>
+  <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>收合對話</value></data>
+  <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>展開對話</value></data>
+  <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>設定。按滑鼠右鍵或 Shift+F10 開啟說明與關於。</value></data>
 </root>

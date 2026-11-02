@@ -10,13 +10,14 @@ public sealed class WorkspaceChatSelectionTests
     public void InitialComposerConversation_IsThePreviousHistoryEntryAfterNew(string previous)
     {
         var history = new WorkspaceNavigationHistory();
+        history.Navigate(new(WorkspacePageId.Chat));
 
         Assert.True(history.SelectChatSession("agent:main:new", previous));
         Assert.Equal("agent:main:new", history.Current.SessionKey);
         Assert.True(history.GoBack());
-        Assert.Equal(new(WorkspacePageId.Home, previous), history.Current);
+        Assert.Equal(new(WorkspacePageId.Chat, previous), history.Current);
         Assert.Equal(history.Current, history.ChatDestination);
-        Assert.False(history.CanGoBack);
+        Assert.True(history.CanGoBack); // The initial Home destination remains recoverable.
         Assert.True(history.GoForward());
         Assert.Equal("agent:main:new", history.Current.SessionKey);
         Assert.False(history.CanGoForward);
@@ -26,10 +27,11 @@ public sealed class WorkspaceChatSelectionTests
     public void InitialSameSessionHandoff_BindsConversationWithoutAddingHistory()
     {
         var history = new WorkspaceNavigationHistory();
+        history.Navigate(new(WorkspacePageId.Chat));
 
         Assert.True(history.SelectChatSession("agent:main:main", "agent:main:main"));
         Assert.Equal("agent:main:main", history.Current.SessionKey);
-        Assert.False(history.CanGoBack);
+        Assert.True(history.CanGoBack); // The initial Home destination remains recoverable.
         Assert.False(history.SelectChatSession("agent:main:main", "agent:main:main"));
     }
 
@@ -37,7 +39,7 @@ public sealed class WorkspaceChatSelectionTests
     public void PreviousComposerConversation_DoesNotReplaceExplicitNavigation()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "agent:main:explicit"));
+        history.Navigate(new(WorkspacePageId.Chat, "agent:main:explicit"));
 
         history.SelectChatSession("agent:main:new", "agent:main:stale");
         Assert.True(history.GoBack());
@@ -48,13 +50,13 @@ public sealed class WorkspaceChatSelectionTests
     public void ComposerNewSession_UpdatesCurrentConversationAndAddsOneHistoryEntry()
     {
         var history = new WorkspaceNavigationHistory();
-        var original = new WorkspaceDestination(WorkspacePageId.Home, "agent:main:original");
+        var original = new WorkspaceDestination(WorkspacePageId.Chat, "agent:main:original");
         history.Navigate(original);
         history.Navigate(new(WorkspacePageId.Notifications));
         history.GoBack();
 
         Assert.True(history.SelectChatSession("agent:research:new"));
-        Assert.Equal(new(WorkspacePageId.Home, "agent:research:new"), history.Current);
+        Assert.Equal(new(WorkspacePageId.Chat, "agent:research:new"), history.Current);
         Assert.Equal(history.Current, history.ChatDestination);
         Assert.False(history.CanGoForward);
         Assert.False(history.SelectChatSession("agent:research:new"));
@@ -68,13 +70,13 @@ public sealed class WorkspaceChatSelectionTests
     public void LateComposerSelection_PreservesNotificationsAndChangesRetainedConversation()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "agent:main:original"));
+        history.Navigate(new(WorkspacePageId.Chat, "agent:main:original"));
         var notifications = new WorkspaceDestination(WorkspacePageId.Notifications);
         history.Navigate(notifications);
 
         Assert.True(history.SelectChatSession("agent:main:new", "agent:main:original"));
         Assert.Equal(notifications, history.Current);
-        Assert.Equal(new(WorkspacePageId.Home, "agent:main:new"), history.ChatDestination);
+        Assert.Equal(new(WorkspacePageId.Chat, "agent:main:new"), history.ChatDestination);
         Assert.False(history.SelectChatSession("agent:main:new"));
         history.Navigate(history.ChatDestination);
         Assert.Equal("agent:main:new", history.Current.SessionKey);
@@ -86,7 +88,7 @@ public sealed class WorkspaceChatSelectionTests
     public void RemovingComposerCreatedSession_ClearsRetainedAndCurrentDestinations()
     {
         var history = new WorkspaceNavigationHistory();
-        history.Navigate(new(WorkspacePageId.Home, "agent:main:original"));
+        history.Navigate(new(WorkspacePageId.Chat, "agent:main:original"));
         history.SelectChatSession("agent:main:new");
 
         Assert.True(history.RemoveSession("agent:main:new", "agent:main:replacement"));

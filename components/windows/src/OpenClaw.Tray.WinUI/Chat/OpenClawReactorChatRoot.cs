@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Media;
 using OpenClaw.Chat;
 using OpenClaw.Shared;
 using OpenClawTray.Helpers;
+using OpenClawTray.Presentation;
 using OpenClawTray.Services;
 using System;
 using System.Collections.Generic;
@@ -389,21 +390,15 @@ public sealed class OpenClawReactorChatRoot : Component<OpenClawReactorChatRootP
         var composerArea = ScrollViewer(
             Grid([GridSize.Star()], [GridSize.Auto, GridSize.Auto],
                 composerElement.WithKey("chat-composer").Grid(row: 0),
-                showWelcome
-                    ? ReactorChatWelcome.Secondary(
-                            ChatWelcomePresentation.RecentChats(snapshot.Threads, effectiveThread?.Id, effectiveThread?.AgentId),
-                            key => props.ComposerSession.Controller.TrySelectSession(key), onSuggestionPicked, firstSendInFlight)
-                        .Margin(ChatVisuals.Gutter(viewportWidth), 12, ChatVisuals.Gutter(viewportWidth), 24)
-                        .Grid(row: 1)
-                    : Empty().Grid(row: 1))
-                .Margin(0, showWelcome ? 24 : 0, 0, 0)
-                .VAlign(showWelcome ? VerticalAlignment.Center : VerticalAlignment.Top))
+                Empty().Grid(row: 1))
+                .Margin(0)
+                .VAlign(VerticalAlignment.Bottom))
             .Set(scroll =>
             {
                 scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
                 scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                 scroll.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                scroll.VerticalContentAlignment = showWelcome ? VerticalAlignment.Center : VerticalAlignment.Top;
+                scroll.VerticalContentAlignment = VerticalAlignment.Bottom;
             })
             .IsVisible(composerVisible)
             .AutomationId("ChatComposerArea")
@@ -417,8 +412,8 @@ public sealed class OpenClawReactorChatRoot : Component<OpenClawReactorChatRootP
                 timeline.TurnActive));
         return Grid(
             [GridSize.Star()],
-            [showWelcome ? GridSize.Auto : GridSize.Star(), GridSize.Auto, showWelcome ? GridSize.Star() : GridSize.Auto, GridSize.Auto],
-            showWelcome ? Empty().Grid(row: 0) : timelineElement.Grid(row: 0),
+            [GridSize.Star(), GridSize.Auto, GridSize.Auto, GridSize.Auto],
+            showWelcome ? ReactorChatWelcome.Header(new WorkspaceAgent("main", "MORPHY", null), viewportWidth).VAlign(VerticalAlignment.Center).Grid(row: 0) : timelineElement.Grid(row: 0),
             Border(questions).WithKey("chat-question-area").Grid(row: 1),
             composerArea.Grid(row: 2),
             statsElement.Grid(row: 3))

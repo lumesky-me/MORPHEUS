@@ -8303,4 +8303,14 @@ After enrolling, return to Settings &gt; Windows Update and check for updates. I
   <data name="Chat_Run_ElapsedSeconds" xml:space="preserve"><value>{2}s</value></data>
   <data name="Chat_Questions_Resolving" xml:space="preserve"><value>This question is being resolved. Refresh to check its status.</value></data>
   <data name="Chat_Questions_InvalidAnswer" xml:space="preserve"><value>Choose a valid answer for each question.</value></data>
+  <data name="MorpheusHome.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Home</value></data>
+  <data name="MorpheusChat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Chat</value></data>
+  <data name="MorpheusSchedule.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Scheduled Tasks</value></data>
+  <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>More</value></data>
+  <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Settings</value></data>
+  <data name="MorpheusChats.Text" xml:space="preserve"><value>Chats</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>START A CONVERSATION</value></data>
+  <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>Collapse conversations</value></data>
+  <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Expand conversations</value></data>
+  <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Settings. Right-click or press Shift+F10 for help and About.</value></data>
 </root>

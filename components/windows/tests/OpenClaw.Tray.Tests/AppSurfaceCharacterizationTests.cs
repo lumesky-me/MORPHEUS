@@ -33,7 +33,7 @@ public sealed class AppSurfaceCharacterizationTests
         Assert.DoesNotMatch(@"(?<![A-Za-z])HubWindow(?![A-Za-z_])",
             File.ReadAllText(Path.Combine(TestRepositoryPaths.GetRepositoryRoot(), "src", "OpenClaw.Tray.WinUI", "Services", "WindowManager.cs")));
         Assert.Contains("if (_workspaceWindow is null || _workspaceWindow.IsClosed)", source);
-        Assert.Contains("new WorkspaceWindow(state, notifications, ShowConnectionStatus)", source);
+        Assert.Contains("new WorkspaceWindow(state, notifications, ShowConnectionStatus,", source);
         Assert.Contains("_callbacks.ApplyTheme(_workspaceWindow)", source);
         Assert.Contains("_workspaceWindow.OpenSettings(settingsTag)", source);
         Assert.Contains("_workspaceWindow.Navigate(destination)", source);
