@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Only the distribution boundary is new. All assistant behavior remains upstream-owned.
 import { randomBytes } from "node:crypto";
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
@@ -42,6 +42,13 @@ export function initialize(env) {
   try {
     writeFileSync(env.OPENCLAW_CONFIG_PATH, JSON.stringify(config, null, 2) + "\n",
       { flag: "wx", mode: 0o600 });
+    const workspace = config.agents.entries.main.workspace;
+    mkdirSync(workspace, { recursive: true, mode: 0o700 });
+    for (const name of ["SOUL.md", "IDENTITY.md"]) {
+      const content = readFileSync(new URL(`../defaults/morphy/${name}`, import.meta.url), "utf8");
+      try { writeFileSync(path.join(workspace, name), content, { flag: "wx", mode: 0o600 }); }
+      catch (error) { if (error.code !== "EEXIST") throw error; }
+    }
     return true;
   } catch (error) {
     if (error.code === "EEXIST") return false;
@@ -63,6 +70,7 @@ export async function main(args = process.argv.slice(2)) {
   if (command === "update") {
     throw new Error("MORPHEUS source builds must be updated from their reviewed source. Upstream package replacement is not configured for this distribution.");
   }
+  initialize(env);
   if (!existsSync(path.join(coreRoot, "dist", "entry.js"))) {
     throw new Error("Build Core first: cd components/core && pnpm install --frozen-lockfile && pnpm build && pnpm ui:build");
   }

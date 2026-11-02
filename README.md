@@ -62,3 +62,7 @@ Windows GUI startup, chat streaming, Settings rendering, native sandbox enforcem
 Read `AUDIT/RECOMMENDATIONS.md` before release work. Known vulnerable locked dependencies and unresolved integration/native-test gaps prevent a security or release-readiness claim. The reports distinguish source-verified issues, suspected risks, advisory matches, and untested behavior. Phase 2 changes require separate review.
 
 Licenses and attributions are retained under the component trees and described in `UPSTREAM.md`.
+
+## MORPHY personality
+
+Fresh launcher profiles automatically receive the editable `defaults/morphy/SOUL.md` and `IDENTITY.md` in their own workspace. No manual personality setup is needed. Existing profiles and custom agents are not migrated or overwritten. See [Phase2 implementation and verification](AUDIT/PHASE2_PERSONALITY.md).
