@@ -8247,4 +8247,5 @@ Après votre inscription, revenez dans Paramètres &gt; Windows Update et recher
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Afficher les conversations</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Paramètres. Clic droit ou Maj+F10 pour l’aide et À propos.</value></data>
   <data name="MorpheusConversationHint" xml:space="preserve"><value>Un espace pour votre prochaine idée.</value></data>
+  <data name="MorpheusMessagePlaceholder" xml:space="preserve"><value>Écrire à MORPHY...</value></data>
 </root>

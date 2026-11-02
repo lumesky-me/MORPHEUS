@@ -69,8 +69,8 @@
         <Grid Padding="12,18,12,28" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
             <StackPanel Spacing="8">
                 <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE80F;"/></Button>
-                <Button x:Name="ChatRailButton" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE8F2;"/></Button>
-                <Button x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE823;"/></Button>
+                <Button x:Name="ChatRailButton" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}"><PathIcon Width="20" Height="20" Data="F0 M5,3 H19 Q22,3 22,6 V15 Q22,18 19,18 H10 L5,22 V18 Q2,18 2,15 V6 Q2,3 5,3 Z M5,4.6 Q3.6,4.6 3.6,6 V15 Q3.6,16.4 5,16.4 H6.6 V18.6 L9.4,16.4 H19 Q20.4,16.4 20.4,15 V6 Q20.4,4.6 19,4.6 Z"/></Button>
+                <Button Visibility="Collapsed" x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE823;"/></Button>
                 <Button x:Name="MoreButton" x:Uid="MorpheusMore" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE712;"/></Button>
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom" Spacing="12">

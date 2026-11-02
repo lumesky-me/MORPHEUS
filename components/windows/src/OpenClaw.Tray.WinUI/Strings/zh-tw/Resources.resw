@@ -8247,4 +8247,5 @@
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>展開對話</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>設定。按滑鼠右鍵或 Shift+F10 開啟說明與關於。</value></data>
   <data name="MorpheusConversationHint" xml:space="preserve"><value>為下一個想法留出空間。</value></data>
+  <data name="MorpheusMessagePlaceholder" xml:space="preserve"><value>傳送訊息給 MORPHY...</value></data>
 </root>

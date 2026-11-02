@@ -432,9 +432,9 @@ internal sealed class ReactorChatComposer : Component<ReactorChatComposerViewPro
         var input = TextBox(
                 text,
                 vm.SetDraft,
-                PlaceholderFor(inputs.ConnectionState))
+                Localized("MorpheusMessagePlaceholder", "Message MORPHY..."))
             .AutomationId("ChatComposerInput")
-            .AutomationName(PlaceholderFor(inputs.ConnectionState))
+            .AutomationName(Localized("MorpheusMessagePlaceholder", "Message MORPHY..."))
             // Multiline TextBox consumes Enter before bubbling KeyDown. Handle
             // composer shortcuts in preview so only Shift+Enter inserts a newline.
             .OnPreviewKeyDown((sender, args) =>
@@ -567,7 +567,7 @@ internal sealed class ReactorChatComposer : Component<ReactorChatComposerViewPro
                 inputs.CanChangeSessionOptions
                     && modelCatalogStatus is not ChatModelCatalogStatus.Loading
                         and not ChatModelCatalogStatus.Unavailable,
-                200)
+                Math.Clamp((viewportWidth - 260) * 0.6, 48, 180))
                 .MinWidth(compactEffort ? 44 : 0)
                 .MinHeight(compactEffort ? 44 : 32)
                 .Padding(compactEffort ? 0 : 8, compactEffort ? 0 : 4),
@@ -712,15 +712,15 @@ internal sealed class ReactorChatComposer : Component<ReactorChatComposerViewPro
                 .OnUnmount(control => ComposerAutomationVisibility.Detach(
                     (FrameworkElement)control));
 
-        Element leading = attachButton.VAlign(VerticalAlignment.Center);
+        Element leading = HStack(4, attachButton, sandboxButton).VAlign(VerticalAlignment.Center);
         var pickers = Grid(
             [GridSize.Star(), GridSize.Auto],
             [GridSize.Auto],
             Grid([GridSize.Star()], [GridSize.Auto], modelPicker).Grid(column: 0),
             Grid([GridSize.Star()], [GridSize.Auto], reasoningPicker).Grid(column: 1))
-            .MaxWidth(320)
+            .MaxWidth(Math.Clamp(viewportWidth - 196, 100, 320))
             .HAlign(HorizontalAlignment.Right).VAlign(VerticalAlignment.Center);
-        var rightToolbar = HStack(4, sandboxButton, voiceButton, primaryAction)
+        var rightToolbar = HStack(4, voiceButton, primaryAction)
             .HAlign(HorizontalAlignment.Right)
             .VAlign(VerticalAlignment.Center);
         var toolbar = Grid(

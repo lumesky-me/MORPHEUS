@@ -93,3 +93,14 @@ python scripts/build-ui-preview.py
 `artifacts/ui-preview/` contains only allowlisted UI files and shared SVGs. It is ignored by Git. This is suitable for a separately reviewed static-hosting step, but no hosting was deployed. Never publish an authenticated Gateway as part of this preview.
 
 See [Phase 4 results](AUDIT/PHASE4_UI_RESULTS.md) for test failures, native build blockers, preserved history and publication status.
+
+
+## Current composer and rail refinements
+
+Scheduled Tasks is temporarily hidden from the rail; its native backend and
+internal routes remain available. The outline Chat icon replaces the dotted
+bubble. The composer shows paperclip, model, reasoning, microphone and Send in
+the original toolbar order. Browser model/reasoning buttons truthfully explain
+the disconnected catalog; native controls retain the actual picker/controller
+bindings. See AUDIT/PHASE4_CHAT_COMPOSER.md for validation and remaining native
+Windows limitations.

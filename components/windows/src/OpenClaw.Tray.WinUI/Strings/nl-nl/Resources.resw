@@ -8248,4 +8248,5 @@ Ga na inschrijving terug naar Instellingen &gt; Windows Update en controleer op 
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Gesprekken uitklappen</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Instellingen. Rechtsklik of Shift+F10 voor hulp en informatie.</value></data>
   <data name="MorpheusConversationHint" xml:space="preserve"><value>Ruimte voor je volgende idee.</value></data>
+  <data name="MorpheusMessagePlaceholder" xml:space="preserve"><value>Bericht aan MORPHY...</value></data>
 </root>

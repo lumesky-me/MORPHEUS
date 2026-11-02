@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import os,shutil
-out=Path(__file__).resolve().parents[1]/'AUDIT/evidence/phase4-refinement';out.mkdir(parents=True,exist_ok=True)
+out=Path(os.environ.get('MORPHEUS_PREVIEW_EVIDENCE',Path(__file__).resolve().parents[1]/'AUDIT/evidence/phase4-refinement'));out.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path=os.environ.get('MORPHEUS_PREVIEW_CHROMIUM') or shutil.which('chromium'),args=['--no-sandbox'])
  page=browser.new_page(viewport={'width':1280,'height':800},device_scale_factor=1)

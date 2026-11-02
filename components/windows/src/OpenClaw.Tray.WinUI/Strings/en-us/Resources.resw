@@ -8314,4 +8314,5 @@ After enrolling, return to Settings &gt; Windows Update and check for updates. I
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Expand conversations</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Settings. Right-click or press Shift+F10 for help and About.</value></data>
   <data name="MorpheusConversationHint" xml:space="preserve"><value>A clear space for your next idea.</value></data>
+  <data name="MorpheusMessagePlaceholder" xml:space="preserve"><value>Message MORPHY...</value></data>
 </root>

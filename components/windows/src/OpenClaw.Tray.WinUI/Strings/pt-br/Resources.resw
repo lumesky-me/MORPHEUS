@@ -8299,4 +8299,5 @@ Após a inscrição, volte para Configurações &gt; Windows Update e verifique 
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Expandir conversas</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Configurações. Clique com o botão direito ou pressione Shift+F10 para ajuda e Sobre.</value></data>
   <data name="MorpheusConversationHint" xml:space="preserve"><value>Um espaço para sua próxima ideia.</value></data>
+  <data name="MorpheusMessagePlaceholder" xml:space="preserve"><value>Mensagem para MORPHY...</value></data>
 </root>

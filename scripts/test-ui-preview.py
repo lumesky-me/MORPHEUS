@@ -28,7 +28,7 @@ with sync_playwright() as p:
     assert page.locator('#messages').inner_text()=='';page.locator('#close-dialog').click()
     page.locator('#more').focus();page.keyboard.press('Enter');assert page.locator('#more-menu button').all_text_contents()==['Usage','Pair device','Connection event timeline']
     page.keyboard.press('Escape');assert not page.locator('#more-menu').is_visible()
-    for id in ['schedule','settings','connection','notifications','attach','microphone']:
+    for id in ['settings','connection','notifications','attach','microphone','model-picker','reasoning-picker']:
         page.locator('#'+id).click();assert page.locator('#handoff').is_visible();page.locator('#close-dialog').click()
     page.locator('#search-toggle').click();page.locator('#search').fill('never-existing-private-data');assert 'No browser sessions' in page.locator('#session-note').inner_text()
     for size in [(1440,900),(1280,800),(1000,700),(600,800),(390,844)]:
