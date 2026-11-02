@@ -1220,3 +1220,26 @@ new logo. Supply the approved standalone asset before final brand acceptance.
 Native chat keeps its existing model, reasoning, placement and permission
 controls for functional preservation; this adds options beyond the minimal
 reference composer. Native pixel proof remains required on Windows.
+
+
+## MORPHEUS creative redesign
+
+The redesign supersedes the screenshot-led workspace geometry above, while the
+original branch remains the rollback point. Charcoal canvas (#101014), elevated
+neutral surfaces and violet (#8b6cef) establish hierarchy without neon outlines.
+Shared tokens: 48px title bar, 66px navigation rail, 272px sidebar, 12px composer
+radius. Icon graphics are 18-20px inside 32-40px targets. Spacing follows
+4/8/12/16/24/32; body type is 13-15px with 1.5-1.6 line height. The conversation
+reading column is capped at 800px. Native controls retain their original actions.
+
+Home is an uninterrupted empty canvas. Chat has a distinct conversation-list
+surface and a borderless reading canvas. Its empty state is typographic, with a
+44px identity glyph instead of a hero illustration. The composer is a two-row
+writing surface, with attachments/voice below the draft and send at the trailing
+edge. Model, reasoning, placement and permission controls remain native.
+
+Menus use compact rows, a single surface boundary and an anchored shadow.
+Dialogs share the same neutral surface and violet focus treatment. Loading and
+errors use real runtime state; no synthetic task or connection data is added.
+Motion is limited to 120-150ms color/border transitions and disabled by reduced
+motion. High-contrast native resources and browser forced colors remain supported.

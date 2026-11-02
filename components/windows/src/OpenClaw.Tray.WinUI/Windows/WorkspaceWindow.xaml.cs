@@ -73,6 +73,9 @@ public sealed partial class WorkspaceWindow : WindowEx
         AppState state, AppNotificationService notifications, Action openTimeline, Action<string>? openSettingsWindow = null, Action<WorkspaceDestination>? openWorkspaceRoute = null)
     {
         InitializeComponent();
+        WorkspaceTitleBar.Height = MorpheusLayout.HeaderHeight;
+        NavView.OpenPaneLength = MorpheusLayout.SidebarWidth;
+        NavRailColumn.Width = new GridLength(MorpheusLayout.RailWidth);
         _state = state;
         _openSettingsWindow = openSettingsWindow;
         _openWorkspaceRoute = openWorkspaceRoute;
@@ -803,9 +806,9 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void ApplySessionItem(NavigationViewItem item, WorkspaceSession session)
     {
-        item.Margin = new Thickness(6, 4, 6, 4);
-        item.MinHeight = 70;
-        item.CornerRadius = new CornerRadius(14);
+        item.Margin = new Thickness(6, 2, 6, 2);
+        item.MinHeight = 48;
+        item.CornerRadius = new CornerRadius(8);
         item.Tag = session;
         item.Content = BuildSessionContent(session);
         item.ContextFlyout = _sessionMenu.CreateFlyout(session);

@@ -8294,8 +8294,9 @@ Após a inscrição, volte para Configurações &gt; Windows Update e verifique 
   <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Mais</value></data>
   <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Configurações</value></data>
   <data name="MorpheusChats.Text" xml:space="preserve"><value>Conversas</value></data>
-  <data name="MorpheusStartConversation" xml:space="preserve"><value>INICIAR UMA CONVERSA</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>Iniciar uma conversa</value></data>
   <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>Recolher conversas</value></data>
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Expandir conversas</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Configurações. Clique com o botão direito ou pressione Shift+F10 para ajuda e Sobre.</value></data>
+  <data name="MorpheusConversationHint" xml:space="preserve"><value>Um espaço para sua próxima ideia.</value></data>
 </root>

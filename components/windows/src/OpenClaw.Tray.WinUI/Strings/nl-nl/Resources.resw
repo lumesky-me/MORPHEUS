@@ -8243,8 +8243,9 @@ Ga na inschrijving terug naar Instellingen &gt; Windows Update en controleer op 
   <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Meer</value></data>
   <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Instellingen</value></data>
   <data name="MorpheusChats.Text" xml:space="preserve"><value>Gesprekken</value></data>
-  <data name="MorpheusStartConversation" xml:space="preserve"><value>BEGIN EEN GESPREK</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>Begin een gesprek</value></data>
   <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>Gesprekken inklappen</value></data>
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Gesprekken uitklappen</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Instellingen. Rechtsklik of Shift+F10 voor hulp en informatie.</value></data>
+  <data name="MorpheusConversationHint" xml:space="preserve"><value>Ruimte voor je volgende idee.</value></data>
 </root>

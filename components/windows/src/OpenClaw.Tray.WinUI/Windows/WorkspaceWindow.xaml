@@ -16,7 +16,7 @@
             </DataTemplate>
             <Style x:Key="ConnectionBadgeIcon" TargetType="FontIcon">
                 <Setter Property="Glyph" Value="&#xE91F;"/>
-                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontSize" Value="10"/>
             </Style>
             <Style x:Key="ConnectionBadgeNeutral" TargetType="FontIcon" BasedOn="{StaticResource ConnectionBadgeIcon}">
                 <Setter Property="Foreground" Value="{ThemeResource SystemFillColorNeutralBrush}"/>
@@ -36,10 +36,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TitleBar x:Name="WorkspaceTitleBar" Height="62" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
+        <TitleBar x:Name="WorkspaceTitleBar" Height="48" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
             <TitleBar.Content><StackPanel Orientation="Horizontal" Spacing="12">
-                <Image Width="38" Height="38"><Image.Source><SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg"/></Image.Source></Image>
-                <TextBlock Text="MORPHEUS" CharacterSpacing="220" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Image Width="25" Height="25"><Image.Source><SvgImageSource UriSource="ms-appx:///Assets/Morpheus/logo-slot.svg"/></Image.Source></Image>
+                <TextBlock Text="MORPHEUS" CharacterSpacing="100" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}"/>
         <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
                 AutomationProperties.AutomationId="WorkspaceTogglePane"
@@ -64,10 +64,10 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button></StackPanel></TitleBar.Content></TitleBar>
-        <Grid x:Name="NavigationSection" Grid.Row="1" Margin="10,4,10,10" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
-        <Grid.ColumnDefinitions><ColumnDefinition Width="94"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-        <Grid Padding="12,24,12,18" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
-            <StackPanel Spacing="16">
+        <Grid x:Name="NavigationSection" Grid.Row="1" Margin="0" CornerRadius="0" BorderThickness="0" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
+        <Grid.ColumnDefinitions><ColumnDefinition x:Name="NavRailColumn" Width="66"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+        <Grid Padding="12,18,12,28" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
+            <StackPanel Spacing="8">
                 <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE80F;"/></Button>
                 <Button x:Name="ChatRailButton" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE8F2;"/></Button>
                 <Button x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE823;"/></Button>
@@ -79,11 +79,11 @@
                 <Button x:Name="SettingsRailButton" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE713;"/></Button>
             </StackPanel>
         </Grid>
-        <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><Image Stretch="Fill" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw"><Image.Source><SvgImageSource UriSource="ms-appx:///Assets/Morpheus/canvas-lighting.svg"/></Image.Source></Image></Grid>
+        <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome"/>
 
         <NavigationView x:Name="NavView" Grid.Column="1"
                         AutomationProperties.AutomationId="WorkspaceNavigation"
-                        PaneDisplayMode="Left" OpenPaneLength="344" CompactPaneLength="0"
+                        PaneDisplayMode="Left" OpenPaneLength="272" CompactPaneLength="0"
                         IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                         IsPaneToggleButtonVisible="False" IsPaneOpen="True"
                         PaneClosed="OnPaneClosed"
@@ -179,7 +179,7 @@
                     </NavigationViewItemHeader.Template>
                     <Grid ColumnSpacing="8">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                        <TextBlock x:Uid="MorpheusChats" FontSize="28" Text="Chats" VerticalAlignment="Center"
+                        <TextBlock x:Uid="MorpheusChats" FontSize="14" Text="Chats" VerticalAlignment="Center"
                                    Style="{StaticResource NavigationViewItemHeaderTextStyle}"/>
                                                     <Button x:Name="WorkspaceSearchButton" Grid.Column="1" Height="40"
                                     Style="{StaticResource SubtleButtonStyle}" AutomationProperties.AutomationId="WorkspaceSearch">
@@ -253,7 +253,7 @@
                 </Grid.RowDefinitions>
                 <Grid x:Name="ReopenPaneSlot" Height="56" Visibility="Collapsed"/>
                 <InfoBar x:Name="OperationInfo" Grid.Row="1" IsOpen="False" IsClosable="True" Severity="Error"/>
-                <Grid x:Name="ContentHost" Grid.Row="2" Margin="12,14,12,14" CornerRadius="20" BorderThickness="1" BorderBrush="{ThemeResource MorpheusBorderBrush}" AutomationProperties.AutomationId="WorkspaceContent"/>
+                <Grid x:Name="ContentHost" Grid.Row="2" Margin="0" CornerRadius="0" BorderThickness="0" BorderBrush="{ThemeResource MorpheusBorderBrush}" AutomationProperties.AutomationId="WorkspaceContent"/>
             </Grid>
         </NavigationView>
 

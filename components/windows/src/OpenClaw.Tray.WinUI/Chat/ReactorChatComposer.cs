@@ -765,10 +765,10 @@ internal sealed class ReactorChatComposer : Component<ReactorChatComposerViewPro
 
         var writingSurface = Border(
             VStack(8, composerChildren.ToArray())
-            .Padding(16, 12, 16, 8))
+            .Padding(12, 10, 12, 8))
             .BorderThickness(1)
             .CornerRadius(ChatVisuals.ComposerRadius)
-            .MinHeight(112)
+            .MinHeight(104)
             .Background(Theme.Ref("ChatComposerBrush"))
             .BorderBrush(Theme.Ref("ChatStrokeBrush"))
             .HAlign(HorizontalAlignment.Stretch)

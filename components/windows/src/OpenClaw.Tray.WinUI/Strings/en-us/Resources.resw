@@ -8309,8 +8309,9 @@ After enrolling, return to Settings &gt; Windows Update and check for updates. I
   <data name="MorpheusMore.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>More</value></data>
   <data name="MorpheusSettings.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Settings</value></data>
   <data name="MorpheusChats.Text" xml:space="preserve"><value>Chats</value></data>
-  <data name="MorpheusStartConversation" xml:space="preserve"><value>START A CONVERSATION</value></data>
+  <data name="MorpheusStartConversation" xml:space="preserve"><value>Start a conversation</value></data>
   <data name="WorkspaceShell_CollapseChats" xml:space="preserve"><value>Collapse conversations</value></data>
   <data name="WorkspaceShell_ExpandChats" xml:space="preserve"><value>Expand conversations</value></data>
   <data name="WorkspaceShell_SettingsHelpHint" xml:space="preserve"><value>Settings. Right-click or press Shift+F10 for help and About.</value></data>
+  <data name="MorpheusConversationHint" xml:space="preserve"><value>A clear space for your next idea.</value></data>
 </root>

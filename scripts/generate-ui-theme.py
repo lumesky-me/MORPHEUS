@@ -14,7 +14,7 @@ hc+='<SolidColorBrush x:Key="AccentFillColorDefaultBrush" Color="{ThemeResource 
 xaml='''<!-- Generated from ui/shared/tokens.json. -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 <ResourceDictionary.ThemeDictionaries><ResourceDictionary x:Key="Default">'''+brush+'''
-<LinearGradientBrush x:Key="MorpheusCanvasBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#0c0317" Offset="0"/><GradientStop Color="#20003c" Offset="0.5"/><GradientStop Color="#090311" Offset="1"/></LinearGradientBrush>
+<LinearGradientBrush x:Key="MorpheusCanvasBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#15141c" Offset="0"/><GradientStop Color="#17151f" Offset="0.5"/><GradientStop Color="#101014" Offset="1"/></LinearGradientBrush>
 </ResourceDictionary><ResourceDictionary x:Key="HighContrast">'''+hc+'''
 <SolidColorBrush x:Key="MorpheusBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}"/>
 <SolidColorBrush x:Key="MorpheusCanvasBrush" Color="{ThemeResource SystemColorWindowColor}"/>
@@ -22,11 +22,12 @@ xaml='''<!-- Generated from ui/shared/tokens.json. -->
 <SolidColorBrush x:Key="MorpheusBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}"/>
 <SolidColorBrush x:Key="MorpheusTextBrush" Color="{ThemeResource SystemColorWindowTextColor}"/>
 </ResourceDictionary></ResourceDictionary.ThemeDictionaries>
-<Style x:Key="MorpheusRailButton" TargetType="Button"><Setter Property="Width" Value="60"/><Setter Property="Height" Value="58"/><Setter Property="CornerRadius" Value="12"/><Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Foreground" Value="{ThemeResource MorpheusTextBrush}"/></Style>
+<Style x:Key="MorpheusRailButton" TargetType="Button"><Setter Property="Width" Value="40"/><Setter Property="Height" Value="40"/><Setter Property="CornerRadius" Value="8"/><Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Foreground" Value="{ThemeResource MorpheusTextBrush}"/></Style>
 <Style x:Key="MorpheusRailSelectedButton" TargetType="Button" BasedOn="{StaticResource MorpheusRailButton}"><Setter Property="Background" Value="{ThemeResource MorpheusAccentBrush}"/></Style>
 </ResourceDictionary>
 '''
-files={r/'ui/preview/tokens.css':css,r/'components/windows/src/OpenClaw.Tray.WinUI/Themes/MorpheusResources.xaml':xaml}
+geometry='// Generated from ui/shared/tokens.json.\nnamespace OpenClawTray.Presentation;\ninternal static class MorpheusLayout\n{\n'+''.join(f'    internal const double {key[0].upper()+key[1:]} = {value};\n' for key,value in t.items() if isinstance(value,(int,float)))+'}\n'
+files={r/'components/windows/src/OpenClaw.Tray.WinUI/Presentation/MorpheusLayout.cs':geometry,r/'ui/preview/tokens.css':css,r/'components/windows/src/OpenClaw.Tray.WinUI/Themes/MorpheusResources.xaml':xaml}
 for p,content in files.items():
     if '--check' in sys.argv:
         if not p.exists() or p.read_text()!=content: raise SystemExit(f'Regenerate UI theme: {p}')

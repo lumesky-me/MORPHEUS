@@ -29,18 +29,21 @@ internal static class ReactorChatWelcome
     ];
 
     internal static Element Header(WorkspaceAgent agent, double viewportWidth) =>
-        VStack(12,
+        VStack(10,
             Image("ms-appx:///Assets/Morpheus/conversation-ring.svg").Set(image => image.Source = new Microsoft.UI.Xaml.Media.Imaging.SvgImageSource(
                 new Uri("ms-appx:///Assets/Morpheus/conversation-ring.svg")))
-                .Size(200, 200).HAlign(HorizontalAlignment.Center)
+                .Size(44, 44).HAlign(HorizontalAlignment.Center)
                 .AccessibilityView(AccessibilityView.Raw),
-            TextBlock("M O R P H E U S").FontSize(32)
+            TextBlock("MORPHY").FontSize(11)
                 .TextAlignment(TextAlignment.Center).HAlign(HorizontalAlignment.Stretch)
                 .AutomationId("ChatWelcomeAgent"),
             TextBlock(LocalizationHelper.GetString("MorpheusStartConversation"))
-                .FontSize(14).Foreground(Theme.Ref("ChatSecondaryTextBrush"))
+                .FontSize(26).Foreground(Theme.Ref("ChatTextBrush"))
                 .TextAlignment(TextAlignment.Center).HAlign(HorizontalAlignment.Stretch)
-                .AutomationId("ChatWelcomeHint"))
+                .AutomationId("ChatWelcomeHint"),
+            TextBlock(LocalizationHelper.GetString("MorpheusConversationHint"))
+                .FontSize(13).Foreground(Theme.Ref("ChatSecondaryTextBrush"))
+                .TextAlignment(TextAlignment.Center).HAlign(HorizontalAlignment.Stretch))
             .HAlign(HorizontalAlignment.Stretch);
 
     internal static Element Secondary(

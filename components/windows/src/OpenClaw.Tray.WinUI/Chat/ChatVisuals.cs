@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using OpenClawTray.Presentation;
 using Microsoft.UI.Reactor.Core;
 using Microsoft.UI.Reactor.Elements;
 using Microsoft.UI.Xaml;
@@ -10,12 +11,12 @@ namespace OpenClawTray.Chat;
 /// <summary>Shared native chat geometry. See docs/CHAT_VISUAL_DESIGN.md.</summary>
 internal static class ChatVisuals
 {
-    internal const double ReadingWidth = 1100;
+    internal const double ReadingWidth = MorpheusLayout.ReadingWidth;
     internal const double ProseInset = 16;
-    internal const double ComposerRadius = 20;
+    internal const double ComposerRadius = MorpheusLayout.ComposerRadius;
     internal const double SurfaceRadius = 12;
-    internal const double BodySize = 14;
-    internal const double BodyLineHeight = 21;
+    internal const double BodySize = 15;
+    internal const double BodyLineHeight = 24;
     internal const string CodeFontFamily = "Consolas";
     internal const double CodeSize = 13;
     internal const double CodeLineHeight = 18;
@@ -28,7 +29,7 @@ internal static class ChatVisuals
     internal const double AvatarSlot = 44;
 
     internal static double WelcomeAvatarSize(double width) => width <= 768 ? 64 : 96;
-    internal static double Gutter(double width) => width < FooterBreakpoint ? 12 : 20;
+    internal static double Gutter(double width) => width < FooterBreakpoint ? 12 : 24;
     internal static double RailWidth(double width) => width < FooterBreakpoint ? 24 : 32;
     internal static double ProseWidth(double width) =>
         Math.Min(ReadingWidth - 2 * ProseInset, width - 2 * (Gutter(width) + ProseInset));

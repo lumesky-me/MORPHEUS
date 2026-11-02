@@ -1,0 +1,54 @@
+{
+  "windows/DESIGN.md": {
+    "sha256": "637e8e800d45fda2b42970e11116ba2f200fb9d6aead6da17c9b4b9eae0a612c",
+    "upstream_blob": "5b805d38976f337db040d0268ebb6a826e96759d"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/ChatVisuals.cs": {
+    "sha256": "8dda9e2e42cc0b8db2eea746ea4d45fcecc7eee3f101236b1d7119fc5a2d2579",
+    "upstream_blob": "cbe89e3e64f56299fbbfd6b1239a3ca3f17eec99"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/ReactorChatComposer.cs": {
+    "sha256": "7d5eb815e9e49852e17af11e327bc930ecd91d21e0842e4051d9845ba324fef3",
+    "upstream_blob": "9f310b380cf0bec5299e895b5525e040be7099fe"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Chat/ReactorChatWelcome.cs": {
+    "sha256": "01d8f0b41fec5259ced97d67a69d65d7d9e124085721098608b8acb4490051ea",
+    "upstream_blob": "cb42064b0e5ac5d55ea6a2b611a0460ab23d4cb3"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Strings/en-us/Resources.resw": {
+    "sha256": "e28948334076e2866c24f9a92d2c7d1342a3c5a93d3b54aa5b162c916fc0af0a",
+    "upstream_blob": "6dc1033354db9b6ca192143fcc499f86a41fa31b"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Strings/fr-fr/Resources.resw": {
+    "sha256": "e01eb9e900fed05f7ed30095661e61f727f8718f38c3daff5b20487afba4faf2",
+    "upstream_blob": "338573e6d9b7c0e0c71bada05a18ed18c5b09c37"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Strings/nl-nl/Resources.resw": {
+    "sha256": "8d8489f8538aa1a390f182aa516134d12d1d6b7a930d9a48c20be88d6de3a2f4",
+    "upstream_blob": "46cc2593cd417cbcea2a9c5dfc403411a4bac4a9"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Strings/pt-br/Resources.resw": {
+    "sha256": "616d2222236b8ef52936b31848c6b48b6580b875e3320bcb3bb02cb225cb933f",
+    "upstream_blob": "3ef59041187e3010841f32ccfc3187ddd9ccfe18"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Strings/zh-cn/Resources.resw": {
+    "sha256": "23e26dad40e5ef609c1189243c61a076aaf92f1943609b4fbceefb08cabf53c8",
+    "upstream_blob": "6e0681f11bb063e49a2317bc4fd31d7861ebe146"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Strings/zh-tw/Resources.resw": {
+    "sha256": "1d8b0e3f7ef9b9b6d4af909bce4b6ddb352a4a4823713eca94188be44a46a86a",
+    "upstream_blob": "32396effa7f03d2307bdbaaddf93f53da7f6fc0d"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Windows/WorkspaceWindow.xaml": {
+    "sha256": "1a437256bb3993394437e6e13b2c7cb7216efc83c0931018366fce4e6ab65ced",
+    "upstream_blob": "c3b4761f6dd62a6469cda43a6e1da23ce4502e51"
+  },
+  "windows/src/OpenClaw.Tray.WinUI/Windows/WorkspaceWindow.xaml.cs": {
+    "sha256": "7a8265d6e140afe9eca512e64b718ee465a9956bab05c0d0c52e41624875d662",
+    "upstream_blob": "51efe92e7c29b45e46da22aa06e298a8cd62f089"
+  },
+  "windows/tests/OpenClaw.Tray.Tests/Presentation/WorkspaceNavigationTests.cs": {
+    "sha256": "f5960d93e7cc894c4a4ce2ab20ecb5614b15300baeb1badde8292d509ef6bfd8",
+    "upstream_blob": "114c59a934a422a355a2400ba49a53466d36cefd"
+  }
+}

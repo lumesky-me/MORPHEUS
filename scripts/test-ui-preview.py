@@ -31,14 +31,21 @@ with sync_playwright() as p:
     for id in ['schedule','settings','connection','notifications','attach','microphone']:
         page.locator('#'+id).click();assert page.locator('#handoff').is_visible();page.locator('#close-dialog').click()
     page.locator('#search-toggle').click();page.locator('#search').fill('never-existing-private-data');assert 'No browser sessions' in page.locator('#session-note').inner_text()
-    for size in [(1000,700),(600,800),(390,844)]:
+    for size in [(1440,900),(1280,800),(1000,700),(600,800),(390,844)]:
         page.set_viewport_size({'width':size[0],'height':size[1]})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.screenshot(path=str(out/f'chat-{size[0]}.png'))
+        if size[0]<700:
+            page.locator('#sidebar-toggle').click()
+            assert page.locator('#draft').is_visible()
+            bounds=page.locator('#draft').bounding_box()
+            assert bounds and bounds['x']>=0 and bounds['x']+bounds['width']<=size[0]
+            page.screenshot(path=str(out/f'chat-reading-{size[0]}.png'))
+            page.locator('#sidebar-toggle').click()
     assert not errors,errors
     assert not failed_assets,failed_assets
     assert not console_errors,console_errors
     for path in ['/.git/config','/AUDIT/PHASE3_IMPLEMENTATION_RESULTS.md','/../components/windows/README.md','/secrets']:
         assert page.request.get('http://127.0.0.1:4173'+path).status==404
     browser.close()
-print('PASS: browser navigation, empty Home, sidebar, draft retention, honest native handoffs, exact More entries, search, 4 viewports, no page errors, server allowlist')
+print('PASS: browser navigation, empty Home, sidebar, draft retention, honest native handoffs, exact More entries, search, 6 viewports, no page errors, server allowlist')

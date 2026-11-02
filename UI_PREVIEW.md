@@ -1,3 +1,5 @@
+> Current design: the creative redesign uses a charcoal workspace, compact navigation, a 272px conversation sidebar and restrained violet accents. The previous screenshot-led version is preserved on `phase-4-ui`. Browser/native platform limitations below still apply.
+
 # MORPHEUS UI preview
 
 The Phase 4 preview follows the approved Chat screenshot and the **corrected Home screenshot supplied last**: rounded purple frame, inset navigation rail, corner lighting and an empty Home canvas. It is a local visual development surface. Windows remains the production application.
@@ -9,12 +11,12 @@ This cloud session has no preview-sharing tool, configured hosting connection or
 If Git and Python 3 are already installed, open PowerShell and run:
 
 ```powershell
-git clone --branch phase-4-ui --single-branch https://github.com/lumesky-me/MORPHEUS.git
+git clone --branch phase-4-ui-redesign --single-branch https://github.com/lumesky-me/MORPHEUS.git
 Set-Location MORPHEUS
 .\scripts\start-ui-preview.cmd
 ```
 
-For an existing checkout, use the existing `phase-4-ui` working directory and run only the last command. Preserve local changes before switching branches or pulling. Alternatively, download and extract the [branch ZIP](https://github.com/lumesky-me/MORPHEUS/archive/refs/heads/phase-4-ui.zip), then double-click `scripts\start-ui-preview.cmd`. Git is not needed for the ZIP workflow.
+For an existing checkout, use the existing `phase-4-ui-redesign` working directory and run only the last command. Preserve local changes before switching branches or pulling. Alternatively, download and extract the [branch ZIP](https://github.com/lumesky-me/MORPHEUS/archive/refs/heads/phase-4-ui-redesign.zip), then double-click `scripts\start-ui-preview.cmd`. Git is not needed for the ZIP workflow.
 
 If Python 3 is missing, install it, reopen PowerShell, then rerun the launcher:
 
