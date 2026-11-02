@@ -1,11 +1,14 @@
 from playwright.sync_api import sync_playwright
 from pathlib import Path
 import os,shutil
-out=Path(__file__).resolve().parents[1]/'AUDIT/evidence/phase4';out.mkdir(parents=True,exist_ok=True)
+out=Path(os.environ.get('MORPHEUS_PREVIEW_EVIDENCE',Path(__file__).resolve().parents[1]/'AUDIT/evidence/phase4'));out.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=os.environ.get('MORPHEUS_PREVIEW_CHROMIUM') or shutil.which('chromium'),args=['--no-sandbox'])
     page=browser.new_page(viewport={'width':1492,'height':1054},device_scale_factor=1)
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+    failed_assets=[]
+    page.on('response',lambda r:failed_assets.append(r.url) if r.status>=400 and any(r.url.endswith(ext) for ext in ('.js','.css','.svg')) else None)
+    console_errors=[];page.on('console',lambda m:console_errors.append(m.text) if m.type=='error' else None)
     page.goto('http://127.0.0.1:4173');page.wait_for_load_state('networkidle')
     assert page.locator('#home').is_visible() and page.locator('#sidebar-toggle').is_disabled()
     assert page.locator('#home').inner_text()==''
@@ -33,6 +36,8 @@ with sync_playwright() as p:
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.screenshot(path=str(out/f'chat-{size[0]}.png'))
     assert not errors,errors
+    assert not failed_assets,failed_assets
+    assert not console_errors,console_errors
     for path in ['/.git/config','/AUDIT/PHASE3_IMPLEMENTATION_RESULTS.md','/../components/windows/README.md','/secrets']:
         assert page.request.get('http://127.0.0.1:4173'+path).status==404
     browser.close()

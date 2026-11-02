@@ -2,6 +2,30 @@
 
 The Phase 4 preview follows the approved Chat screenshot and the **corrected Home screenshot supplied last**: rounded purple frame, inset navigation rail, corner lighting and an empty Home canvas. It is a local visual development surface. Windows remains the production application.
 
+## Open it on your Windows PC
+
+This cloud session has no preview-sharing tool, configured hosting connection or deployment credentials. Its loopback URL is not a public access link. The supported delivery is a local Windows launch; the underlying Python server and browser rendering were verified on Linux, while the Windows command wrapper has not been executed on Windows here.
+
+If Git and Python 3 are already installed, open PowerShell and run:
+
+```powershell
+git clone --branch phase-4-ui --single-branch https://github.com/lumesky-me/MORPHEUS.git
+Set-Location MORPHEUS
+.\scripts\start-ui-preview.cmd
+```
+
+For an existing checkout, use the existing `phase-4-ui` working directory and run only the last command. Preserve local changes before switching branches or pulling. Alternatively, download and extract the [branch ZIP](https://github.com/lumesky-me/MORPHEUS/archive/refs/heads/phase-4-ui.zip), then double-click `scripts\start-ui-preview.cmd`. Git is not needed for the ZIP workflow.
+
+If Python 3 is missing, install it, reopen PowerShell, then rerun the launcher:
+
+```powershell
+winget install --exact --id Python.Python.3.13
+```
+
+The launcher starts the existing allowlisted server and opens your default browser at **http://127.0.0.1:4173/** on your own PC. No Node, .NET, Gateway, model setup or API key is required. If the browser does not open automatically, enter that address manually after the server prints its ready message. If port 4173 is occupied, run `.\scripts\start-ui-preview.cmd --port 4174` and use the printed URL.
+
+Keep the terminal open. Stop with Ctrl+C; restart with the same launcher. Saved HTML/CSS/JS changes appear after browser refresh. No automatic hot-reload loop is installed.
+
 ## Open the preview
 
 From the MORPHEUS repository root, with Python 3 installed:
@@ -11,7 +35,7 @@ python scripts/generate-ui-theme.py --check
 python scripts/ui-preview.py
 ```
 
-Open **http://127.0.0.1:4173/** on the machine running the server. Port 4173 is the default; `--port 4174` selects another local port. The server is running at the default address in this development workspace. A browser on another machine needs the environment's approved localhost forwarding or a local checkout; no public deployment URL is claimed.
+Open **http://127.0.0.1:4173/** on the machine running the server. Port 4173 is the default; `--port 4174` selects another local port. A task-owned server is running at the default address in this development workspace; that does not make it accessible from your PC. A browser on another machine needs the environment's approved localhost forwarding or a local checkout; no public deployment URL is claimed.
 
 Files are read from disk on each request with caching disabled. Refresh the browser after editing HTML, CSS or JS. After changing `ui/shared/tokens.json`, run `python scripts/generate-ui-theme.py` and refresh. There is no bundler or new frontend framework.
 
