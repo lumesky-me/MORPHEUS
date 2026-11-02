@@ -660,13 +660,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
     const targetLight = activity === "idle" ? 0 : 1;
     activityLight += (targetLight - activityLight) * (1 - Math.exp(-delta * 10));
 
-    // Original ambient shells are independent of activity; the camera stays locked.
-    outerShell.rotation.y += 0.0015;
-    outerShell.rotation.x = Math.sin(t * 0.08) * 0.05;
-    panelGroup.rotation.y += 0.0018;
-    panelGroup.rotation.x = Math.sin(t * 0.08 + 0.5) * 0.04;
-    shell2.rotation.y -= 0.001;
-    shell2.rotation.z = Math.sin(t * 0.12) * 0.03;
+    // Keep outer shell orientation fixed; internal energy animations continue.
     // Inner core — opposite, faster
     innerCore.rotation.y -= 0.005;
     innerCore.rotation.z += 0.002;
