@@ -78,3 +78,12 @@ document.addEventListener('keydown',e=>{
  e.preventDefault();
  $('orb-status').textContent=orb.saveView()?'Default view saved':'View saved for this visit; browser storage unavailable';
 });
+
+// Temporary, read-only export. Remove after the approved camera is captured.
+$('orb-export').onclick=()=>{
+ try {
+  const raw=localStorage.getItem('morpheus.ultron.view.v1');
+  if(!raw){handoff('No saved view on this address','Open the exact browser profile and localhost port where you pressed P, then export there. Your view has not been changed.');return;}
+  handoff('Saved camera values: copy and send these',raw);
+ }catch{handoff('Saved view unavailable','Browser storage could not be read. Your view has not been changed.');}
+};
