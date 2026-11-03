@@ -48,13 +48,18 @@
                 <TextBlock Text="MORPHEUS" CharacterSpacing="100" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
                 </Button>
+                <Border Width="1" Height="20" Margin="8,0" Background="{ThemeResource MorpheusHighlightBrush}"/>
                 <Button x:Name="ChatRailButton" Width="32" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}">
                 <PathIcon Width="20" Height="20" Data="F0 M5,3 H19 Q22,3 22,6 V15 Q22,18 19,18 H10 L5,22 V18 Q2,18 2,15 V6 Q2,3 5,3 Z M5,4.6 Q3.6,4.6 3.6,6 V15 Q3.6,16.4 5,16.4 H6.6 V18.6 L9.4,16.4 H19 Q20.4,16.4 20.4,15 V6 Q20.4,4.6 19,4.6 Z"/>
                 </Button>
-                <Border Width="1" Height="20" Margin="8,0" Background="{ThemeResource MorpheusHighlightBrush}"/></StackPanel></TitleBar.LeftHeader>
+
+                <Button x:Name="SettingsRailButton" Width="32" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
+                <FontIcon Glyph="&#xE713;"/>
+                </Button>
+                </StackPanel></TitleBar.LeftHeader>
             <TitleBar.RightHeader><StackPanel Orientation="Horizontal" Spacing="0">
                 <Button x:Name="ConnectionButton" Width="32" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
-                <FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/>
+                <Border Width="17" Height="17" CornerRadius="8.5" BorderThickness="1" BorderBrush="{Binding Foreground, ElementName=ConnectionDot}"><FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/></Border>
                 </Button>
                 <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton"
                             Width="32" Height="40"
@@ -74,19 +79,16 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button>
-                <Button x:Name="SettingsRailButton" Width="32" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
-                <FontIcon Glyph="&#xE713;"/>
-                </Button>
                 <Border Width="1" Height="20" Margin="6,0" Background="{ThemeResource MorpheusHighlightBrush}"/></StackPanel></TitleBar.RightHeader>
         </TitleBar>
         <Grid x:Name="NavigationSection" Grid.Row="1" Margin="0" CornerRadius="0" BorderThickness="0" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-        <Border x:Name="ChatToolbar" Height="44" Visibility="Collapsed" BorderThickness="0,0,0,1" BorderBrush="{ThemeResource MorpheusHighlightBrush}">
+        <Border x:Name="ChatToolbar" Height="32" Visibility="Collapsed" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" Margin="12,0" Spacing="10">
                 <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
                 AutomationProperties.AutomationId="WorkspaceTogglePane"
                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"
-                Width="32" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+                Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}">
             <FontIcon Glyph="&#xE90C;" FontSize="16"/>
         </Button>
             </StackPanel>

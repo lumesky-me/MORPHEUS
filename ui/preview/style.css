@@ -642,13 +642,18 @@ dialog button{
 .titlebar .window-controls{border-left:1px solid var(--border);padding-left:5px;margin-left:3px}
 .titlebar .window-controls button{width:30px;height:32px}
 .titlebar .window-controls button svg{width:10px;height:10px;stroke-width:1.2}
-.chat-layout{padding-top:44px}
-.chat-toolbar{z-index:5;background:var(--background);position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--border);color:var(--muted)}
+.chat-layout{padding-top:32px}
+.chat-toolbar{z-index:5;background:var(--background);position:absolute;top:0;left:0;height:32px;display:flex;align-items:center;padding:0 12px;color:var(--muted)}
 .chat-toolbar button{width:32px;height:32px;padding:6px}
-@media(max-width:1023px){.chat-layout .conversations{top:44px}}
+@media(max-width:1023px){.chat-layout .conversations{top:32px}}
 @media(max-width:600px){
  .titlebar .logo{width:24px;height:24px}
  .titlebar .brand{font-size:12px}
  .header-divider{margin:0 2px}
  .titlebar .window-controls button{width:26px}
 }
+
+/* One quiet outline follows the existing connection-state color. */
+#connection .status{color:var(--critical);box-shadow:none;outline:1px solid currentColor;outline-offset:3px}
+#connection .status.healthy{color:var(--healthy)}
+#connection .status.connecting{color:var(--warning)}
