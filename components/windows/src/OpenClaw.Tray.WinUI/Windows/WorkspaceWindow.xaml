@@ -54,12 +54,12 @@
                 </Button>
 
                 <Button x:Name="SettingsRailButton" Width="32" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
-                <FontIcon Glyph="&#xE713;"/>
+                <Viewbox Width="20" Height="20"><Canvas Width="24" Height="24"><Path Stroke="{Binding Foreground, ElementName=SettingsRailButton}" StrokeThickness="1.6" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M5,3 V9 M5,13 V21 M12,3 V15 M12,19 V21 M19,3 V5 M19,9 V21 M2,9 H8 V13 H2 Z M9,15 H15 V19 H9 Z M16,5 H22 V9 H16 Z"/></Canvas></Viewbox>
                 </Button>
                 </StackPanel></TitleBar.LeftHeader>
             <TitleBar.RightHeader><StackPanel Orientation="Horizontal" Spacing="0">
                 <Button x:Name="ConnectionButton" Width="32" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
-                <Border Width="17" Height="17" CornerRadius="8.5" BorderThickness="1" BorderBrush="{Binding Foreground, ElementName=ConnectionDot}"><FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/></Border>
+                <Grid Width="17" Height="17"><Ellipse Fill="{Binding Foreground, ElementName=ConnectionDot}" Opacity="0.06"/><Ellipse Width="14" Height="14" Stroke="{Binding Foreground, ElementName=ConnectionDot}" StrokeThickness="0.6" Opacity="0.45"/><FontIcon x:Name="ConnectionDot" FontSize="7" Style="{StaticResource ConnectionBadgeCritical}"/></Grid>
                 </Button>
                 <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton"
                             Width="32" Height="40"

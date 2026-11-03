@@ -657,3 +657,7 @@ dialog button{
 #connection .status{color:var(--critical);box-shadow:none;outline:1px solid currentColor;outline-offset:3px}
 #connection .status.healthy{color:var(--healthy)}
 #connection .status.connecting{color:var(--warning)}
+
+/* Shared optical bounds: centered 19px outline icons, unchanged hit targets. */
+.titlebar [data-page="chat"] svg,.titlebar #settings svg{display:block;width:19px;height:19px;stroke-width:1.6}
+#connection .status{width:7px;height:7px;outline-offset:3px;outline-color:color-mix(in srgb,currentColor 45%,transparent);box-shadow:0 0 7px color-mix(in srgb,currentColor 18%,transparent)}
