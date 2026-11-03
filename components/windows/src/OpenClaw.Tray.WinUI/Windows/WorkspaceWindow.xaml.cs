@@ -75,7 +75,6 @@ public sealed partial class WorkspaceWindow : WindowEx
         InitializeComponent();
         WorkspaceTitleBar.Height = MorpheusLayout.HeaderHeight;
         NavView.OpenPaneLength = MorpheusLayout.SidebarWidth;
-        NavRailColumn.Width = new GridLength(MorpheusLayout.RailWidth);
         _state = state;
         _openSettingsWindow = openSettingsWindow;
         _openWorkspaceRoute = openWorkspaceRoute;
@@ -627,7 +626,6 @@ public sealed partial class WorkspaceWindow : WindowEx
     private void UpdateNavigationSelection()
     {
         _updating = true;
-        HomeRailButton.Style = (Style)Root.Resources[Destination.Page == WorkspacePageId.Home ? "MorpheusRailSelectedButton" : "MorpheusRailButton"];
         ChatRailButton.Style = (Style)Root.Resources[Destination.Page == WorkspacePageId.Chat ? "MorpheusRailSelectedButton" : "MorpheusRailButton"];
         var items = NavView.MenuItems.OfType<NavigationViewItem>();
         NavView.SelectedItem = Destination.Page == WorkspacePageId.Chat
@@ -1204,18 +1202,6 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void BuildOwnerMenu()
     {
-        var menu = new MenuFlyout();
-        void Add(string label, Action action, string glyph)
-        {
-            var item = new MenuFlyoutItem { Text = Text(label), Icon = FluentIconCatalog.Build(glyph) };
-            item.Click += (_, _) => action();
-            menu.Items.Add(item);
-        }
-        Add("Usage", () => OpenCompanion(CompanionPageId.Usage), FluentIconCatalog.Money);
-        Add("PairDevice", () => OpenCompanion(CompanionPageId.Channels), FluentIconCatalog.Devices);
-        Add("ConnectionTimeline", OpenTimeline, FluentIconCatalog.AgentEvents);
-        menu.Opening += (_, _) => UpdateConnectionStatus(CurrentApp.ConnectionManager?.CurrentSnapshot, _state.Status);
-        MoreButton.Flyout = menu;
         SettingsRailButton.ContextFlyout = BuildSettingsHelpMenu();
         ToolTipService.SetToolTip(SettingsRailButton, Text("SettingsHelpHint"));
         UpdateConnectionStatus(CurrentApp.ConnectionManager?.CurrentSnapshot, _state.Status);

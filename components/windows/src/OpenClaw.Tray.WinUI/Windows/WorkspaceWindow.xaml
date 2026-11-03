@@ -37,19 +37,35 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TitleBar x:Name="WorkspaceTitleBar" Height="48" Title="" AutomationProperties.AutomationId="WorkspaceTitleBar">
-            <TitleBar.Content><StackPanel Orientation="Horizontal" Spacing="12">
-                <Image Width="25" Height="25" Source="ms-appx:///Assets/Morpheus/crest-64.png" AutomationProperties.Name="MORPHEUS"/>
+                <TitleBar.Resources>
+                <x:Double x:Key="TitleBarLeftHeaderPaddingWidth">0</x:Double>
+                <x:Double x:Key="TitleBarMinDragRegionWidth">24</x:Double>
+            </TitleBar.Resources>
+            <TitleBar.LeftHeader><StackPanel Orientation="Horizontal" Spacing="2">
+                <Button x:Name="HomeRailButton" Click="OnHomeClick" AutomationProperties.Name="MORPHEUS Home" Padding="6,0" Height="40" Style="{StaticResource SubtleButtonStyle}">
+                <StackPanel Orientation="Horizontal" Spacing="9">
+                <Image Width="25" Height="25" Source="ms-appx:///Assets/Morpheus/crest-64.png"/>
                 <TextBlock Text="MORPHEUS" CharacterSpacing="100" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                <Border Width="1" Height="30" Background="{ThemeResource MorpheusBorderBrush}"/>
-        <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
+                </StackPanel>
+                </Button>
+                <Button x:Name="ChatRailButton" Width="32" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}">
+                <PathIcon Width="20" Height="20" Data="F0 M5,3 H19 Q22,3 22,6 V15 Q22,18 19,18 H10 L5,22 V18 Q2,18 2,15 V6 Q2,3 5,3 Z M5,4.6 Q3.6,4.6 3.6,6 V15 Q3.6,16.4 5,16.4 H6.6 V18.6 L9.4,16.4 H19 Q20.4,16.4 20.4,15 V6 Q20.4,4.6 19,4.6 Z"/>
+                </Button>
+                <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
                 AutomationProperties.AutomationId="WorkspaceTogglePane"
-                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0"
-                Width="40" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"
+                Width="32" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
             <FontIcon Glyph="&#xE90C;" FontSize="16"/>
-        </Button>                    <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton"
-                            Width="40" Height="{ThemeResource NavigationViewItemOnLeftMinHeight}"
+        </Button>
+                </StackPanel></TitleBar.LeftHeader>
+            <TitleBar.RightHeader><StackPanel Orientation="Horizontal" Spacing="0">
+                <Button x:Name="ConnectionButton" Width="32" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
+                <FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/>
+                </Button>
+                <Button x:Name="NotificationsButton" x:Uid="WorkspaceShell_NotificationsButton"
+                            Width="32" Height="40"
                             CornerRadius="{ThemeResource ControlCornerRadius}"
-                            Style="{StaticResource SubtleButtonStyle}" Padding="8" VerticalAlignment="Center"
+                            Style="{StaticResource SubtleButtonStyle}" Padding="4" VerticalAlignment="Center"
                             AutomationProperties.AutomationId="WorkspaceNotifications">
                         <Grid>
                             <FontIcon Glyph="&#xE7F4;" FontSize="22"
@@ -63,25 +79,16 @@
                                 <controls:NotificationFlyoutContent x:Name="NotificationContent"/>
                             </Flyout>
                         </Button.Flyout>
-                    </Button></StackPanel></TitleBar.Content></TitleBar>
+                    </Button>
+                <Button x:Name="SettingsRailButton" Width="32" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
+                <FontIcon Glyph="&#xE713;"/>
+                </Button>
+                </StackPanel></TitleBar.RightHeader>
+        </TitleBar>
         <Grid x:Name="NavigationSection" Grid.Row="1" Margin="0" CornerRadius="0" BorderThickness="0" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
-        <Grid.ColumnDefinitions><ColumnDefinition x:Name="NavRailColumn" Width="66"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-        <Grid Padding="12,18,12,28" BorderBrush="{ThemeResource MorpheusBorderBrush}" BorderThickness="0,0,1,0">
-            <StackPanel Spacing="8">
-                <Button x:Name="HomeRailButton" x:Uid="MorpheusHome" Click="OnHomeClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE80F;"/></Button>
-                <Button x:Name="ChatRailButton" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}"><PathIcon Width="20" Height="20" Data="F0 M5,3 H19 Q22,3 22,6 V15 Q22,18 19,18 H10 L5,22 V18 Q2,18 2,15 V6 Q2,3 5,3 Z M5,4.6 Q3.6,4.6 3.6,6 V15 Q3.6,16.4 5,16.4 H6.6 V18.6 L9.4,16.4 H19 Q20.4,16.4 20.4,15 V6 Q20.4,4.6 19,4.6 Z"/></Button>
-                <Button Visibility="Collapsed" x:Uid="MorpheusSchedule" Click="OnSchedulerClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE823;"/></Button>
-                <Button x:Name="MoreButton" x:Uid="MorpheusMore" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE712;"/></Button>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Bottom" Spacing="12">
-                <Border Height="1" Margin="8,0,8,8" Background="{ThemeResource MorpheusBorderBrush}"/>
-                <Button x:Name="ConnectionButton" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}"><FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/></Button>
-                <Button x:Name="SettingsRailButton" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}"><FontIcon Glyph="&#xE713;"/></Button>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="EmptyHome" Grid.Column="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:MorphyAnimatedCore x:Name="HomeCore"/></Grid>
+        <Grid x:Name="EmptyHome" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:MorphyAnimatedCore x:Name="HomeCore"/></Grid>
 
-        <NavigationView x:Name="NavView" Grid.Column="1"
+        <NavigationView x:Name="NavView"
                         AutomationProperties.AutomationId="WorkspaceNavigation"
                         PaneDisplayMode="Left" OpenPaneLength="272" CompactPaneLength="0"
                         IsBackButtonVisible="Collapsed" IsSettingsVisible="False"

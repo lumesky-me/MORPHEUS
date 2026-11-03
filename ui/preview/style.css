@@ -625,3 +625,12 @@ dialog button{
 #home:not([hidden]){position:relative;display:block;padding:0}#ultron-orb{position:absolute;inset:0}#ultron-orb canvas{display:block}.orb-controls{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px}.orb-controls button{background:var(--panel);padding:7px 12px}.empty-conversation .morphy-core{pointer-events:auto}#chat[hidden] .core-orbit,#chat[hidden] .core-base{animation-play-state:paused}
 
 .empty-conversation .morphy-core{width:min(298px,100%,calc((100dvh - 170px)*.62))}.orb-controls{max-width:95%;flex-wrap:wrap;justify-content:center}
+
+/* Compact shell: navigation lives in the title bar, workspace has no rail. */
+.titlebar{height:48px;gap:6px;padding:0 6px}
+.titlebar .brand-home{display:flex;align-items:center;gap:9px;width:auto;height:40px;padding:0 7px;flex-shrink:0;color:var(--text)}
+.titlebar [data-page="chat"][aria-current="page"]{background:#8b6cef22;color:var(--accent);border-color:#8b6cef55}
+.titlebar .window-controls{display:flex;border:0;margin:0;padding:0;gap:0}
+.titlebar .window-controls button{width:34px;height:40px}
+.titlebar .drag-region{min-width:0}
+@media(max-width:600px){.titlebar{gap:2px}.titlebar .brand-home{gap:5px;padding:0 3px}.titlebar>button:not(.brand-home){width:28px}.titlebar .window-controls button{width:28px}.titlebar .logo{width:22px;height:22px}.titlebar .brand{font-size:11px;letter-spacing:1px}}
