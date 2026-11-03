@@ -46,13 +46,15 @@ let orbLoading=false;
 let orb;
 function syncOrb(){
  if(!$('home').hidden&&!orb&&createOrbScene){try{orb=createOrbScene($('ultron-orb'));orb.setActivity('idle');}catch(e){$('ultron-orb').textContent='WebGL is unavailable in this browser.';console.error(e);}}
- if($('home').hidden&&orb){orb.dispose();orb=null;}
+ if(orb)orb.setVisible(!$('home').hidden&&!document.hidden);
 }
 async function loadOrb(){
  if(orbLoading)return;orbLoading=true;
  try{({createOrbScene}=await import('./ultron/orb.js'));syncOrb();}
  catch(e){$('orb-status').textContent='Orb failed to load. Stop and restart the preview server, then refresh.';console.error(e);}
 }
+document.addEventListener('visibilitychange',syncOrb);
+window.addEventListener('pagehide',event=>{if(!event.persisted)orb?.dispose();});
 loadOrb();
 new MutationObserver(syncOrb).observe($('home'),{attributes:true,attributeFilter:['hidden']});syncOrb();
 new MutationObserver(()=>{$('empty-conversation').hidden=$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});

@@ -10,6 +10,7 @@ export type OrbActivity = "idle" | "speaking" | "thinking" | "processing";
 export interface OrbSceneApi {
   /** Presentation input only; the caller must supply genuine application activity. */
   setActivity(activity: OrbActivity): void;
+  setVisible(visible: boolean): void;
   dispose(): void;
 }
 
@@ -651,9 +652,10 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
   let flickerTimer = 0;
   let rafId = 0;
   let disposed = false;
+  let visible = true;
 
   function animate() {
-    if (disposed) return;
+    if (disposed || !visible) return;
     rafId = requestAnimationFrame(animate);
     const delta = Math.min(clock.getDelta(), 0.1);
     const t = clock.elapsedTime;
@@ -762,15 +764,36 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
   animate();
 
   // ——— RESIZE ———
+  let viewportWidth = width;
+  let viewportHeight = height;
   function onResize() {
     const w = container.clientWidth;
     const h = container.clientHeight;
+    if (!w || !h || (w === viewportWidth && h === viewportHeight)) return;
+    viewportWidth = w;
+    viewportHeight = h;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
     composer.setSize(w, h);
   }
   window.addEventListener("resize", onResize);
+
+  // Retain GPU resources across navigation; do no rendering while hidden.
+  function setVisible(next: boolean) {
+    if (disposed || visible === next) return;
+    visible = next;
+    if (!visible) {
+      cancelAnimationFrame(rafId);
+      clock.stop();
+    } else {
+      const elapsed = clock.elapsedTime;
+      clock.start();
+      clock.elapsedTime = elapsed;
+      onResize();
+      rafId = requestAnimationFrame(animate);
+    }
+  }
 
   // ——— CLEANUP ———
   function dispose() {
@@ -795,6 +818,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
 
   return {
     setActivity,
+    setVisible,
     dispose,
   };
 }

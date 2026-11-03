@@ -634,3 +634,21 @@ dialog button{
 .titlebar .window-controls button{width:34px;height:40px}
 .titlebar .drag-region{min-width:0}
 @media(max-width:600px){.titlebar{gap:2px}.titlebar .brand-home{gap:5px;padding:0 3px}.titlebar>button:not(.brand-home){width:28px}.titlebar .window-controls button{width:28px}.titlebar .logo{width:22px;height:22px}.titlebar .brand{font-size:11px;letter-spacing:1px}}
+
+/* Refinement: compact captions and conversation tools local to Chat. */
+.titlebar .logo{width:27px;height:27px}
+.titlebar .brand{font-size:13px}
+.header-divider{height:20px;width:1px;background:var(--border);margin:0 5px;flex-shrink:0}
+.titlebar .window-controls{border-left:1px solid var(--border);padding-left:5px;margin-left:3px}
+.titlebar .window-controls button{width:30px;height:32px}
+.titlebar .window-controls button svg{width:10px;height:10px;stroke-width:1.2}
+.chat-layout{padding-top:44px}
+.chat-toolbar{z-index:5;background:var(--background);position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--border);color:var(--muted)}
+.chat-toolbar button{width:32px;height:32px;padding:6px}
+@media(max-width:1023px){.chat-layout .conversations{top:44px}}
+@media(max-width:600px){
+ .titlebar .logo{width:24px;height:24px}
+ .titlebar .brand{font-size:12px}
+ .header-divider{margin:0 2px}
+ .titlebar .window-controls button{width:26px}
+}

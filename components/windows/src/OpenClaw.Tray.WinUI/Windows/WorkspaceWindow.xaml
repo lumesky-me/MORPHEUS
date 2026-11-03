@@ -44,20 +44,14 @@
             <TitleBar.LeftHeader><StackPanel Orientation="Horizontal" Spacing="2">
                 <Button x:Name="HomeRailButton" Click="OnHomeClick" AutomationProperties.Name="MORPHEUS Home" Padding="6,0" Height="40" Style="{StaticResource SubtleButtonStyle}">
                 <StackPanel Orientation="Horizontal" Spacing="9">
-                <Image Width="25" Height="25" Source="ms-appx:///Assets/Morpheus/crest-64.png"/>
+                <Image Width="27" Height="27" Source="ms-appx:///Assets/Morpheus/crest-64.png"/>
                 <TextBlock Text="MORPHEUS" CharacterSpacing="100" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
                 </Button>
                 <Button x:Name="ChatRailButton" Width="32" x:Uid="MorpheusChat" Click="OnChatClick" Style="{StaticResource MorpheusRailButton}">
                 <PathIcon Width="20" Height="20" Data="F0 M5,3 H19 Q22,3 22,6 V15 Q22,18 19,18 H10 L5,22 V18 Q2,18 2,15 V6 Q2,3 5,3 Z M5,4.6 Q3.6,4.6 3.6,6 V15 Q3.6,16.4 5,16.4 H6.6 V18.6 L9.4,16.4 H19 Q20.4,16.4 20.4,15 V6 Q20.4,4.6 19,4.6 Z"/>
                 </Button>
-                <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
-                AutomationProperties.AutomationId="WorkspaceTogglePane"
-                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"
-                Width="32" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
-            <FontIcon Glyph="&#xE90C;" FontSize="16"/>
-        </Button>
-                </StackPanel></TitleBar.LeftHeader>
+                <Border Width="1" Height="20" Margin="8,0" Background="{ThemeResource MorpheusHighlightBrush}"/></StackPanel></TitleBar.LeftHeader>
             <TitleBar.RightHeader><StackPanel Orientation="Horizontal" Spacing="0">
                 <Button x:Name="ConnectionButton" Width="32" Click="OnStatusClick" Style="{StaticResource MorpheusRailButton}">
                 <FontIcon x:Name="ConnectionDot" Style="{StaticResource ConnectionBadgeCritical}"/>
@@ -83,12 +77,23 @@
                 <Button x:Name="SettingsRailButton" Width="32" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
                 <FontIcon Glyph="&#xE713;"/>
                 </Button>
-                </StackPanel></TitleBar.RightHeader>
+                <Border Width="1" Height="20" Margin="6,0" Background="{ThemeResource MorpheusHighlightBrush}"/></StackPanel></TitleBar.RightHeader>
         </TitleBar>
         <Grid x:Name="NavigationSection" Grid.Row="1" Margin="0" CornerRadius="0" BorderThickness="0" BorderBrush="{ThemeResource MorpheusHighlightBrush}" Background="{ThemeResource MorpheusCanvasBrush}">
-        <Grid x:Name="EmptyHome" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:MorphyAnimatedCore x:Name="HomeCore"/></Grid>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Border x:Name="ChatToolbar" Height="44" Visibility="Collapsed" BorderThickness="0,0,0,1" BorderBrush="{ThemeResource MorpheusHighlightBrush}">
+            <StackPanel Orientation="Horizontal" Margin="12,0" Spacing="10">
+                <Button x:Name="CollapsePaneButton" x:Uid="WorkspaceShell_TogglePane" Click="OnTogglePane"
+                AutomationProperties.AutomationId="WorkspaceTogglePane"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"
+                Width="32" Height="40" Padding="0" Style="{StaticResource SubtleButtonStyle}">
+            <FontIcon Glyph="&#xE90C;" FontSize="16"/>
+        </Button>
+            </StackPanel>
+        </Border>
+        <Grid x:Name="EmptyHome" Grid.Row="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:MorphyAnimatedCore x:Name="HomeCore"/></Grid>
 
-        <NavigationView x:Name="NavView"
+        <NavigationView x:Name="NavView" Grid.Row="1"
                         AutomationProperties.AutomationId="WorkspaceNavigation"
                         PaneDisplayMode="Left" OpenPaneLength="272" CompactPaneLength="0"
                         IsBackButtonVisible="Collapsed" IsSettingsVisible="False"

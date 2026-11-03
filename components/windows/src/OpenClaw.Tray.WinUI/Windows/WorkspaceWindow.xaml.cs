@@ -432,6 +432,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         HomeCore.SetActive(isHome);
         NavView.Visibility = isHome ? Visibility.Collapsed : Visibility.Visible;
         EmptyHome.Visibility = isHome ? Visibility.Visible : Visibility.Collapsed;
+        ChatToolbar.Visibility = Destination.Page == WorkspacePageId.Chat ? Visibility.Visible : Visibility.Collapsed;
         CollapsePaneButton.IsEnabled = Destination.Page == WorkspacePageId.Chat;
         ApplyAdaptiveSidebar(force: true);
         if (isHome)
@@ -516,6 +517,7 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void RenderSettings()
     {
+        ChatToolbar.Visibility = Visibility.Collapsed;
         CollapsePaneButton.IsEnabled = false;
         var view = EnsureSettings();
         if (SettingsSection.Visibility != Visibility.Visible)
