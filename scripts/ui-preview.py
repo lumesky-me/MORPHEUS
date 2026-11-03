@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import argparse,mimetypes,webbrowser
 ROOT=Path(__file__).resolve().parents[1]
-FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','layout-editor.js','layout-editor.css')}
+FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','layout-editor.js','layout-editor.css','dashboard-baseline.js')}
 FILES['/']=FILES['/index.html']
 FILES['/ultron/orb.js']=ROOT/'ui/preview/ultron/orb.js'
 FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'
