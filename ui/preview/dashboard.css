@@ -1,0 +1,11 @@
+/* Approved dashboard presentation; no editing controls. */
+#home:not([hidden]){overflow:auto}
+.dashboard-stage{position:relative;width:100%;overflow:hidden;min-height:100%}
+.dashboard-stage #ultron-orb{z-index:0}
+.layout-item{position:absolute;z-index:1;pointer-events:none}
+.layout-item.box{border:1px solid #86719b40;border-radius:8px;background:#19151e55}
+.layout-item-label{position:absolute;left:10px;top:8px;font-size:11px;color:#a69ab6;pointer-events:none;max-width:calc(100% - 20px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Quiet glass panels; no backdrop filters on the animated canvas. */
+.layout-item.box{background:rgba(25,23,31,.83);border:1px solid rgba(161,149,178,.2);border-radius:11px;box-shadow:0 4px 14px #0003}
+
+.dashboard-stage{background:#000}
