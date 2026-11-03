@@ -35,7 +35,7 @@ window.chrome?.webview?.addEventListener('message',event=>{
  if(data.type==='dashboard-state'){
   send.disabled=!data.ready;stop.hidden=!data.thinking;status.textContent=data.thinking?'Thinking…':data.ready?'':'Gateway unavailable';
   const nearBottom=responses.scrollHeight-responses.scrollTop-responses.clientHeight<60;
-  for(const item of data.responses||[]){let node=entries.get(item.id);if(!node){node=document.createElement('div');node.className='dashboard-response';entries.set(item.id,node);responses.append(node);}if(node.dataset.text!==item.text){node.dataset.text=item.text;formatResponse(node,item.text);}}
+  for(const item of data.responses||[]){let node=entries.get(item.id);if(!node){node=document.createElement('div');node.className='dashboard-response';entries.set(item.id,node);responses.append(node);}if(node.dataset.text!==item.text||node.dataset.streaming!==String(!!item.streaming)){node.dataset.text=item.text;node.dataset.streaming=String(!!item.streaming);if(item.streaming)node.textContent=item.text;else formatResponse(node,item.text);}}
   for(const [id,node] of entries)if(!(data.responses||[]).some(item=>item.id===id)){node.remove();entries.delete(id);}
   if(nearBottom)responses.scrollTop=responses.scrollHeight;
   processing=!!data.thinking;syncActivity();

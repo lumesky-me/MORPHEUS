@@ -13,13 +13,21 @@ with sync_playwright() as p:
  assert page.evaluate("()=>fixtureMessages.at(-1).type")=='dashboard-send'
  page.evaluate("()=>deliver({type:'dashboard-submitted'})");assert page.locator('.dashboard-input input').input_value()==''
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[{id:'reply',text:'## Answer\\n**Streamed** text',streaming:true}]})")
- assert page.locator('.dashboard-response strong').inner_text()=='Streamed';assert 'A real draft' not in page.locator('.dashboard-responses').inner_text()
+ assert 'Streamed' in page.locator('.dashboard-response').inner_text();assert 'A real draft' not in page.locator('.dashboard-responses').inner_text()
+ page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:false,responses:[{id:'reply',text:'## Answer\\n**Streamed** text',streaming:false}]})")
+ assert page.locator('.dashboard-response strong').inner_text()=='Streamed'
  page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'listening',transcript:'Live words'})");assert page.locator('.dashboard-transcript').inner_text()=='Live words'
  page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'thinking',transcript:''})");assert page.locator('.dashboard-transcript').inner_text()==''
  page.evaluate("()=>deliver({type:'dashboard-metrics',timestamp:1000,cpu:{usagePercent:25},ram:{usagePercent:50},gpu:20})");assert '25.0%' in page.locator('.dashboard-graph + span').inner_text()
  page.get_by_label('Performance metric').select_option(label='RAM');assert '50.0%' in page.locator('.dashboard-graph + span').inner_text()
  page.get_by_role('button',name='Full Access',exact=True).click();assert page.evaluate('()=>fixtureMessages.at(-1).preset')=='Open'
+ page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[]})")
+ page.locator('.dashboard-input button',has_text='Stop').click();assert page.evaluate('()=>fixtureMessages.at(-1).type')=='dashboard-stop'
+ page.route('https://fixture.invalid/output.png',lambda route:route.fulfill(content_type='image/png',body=bytes.fromhex('89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c4890000000b49444154789c636000020000050001a5f645400000000049454e44ae426082')))
+ page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:false,responses:[{id:'reply',text:'![Actual-output fixture](https://fixture.invalid/output.png)',streaming:false}]})")
+ assert page.locator('.dashboard-gallery img').count()==1
+ page.locator('.dashboard-gallery button').click();assert page.locator('.dashboard-viewer').is_visible();page.locator('.dashboard-viewer button').click()
  page.screenshot(path=str(out/'fixture-desktop.png'))
  page.set_viewport_size({'width':390,'height':800});page.wait_for_timeout(100);assert not errors,errors;page.screenshot(path=str(out/'fixture-compact.png'))
- print('PASS host-protocol fixture: submission acknowledgement, assistant-only formatting, transcription clear, metrics selector, preset command, resize. This does not test native services.')
+ print('PASS host-protocol fixture: submission acknowledgement, assistant-only formatting, transcription clear, metrics selector, preset command, cancellation command, image viewer, resize. This does not test native services.')
  b.close()
