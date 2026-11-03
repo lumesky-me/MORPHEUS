@@ -400,29 +400,6 @@ button[hidden],[hidden]{
   color:#706b7b;
   padding:10px 4px 0
 }
-.preview-info{
-  position:fixed;
-  bottom:7px;
-  left:82px;
-  font-size:10px;
-  color:#777183;
-  padding:3px 7px;
-  background:var(--background);
-  z-index:6;
-  border-radius:4px
-}
-.preview-info:before{
-  content:'';
-  width:4px;
-  height:4px;
-  background:#807389;
-  border-radius:50%;
-  margin-right:6px
-}
-.preview-info{
-  display:flex;
-  align-items:center
-}
 dialog{
   max-width:420px;
   color:var(--text);
@@ -532,11 +509,7 @@ dialog button{
   .composer-shortcut{
     display:none
   }
-  .preview-info{
-    left:65px;
-    font-size:9px
-  }
-  .composer-caption{
+    .composer-caption{
     font-size:9px
   }
   .composer textarea{
