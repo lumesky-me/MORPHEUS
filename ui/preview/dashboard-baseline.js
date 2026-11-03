@@ -131,15 +131,15 @@ export const polishedLayout = {
       "x": 8,
       "y": 560,
       "width": 546,
-      "height": 254
+      "height": 314
     },
     {
       "id": "afc02d75-13a1-406d-8543-52cbc5e1e9b0",
       "type": "box",
       "name": "Box 3",
-      "x": 8,
-      "y": 826,
-      "width": 546,
+      "x": 16,
+      "y": 818,
+      "width": 530,
       "height": 48
     },
     {
@@ -147,9 +147,9 @@ export const polishedLayout = {
       "type": "box",
       "name": "Box 4",
       "x": 566,
-      "y": 774,
+      "y": 736,
       "width": 480,
-      "height": 100
+      "height": 138
     },
     {
       "id": "cddfd844-44a2-4718-9daf-bd79980b1b25",
@@ -173,8 +173,8 @@ export const polishedLayout = {
       "id": "5b7f1b40-9979-42fb-b4a2-f4adc3b7257b",
       "type": "box",
       "name": "Box 7",
-      "x": 925,
-      "y": 736,
+      "x": 917,
+      "y": 744,
       "width": 121,
       "height": 32
     },

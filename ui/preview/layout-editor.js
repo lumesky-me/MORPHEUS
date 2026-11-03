@@ -1,7 +1,7 @@
 import { originalLayout, polishedLayout } from './dashboard-baseline.js';
 // Development browser preview only. No application data or native state is accessed.
 const home=document.querySelector('#home'),orb=document.querySelector('#ultron-orb');
-const key='morpheus.home-layout.polished.v1';
+const key='morpheus.home-layout.nested.v1';
 const initial={width:home.clientWidth,height:home.clientHeight};
 function defaults(){return structuredClone(polishedLayout);}
 function validate(raw){
@@ -24,11 +24,11 @@ function constrain(e){const b=layout.viewport;e.width=Math.max(32,Math.min(e.wid
 function fields(){const e=layout.elements.find(e=>e.id===selected);$('layout-selection').replaceChildren(...layout.elements.map(item=>{const o=document.createElement('option');o.value=item.id;o.textContent=item.name;return o;}));$('layout-selection').value=selected;if(!e)return;$('layout-name').value=e.name;for(const n of ['x','y','width','height']){$('layout-'+n).value=e[n];$('layout-'+n).disabled=compact();}$('delete-box').disabled=e.type==='orb';}
 function render(){
  stage.classList.toggle('editing',editing);stage.classList.toggle('show-grid',editing&&grid);stage.classList.toggle('compact',compact());
- const b=bounds();let top=16;
+ const b=bounds();let top=16;const placed=new Map();const nested={"afc02d75-13a1-406d-8543-52cbc5e1e9b0":"35a96b13-bf39-492f-9ebc-7df37793089d","5b7f1b40-9979-42fb-b4a2-f4adc3b7257b":"c4042c5a-5534-4d0a-84a1-3598ad644766"};
  for(const e of layout.elements){let node=nodes.get(e.id);if(!node){node=document.createElement('div');node.className='layout-item '+e.type;node.dataset.id=e.id;node.tabIndex=0;const label=document.createElement('span');label.className='layout-item-label';node.append(label);for(const edge of ['n','s','e','w','ne','nw','se','sw']){const h=document.createElement('span');h.className='resize-handle '+edge;h.dataset.edge=edge;node.append(h);}stage.append(node);nodes.set(e.id,node);}
  let w=Math.min(e.width,b.width-24),h=e.height,x=Math.min(e.x,b.width-w),y=e.y;
- if(compact()){w=Math.min(e.width,b.width-32);if(e.type==='orb')h=w;x=(b.width-w)/2;y=top;top+=h+16;}
- node.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`;node.classList.toggle('selected',editing&&e.id===selected);node.setAttribute('aria-label',e.name);node.querySelector('.layout-item-label').textContent=editing?`${e.name} · ${Math.round(w)} × ${Math.round(h)}`:e.type==='box'?e.name:'';
+ if(compact()){const parent=placed.get(nested[e.id]);if(parent){w=Math.min(e.width,parent.w-16);x=e.id.startsWith('afc')?parent.x+8:parent.x+parent.w-w-8;y=e.id.startsWith('afc')?parent.y+parent.h-h-8:parent.y+8;}else{w=Math.min(e.width,b.width-32);if(e.type==='orb')h=w;x=(b.width-w)/2;y=top;top+=h+16;}}placed.set(e.id,{x,y,w,h});
+ node.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${nested[e.id]?2:1}`;node.classList.toggle('selected',editing&&e.id===selected);node.setAttribute('aria-label',e.name);node.querySelector('.layout-item-label').textContent=editing?`${e.name} · ${Math.round(w)} × ${Math.round(h)}`:e.type==='box'?e.name:'';
  if(e.type==='orb'){const scale=w/layout.orbBaseSize;orb.style.cssText=`inset:auto;width:${layout.renderViewport.width}px;height:${layout.renderViewport.height}px;left:0;top:0;transform:translate(${x+w/2-layout.renderViewport.width/2}px,${y+h/2-layout.renderViewport.height/2}px) scale(${scale});transform-origin:center;pointer-events:none`;}
  }
  for(const [id,node] of nodes)if(!layout.elements.some(e=>e.id===id)){node.remove();nodes.delete(id);}
@@ -47,7 +47,7 @@ $('layout-grid').onchange=()=>{grid=$('layout-grid').checked;render();};$('layou
 const json=()=>JSON.stringify(layout,null,2);
 $('save-layout').onclick=()=>{try{localStorage.setItem(key,json());dirty=false;message('Layout saved locally.');}catch{message('Local storage unavailable. Export JSON to keep your layout.');}};
 $('restore-original').onclick=()=>{layout=structuredClone(originalLayout);selected='orb';change();message('Original supplied arrangement restored, including its overlaps. Save to keep this version.');window.dispatchEvent(new Event('resize'));};
-$('restore-previous').onclick=()=>{try{const saved=localStorage.getItem('morpheus.home-layout.v1');if(!saved)return message('No previous browser layout found.');layout=validate(JSON.parse(saved));selected='orb';change();window.dispatchEvent(new Event('resize'));}catch{message('Previous layout could not be loaded.');}};
+$('restore-previous').onclick=()=>{try{const saved=localStorage.getItem('morpheus.home-layout.polished.v1')||localStorage.getItem('morpheus.home-layout.v1');if(!saved)return message('No previous browser layout found.');layout=validate(JSON.parse(saved));selected='orb';change();window.dispatchEvent(new Event('resize'));}catch{message('Previous layout could not be loaded.');}};
 $('reset-layout').onclick=()=>{if(!confirm('Reset the layout and remove the saved arrangement?'))return;layout=defaults();selected='orb';try{localStorage.removeItem(key);}catch{}dirty=false;render();message('Original layout restored.');};
 $('export-layout').onclick=()=>{const url=URL.createObjectURL(new Blob([json()],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='morpheus-home-layout.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 $('copy-layout').onclick=async()=>{try{await navigator.clipboard.writeText(json());message('Layout JSON copied.');}catch{message('Clipboard unavailable. Use Export JSON.');}};
