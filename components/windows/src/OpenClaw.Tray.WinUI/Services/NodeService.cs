@@ -89,6 +89,7 @@ public sealed class NodeService : IDisposable, IAsyncDisposable
     private LocationCapability? _locationCapability;
     private DeviceCapability? _deviceCapability;
     private DeviceStatusProvider? _deviceStatusProvider;
+    internal IDeviceStatusProvider? DashboardDeviceStatus => _deviceStatusProvider;
     private BrowserProxyCapability? _browserProxyCapability;
     private SttCapability? _sttCapability;
     private TtsCapability? _ttsCapability;

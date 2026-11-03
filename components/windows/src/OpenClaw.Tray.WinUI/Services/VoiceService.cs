@@ -261,7 +261,8 @@ public sealed class VoiceService : IAsyncDisposable
     /// <summary>Routes progress only from this invocation's pipeline. Global events remain available
     /// to legacy consumers; callers still own cancellation and queued-UI callback fencing.</summary>
     internal async Task<SttListenResult> ListenOnceAsync(SttListenArgs args, CancellationToken cancellationToken,
-        Action<string>? onTranscription, Action<float>? onAudioLevel)
+        Action<string>? onTranscription, Action<float>? onAudioLevel,
+        float? silenceTimeoutSeconds = null, Action? onRecordingStarted = null)
     {
         await EnsureInitializedAsync();
 
@@ -311,13 +312,14 @@ public sealed class VoiceService : IAsyncDisposable
         var options = new AudioPipelineOptions
         {
             Language = args.Language,
-            SilenceTimeoutSeconds = _settings.SttSilenceTimeout,
+            SilenceTimeoutSeconds = silenceTimeoutSeconds ?? _settings.SttSilenceTimeout,
             VadThreshold = 0.5f
         };
 
         try
         {
             await pipeline.StartAsync(options, linkedCts.Token);
+            onRecordingStarted?.Invoke();
 
             // Wait for either an utterance or timeout/cancellation.
             // We don't throw immediately on timeout — pipeline.StopAsync's

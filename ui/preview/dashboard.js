@@ -18,7 +18,7 @@ function render(){
  for(const e of layout.elements){let node=nodes.get(e.id);if(!node){node=document.createElement('div');node.className='layout-item '+e.type;node.dataset.id=e.id;const label=document.createElement('span');label.className='layout-item-label';node.append(label);stage.append(node);nodes.set(e.id,node);}
  let w=Math.min(e.width,b.width-24),h=e.height,x=Math.min(e.x,b.width-w),y=e.y;
  if(compact()){const parent=placed.get(nested[e.id]);if(parent){w=Math.min(e.width,parent.w-16);x=e.id.startsWith('afc')?parent.x+8:parent.x+parent.w-w-8;y=e.id.startsWith('afc')?parent.y+parent.h-h-8:parent.y+8;}else{w=Math.min(e.width,b.width-32);if(e.type==='orb')h=w;x=(b.width-w)/2;y=top;top+=h+16;}}placed.set(e.id,{x,y,w,h});
- node.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${nested[e.id]?2:1}`;node.setAttribute('aria-label',e.name);node.querySelector('.layout-item-label').textContent=e.type==='box'?e.name:'';
+ node.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${nested[e.id]?2:1}`;node.setAttribute('aria-label',e.name);const label=node.querySelector('.layout-item-label');if(label)label.textContent=e.type==='box'?e.name:'';
  if(e.type==='orb'){const scale=w/layout.orbBaseSize;orb.style.cssText=`inset:auto;width:${layout.renderViewport.width}px;height:${layout.renderViewport.height}px;left:0;top:0;transform:translate(${x+w/2-layout.renderViewport.width/2}px,${y+h/2-layout.renderViewport.height/2}px) scale(${scale});transform-origin:center;pointer-events:none`;}
  }
  for(const [id,node] of nodes)if(!layout.elements.some(e=>e.id===id)){node.remove();nodes.delete(id);}

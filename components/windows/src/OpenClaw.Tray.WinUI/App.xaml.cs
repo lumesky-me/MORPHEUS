@@ -3090,8 +3090,8 @@ public partial class App : Application, OpenClawTray.Services.IAppCommands, IPer
             {
                 OnUiThread(() =>
                 {
-                    if (ChatNotificationSpeechText.ShouldSpeak(notification, _windowManager?.CurrentChatSessionKey))
-                        _ = (_chatCoordinator?.SpeakResponseAsync(speechText) ?? Task.CompletedTask);
+                    if (ChatNotificationSpeechText.ShouldSpeak(notification, _windowManager?.CurrentChatSessionKey) || notification.ThreadId == DashboardSessionKey)
+                        _ = (_chatCoordinator?.SpeakResponseAsync(speechText, notification.ThreadId == DashboardSessionKey ? active => OnUiThread(() => { if (notification.ThreadId == DashboardSessionKey) DashboardSpeakingChanged?.Invoke(active); }) : null) ?? Task.CompletedTask);
                 });
             }
         }
@@ -4337,6 +4337,9 @@ public partial class App : Application, OpenClawTray.Services.IAppCommands, IPer
 
     public Task SpeakChatTextAsync(string text) =>
         _chatCoordinator?.SpeakChatTextAsync(text) ?? Task.CompletedTask;
+
+    internal string? DashboardSessionKey { get; set; }
+    internal event Action<bool>? DashboardSpeakingChanged;
 
     public void StopChatSpeaking() => _chatCoordinator?.StopSpeaking();
 

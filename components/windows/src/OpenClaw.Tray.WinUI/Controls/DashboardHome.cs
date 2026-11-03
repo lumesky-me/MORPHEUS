@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace OpenClawTray.Controls;
 
 /// <summary>Hosts the packaged, approved dashboard without a second application shell.</summary>
-public sealed class DashboardHome : Grid, IDisposable
+public sealed partial class DashboardHome : Grid, IDisposable
 {
     private readonly WebView2 _view = new();
     private readonly TextBlock _error = new() { Text = "Home dashboard could not load.", Visibility = Visibility.Collapsed };
@@ -40,7 +40,7 @@ public sealed class DashboardHome : Grid, IDisposable
             };
             core.WebMessageReceived += (_, e) =>
             {
-                if (e.Source == "https://morpheus-home.local/native-home.html") PublishVisibility();
+                if (e.Source == "https://morpheus-home.local/native-home.html") HandleMessage(e.WebMessageAsJson);
             };
             core.Navigate("https://morpheus-home.local/native-home.html");
         }
@@ -52,6 +52,7 @@ public sealed class DashboardHome : Grid, IDisposable
     public void SetActive(bool active)
     {
         _active = active;
+        if (!active) _voice?.Cancel();
         PublishVisibility();
     }
     private void PublishVisibility()
@@ -64,6 +65,7 @@ public sealed class DashboardHome : Grid, IDisposable
         if (_disposed) return;
         _disposed = true;
         Loaded -= OnLoaded;
+        DisconnectConversation();
         _view.Close();
     }
 }

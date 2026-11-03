@@ -51,6 +51,23 @@ public sealed class VoiceServiceProgressRoutingTests
     }
 
     [Fact]
+    public async Task PerCaptureSilenceOverridePreservesConfiguredDefault()
+    {
+        await using var harness = new Harness(holdFirstTranscription: false, silence: 0.9f);
+        var started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var listen = harness.Service.ListenOnceAsync(new SttListenArgs { TimeoutMs = ListenTimeoutMs },
+            CancellationToken.None, null, null, silenceTimeoutSeconds: 1.5f,
+            onRecordingStarted: () => started.TrySetResult());
+        await started.Task.WaitAsync(Deadline);
+        harness.CaptureA.EmitSamples(20 * 512, 2000);
+        harness.CaptureA.EmitSamples(29 * 512, 0);
+        Assert.False(listen.IsCompleted);
+        harness.CaptureA.EmitSamples(18 * 512, 0);
+        var result = await listen.WaitAsync(Deadline);
+        Assert.False(string.IsNullOrWhiteSpace(result.Text));
+    }
+
+    [Fact]
     public async Task ShortAndLongSpeechWithOrdinaryPauseProduceOneFinal()
     {
         await using var harness = new Harness(holdFirstTranscription: false);

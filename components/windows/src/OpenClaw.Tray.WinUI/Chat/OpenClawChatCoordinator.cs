@@ -117,9 +117,9 @@ public sealed class OpenClawChatCoordinator : IDisposable
         catch (Exception ex) { _logger.Debug($"OpenClawChatCoordinator.StopSpeaking failed: {ex.Message}"); }
     }
 
-    public Task SpeakResponseAsync(string text) => SpeakConfiguredTextAsync(text, muteVoiceCapture: true, bypassMute: false);
+    public Task SpeakResponseAsync(string text, Action<bool>? onSpeaking = null) => SpeakConfiguredTextAsync(text, muteVoiceCapture: true, bypassMute: false, onSpeaking: onSpeaking);
 
-    private async Task SpeakConfiguredTextAsync(string text, bool muteVoiceCapture, bool bypassMute = false)
+    private async Task SpeakConfiguredTextAsync(string text, bool muteVoiceCapture, bool bypassMute = false, Action<bool>? onSpeaking = null)
     {
         if (!bypassMute && IsMuted) return;
         var voiceService = _nodeServiceAccessor()?.VoiceService;
@@ -147,7 +147,9 @@ public sealed class OpenClawChatCoordinator : IDisposable
 
             var ttsService = _nodeServiceAccessor()?.TextToSpeech
                 ?? GetFallbackTextToSpeechService();
-            await ttsService.SpeakAsync(speakArgs).ConfigureAwait(false);
+            if (onSpeaking is not null) ttsService.SpeakingChanged += onSpeaking;
+            try { await ttsService.SpeakAsync(speakArgs).ConfigureAwait(false); }
+            finally { if (onSpeaking is not null) ttsService.SpeakingChanged -= onSpeaking; }
         }
         catch (Exception ex)
         {
