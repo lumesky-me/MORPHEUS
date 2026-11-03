@@ -93,7 +93,7 @@
         </Button>
             </StackPanel>
         </Border>
-        <Grid x:Name="EmptyHome" Grid.Row="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:MorphyAnimatedCore x:Name="HomeCore"/></Grid>
+        <Grid x:Name="EmptyHome" Grid.Row="1" AutomationProperties.AutomationId="MorpheusEmptyHome"><controls:DashboardHome x:Name="HomeCore"/></Grid>
 
         <NavigationView x:Name="NavView" Grid.Row="1"
                         AutomationProperties.AutomationId="WorkspaceNavigation"

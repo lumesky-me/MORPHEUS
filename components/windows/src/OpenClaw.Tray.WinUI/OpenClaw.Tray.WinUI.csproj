@@ -416,4 +416,15 @@
     <Copy SourceFiles="$(OpenClawSetupDefaultConfig)" DestinationFiles="$(PublishDir)default-config.json" SkipUnchangedFiles="true" Condition="Exists('$(OpenClawSetupDefaultConfig)')" />
   </Target>
 
+
+  <ItemGroup>
+    <Content Include="..\..\..\..\ui\preview\native-home.html" Link="Dashboard\native-home.html" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\native-home.js" Link="Dashboard\native-home.js" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\tokens.css" Link="Dashboard\tokens.css" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\style.css" Link="Dashboard\style.css" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\dashboard.css" Link="Dashboard\dashboard.css" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\dashboard.js" Link="Dashboard\dashboard.js" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\dashboard-baseline.js" Link="Dashboard\dashboard-baseline.js" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\ultron\orb.js" Link="Dashboard\ultron\orb.js" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

@@ -9,3 +9,6 @@
 .layout-item.box{background:rgba(25,23,31,.83);border:1px solid rgba(161,149,178,.2);border-radius:11px;box-shadow:0 4px 14px #0003}
 
 .dashboard-stage{background:#000}
+
+/* Native title bar lives outside this document. */
+.native-home .workspace{height:100%}
