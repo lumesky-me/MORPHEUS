@@ -1,0 +1,3 @@
+PASS graph fixture: fixed0–100 labeled Y axis, −90s/−60s/−30s/Now X axis, no top percentage label, all four selector modes,90-second rolling history, missing GPU and inactive gaps. Screenshot inspected.
+PASS endpoint/transport fixtures: Host/Origin restrictions, bounded fresh90-second server history, stale-data handling, disconnect/recovery, visibility-change buffered-history catch-up. Collector continues independently of browser requests. Synthetic fixtures do not prove native hardware collection.
+Windows runtime testing unavailable on Linux: no Windows performance counters or Windows PowerShell. No claim of Windows validation. JavaScript/Python syntax, static export and diff checks passed.

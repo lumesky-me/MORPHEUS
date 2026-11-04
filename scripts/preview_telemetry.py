@@ -1,4 +1,5 @@
 """Own one Windows counter process; serve only fresh, bounded telemetry records."""
+from collections import deque
 import json
 import os
 from pathlib import Path
@@ -10,6 +11,7 @@ class Collector:
     def __init__(self):
         self.process = None
         self.latest = None
+        self.history = deque(maxlen=180)
         self.lock = threading.Lock()
         self.closed = threading.Event()
         if os.name == 'nt':
@@ -32,7 +34,11 @@ class Collector:
                         if data.get('type') != 'dashboard-metrics': continue
                         values = [data['cpu']['usagePercent'], data['ram']['usagePercent'], data['gpu']]
                         if any(v is not None and (type(v) not in (int, float) or not 0 <= v <= 100) for v in values): continue
-                        with self.lock: self.latest = (time.monotonic(), data)
+                        with self.lock:
+                            now = time.monotonic()
+                            self.latest = (now, data)
+                            self.history.append((now, data))
+                            while self.history and now - self.history[0][0] > 90: self.history.popleft()
                     except (ValueError, KeyError, TypeError): continue
                 process.stdout.close()
                 process.wait()
@@ -42,7 +48,7 @@ class Collector:
     def snapshot(self):
         with self.lock:
             if self.latest and time.monotonic() - self.latest[0] < 4:
-                return self.latest[1]
+                return {**self.latest[1], 'history': [data for stamp, data in self.history if time.monotonic() - stamp <= 90]}
         return None
 
     def close(self):

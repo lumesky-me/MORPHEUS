@@ -69,23 +69,26 @@ const panel=id=>document.querySelector(`[data-id="${id}"]`);
 const graphPanel=panel('c4042c5a-5534-4d0a-84a1-3598ad644766');
 const selector=panel('5b7f1b40-9979-42fb-b4a2-f4adc3b7257b');
 const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM','CPU, GPU, RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
-const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 80');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
-// Fixed percentage grid, shared by every metric. No animation loop required.
-for(const value of [0,25,50,75,100]){const grid=document.createElementNS(graph.namespaceURI,'line');const y=78-value*.7;grid.setAttribute('x1','0');grid.setAttribute('x2','460');grid.setAttribute('y1',y);grid.setAttribute('y2',y);grid.classList.add('dashboard-gridline');graph.append(grid);}
+const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 110');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
+// Shared fixed axes: percentages vertically, elapsed seconds horizontally.
+function svgLabel(text,x,y,anchor='end'){const node=document.createElementNS(graph.namespaceURI,'text');node.textContent=text;node.setAttribute('x',x);node.setAttribute('y',y);node.setAttribute('text-anchor',anchor);node.classList.add('dashboard-axis-label');graph.append(node);}
+for(const value of [0,25,50,75,100]){const grid=document.createElementNS(graph.namespaceURI,'line');const y=84-value*.76;grid.setAttribute('x1','32');grid.setAttribute('x2','456');grid.setAttribute('y1',y);grid.setAttribute('y2',y);grid.classList.add('dashboard-gridline');graph.append(grid);svgLabel(String(value),26,y+3);}
+const axes=document.createElementNS(graph.namespaceURI,'path');axes.setAttribute('d','M32,8 V84 H456');axes.classList.add('dashboard-axes');graph.append(axes);
+for(const [text,x,anchor] of [['−90s',32,'start'],['−60s',173,'middle'],['−30s',315,'middle'],['Now',456,'end']])svgLabel(text,x,102,anchor);
 const colors={cpu:'#b79bde',gpu:'#70bfae',ram:'#d1a970'};
 const lines={};for(const key of Object.keys(colors)){const line=document.createElementNS(graph.namespaceURI,'path');line.setAttribute('fill','none');line.setAttribute('stroke',colors[key]);line.setAttribute('stroke-width','1.5');line.dataset.metric=key;graph.append(line);lines[key]=line;}graphPanel.replaceChildren(graph);
-const metricLabel=document.createElement('span');metricLabel.className='dashboard-metric-label';graphPanel.append(metricLabel);
+
 const legend=document.createElement('div');legend.className='dashboard-legend';graphPanel.append(legend);let history=[];
 function draw(){
  const all=select.value==='CPU, GPU, RAM',key=select.value.toLowerCase(),last=history.at(-1),now=last?.timestamp;
- legend.replaceChildren();legend.hidden=!all;
+ legend.replaceChildren();legend.hidden=false;
  for(const metric of Object.keys(lines)){
   const visible=all||key===metric;lines[metric].style.display=visible?'':'none';let path='',connected=false,previousTime=null,previousX=0,previousY=0;
   for(const sample of history){
    const value=metric==='gpu'?sample.gpu:sample[metric]?.usagePercent;
    if(!Number.isFinite(value)){connected=false;continue;}
    if(previousTime!==null&&sample.timestamp-previousTime>3000)connected=false;
-   const x=460-(now-sample.timestamp)/90000*460,y=78-Math.max(0,Math.min(100,value))*.7;
+   const x=456-(now-sample.timestamp)/90000*424,y=84-Math.max(0,Math.min(100,value))*.76;
    const middle=(previousX+x)/2;
    // Monotone cubic segments soften updates without overshooting 0–100%.
    path+=connected?`C${middle},${previousY} ${middle},${y} ${x},${y} `:`M${x},${y} `;
@@ -93,10 +96,10 @@ function draw(){
   }
   lines[metric].setAttribute('d',path);
   const value=metric==='gpu'?last?.gpu:last?.[metric]?.usagePercent;
-  const label=`${metric.toUpperCase()} · ${Number.isFinite(value)?value.toFixed(1)+'%':'Unavailable'}`;
-  if(all){const item=document.createElement('span');item.textContent=label;item.style.color=colors[metric];legend.append(item);}else if(visible)metricLabel.textContent=label;
+  const label=`${metric.toUpperCase()}${Number.isFinite(value)?'':' · Unavailable'}`;
+  if(all||visible){const item=document.createElement('span');item.textContent=label;item.style.color=colors[metric];legend.append(item);}
  }
- if(all)metricLabel.textContent='System usage';
+
 }
 select.onchange=draw;
 for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',label);button.dataset.preset=preset;button.onclick=()=>{if(nativeHost)post({type:'dashboard-preset',preset});else renderPermissions(preset);};const note=document.createElement('small');note.className='permission-note';note.textContent=nativeHost?'Unknown':'Preview Only';box.replaceChildren(button,note);button.disabled=nativeHost;}
@@ -147,18 +150,21 @@ function acceptMetrics(data){
  history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000).slice(-180);draw();
 }
 if(!nativeHost){
- let stopped=false;const abort=new AbortController();
+ let stopped=false,polling=false,timer;const abort=new AbortController();
  window.addEventListener('pagehide',()=>{stopped=true;abort.abort();});
  async function pollMetrics(){
-  if(stopped)return;
+  if(stopped||polling)return;clearTimeout(timer);polling=true;
   if(!home.hidden&&!document.hidden){
    try{
     const response=await fetch('/api/telemetry',{signal:abort.signal,cache:'no-store'});
     if(!response.ok)throw Error('Telemetry unavailable');
-    const data=await response.json();if(data.type!=='dashboard-metrics')throw Error('Invalid telemetry');acceptMetrics(data);
+    const data=await response.json();if(data.type!=='dashboard-metrics')throw Error('Invalid telemetry');
+    if(Array.isArray(data.history)){const merged=new Map(history.map(sample=>[sample.timestamp,sample]));for(const sample of data.history)if(Number.isFinite(sample.timestamp))merged.set(sample.timestamp,sample);history=[...merged.values()].sort((a,b)=>a.timestamp-b.timestamp).filter(sample=>sample.timestamp>=data.timestamp-90000).slice(-180);}
+    acceptMetrics(data);draw();
    }catch{acceptMetrics({timestamp:Date.now(),cpu:null,ram:null,gpu:null});}
   }
-  if(!stopped)setTimeout(pollMetrics,1000);
+  polling=false;if(!stopped)timer=setTimeout(pollMetrics,1000);
  }
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)pollMetrics();});
  pollMetrics();
 }
