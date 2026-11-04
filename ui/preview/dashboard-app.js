@@ -3,7 +3,7 @@ let orb;
 let active=true;
 const home=document.querySelector("#home");
 const nativeHost=!!window.chrome?.webview;
-const unavailable="dashboard · Native Gateway, microphone and device services are unavailable in browser preview.";
+const unavailable="dashboard · Native Gateway and microphone services are unavailable in browser preview.";
 const sync=()=>orb?.setVisible(active&&!home.hidden&&!document.hidden);
 new MutationObserver(sync).observe(home,{attributes:true,attributeFilter:["hidden"]});
 window.chrome?.webview?.addEventListener('message',event=>{
@@ -114,7 +114,7 @@ const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.ad
 const viewer=document.createElement('dialog');viewer.className='dashboard-viewer';const fullImage=document.createElement('img');fullImage.alt='Dashboard visual';const close=document.createElement('button');close.textContent='Close';close.onclick=()=>viewer.close();viewer.append(close,fullImage);document.body.append(viewer);let mediaSignature='';
 window.chrome?.webview?.addEventListener('message',event=>{
  const data=event.data;
- if(data.type==='dashboard-metrics'){if(!Number.isFinite(data.timestamp)||history.length&&data.timestamp<=history.at(-1).timestamp)return;history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000).slice(-180);draw();}
+ if(data.type==='dashboard-metrics')acceptMetrics(data);
  if(data.type==='dashboard-permissions')renderPermissions(data.preset,data.connected===true);
  if(data.type==='dashboard-state'){
   const urls=[];for(const response of data.responses||[])for(const match of response.text.matchAll(/!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)/g))urls.push({alt:match[1],url:match[2]});
@@ -140,3 +140,25 @@ function formatResponse(node,text){
 draw();
 if(!nativeHost){gallery.textContent="Visual outputs from dashboard appear here when native services are connected.";}
 post({type:"home-ready"});
+
+// The development preview serves local Windows counters on its own origin.
+function acceptMetrics(data){
+ if(!Number.isFinite(data.timestamp)||history.length&&data.timestamp<=history.at(-1).timestamp)return;
+ history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000).slice(-180);draw();
+}
+if(!nativeHost){
+ let stopped=false;const abort=new AbortController();
+ window.addEventListener('pagehide',()=>{stopped=true;abort.abort();});
+ async function pollMetrics(){
+  if(stopped)return;
+  if(!home.hidden&&!document.hidden){
+   try{
+    const response=await fetch('/api/telemetry',{signal:abort.signal,cache:'no-store'});
+    if(!response.ok)throw Error('Telemetry unavailable');
+    const data=await response.json();if(data.type!=='dashboard-metrics')throw Error('Invalid telemetry');acceptMetrics(data);
+   }catch{acceptMetrics({timestamp:Date.now(),cpu:null,ram:null,gpu:null});}
+  }
+  if(!stopped)setTimeout(pollMetrics,1000);
+ }
+ pollMetrics();
+}
