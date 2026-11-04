@@ -1,1 +1,2 @@
 PASS normal1060px/compact390px: exact M O R P H Y label, natural width below210px, centered within existing layout slot,38px height,1px letter spacing preserved, font18to19px. Screenshot inspected. Only CSS width/padding/font size changed; orb and listening behavior unchanged. Diff check passed.
+Follow-up: horizontal padding increased16to24px per side, widening pill16px total. Same desktop/compact checks passed and screenshot inspected.
