@@ -1,0 +1,3 @@
+Cause: the fixed camera viewport renders an opaque black rectangle over the full-height graphite/galaxy dashboard stage. Its transformed boundary exposed an abrupt color transition.
+Fix: blend the existing canvas perimeter with CSS masking and match the Home backdrop to the dashboard base. Preserve full-stage stars and atmosphere, camera viewport, orb animation and one WebGL canvas. No extra GPU render target, duplicated scene or renderer resizing.
+Visual checks: desktop 1060x946 DPR1, large 1400x1100 DPR1.25, compact390x800 DPR2, top/bottom scroll and live resize. Screenshots inspected. JavaScript errors checked. Static preview export and diff checks passed. Native Windows runtime not tested.

@@ -71,3 +71,12 @@
 #home .dashboard-input.sending .dashboard-send{opacity:.65;background:#9c80b630}
 @media(prefers-reduced-motion:reduce){#home .dashboard-input,#home .dashboard-input button{transition:none}}
 @media(forced-colors:active){#home .dashboard-input:focus-within{outline:1px solid Highlight}}
+
+/* The approved orb canvas has a fixed camera viewport, not page dimensions.
+   Blend its opaque clear color at the perimeter instead of stretching the scene
+   or allocating a dashboard-height WebGL render target on compact layouts. */
+.dashboard-stage #ultron-orb{
+ mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 78%,transparent),linear-gradient(to right,transparent,#000 12%,#000 78%,transparent);
+ mask-composite:intersect;
+}
+#home:not([hidden]){background:#08080b}
