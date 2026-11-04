@@ -88,14 +88,14 @@ function draw(){
  if(all)metricLabel.textContent='System usage';
 }
 select.onchange=draw;
-for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',label);button.dataset.preset=preset;button.onclick=()=>{if(nativeHost)post({type:'dashboard-preset',preset});else renderPermissions(preset);};const note=document.createElement('small');note.className='permission-note';note.textContent=nativeHost?'Unknown':'Preview Only';button.append(note);box.replaceChildren(button);button.disabled=nativeHost;}
+for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',label);button.dataset.preset=preset;button.onclick=()=>{if(nativeHost)post({type:'dashboard-preset',preset});else renderPermissions(preset);};const note=document.createElement('small');note.className='permission-note';note.textContent=nativeHost?'Unknown':'Preview Only';box.replaceChildren(button,note);button.disabled=nativeHost;}
 function renderPermissions(preset,connected=false){
  const known=(!nativeHost||connected)&&['Strict','Open'].includes(preset);
  for(const button of document.querySelectorAll('[data-preset]')){
   if(known)button.setAttribute('aria-pressed',String(button.dataset.preset===preset));else button.removeAttribute('aria-pressed');
   button.disabled=nativeHost&&!connected;
   const description=nativeHost?(known?'':connected?'Custom mode':'Unknown · Disconnected'):'Preview Only';
-  button.querySelector('.permission-note').textContent=description;button.setAttribute('aria-description',description);
+  button.parentElement.querySelector('.permission-note').textContent=nativeHost?description:button.dataset.preset==='Strict'?'Preview Only':'';button.setAttribute('aria-description',description);
  }
 }
 if(!nativeHost)renderPermissions('Strict');

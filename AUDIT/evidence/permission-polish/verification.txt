@@ -1,0 +1,1 @@
+PASS browser visual checks at 1060 and390px: both modes switch; text stays white, exact names, identical dimensions, separate Preview Only label. Screenshots inspected. No backend permission or confirmation code changed. Native Windows runtime not tested. JavaScript syntax, static export, diff checks passed.
