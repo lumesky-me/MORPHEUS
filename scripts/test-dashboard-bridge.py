@@ -26,11 +26,11 @@ with sync_playwright() as p:
  page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'thinking',transcript:''})");assert page.locator('.dashboard-transcript').evaluate('(node)=>!node.classList.contains("visible")')
  page.evaluate("()=>deliver({type:'dashboard-metrics',timestamp:1000,cpu:{usagePercent:25},ram:{usagePercent:50},gpu:20})");assert page.locator('.dashboard-legend').is_hidden()
  page.get_by_label('Performance metric').select_option(label='RAM');assert page.locator('.dashboard-legend').is_hidden()
- page.get_by_label('Performance metric').select_option(label='CPU, GPU, RAM')
- assert page.locator('.dashboard-graph [data-metric]').evaluate_all('(lines)=>lines.every(line=>line.style.display!=="none" && line.getAttribute("d"))')
+ page.get_by_label('Performance metric').select_option(label='CPU')
+ assert page.locator('.dashboard-graph [data-metric]').evaluate_all('(lines)=>lines.filter(line=>line.style.display!=="none" && line.getAttribute("d")).length===1')
  assert page.locator('.dashboard-visual-board .dashboard-transcript').count()==1
  page.wait_for_function("document.querySelector('.dashboard-transcript').textContent === ''")
- assert 'CPU' in page.locator('.dashboard-legend').inner_text()
+ assert page.locator('.dashboard-legend').is_hidden()
  page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Strict',connected:true})")
  assert page.get_by_role('button',name='Lock Down',exact=True).get_attribute('aria-pressed')=='true'
  assert page.get_by_role('button',name='Full Access',exact=True).get_attribute('aria-pressed')=='false'

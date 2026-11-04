@@ -68,23 +68,23 @@ window.chrome?.webview?.addEventListener('message',event=>{
 const panel=id=>document.querySelector(`[data-id="${id}"]`);
 const graphPanel=panel('c4042c5a-5534-4d0a-84a1-3598ad644766');
 const selector=panel('5b7f1b40-9979-42fb-b4a2-f4adc3b7257b');
-const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM','CPU, GPU, RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
+const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
 const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 110');graph.setAttribute('preserveAspectRatio','none');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
 const defs=document.createElementNS(graph.namespaceURI,'defs');const clip=document.createElementNS(graph.namespaceURI,'clipPath');clip.id='dashboard-plot-clip';const rect=document.createElementNS(graph.namespaceURI,'rect');rect.setAttribute('x','31');rect.setAttribute('y','7');rect.setAttribute('width','426');rect.setAttribute('height','78');clip.append(rect);defs.append(clip);graph.append(defs);
 // Shared fixed axes: percentages vertically, elapsed seconds horizontally.
 function svgLabel(text,x,y,anchor='end',baseline='auto'){const node=document.createElementNS(graph.namespaceURI,'text');node.textContent=text;node.setAttribute('x',x);node.setAttribute('y',y);node.setAttribute('text-anchor',anchor);node.setAttribute('dominant-baseline',baseline);node.classList.add('dashboard-axis-label');graph.append(node);}
 for(const value of [0,25,50,75,100]){const grid=document.createElementNS(graph.namespaceURI,'line');const y=84-value*.76;grid.setAttribute('x1','32');grid.setAttribute('x2','456');grid.setAttribute('y1',y);grid.setAttribute('y2',y);grid.classList.add('dashboard-gridline');graph.append(grid);if(value===50||value===100)svgLabel(String(value),23,y,'end','central');}
 const axes=document.createElementNS(graph.namespaceURI,'path');axes.setAttribute('d','M32,3 V84 H456');axes.classList.add('dashboard-axes');graph.append(axes);
-for(const [text,x,anchor] of [['−60s',173,'middle'],['−30s',315,'middle'],['Now',456,'end']])svgLabel(text,x,102,anchor);
+for(const [text,x,anchor] of [['−90s',32,'start'],['−60s',173,'middle'],['−30s',315,'middle'],['Now',456,'end']])svgLabel(text,x,102,anchor);
 const colors={cpu:'#b79bde',gpu:'#70bfae',ram:'#d1a970'};
 const lines={};for(const key of Object.keys(colors)){const line=document.createElementNS(graph.namespaceURI,'path');line.setAttribute('fill','none');line.setAttribute('stroke',colors[key]);line.setAttribute('stroke-width','1.5');line.dataset.metric=key;line.setAttribute('clip-path','url(#dashboard-plot-clip)');graph.append(line);lines[key]=line;}graph.append(axes);graphPanel.replaceChildren(graph);
 
 const legend=document.createElement('div');legend.className='dashboard-legend';graphPanel.append(legend);let history=[];
 function draw(){
- const all=select.value==='CPU, GPU, RAM',key=select.value.toLowerCase(),last=history.at(-1),now=last?.timestamp;
- legend.replaceChildren();legend.hidden=!all;
+ const key=select.value.toLowerCase(),last=history.at(-1),now=last?.timestamp;
+ legend.replaceChildren();legend.hidden=true;
  for(const metric of Object.keys(lines)){
-  const visible=all||key===metric;lines[metric].style.display=visible?'':'none';let path='',connected=false,previousTime=null,previousX=0,previousY=0;
+  const visible=key===metric;lines[metric].style.display=visible?'':'none';let path='',connected=false,previousTime=null,previousX=0,previousY=0;
   for(const sample of history){
    const value=metric==='gpu'?sample.gpu:sample[metric]?.usagePercent;
    if(!Number.isFinite(value)){connected=false;continue;}
@@ -97,8 +97,7 @@ function draw(){
   }
   lines[metric].setAttribute('d',path);
   const value=metric==='gpu'?last?.gpu:last?.[metric]?.usagePercent;
-  const label=`${metric.toUpperCase()}${Number.isFinite(value)?'':' · Unavailable'}`;
-  if(all||visible&&!Number.isFinite(value)){const item=document.createElement('span');item.textContent=all?label:'Unavailable';item.style.color=colors[metric];legend.append(item);legend.hidden=false;}
+  if(visible&&!Number.isFinite(value)){const item=document.createElement('span');item.textContent='Unavailable';item.style.color=colors[metric];legend.append(item);legend.hidden=false;}
  }
 
 }

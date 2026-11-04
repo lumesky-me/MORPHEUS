@@ -39,11 +39,11 @@ with sync_playwright() as p:
  select=page.get_by_label('Performance metric')
  for name,value in [('GPU','34.0%'),('RAM','52.0%')]:
   select.select_option(label=name);assert page.locator('.dashboard-legend').is_hidden()
- select.select_option(label='CPU, GPU, RAM');assert 'CPU' in page.locator('.dashboard-legend').inner_text()
+ select.select_option(label='CPU');assert page.locator('.dashboard-legend').is_hidden()
  state['online']=False
- page.wait_for_function("()=>document.querySelector('.dashboard-legend')?.textContent.includes('CPU · Unavailable')")
+ page.wait_for_function("()=>document.querySelector('.dashboard-legend')?.textContent.includes('Unavailable')")
  state['online']=True
- page.wait_for_function("()=>document.querySelector('.dashboard-legend')?.textContent==='CPUGPURAM'")
+ page.wait_for_function("()=>document.querySelector('.dashboard-legend')?.hidden===true")
  assert state['count']>=3
  page.evaluate("()=>{Object.defineProperty(document,'hidden',{value:true,configurable:true});document.dispatchEvent(new Event('visibilitychange'));}")
  page.wait_for_timeout(1100)
