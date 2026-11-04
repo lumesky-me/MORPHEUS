@@ -1,0 +1,3 @@
+PASS graph fixtures: single-metric legend hidden for available data; unavailable status retained without CPU label; combined legend retained. Fixed0/25/50/75/100 and90-second time labels preserved. Curves render behind axes and clip includes one-unit margin for boundary strokes.
+Visual inspection: single-metric zero-utilization curve continues along X axis; combined lines remain clear. Metric switching,90-second history, missing GPU and inactive gaps passed. No telemetry collection/measurement changes.
+JavaScript syntax, static export and diff checks passed. Browser rendering uses explicit synthetic host fixtures. Native Windows runtime not tested.

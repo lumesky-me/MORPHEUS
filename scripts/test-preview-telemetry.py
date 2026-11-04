@@ -35,10 +35,10 @@ with sync_playwright() as p:
   data['history']=[{**data,'timestamp':now-i*1000} for i in range(90,-1,-1)]
   route.fulfill(status=200 if state['online'] else 503,content_type='application/json',body=json.dumps(data))
  page.route('**/api/telemetry',reading);page.goto(args.url)
- page.wait_for_function("()=>document.querySelector('.dashboard-legend')?.textContent === 'CPU'")
+ page.wait_for_function("()=>!!document.querySelector('[data-metric=cpu]')?.getAttribute('d')")
  select=page.get_by_label('Performance metric')
  for name,value in [('GPU','34.0%'),('RAM','52.0%')]:
-  select.select_option(label=name);assert page.locator('.dashboard-legend').inner_text()==name
+  select.select_option(label=name);assert page.locator('.dashboard-legend').is_hidden()
  select.select_option(label='CPU, GPU, RAM');assert 'CPU' in page.locator('.dashboard-legend').inner_text()
  state['online']=False
  page.wait_for_function("()=>document.querySelector('.dashboard-legend')?.textContent.includes('CPU · Unavailable')")

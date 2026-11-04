@@ -24,8 +24,8 @@ with sync_playwright() as p:
  page.screenshot(path=str(out/'listening-fixture.png'))
  assert page.get_by_role('button',name='Start or stop voice input').inner_text()=='M O R P H Y'
  page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'thinking',transcript:''})");assert page.locator('.dashboard-transcript').evaluate('(node)=>!node.classList.contains("visible")')
- page.evaluate("()=>deliver({type:'dashboard-metrics',timestamp:1000,cpu:{usagePercent:25},ram:{usagePercent:50},gpu:20})");assert page.locator('.dashboard-legend').inner_text()=='CPU'
- page.get_by_label('Performance metric').select_option(label='RAM');assert page.locator('.dashboard-legend').inner_text()=='RAM'
+ page.evaluate("()=>deliver({type:'dashboard-metrics',timestamp:1000,cpu:{usagePercent:25},ram:{usagePercent:50},gpu:20})");assert page.locator('.dashboard-legend').is_hidden()
+ page.get_by_label('Performance metric').select_option(label='RAM');assert page.locator('.dashboard-legend').is_hidden()
  page.get_by_label('Performance metric').select_option(label='CPU, GPU, RAM')
  assert page.locator('.dashboard-graph [data-metric]').evaluate_all('(lines)=>lines.every(line=>line.style.display!=="none" && line.getAttribute("d"))')
  assert page.locator('.dashboard-visual-board .dashboard-transcript').count()==1

@@ -88,5 +88,5 @@
 .dashboard-gridline{stroke:#b5a0c315;stroke-width:.6;vector-effect:non-scaling-stroke}
 .dashboard-graph path{stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 
-.dashboard-axis-label{fill:#a99bb7;font-size:10px;font-family:inherit}
-.dashboard-axes{fill:none;stroke:#a99bb755;stroke-width:.8;vector-effect:non-scaling-stroke}
+.dashboard-axis-label{fill:#a99bb7b3;font-size:9px;font-family:inherit;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.dashboard-axes{fill:none;stroke:#a99bb730;stroke-width:.6;vector-effect:non-scaling-stroke}
