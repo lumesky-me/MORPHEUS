@@ -1,4 +1,7 @@
-import './dashboard.js';
+import('./dashboard-app.js').catch(error=>{
+ document.querySelector('#orb-status').textContent='Dashboard assets could not load. Stop and restart the preview server, then refresh.';
+ console.error(error);
+});
 import { sidebarBreakpoint } from './layout.js';
 const icons={home:'<path d="m3 11 9-8 9 8v10h-6v-7H9v7H3z"/>',chat:'<path d="M7 4h10a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-6l-6 3v-3a4 4 0 0 1-2-4V8a4 4 0 0 1 4-4z"/>',schedule:'<circle cx="12" cy="12" r="10"/><path d="M12 5v7l5 3"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',settings:'<path d="M5 3v6m0 4v8M12 3v12m0 4v2M19 3v2m0 4v12"/><path d="M2 9h6v4H2zM9 15h6v4H9zM16 5h6v4h-6z"/>',notifications:'<path d="M5 17V9a7 7 0 0 1 14 0v8l2 2H3zM10 22h4"/>','sidebar-toggle':'<rect x="2" y="3" width="20" height="18" rx="2"/><path d="M10 3v18"/>','search-toggle':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>','new-chat':'<path d="M12 3v18M3 12h18"/>',attach:'<path d="m9 13 6-6a3 3 0 0 1 4 4l-8 8a5 5 0 0 1-7-7l8-8a2 2 0 0 1 3 3l-8 8"/>',microphone:'<rect x="9" y="2" width="6" height="13" rx="3"/><path d="M6 10v3a6 6 0 0 0 12 0v-3M12 19v3M9 22h6"/>',send:'<path d="m3 10 18-7-7 18-3-8zM11 13 21 3"/>'};
 for(const [name,path] of Object.entries(icons)){const el=document.querySelector(`button[data-page="${name}"]`)||document.querySelector(`button[id="${name}"]`);if(el&&name!=='home')el.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;}
@@ -41,20 +44,4 @@ coreTouch.addEventListener('click',()=>{
  corePulseTimer=setTimeout(()=>coreTouch.classList.remove('pressed'),650);
 });
 
-let createOrbScene;
-let orbLoading=false;
-let orb;
-function syncOrb(){
- if(!$('home').hidden&&!orb&&createOrbScene){try{orb=createOrbScene($('ultron-orb'));orb.setActivity('idle');}catch(e){$('ultron-orb').textContent='WebGL is unavailable in this browser.';console.error(e);}}
- if(orb)orb.setVisible(!$('home').hidden&&!document.hidden);
-}
-async function loadOrb(){
- if(orbLoading)return;orbLoading=true;
- try{({createOrbScene}=await import('./ultron/orb.js'));syncOrb();}
- catch(e){$('orb-status').textContent='Orb failed to load. Stop and restart the preview server, then refresh.';console.error(e);}
-}
-document.addEventListener('visibilitychange',syncOrb);
-window.addEventListener('pagehide',event=>{if(!event.persisted)orb?.dispose();});
-loadOrb();
-new MutationObserver(syncOrb).observe($('home'),{attributes:true,attributeFilter:['hidden']});syncOrb();
 new MutationObserver(()=>{$('empty-conversation').hidden=$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});

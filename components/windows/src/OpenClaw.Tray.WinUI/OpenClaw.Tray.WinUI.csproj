@@ -419,6 +419,7 @@
 
   <ItemGroup>
     <Content Include="..\..\..\..\ui\preview\native-home.html" Link="Dashboard\native-home.html" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\..\..\ui\preview\dashboard-app.js" Link="Dashboard\dashboard-app.js" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\..\..\ui\preview\native-home.js" Link="Dashboard\native-home.js" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\..\..\ui\preview\tokens.css" Link="Dashboard\tokens.css" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\..\..\ui\preview\style.css" Link="Dashboard\style.css" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />

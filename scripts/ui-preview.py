@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import argparse,mimetypes,webbrowser
 ROOT=Path(__file__).resolve().parents[1]
-FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard.css','dashboard-baseline.js')}
+FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','dashboard.css','dashboard-baseline.js')}
 FILES['/']=FILES['/index.html']
 FILES['/ultron/orb.js']=ROOT/'ui/preview/ultron/orb.js'
 FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'
@@ -20,7 +20,7 @@ class Handler(BaseHTTPRequestHandler):
         content=file.read_bytes();self.send_response(200)
         self.send_header('Content-Type',{'.js':'text/javascript', '.css':'text/css', '.html':'text/html', '.svg':'image/svg+xml'}.get(file.suffix, mimetypes.guess_type(file.name)[0] or 'application/octet-stream'))
         self.send_header('Content-Length',str(len(content)));self.send_header('Cache-Control','no-store')
-        self.send_header('Content-Security-Policy',"default-src 'self'; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com; worker-src 'self' blob:; img-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'; style-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
+        self.send_header('Content-Security-Policy',"default-src 'self'; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com; worker-src 'self' blob:; img-src 'self' data: https:; script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'; style-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
         self.send_header('X-Content-Type-Options','nosniff');self.end_headers();self.wfile.write(content)
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=4173);parser.add_argument('--open-browser',action='store_true',help='Open the local preview in your default browser');args=parser.parse_args()

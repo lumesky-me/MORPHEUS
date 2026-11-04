@@ -2,8 +2,8 @@
 from playwright.sync_api import sync_playwright
 from pathlib import Path
 import argparse
-parser=argparse.ArgumentParser();parser.add_argument('--url',default='http://127.0.0.1:4190/native-home.html');args=parser.parse_args()
-out=Path(__file__).resolve().parents[1]/'AUDIT/evidence/dashboard-bridge';out.mkdir(parents=True,exist_ok=True)
+parser=argparse.ArgumentParser();parser.add_argument('--url',default='http://127.0.0.1:4190/native-home.html');parser.add_argument('--output',default='AUDIT/evidence/dashboard-bridge');args=parser.parse_args()
+out=Path(__file__).resolve().parents[1]/args.output;out.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--enable-unsafe-swiftshader']);page=b.new_page(viewport={'width':1060,'height':898});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.add_init_script("window.fixtureMessages=[];window.fixtureListeners=[];window.chrome.webview={postMessage:m=>fixtureMessages.push(m),addEventListener:(type,fn)=>fixtureListeners.push(fn)};window.deliver=d=>fixtureListeners.forEach(fn=>fn({data:d}));")
@@ -11,6 +11,10 @@ with sync_playwright() as p:
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:false,responses:[]})")
  page.locator('.dashboard-input input').fill('A real draft');page.locator('.dashboard-input button').first.click();assert page.locator('.dashboard-input input').input_value()=='A real draft'
  assert page.evaluate("()=>fixtureMessages.at(-1).type")=='dashboard-send'
+ page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[]})")
+ assert page.locator('.dashboard-input button').first.is_disabled()
+ page.evaluate("()=>document.querySelector('.dashboard-input').dispatchEvent(new Event('submit',{cancelable:true}))")
+ assert page.evaluate("()=>fixtureMessages.filter(m=>m.type==='dashboard-send').length")==1
  page.evaluate("()=>deliver({type:'dashboard-submitted'})");assert page.locator('.dashboard-input input').input_value()==''
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[{id:'reply',text:'## Answer\\n**Streamed** text',streaming:true}]})")
  assert 'Streamed' in page.locator('.dashboard-response').inner_text();assert 'A real draft' not in page.locator('.dashboard-responses').inner_text()
@@ -23,7 +27,7 @@ with sync_playwright() as p:
  page.get_by_role('button',name='Full Access',exact=True).click();assert page.evaluate('()=>fixtureMessages.at(-1).preset')=='Open'
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[]})")
  page.locator('.dashboard-input button',has_text='Stop').click();assert page.evaluate('()=>fixtureMessages.at(-1).type')=='dashboard-stop'
- page.route('https://fixture.invalid/output.png',lambda route:route.fulfill(content_type='image/png',body=bytes.fromhex('89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c4890000000b49444154789c636000020000050001a5f645400000000049454e44ae426082')))
+ page.route('https://fixture.invalid/output.png',lambda route:route.fulfill(content_type='image/svg+xml',body='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect width="16" height="16" fill="purple"/></svg>'))
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:false,responses:[{id:'reply',text:'![Actual-output fixture](https://fixture.invalid/output.png)',streaming:false}]})")
  assert page.locator('.dashboard-gallery img').count()==1
  page.locator('.dashboard-gallery button').click();assert page.locator('.dashboard-viewer').is_visible();page.locator('.dashboard-viewer button').click()

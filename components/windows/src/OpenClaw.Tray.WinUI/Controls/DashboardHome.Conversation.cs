@@ -9,6 +9,7 @@ public sealed partial class DashboardHome
 {
     private IChatDataProvider? _provider;
     private string? _sessionKey;
+    private bool _awaitingGateway;
     private readonly SemaphoreSlim _commands = new(1, 1);
     private readonly CancellationTokenSource _lifetime = new();
     private App Owner => (App)Application.Current;
@@ -71,9 +72,18 @@ public sealed partial class DashboardHome
             if (_provider is not null) _provider.Changed -= ConversationChanged;
             _provider = Owner.ChatProvider;
             _sessionKey = null;
+            Owner.DashboardSessionKey = null;
+            _awaitingGateway = false;
             if (_provider is null) { Post(new { type = "dashboard-error", message = "Gateway is disconnected." }); return; }
             var provider = _provider;
+            provider.Changed += ConversationChanged;
             var snapshot = await provider.LoadAsync(_lifetime.Token);
+            if (!snapshot.ComposeTarget.IsReady)
+            {
+                _awaitingGateway = true;
+                Post(new { type = "dashboard-state", ready = false, thinking = false, responses = Array.Empty<object>() });
+                return;
+            }
             var existing = snapshot.Threads.FirstOrDefault(t => t.Title == "dashboard");
             if (existing is not null) _sessionKey = existing.Id;
             else
@@ -89,14 +99,20 @@ public sealed partial class DashboardHome
             }
             Owner.DashboardSessionKey = _sessionKey;
             await Owner.ChatProvider!.LoadHistoryAsync(_sessionKey!, cancellationToken: _lifetime.Token);
-            provider.Changed += ConversationChanged;
             PublishConversation(await provider.LoadAsync(_lifetime.Token));
         }
         finally { _commands.Release(); }
     }
     private void ConversationChanged(object? sender, ChatDataChangedEventArgs args) => DispatcherQueue.TryEnqueue(() =>
     {
-        if (!_disposed && ReferenceEquals(sender, _provider)) PublishConversation(args.Snapshot);
+        if (_disposed || !ReferenceEquals(sender, _provider)) return;
+        if (_awaitingGateway && args.Snapshot.ComposeTarget.IsReady)
+        {
+            _awaitingGateway = false;
+            ProviderChanged(sender, EventArgs.Empty);
+            return;
+        }
+        PublishConversation(args.Snapshot);
     });
     private void PublishConversation(ChatDataSnapshot snapshot)
     {
