@@ -1,0 +1,3 @@
+PASS browser checks both directions:300ms ease-out CSS opacity/border/shadow transitions, intermediate opacity sampled at150ms, pure white text, no transform or geometry changes, only selected fill visible at completion. Midpoint screenshots inspected. Reduced-motion transitions disabled.
+PASS synthetic native host test: clicking Full Access posts request but retains prior state until dashboard-permissions confirmation event; backend code unchanged. Actual Windows permission service/dialog interaction not tested.
+CSS-only production change. Static preview export and diff checks passed.
