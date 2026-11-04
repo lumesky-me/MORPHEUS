@@ -1,0 +1,2 @@
+[{'text': '0', 'y': 84, 'baseline': 'central', 'error': -3.814697265625e-06}, {'text': '50', 'y': 46, 'baseline': 'central', 'error': -3.814697265625e-06}, {'text': '100', 'y': 8, 'baseline': 'central', 'error': -4.76837158203125e-07}]
+PASS identical central baselines and consistent centering within1SVG unit, five gridlines retained, top label below dropdown. X-axis unchanged. Browser rendering only.
