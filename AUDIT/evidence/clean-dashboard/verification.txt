@@ -1,0 +1,3 @@
+PASS normal idle dashboard: empty gallery, responses and status; no visible preview permission note; Message MORPHY… placeholder preserved; sending remains disabled without native services. Idle screenshot visually inspected.
+PASS voice action shows concise unavailable feedback without fake listening; permission demo clearly states real permissions unchanged on action and through aria-description/title. Preview feedback clears after6seconds while role=status retained. Native errors/connection handling unchanged; real telemetry Unavailable status retained.
+JavaScript syntax, static export and diff checks passed. Native runtime not tested. No CSS, layout, orb or backend changes.

@@ -3,7 +3,7 @@ let orb;
 let active=true;
 const home=document.querySelector("#home");
 const nativeHost=!!window.chrome?.webview;
-const unavailable="dashboard · Native Gateway and microphone services are unavailable in browser preview.";
+const unavailable="Voice input is unavailable in browser preview. Open the Windows app to use it.";
 const sync=()=>orb?.setVisible(active&&!home.hidden&&!document.hidden);
 new MutationObserver(sync).observe(home,{attributes:true,attributeFilter:["hidden"]});
 window.chrome?.webview?.addEventListener('message',event=>{
@@ -23,16 +23,19 @@ const inputPanel=document.querySelector('[data-id="afc02d75-13a1-406d-8543-52cbc
 const voicePanel=document.querySelector('[data-id="f1c2c205-561e-4170-9c37-1cf7d9391808"]');
 responsePanel.replaceChildren();inputPanel.replaceChildren();
 const responses=document.createElement('div');responses.className='dashboard-responses';responsePanel.append(responses);
-const status=document.createElement('div');status.className='dashboard-status';status.role='status';status.textContent=nativeHost?'Connecting to dashboard conversation…':unavailable;responsePanel.append(status);
+const status=document.createElement('div');status.className='dashboard-status';status.role='status';status.textContent=nativeHost?'Connecting to dashboard conversation…':'';responsePanel.append(status);
 const form=document.createElement('form');form.className='dashboard-input';
 const input=document.createElement('input');input.placeholder='Message MORPHY…';input.setAttribute('aria-label','Message dashboard');input.maxLength=32000;
 const send=document.createElement('button');send.className='dashboard-send';send.setAttribute('aria-label','Send message');send.title='Send message';const arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');arrow.setAttribute('viewBox','0 0 24 24');arrow.setAttribute('aria-hidden','true');const arrowPath=document.createElementNS(arrow.namespaceURI,'path');arrowPath.setAttribute('d','M12 19V5m-6 6 6-6 6 6');arrow.append(arrowPath);send.append(arrow);send.disabled=true;
 const stop=document.createElement('button');stop.type='button';stop.textContent='Stop';stop.hidden=true;
 form.append(input,send,stop);inputPanel.append(form);
 let nativeReady=false,submitting=false;
+let statusExpiry;
+function previewNotice(message){clearTimeout(statusExpiry);status.textContent=message;statusExpiry=setTimeout(()=>{if(status.textContent===message)status.textContent='';},6000);}
+if(!nativeHost){send.title='Sending unavailable in browser preview';input.setAttribute('aria-description','Sending requires a connected native Gateway.');}
 function updateComposer(){send.disabled=!nativeReady||submitting||!input.value.trim();form.classList.toggle('sending',submitting);form.setAttribute('aria-busy',String(submitting));}
 input.addEventListener('input',updateComposer);
-const post=value=>{if(nativeHost)window.chrome.webview.postMessage(value);else status.textContent=unavailable;};
+const post=value=>{if(nativeHost)window.chrome.webview.postMessage(value);else previewNotice(unavailable);};
 form.onsubmit=event=>{event.preventDefault();if(!input.value.trim()||send.disabled||submitting)return;submitting=true;updateComposer();input.readOnly=true;post({type:'dashboard-send',text:input.value});};
 stop.onclick=()=>post({type:'dashboard-stop'});
 const entries=new Map();
@@ -102,14 +105,14 @@ function draw(){
 
 }
 select.onchange=draw;
-for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',label);button.dataset.preset=preset;button.onclick=()=>{if(nativeHost)post({type:'dashboard-preset',preset});else renderPermissions(preset);};const note=document.createElement('small');note.className='permission-note';note.textContent=nativeHost?'Unknown':'Preview Only';box.replaceChildren(button,note);button.disabled=nativeHost;}
+for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',label);button.dataset.preset=preset;button.onclick=()=>{if(nativeHost)post({type:'dashboard-preset',preset});else{renderPermissions(preset);previewNotice('Permission preview only. Real security permissions are unchanged.');}};const note=document.createElement('small');note.className='permission-note';note.textContent=nativeHost?'Unknown':'';box.replaceChildren(button,note);button.disabled=nativeHost;}
 function renderPermissions(preset,connected=false){
  const known=(!nativeHost||connected)&&['Strict','Open'].includes(preset);
  for(const button of document.querySelectorAll('[data-preset]')){
   if(known)button.setAttribute('aria-pressed',String(button.dataset.preset===preset));else button.removeAttribute('aria-pressed');
   button.disabled=nativeHost&&!connected;
-  const description=nativeHost?(known?'':connected?'Custom mode':'Unknown · Disconnected'):'Preview Only';
-  button.parentElement.querySelector('.permission-note').textContent=nativeHost?description:button.dataset.preset==='Strict'?'Preview Only':'';button.setAttribute('aria-description',description);
+  const description=nativeHost?(known?'':connected?'Custom mode':'Unknown · Disconnected'):'Visual preview only; does not change security permissions.';
+  button.parentElement.querySelector('.permission-note').textContent=nativeHost?description:'';button.setAttribute('aria-description',description);button.title=description;
  }
 }
 if(!nativeHost)renderPermissions('Strict');
@@ -141,8 +144,7 @@ function formatResponse(node,text){
 }
 
 draw();
-if(!nativeHost){gallery.textContent="Visual outputs from dashboard appear here when native services are connected.";}
-post({type:"home-ready"});
+if(nativeHost)post({type:"home-ready"});
 
 // The development preview serves local Windows counters on its own origin.
 function acceptMetrics(data){

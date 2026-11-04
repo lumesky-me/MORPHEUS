@@ -6,7 +6,7 @@ out=Path(__file__).resolve().parents[1]/'AUDIT/evidence/shared-dashboard';out.mk
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--enable-unsafe-swiftshader']);page=b.new_page(viewport={'width':1060,'height':946});errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(args.url);page.wait_for_selector('.dashboard-input input');page.wait_for_selector('canvas')
  lock=page.get_by_role('button',name='Lock Down',exact=True);full=page.get_by_role('button',name='Full Access',exact=True)
- assert lock.get_attribute('aria-pressed')=='true';assert page.locator('.permission-note',has_text='Preview Only').count()==1;assert lock.inner_text()=='Lock Down'
+ assert lock.get_attribute('aria-pressed')=='true';assert page.locator('.permission-note').all_text_contents()==['',''];assert 'Visual preview' in lock.get_attribute('aria-description');assert lock.inner_text()=='Lock Down'
  full.click();assert full.get_attribute('aria-pressed')=='true';assert lock.get_attribute('aria-pressed')=='false'
  lock.click();assert lock.get_attribute('aria-pressed')=='true'
  for w in [1060,390]:
