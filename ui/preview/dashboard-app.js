@@ -49,35 +49,50 @@ window.chrome?.webview?.addEventListener('message',event=>{
 });
 
 const voice=document.createElement('button');voice.textContent='M O R P H Y';voice.setAttribute('aria-label','Start or stop voice input');voicePanel.replaceChildren(voice);voice.onclick=()=>post({type:'dashboard-voice'});
-const transcript=document.createElement('div');transcript.className='dashboard-transcript';transcript.setAttribute('aria-live','polite');document.querySelector('.layout-item.orb').append(transcript);
+const transcript=document.createElement('div');transcript.className='dashboard-transcript';transcript.setAttribute('aria-live','polite');let transcriptClear;
+function updateTranscript(text){clearTimeout(transcriptClear);if(text){transcript.textContent=text;transcript.classList.add('visible');}else{transcript.classList.remove('visible');transcriptClear=setTimeout(()=>{transcript.textContent='';},180);}}
 let voiceState='idle',processing=false,speechPlaying=false;
 function syncActivity(){orb?.setActivity(speechPlaying||voiceState==='listening'?'speaking':processing||voiceState==='thinking'?'thinking':'idle');}
 window.chrome?.webview?.addEventListener('message',event=>{
  const data=event.data;
  if(data.type==='dashboard-voice-state'){
-  voiceState=data.state;voice.textContent=data.state==='idle'?'M O R P H Y':data.state==='listening'?'Listening':data.state==='starting'?'Starting…':'Thinking';
+  voiceState=data.state;voice.dataset.state=data.state;voice.title=data.state;
   voice.classList.toggle('listening',data.state==='listening');
-  if(data.transcript!==null&&data.transcript!==undefined)transcript.textContent=data.transcript;
+  if(data.transcript!==null&&data.transcript!==undefined)updateTranscript(data.transcript);
   syncActivity();
  }
- if(data.type==='dashboard-state'&&voiceState==='idle')voice.textContent=data.thinking?'Thinking':'M O R P H Y';
+ if(data.type==='dashboard-state'&&voiceState==='idle')voice.title=data.thinking?'Thinking':'Start or stop voice input';
 });
 const panel=id=>document.querySelector(`[data-id="${id}"]`);
 const graphPanel=panel('c4042c5a-5534-4d0a-84a1-3598ad644766');
 const selector=panel('5b7f1b40-9979-42fb-b4a2-f4adc3b7257b');
-const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
+const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM','CPU, GPU, RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
 const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 80');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
-const line=document.createElementNS(graph.namespaceURI,'polyline');line.setAttribute('fill','none');line.setAttribute('stroke','#ac88d1');line.setAttribute('stroke-width','1.5');graph.append(line);graphPanel.replaceChildren(graph);
-const metricLabel=document.createElement('span');metricLabel.className='dashboard-metric-label';graphPanel.append(metricLabel);let history=[];
-function draw(){const key=select.value.toLowerCase();const last=history.at(-1),now=last?.timestamp;let points=[];for(const sample of history){const value=key==='gpu'?sample.gpu:sample[key]?.usagePercent;if(typeof value==='number')points.push(`${460-(now-sample.timestamp)/90000*460},${78-value*.7}`);}line.setAttribute('points',points.join(' '));const value=key==='gpu'?last?.gpu:last?.[key]?.usagePercent;metricLabel.textContent=`${select.value} · ${typeof value==='number'?value.toFixed(1)+'%':'Unavailable'}`;}
+const colors={cpu:'#b79bde',gpu:'#70bfae',ram:'#d1a970'};
+const lines={};for(const key of Object.keys(colors)){const line=document.createElementNS(graph.namespaceURI,'path');line.setAttribute('fill','none');line.setAttribute('stroke',colors[key]);line.setAttribute('stroke-width','1.5');line.dataset.metric=key;graph.append(line);lines[key]=line;}graphPanel.replaceChildren(graph);
+const metricLabel=document.createElement('span');metricLabel.className='dashboard-metric-label';graphPanel.append(metricLabel);
+const legend=document.createElement('div');legend.className='dashboard-legend';graphPanel.append(legend);let history=[];
+function draw(){
+ const all=select.value==='CPU, GPU, RAM',key=select.value.toLowerCase(),last=history.at(-1),now=last?.timestamp;
+ legend.replaceChildren();legend.hidden=!all;
+ for(const metric of Object.keys(lines)){
+  const visible=all||key===metric;lines[metric].style.display=visible?'':'none';let path='',connected=false;
+  for(const sample of history){const value=metric==='gpu'?sample.gpu:sample[metric]?.usagePercent;if(Number.isFinite(value)){path+=`${connected?'L':'M'}${460-(now-sample.timestamp)/90000*460},${78-Math.max(0,Math.min(100,value))*.7} `;connected=true;}else connected=false;}
+  lines[metric].setAttribute('d',path);
+  const value=metric==='gpu'?last?.gpu:last?.[metric]?.usagePercent;
+  const label=`${metric.toUpperCase()} · ${Number.isFinite(value)?value.toFixed(1)+'%':'Unavailable'}`;
+  if(all){const item=document.createElement('span');item.textContent=label;item.style.color=colors[metric];legend.append(item);}else if(visible)metricLabel.textContent=label;
+ }
+ if(all)metricLabel.textContent='System usage';
+}
 select.onchange=draw;
-for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Locked Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.dataset.preset=preset;button.onclick=()=>post({type:'dashboard-preset',preset});box.replaceChildren(button);}
-const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.replaceChildren();const gallery=document.createElement('div');gallery.className='dashboard-gallery';visuals.append(gallery);
+for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.dataset.preset=preset;button.onclick=()=>post({type:'dashboard-preset',preset});box.replaceChildren(button);}
+const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.add('dashboard-visual-board');visuals.replaceChildren(transcript);const gallery=document.createElement('div');gallery.className='dashboard-gallery';visuals.append(gallery);
 const viewer=document.createElement('dialog');viewer.className='dashboard-viewer';const fullImage=document.createElement('img');fullImage.alt='Dashboard visual';const close=document.createElement('button');close.textContent='Close';close.onclick=()=>viewer.close();viewer.append(close,fullImage);document.body.append(viewer);let mediaSignature='';
 window.chrome?.webview?.addEventListener('message',event=>{
  const data=event.data;
  if(data.type==='dashboard-metrics'){history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000);draw();}
- if(data.type==='dashboard-permissions')for(const button of document.querySelectorAll('[data-preset]'))button.setAttribute('aria-pressed',String(button.dataset.preset===data.preset));
+ if(data.type==='dashboard-permissions')for(const button of document.querySelectorAll('[data-preset]')){if(['Strict','Open'].includes(data.preset))button.setAttribute('aria-pressed',String(button.dataset.preset===data.preset));else button.removeAttribute('aria-pressed');};
  if(data.type==='dashboard-state'){
   const urls=[];for(const response of data.responses||[])for(const match of response.text.matchAll(/!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)/g))urls.push({alt:match[1],url:match[2]});
   const signature=JSON.stringify(urls);if(signature===mediaSignature)return;mediaSignature=signature;gallery.replaceChildren();
@@ -85,7 +100,7 @@ window.chrome?.webview?.addEventListener('message',event=>{
  }
 });
 
-window.chrome?.webview?.addEventListener('message',event=>{if(event.data.type==='dashboard-speaking'){speechPlaying=!!event.data.active;voice.textContent=speechPlaying?'Speaking':processing?'Thinking':'M O R P H Y';syncActivity();}});
+window.chrome?.webview?.addEventListener('message',event=>{if(event.data.type==='dashboard-speaking'){speechPlaying=!!event.data.active;voice.title=speechPlaying?'Speaking':processing?'Thinking':'Start or stop voice input';syncActivity();}});
 
 function formatResponse(node,text){
  node.replaceChildren();let code=null;

@@ -1,0 +1,6 @@
+Shared browser dashboard: normal and compact rendering, unavailable service states, navigation and draft preservation passed.
+Native host-event fixture: assistant-only streaming, submission acknowledgement, transcription fade, combined metrics, permission projection, cancellation and image viewer passed. Fixtures are synthetic transport tests, not native runtime proof.
+VoiceServiceProgressRoutingTests: 8 passed, 0 failed. Static preview export and JavaScript syntax passed.
+Five-second native capture timeout configured using the existing pipeline; actual microphone timing, TTS and Windows runtime remain unverified on this Linux host. Full native build remains blocked by Windows-only MakePri/XAML tooling.
+Existing default settings detect as Strict (Lock Down). Existing saved permissions are preserved; unavailable or custom states remain neutral.
+Provisional processing remains unavailable: no safe existing provisional backend API.

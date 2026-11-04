@@ -21,9 +21,21 @@ with sync_playwright() as p:
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:false,responses:[{id:'reply',text:'## Answer\\n**Streamed** text',streaming:false}]})")
  assert page.locator('.dashboard-response strong').inner_text()=='Streamed'
  page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'listening',transcript:'Live words'})");assert page.locator('.dashboard-transcript').inner_text()=='Live words'
- page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'thinking',transcript:''})");assert page.locator('.dashboard-transcript').inner_text()==''
+ page.screenshot(path=str(out/'listening-fixture.png'))
+ assert page.get_by_role('button',name='Start or stop voice input').inner_text()=='M O R P H Y'
+ page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'thinking',transcript:''})");assert page.locator('.dashboard-transcript').evaluate('(node)=>!node.classList.contains("visible")')
  page.evaluate("()=>deliver({type:'dashboard-metrics',timestamp:1000,cpu:{usagePercent:25},ram:{usagePercent:50},gpu:20})");assert '25.0%' in page.locator('.dashboard-graph + span').inner_text()
  page.get_by_label('Performance metric').select_option(label='RAM');assert '50.0%' in page.locator('.dashboard-graph + span').inner_text()
+ page.get_by_label('Performance metric').select_option(label='CPU, GPU, RAM')
+ assert page.locator('.dashboard-graph path').evaluate_all('(lines)=>lines.every(line=>line.style.display!=="none" && line.getAttribute("d"))')
+ assert page.locator('.dashboard-visual-board .dashboard-transcript').count()==1
+ page.wait_for_function("document.querySelector('.dashboard-transcript').textContent === ''")
+ assert 'CPU · 25.0%' in page.locator('.dashboard-legend').inner_text()
+ page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Strict'})")
+ assert page.get_by_role('button',name='Lock Down',exact=True).get_attribute('aria-pressed')=='true'
+ assert page.get_by_role('button',name='Full Access',exact=True).get_attribute('aria-pressed')=='false'
+ page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Open'})")
+ assert page.get_by_role('button',name='Full Access',exact=True).get_attribute('aria-pressed')=='true'
  page.get_by_role('button',name='Full Access',exact=True).click();assert page.evaluate('()=>fixtureMessages.at(-1).preset')=='Open'
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[]})")
  page.locator('.dashboard-input button',has_text='Stop').click();assert page.evaluate('()=>fixtureMessages.at(-1).type')=='dashboard-stop'

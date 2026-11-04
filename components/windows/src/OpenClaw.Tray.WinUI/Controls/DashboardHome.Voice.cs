@@ -3,6 +3,7 @@ namespace OpenClawTray.Controls;
 
 public sealed partial class DashboardHome
 {
+    private const int DashboardSilenceSeconds = 5;
     private CancellationTokenSource? _voice;
     private async Task ToggleVoiceAsync()
     {
@@ -21,16 +22,17 @@ public sealed partial class DashboardHome
             if (Current()) Post(new { type = "dashboard-voice-state", state, transcript });
         });
         bool detectedSpeech = false;
-        void SpeechChanged(bool speaking) { detectedSpeech = speaking; if (Current()) capture.CancelAfter(speaking ? Timeout.Infinite : 10000); }
+        void SpeechChanged(bool speaking) { detectedSpeech = speaking; if (Current()) capture.CancelAfter(speaking ? Timeout.Infinite : DashboardSilenceSeconds * 1000); }
         Owner.StopChatSpeaking();
         service.SpeakingChanged += SpeechChanged;
         try
         {
             Update("starting");
             var result = await service.ListenOnceAsync(new SttListenArgs { TimeoutMs = 120000 }, capture.Token,
-                text => Update("listening", text), null, silenceTimeoutSeconds: 10,
-                onRecordingStarted: () => { capture.CancelAfter(detectedSpeech ? Timeout.Infinite : 10000); Update("listening"); });
+                text => Update("listening", text), null, silenceTimeoutSeconds: DashboardSilenceSeconds,
+                onRecordingStarted: () => { capture.CancelAfter(detectedSpeech ? Timeout.Infinite : DashboardSilenceSeconds * 1000); Update("listening"); });
             if (!Current() || string.IsNullOrWhiteSpace(result.Text)) return;
+            Update("thinking");
             // A user stop may flush finalized speech. Navigation/provider changes never submit it.
             await provider.SendMessageAsync(session, result.Text, _lifetime.Token);
             Update("thinking", "");
