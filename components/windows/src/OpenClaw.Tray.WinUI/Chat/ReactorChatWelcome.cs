@@ -33,7 +33,7 @@ internal static class ReactorChatWelcome
             Image("ms-appx:///Assets/Morpheus/conversation-ring.svg").Set(image => image.Source = new Microsoft.UI.Xaml.Media.Imaging.SvgImageSource(
                 new Uri("ms-appx:///Assets/Morpheus/conversation-ring.svg")))
                 .Size(44, 44).HAlign(HorizontalAlignment.Center)
-                .AccessibilityView(AccessibilityView.Raw),
+                .AccessibilityHidden(),
             TextBlock("MORPHY").FontSize(11)
                 .TextAlignment(TextAlignment.Center).HAlign(HorizontalAlignment.Stretch)
                 .AutomationId("ChatWelcomeAgent"),

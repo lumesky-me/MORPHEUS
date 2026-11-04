@@ -172,6 +172,11 @@ dotnet_diagnostic.REACTOR_DIALOG_001.severity = none
 [src/OpenClaw.Tray.WinUI/Windows/**/*.cs]
 dotnet_diagnostic.REACTOR_DIALOG_001.severity = none
 
+# DashboardHome is a native Grid/WebView2 host, not a Reactor render tree.
+# Its permission confirmation is owned by that host and uses its XamlRoot.
+[src/OpenClaw.Tray.WinUI/Controls/DashboardHome.Monitoring.cs]
+dotnet_diagnostic.REACTOR_DIALOG_001.severity = none
+
 # Shared XAML/Reactor workflow targets the invoking surface's XamlRoot.
 [src/OpenClaw.Tray.WinUI/Dialogs/SessionCheckpointDialogCoordinator.cs]
 dotnet_diagnostic.REACTOR_DIALOG_001.severity = none
