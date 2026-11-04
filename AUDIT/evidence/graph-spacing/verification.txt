@@ -1,0 +1,1 @@
+Graph shifted4px left without changing its width or plotted coordinate scale. Exactly three Y labels/gridlines:0,50,100. X axis and data paths preserved. Rendered screenshot inspected;90-second history, metric switching, missing GPU and inactive-gap fixture tests passed. JavaScript syntax and diff check passed. No telemetry changes.
