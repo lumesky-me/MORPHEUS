@@ -33,8 +33,8 @@ public sealed partial class DashboardHome
                 Owner.ChatProviderChanged += ProviderChanged;
                 Owner.DashboardSpeakingChanged -= SpeakingChanged;
                 Owner.DashboardSpeakingChanged += SpeakingChanged;
-                await BindConversationAsync();
                 StartMonitoring();
+                await BindConversationAsync();
                 return;
             }
             if (_active && type == "dashboard-preset") { await ApplyPresetAsync(root.GetProperty("preset").GetString()); return; }

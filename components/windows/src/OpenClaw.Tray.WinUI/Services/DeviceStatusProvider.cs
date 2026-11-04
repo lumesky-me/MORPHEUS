@@ -33,7 +33,7 @@ public class DeviceStatusProvider : IDeviceStatusProvider
     /// Starts the background CPU usage sampler. Call once after construction.
     /// The first valid reading appears after ~2 seconds.
     /// </summary>
-    public void StartCpuSampling()
+    public void StartCpuSampling(TimeSpan? interval = null)
     {
         try
         {
@@ -50,7 +50,7 @@ public class DeviceStatusProvider : IDeviceStatusProvider
                 }
                 // slopwatch-ignore: SW003 Cleanup is best-effort; failure cannot improve caller state and the original outcome is preserved.
                 catch { /* counter unavailable or disposed */ }
-            }, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2));
+            }, null, TimeSpan.FromSeconds(1), interval ?? TimeSpan.FromSeconds(2));
         }
         catch (Exception ex)
         {

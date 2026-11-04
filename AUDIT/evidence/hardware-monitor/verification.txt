@@ -1,0 +1,3 @@
+Graph host fixture: 90-second history, four metrics, retained samples, missing GPU, inactive gaps and 0–100 grid passed. Synthetic protocol data, not Windows hardware proof.
+Source: monitoring starts before Chat binding; local DeviceStatusProvider fallback provides total CPU and physical memory without Node mode. GPU Engine 3D counters sampled asynchronously; unavailable counters retry after30seconds. Dashboard polling skips inactive pages and disposes owned resources. Existing Node provider reused when available.
+Native build attempted with EnableWindowsTargeting; blocked by Windows MakePri.exe on Linux. Actual CPU/GPU/RAM collection and Windows runtime remain unverified.

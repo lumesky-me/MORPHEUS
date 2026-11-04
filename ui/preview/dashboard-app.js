@@ -70,6 +70,8 @@ const graphPanel=panel('c4042c5a-5534-4d0a-84a1-3598ad644766');
 const selector=panel('5b7f1b40-9979-42fb-b4a2-f4adc3b7257b');
 const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM','CPU, GPU, RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
 const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 80');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
+// Fixed percentage grid, shared by every metric. No animation loop required.
+for(const value of [0,25,50,75,100]){const grid=document.createElementNS(graph.namespaceURI,'line');const y=78-value*.7;grid.setAttribute('x1','0');grid.setAttribute('x2','460');grid.setAttribute('y1',y);grid.setAttribute('y2',y);grid.classList.add('dashboard-gridline');graph.append(grid);}
 const colors={cpu:'#b79bde',gpu:'#70bfae',ram:'#d1a970'};
 const lines={};for(const key of Object.keys(colors)){const line=document.createElementNS(graph.namespaceURI,'path');line.setAttribute('fill','none');line.setAttribute('stroke',colors[key]);line.setAttribute('stroke-width','1.5');line.dataset.metric=key;graph.append(line);lines[key]=line;}graphPanel.replaceChildren(graph);
 const metricLabel=document.createElement('span');metricLabel.className='dashboard-metric-label';graphPanel.append(metricLabel);
@@ -78,8 +80,17 @@ function draw(){
  const all=select.value==='CPU, GPU, RAM',key=select.value.toLowerCase(),last=history.at(-1),now=last?.timestamp;
  legend.replaceChildren();legend.hidden=!all;
  for(const metric of Object.keys(lines)){
-  const visible=all||key===metric;lines[metric].style.display=visible?'':'none';let path='',connected=false;
-  for(const sample of history){const value=metric==='gpu'?sample.gpu:sample[metric]?.usagePercent;if(Number.isFinite(value)){path+=`${connected?'L':'M'}${460-(now-sample.timestamp)/90000*460},${78-Math.max(0,Math.min(100,value))*.7} `;connected=true;}else connected=false;}
+  const visible=all||key===metric;lines[metric].style.display=visible?'':'none';let path='',connected=false,previousTime=null,previousX=0,previousY=0;
+  for(const sample of history){
+   const value=metric==='gpu'?sample.gpu:sample[metric]?.usagePercent;
+   if(!Number.isFinite(value)){connected=false;continue;}
+   if(previousTime!==null&&sample.timestamp-previousTime>3000)connected=false;
+   const x=460-(now-sample.timestamp)/90000*460,y=78-Math.max(0,Math.min(100,value))*.7;
+   const middle=(previousX+x)/2;
+   // Monotone cubic segments soften updates without overshooting 0–100%.
+   path+=connected?`C${middle},${previousY} ${middle},${y} ${x},${y} `:`M${x},${y} `;
+   connected=true;previousTime=sample.timestamp;previousX=x;previousY=y;
+  }
   lines[metric].setAttribute('d',path);
   const value=metric==='gpu'?last?.gpu:last?.[metric]?.usagePercent;
   const label=`${metric.toUpperCase()} · ${Number.isFinite(value)?value.toFixed(1)+'%':'Unavailable'}`;
@@ -103,7 +114,7 @@ const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.ad
 const viewer=document.createElement('dialog');viewer.className='dashboard-viewer';const fullImage=document.createElement('img');fullImage.alt='Dashboard visual';const close=document.createElement('button');close.textContent='Close';close.onclick=()=>viewer.close();viewer.append(close,fullImage);document.body.append(viewer);let mediaSignature='';
 window.chrome?.webview?.addEventListener('message',event=>{
  const data=event.data;
- if(data.type==='dashboard-metrics'){history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000);draw();}
+ if(data.type==='dashboard-metrics'){if(!Number.isFinite(data.timestamp)||history.length&&data.timestamp<=history.at(-1).timestamp)return;history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000).slice(-180);draw();}
  if(data.type==='dashboard-permissions')renderPermissions(data.preset,data.connected===true);
  if(data.type==='dashboard-state'){
   const urls=[];for(const response of data.responses||[])for(const match of response.text.matchAll(/!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)/g))urls.push({alt:match[1],url:match[2]});
