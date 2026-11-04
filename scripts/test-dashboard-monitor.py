@@ -20,7 +20,7 @@ with sync_playwright() as p:
  assert page.locator('.dashboard-graph').bounding_box()['y'] > page.get_by_label('Performance metric').bounding_box()['y']+page.get_by_label('Performance metric').bounding_box()['height']
  assert path.evaluate('(e)=>e.compareDocumentPosition(document.querySelector(".dashboard-axes")) & Node.DOCUMENT_POSITION_FOLLOWING')
  assert page.locator('#dashboard-plot-clip rect').get_attribute('y')=='7'
- assert page.locator('.dashboard-axis-label').all_text_contents()==['0','50','100','−90s','−60s','−30s','Now']
+ assert page.locator('.dashboard-axis-label').all_text_contents()==['50','100','−60s','−30s','Now']
  assert page.locator('.dashboard-metric-label').count()==0
  page.locator('[data-id="c4042c5a-5534-4d0a-84a1-3598ad644766"]').screenshot(path=str(out/'panel-fixture.png'))
  page.locator('.dashboard-graph').screenshot(path=str(out/'single-zero-fixture.png'))

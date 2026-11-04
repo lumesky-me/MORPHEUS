@@ -1,0 +1,1 @@
+PASS remaining labels50/100 and−60s/−30s/Now; five gridlines and existing axis stroke preserved. Screenshot visually inspected. No changes to data mapping, time scale or telemetry. JavaScript syntax and diff checks passed.
