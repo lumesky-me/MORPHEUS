@@ -1,0 +1,1 @@
+PASS browser preview: default Strict selected red; Open selected green; exactly one selected; other button graphite; labels white; both screenshots inspected. CSS-only change. Native state mapping, disconnected unknown state and confirmation handling unchanged; native runtime not retested. Diff check passed.
