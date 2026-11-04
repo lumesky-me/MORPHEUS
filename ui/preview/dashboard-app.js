@@ -69,11 +69,11 @@ const panel=id=>document.querySelector(`[data-id="${id}"]`);
 const graphPanel=panel('c4042c5a-5534-4d0a-84a1-3598ad644766');
 const selector=panel('5b7f1b40-9979-42fb-b4a2-f4adc3b7257b');
 const select=document.createElement('select');select.setAttribute('aria-label','Performance metric');for(const name of ['CPU','GPU','RAM','CPU, GPU, RAM']){const option=document.createElement('option');option.textContent=name;select.append(option);}selector.replaceChildren(select);
-const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 110');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
+const graph=document.createElementNS('http://www.w3.org/2000/svg','svg');graph.setAttribute('viewBox','0 0 460 110');graph.setAttribute('preserveAspectRatio','none');graph.classList.add('dashboard-graph');graph.setAttribute('aria-label','90 second performance history');
 const defs=document.createElementNS(graph.namespaceURI,'defs');const clip=document.createElementNS(graph.namespaceURI,'clipPath');clip.id='dashboard-plot-clip';const rect=document.createElementNS(graph.namespaceURI,'rect');rect.setAttribute('x','31');rect.setAttribute('y','7');rect.setAttribute('width','426');rect.setAttribute('height','78');clip.append(rect);defs.append(clip);graph.append(defs);
 // Shared fixed axes: percentages vertically, elapsed seconds horizontally.
 function svgLabel(text,x,y,anchor='end'){const node=document.createElementNS(graph.namespaceURI,'text');node.textContent=text;node.setAttribute('x',x);node.setAttribute('y',y);node.setAttribute('text-anchor',anchor);node.classList.add('dashboard-axis-label');graph.append(node);}
-for(const value of [0,50,100]){const grid=document.createElementNS(graph.namespaceURI,'line');const y=84-value*.76;grid.setAttribute('x1','32');grid.setAttribute('x2','456');grid.setAttribute('y1',y);grid.setAttribute('y2',y);grid.classList.add('dashboard-gridline');graph.append(grid);svgLabel(String(value),23,y+3);}
+for(const value of [0,25,50,75,100]){const grid=document.createElementNS(graph.namespaceURI,'line');const y=84-value*.76;grid.setAttribute('x1','32');grid.setAttribute('x2','456');grid.setAttribute('y1',y);grid.setAttribute('y2',y);grid.classList.add('dashboard-gridline');graph.append(grid);if(value%50===0)svgLabel(String(value),23,y+3);}
 const axes=document.createElementNS(graph.namespaceURI,'path');axes.setAttribute('d','M32,8 V84 H456');axes.classList.add('dashboard-axes');graph.append(axes);
 for(const [text,x,anchor] of [['−90s',32,'start'],['−60s',173,'middle'],['−30s',315,'middle'],['Now',456,'end']])svgLabel(text,x,102,anchor);
 const colors={cpu:'#b79bde',gpu:'#70bfae',ram:'#d1a970'};

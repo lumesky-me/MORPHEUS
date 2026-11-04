@@ -1,0 +1,2 @@
+PASS full-panel visual inspection: plot left inset reduced6to2px; dropdown stays in its header; plot begins40px down, below dropdown. Five subtle gridlines at0/25/50/75/100 with labels only0/50/100. Existing X axis, curve data and90-second scale retained.
+PASS fixture tests: dropdown/plot bounding boxes do not overlap, five gridlines, three numeric Y labels, metric switching,90-second history, missingGPU and inactive gaps. JS syntax and diff checks passed. No telemetry changes.
