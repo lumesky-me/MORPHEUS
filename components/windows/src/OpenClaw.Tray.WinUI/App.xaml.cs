@@ -3090,8 +3090,14 @@ public partial class App : Application, OpenClawTray.Services.IAppCommands, IPer
             {
                 OnUiThread(() =>
                 {
-                    if (ChatNotificationSpeechText.ShouldSpeak(notification, _windowManager?.CurrentChatSessionKey) || notification.ThreadId == DashboardSessionKey)
-                        _ = (_chatCoordinator?.SpeakResponseAsync(speechText, notification.ThreadId == DashboardSessionKey ? active => OnUiThread(() => { if (notification.ThreadId == DashboardSessionKey) DashboardSpeakingChanged?.Invoke(active); }) : null) ?? Task.CompletedTask);
+                    var dashboardReply = ChatNotificationSpeechText.ShouldSpeak(notification, DashboardSessionKey);
+                    if (ChatNotificationSpeechText.ShouldSpeak(notification, _windowManager?.CurrentChatSessionKey) || dashboardReply)
+                        _ = (_chatCoordinator?.SpeakResponseAsync(speechText, dashboardReply
+                            ? active => OnUiThread(() =>
+                            {
+                                if (ChatNotificationSpeechText.ShouldSpeak(notification, DashboardSessionKey))
+                                    DashboardSpeakingChanged?.Invoke(active);
+                            }) : null) ?? Task.CompletedTask);
                 });
             }
         }

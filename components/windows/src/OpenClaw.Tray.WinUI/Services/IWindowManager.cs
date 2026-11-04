@@ -11,6 +11,7 @@ internal interface IWindowManager
     Window? ActiveHubWindow { get; }
     bool IsHubOpen { get; }
     bool IsChatVisible { get; }
+    string? CurrentChatSessionKey { get; }
     XamlRoot? DialogXamlRoot { get; }
     XamlRoot? RuntimeAnchorXamlRoot { get; }
     XamlRoot? SetupXamlRoot { get; }

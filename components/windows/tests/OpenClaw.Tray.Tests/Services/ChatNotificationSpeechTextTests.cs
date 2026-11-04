@@ -17,6 +17,18 @@ public sealed class ChatNotificationSpeechTextTests
         { IsChat = true, SessionKey = source, Message = "actual assistant final" }, selected));
     }
 
+    [Theory]
+    [InlineData(null, null, true, false)]
+    [InlineData("", "", true, false)]
+    [InlineData("dashboard", "dashboard", false, false)]
+    [InlineData("dashboard", "dashboard", true, true)]
+    [InlineData("ordinary", "dashboard", true, false)]
+    public void DashboardSpeechRequiresAnActualChatSessionMatch(string? source, string? dashboard, bool isChat, bool expected)
+    {
+        Assert.Equal(expected, ChatNotificationSpeechText.ShouldSpeak(
+            new OpenClawNotification { IsChat = isChat, SessionKey = source }, dashboard));
+    }
+
     [Fact]
     public void Resolve_UsesFullMessageWhenPreviewWasTruncated()
     {
