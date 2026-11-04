@@ -52,3 +52,22 @@
 .dashboard-legend[hidden]{display:none}
 .dashboard-graph:has(~ .dashboard-legend:not([hidden])){top:47px;height:calc(100% - 53px)}
 @media(prefers-reduced-motion:reduce){.dashboard-transcript,.dashboard-gallery,#home .listening{transition:none}}
+
+/* Permission demos never imply native authorization. */
+#home [data-preset]{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.permission-note{font-size:9px;line-height:12px;font-weight:400;opacity:.7}
+.permission-note:empty{display:none}
+/* One continuous response/composer surface, with stable keyboard focus. */
+#home [data-id="afc02d75-13a1-406d-8543-52cbc5e1e9b0"]{border:0}
+#home .dashboard-input{padding:4px 6px 4px 12px;gap:8px;border-radius:14px;background:#ffffff03;box-shadow:inset 0 0 0 1px transparent;transition:box-shadow .16s,background .16s}
+#home .dashboard-input:focus-within{background:#b69bd008;box-shadow:inset 0 0 0 1px #b69bd035,0 0 12px #9c72bf0c}
+#home .dashboard-input input{padding:6px 0;font-size:13px;line-height:1.5;border:0;border-radius:0;outline:none;box-shadow:none;background:transparent}
+#home .dashboard-input input::placeholder{color:#92889e}
+#home .dashboard-input button{flex:none;height:32px;min-width:32px;padding:6px;border:0;border-radius:10px;background:#88749d22;color:#e5d9f0;transition:background .16s,opacity .16s,box-shadow .16s}
+#home .dashboard-input button:hover:not(:disabled){background:#9c80b640}
+#home .dashboard-input button:focus-visible{outline:1px solid #baa2cf;outline-offset:2px}
+#home .dashboard-input button:disabled{opacity:.35;cursor:default}
+.dashboard-send svg{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#home .dashboard-input.sending .dashboard-send{opacity:.65;background:#9c80b630}
+@media(prefers-reduced-motion:reduce){#home .dashboard-input,#home .dashboard-input button{transition:none}}
+@media(forced-colors:active){#home .dashboard-input:focus-within{outline:1px solid Highlight}}

@@ -1,0 +1,4 @@
+Browser: permission demo defaults to Lock Down, toggles green/red with Preview Only labels, no permission backend calls. Desktop and compact focus screenshots inspected; no focus layout shift or JavaScript errors.
+Host protocol fixture: submission acknowledgement, duplicate-send guard, assistant-only streaming, permission projection and disconnect-to-unknown, cancellation and media viewer. Synthetic host events, not native runtime proof.
+Native source: connectivity guard before opening confirmation and after approval; default Close preserved; existing Settings preset and notification path preserved. Windows dialog interaction and live backend permission changes remain unverified on this Linux host.
+JavaScript syntax, static preview export and diff whitespace checks passed.

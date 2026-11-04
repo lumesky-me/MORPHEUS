@@ -8,6 +8,7 @@ namespace OpenClawTray.Controls;
 public sealed partial class DashboardHome
 {
     private bool _monitorStarted;
+    private bool PermissionsConnected => Owner.GatewayClient?.IsConnectedToGateway == true;
     private void StartMonitoring()
     {
         if (_monitorStarted) return;
@@ -48,7 +49,7 @@ public sealed partial class DashboardHome
                 {
                     if (_disposed) return;
                     Post(metrics);
-                    Post(new { type = "dashboard-permissions", preset = SystemRunPermissionPresets.Detect(Owner.Settings.SnapshotSystemRunSettings())?.ToString() });
+                    Post(new { type = "dashboard-permissions", connected = PermissionsConnected, preset = PermissionsConnected ? SystemRunPermissionPresets.Detect(Owner.Settings.SnapshotSystemRunSettings())?.ToString() : null });
                 });
             }
         }
@@ -62,6 +63,7 @@ public sealed partial class DashboardHome
         if (!await _commands.WaitAsync(0)) return;
         try
         {
+            if (!PermissionsConnected) throw new InvalidOperationException("Permissions unavailable while Gateway is disconnected.");
             var preset = Enum.Parse<SystemRunAccessPreset>(value);
             var dialog = new ContentDialog
             {
@@ -71,7 +73,7 @@ public sealed partial class DashboardHome
                 CloseButtonText = LocalizationHelper.GetString("CancelButton.Content"),
                 DefaultButton = ContentDialogButton.Close, XamlRoot = XamlRoot
             };
-            if (await dialog.ShowAsync() != ContentDialogResult.Primary || !_active || _disposed) return;
+            if (await dialog.ShowAsync() != ContentDialogResult.Primary || !_active || _disposed || !PermissionsConnected) return;
             Owner.Settings.ApplySystemRunPreset(preset);Owner.Settings.Save();
             ((OpenClawTray.Services.IAppCommands)Owner).NotifySettingsSaved();
         }

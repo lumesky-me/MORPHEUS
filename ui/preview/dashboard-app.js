@@ -26,20 +26,22 @@ const responses=document.createElement('div');responses.className='dashboard-res
 const status=document.createElement('div');status.className='dashboard-status';status.role='status';status.textContent=nativeHost?'Connecting to dashboard conversation…':unavailable;responsePanel.append(status);
 const form=document.createElement('form');form.className='dashboard-input';
 const input=document.createElement('input');input.placeholder='Message MORPHY…';input.setAttribute('aria-label','Message dashboard');input.maxLength=32000;
-const send=document.createElement('button');send.textContent='Send';send.disabled=true;
+const send=document.createElement('button');send.className='dashboard-send';send.setAttribute('aria-label','Send message');send.title='Send message';const arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');arrow.setAttribute('viewBox','0 0 24 24');arrow.setAttribute('aria-hidden','true');const arrowPath=document.createElementNS(arrow.namespaceURI,'path');arrowPath.setAttribute('d','M12 19V5m-6 6 6-6 6 6');arrow.append(arrowPath);send.append(arrow);send.disabled=true;
 const stop=document.createElement('button');stop.type='button';stop.textContent='Stop';stop.hidden=true;
 form.append(input,send,stop);inputPanel.append(form);
 let nativeReady=false,submitting=false;
+function updateComposer(){send.disabled=!nativeReady||submitting||!input.value.trim();form.classList.toggle('sending',submitting);form.setAttribute('aria-busy',String(submitting));}
+input.addEventListener('input',updateComposer);
 const post=value=>{if(nativeHost)window.chrome.webview.postMessage(value);else status.textContent=unavailable;};
-form.onsubmit=event=>{event.preventDefault();if(!input.value.trim()||send.disabled||submitting)return;submitting=true;send.disabled=true;input.readOnly=true;post({type:'dashboard-send',text:input.value});};
+form.onsubmit=event=>{event.preventDefault();if(!input.value.trim()||send.disabled||submitting)return;submitting=true;updateComposer();input.readOnly=true;post({type:'dashboard-send',text:input.value});};
 stop.onclick=()=>post({type:'dashboard-stop'});
 const entries=new Map();
 window.chrome?.webview?.addEventListener('message',event=>{
  const data=event.data;
- if(data.type==='dashboard-submitted'){input.value='';input.readOnly=false;submitting=false;send.disabled=!nativeReady;}
- if(data.type==='dashboard-error'){status.textContent=data.message;input.readOnly=false;submitting=false;send.disabled=!nativeReady;}
+ if(data.type==='dashboard-submitted'){input.value='';input.readOnly=false;submitting=false;updateComposer();}
+ if(data.type==='dashboard-error'){status.textContent=data.message;input.readOnly=false;submitting=false;updateComposer();}
  if(data.type==='dashboard-state'){
-  nativeReady=!!data.ready;send.disabled=!nativeReady||submitting;stop.hidden=!data.thinking;status.textContent=data.thinking?'Thinking…':data.ready?'':'Gateway unavailable';
+  nativeReady=!!data.ready;updateComposer();stop.hidden=!data.thinking;status.textContent=data.thinking?'Thinking…':data.ready?'':'Gateway unavailable';
   const nearBottom=responses.scrollHeight-responses.scrollTop-responses.clientHeight<60;
   for(const item of data.responses||[]){let node=entries.get(item.id);if(!node){node=document.createElement('div');node.className='dashboard-response';entries.set(item.id,node);responses.append(node);}if(node.dataset.text!==item.text||node.dataset.streaming!==String(!!item.streaming)){node.dataset.text=item.text;node.dataset.streaming=String(!!item.streaming);if(item.streaming)node.textContent=item.text;else formatResponse(node,item.text);}}
   for(const [id,node] of entries)if(!(data.responses||[]).some(item=>item.id===id)){node.remove();entries.delete(id);}
@@ -86,13 +88,23 @@ function draw(){
  if(all)metricLabel.textContent='System usage';
 }
 select.onchange=draw;
-for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.dataset.preset=preset;button.onclick=()=>post({type:'dashboard-preset',preset});box.replaceChildren(button);}
+for(const [id,preset,label] of [['cddfd844-44a2-4718-9daf-bd79980b1b25','Strict','Lock Down'],['9e86debb-bc91-4f32-8305-8fc3415f7c64','Open','Full Access']]){const box=panel(id);const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',label);button.dataset.preset=preset;button.onclick=()=>{if(nativeHost)post({type:'dashboard-preset',preset});else renderPermissions(preset);};const note=document.createElement('small');note.className='permission-note';note.textContent=nativeHost?'Unknown':'Preview Only';button.append(note);box.replaceChildren(button);button.disabled=nativeHost;}
+function renderPermissions(preset,connected=false){
+ const known=(!nativeHost||connected)&&['Strict','Open'].includes(preset);
+ for(const button of document.querySelectorAll('[data-preset]')){
+  if(known)button.setAttribute('aria-pressed',String(button.dataset.preset===preset));else button.removeAttribute('aria-pressed');
+  button.disabled=nativeHost&&!connected;
+  const description=nativeHost?(known?'':connected?'Custom mode':'Unknown · Disconnected'):'Preview Only';
+  button.querySelector('.permission-note').textContent=description;button.setAttribute('aria-description',description);
+ }
+}
+if(!nativeHost)renderPermissions('Strict');
 const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.add('dashboard-visual-board');visuals.replaceChildren(transcript);const gallery=document.createElement('div');gallery.className='dashboard-gallery';visuals.append(gallery);
 const viewer=document.createElement('dialog');viewer.className='dashboard-viewer';const fullImage=document.createElement('img');fullImage.alt='Dashboard visual';const close=document.createElement('button');close.textContent='Close';close.onclick=()=>viewer.close();viewer.append(close,fullImage);document.body.append(viewer);let mediaSignature='';
 window.chrome?.webview?.addEventListener('message',event=>{
  const data=event.data;
  if(data.type==='dashboard-metrics'){history.push(data);history=history.filter(sample=>sample.timestamp>=data.timestamp-90000);draw();}
- if(data.type==='dashboard-permissions')for(const button of document.querySelectorAll('[data-preset]')){if(['Strict','Open'].includes(data.preset))button.setAttribute('aria-pressed',String(button.dataset.preset===data.preset));else button.removeAttribute('aria-pressed');};
+ if(data.type==='dashboard-permissions')renderPermissions(data.preset,data.connected===true);
  if(data.type==='dashboard-state'){
   const urls=[];for(const response of data.responses||[])for(const match of response.text.matchAll(/!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)/g))urls.push({alt:match[1],url:match[2]});
   const signature=JSON.stringify(urls);if(signature===mediaSignature)return;mediaSignature=signature;gallery.replaceChildren();

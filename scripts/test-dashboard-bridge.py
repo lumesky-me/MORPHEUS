@@ -31,12 +31,15 @@ with sync_playwright() as p:
  assert page.locator('.dashboard-visual-board .dashboard-transcript').count()==1
  page.wait_for_function("document.querySelector('.dashboard-transcript').textContent === ''")
  assert 'CPU · 25.0%' in page.locator('.dashboard-legend').inner_text()
- page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Strict'})")
+ page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Strict',connected:true})")
  assert page.get_by_role('button',name='Lock Down',exact=True).get_attribute('aria-pressed')=='true'
  assert page.get_by_role('button',name='Full Access',exact=True).get_attribute('aria-pressed')=='false'
- page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Open'})")
+ page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Open',connected:true})")
  assert page.get_by_role('button',name='Full Access',exact=True).get_attribute('aria-pressed')=='true'
  page.get_by_role('button',name='Full Access',exact=True).click();assert page.evaluate('()=>fixtureMessages.at(-1).preset')=='Open'
+ page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Open',connected:false})")
+ assert page.get_by_role('button',name='Full Access',exact=True).is_disabled()
+ assert page.get_by_role('button',name='Full Access',exact=True).get_attribute('aria-pressed') is None
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:true,responses:[]})")
  page.locator('.dashboard-input button',has_text='Stop').click();assert page.evaluate('()=>fixtureMessages.at(-1).type')=='dashboard-stop'
  page.route('https://fixture.invalid/output.png',lambda route:route.fulfill(content_type='image/svg+xml',body='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect width="16" height="16" fill="purple"/></svg>'))
