@@ -6,6 +6,7 @@ import path from 'node:path';
 import readline from 'node:readline';
 import {randomUUID} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
+import {readGatewayAlerts,projectAgentFailure} from './gateway-alerts.mjs';
 const emit=data=>process.stdout.write(JSON.stringify(data)+'\n');
 // SDK diagnostics may contain connection details. Never forward them to the browser.
 console.log=console.warn=console.error=()=>{};
@@ -34,22 +35,26 @@ export async function verifyPersonality(client,agentId){
 }
 export async function run(client, output=emit){
  let session,model,personalityVerified=false,ready=false,thinking=false,runId=null,submitting=false;
+ let sessionRows=[],connected=false,methods=[],mainKey='main',latestFailure=null,alertsRefreshing=false,alertsAgain=false;
+ const supports=method=>methods.includes(method);
+ async function alerts(){if(alertsRefreshing){alertsAgain=true;return;}alertsRefreshing=true;try{output({type:'gateway-alerts',connected,...(connected?await readGatewayAlerts(client,methods):{pending:[],tasks:[],unavailable:[]}),failure:latestFailure});}finally{alertsRefreshing=false;if(alertsAgain){alertsAgain=false;alerts();}}}
  let responses=[],selectedSession=null,chatMessages=[],chatRun=null,chatThinking=false,chatPending=false,catalogModels=[],agentId='main',rosterAgents=[];
- const chatState=()=>output({type:'sessions-conversation',key:selectedSession,messages:chatMessages,thinking:chatThinking,ready,models:catalogModels,reasoning:rosterAgents.find(a=>selectedSession?.startsWith(`agent:${a.id}:`))?.thinkingLevels||[]});
+ const chatState=()=>output({type:'sessions-conversation',key:selectedSession,messages:chatMessages,thinking:chatThinking,ready:connected,models:catalogModels,reasoning:rosterAgents.find(a=>selectedSession?.startsWith(`agent:${a.id}:`))?.thinkingLevels||[]});
  const ordinary=s=>s.key!==session&&!s.key.endsWith(':dashboard')&&s.label!=='dashboard';
- async function listSessions(){const data=await client.request('sessions.list',{});const sessions=(data.sessions||[]).filter(ordinary);output({type:'sessions-list',ready,sessions});return sessions;}
+ async function listSessions(){const data=await client.request('sessions.list',{archived:'all'});const sessions=(data.sessions||[]).filter(ordinary);sessionRows=sessions;output({type:'sessions-list',ready:connected,sessions,methods,mainKey});return sessions;}
  async function loadChat(){const data=await client.request('chat.history',{sessionKey:selectedSession,limit:200});chatMessages=(data.messages||[]).filter(m=>['assistant','user'].includes(m.role)).map((m,i)=>({id:String(m.id||m.timestamp||i),role:m.role,text:typeof m.content==='string'?m.content:(m.content||[]).filter(p=>p.type==='text').map(p=>p.text||'').join('')}));chatState();}
  const publish=()=>output({type:'dashboard-state',ready,thinking,responses,model,personalityVerified,sessionLabel:'dashboard'});
  async function history(){
   const data=await client.request('chat.history',{sessionKey:session,limit:100});
   responses=(data.messages||[]).filter(m=>m.role==='assistant').map((m,i)=>({id:`history-${m.id||m.timestamp||i}`,text:assistantText(m),streaming:false}));
  }
- async function initialize(){
+ async function initialize(hello={}){
+  connected=true;methods=hello.features?.methods||[];void alerts().catch(()=>{});if(supports('sessions.subscribe'))try{await client.request('sessions.subscribe',{});}catch{output({type:'sessions-error',message:'Live session updates are unavailable; actions still refresh the roster.'});}
   ready=false;thinking=false;publish();
   const catalog=await client.request('models.list',{});
   catalogModels=catalog.models||[];model=selectModel(catalogModels);
   const roster=await client.request('agents.list',{});
-  rosterAgents=roster.agents||[];agentId=roster.agents?.find(a=>a.id==='morphy')?.id||roster.defaultId||'main';
+  rosterAgents=roster.agents||[];mainKey=roster.mainKey||'main';agentId=roster.agents?.find(a=>a.id==='morphy')?.id||roster.defaultId||'main';
   await verifyPersonality(client,agentId);personalityVerified=true;
   const threads=await client.request('sessions.list',{});
   const existing=(threads.sessions||[]).find(s=>(s.label==='dashboard'&&s.key.startsWith(`agent:${agentId}:`))||s.key===`agent:${agentId}:dashboard`);
@@ -61,7 +66,8 @@ export async function run(client, output=emit){
   await history();ready=true;publish();await listSessions();if(selectedSession)await loadChat();
  }
  async function command(data){
-  if(!ready)throw Error('Dashboard Gateway connection is not ready.');
+  if(data.type==='notifications-refresh'){await alerts();return;}
+  if(!connected||!ready&&data.type.startsWith('dashboard-'))throw Error('Dashboard Gateway connection is not ready.');
   if(data.type.startsWith('sessions-')||data.type.startsWith('conversation-')){
    if(data.type==='sessions-list'){await listSessions();return;}
    if(data.type==='sessions-create'){
@@ -71,9 +77,35 @@ export async function run(client, output=emit){
    const sessions=await listSessions();
    const key=data.key||selectedSession;
    if(!sessions.some(s=>s.key===key)||key===session)throw Error('Select an ordinary Chat session first.');
-   if(data.type==='sessions-select'){selectedSession=key;chatRun=null;chatThinking=false;await loadChat();return;}
+   const row=sessions.find(s=>s.key===key);
+   const main=row.isMain===true||key===mainKey||key==='main'||key.endsWith(':main')||key.includes(':main:main');
+   if(data.type==='sessions-action'){
+    const action=data.action;
+    const required={pin:'sessions.patch',unread:'sessions.patch',archive:'sessions.patch',fork:'sessions.create',reset:'sessions.reset',compact:'sessions.compact',export:'chat.history',copy:'chat.history'}[action];
+    if(!required||!supports(required))throw Error('Gateway does not advertise this action.');
+    if(action==='archive'&&main)throw Error('Main session cannot be archived.');
+    if(['reset','compact'].includes(action)&&data.confirmed!==true)throw Error('Action requires confirmation.');
+    if(['pin','unread','archive'].includes(action)){const field={pin:'pinned',unread:'unread',archive:'archived'}[action],next=typeof data.value==='boolean'?data.value:!row[field];await client.request('sessions.patch',{key,[field]:next,...(field==='unread'&&row.unread?{expectedMarkedUnreadAt:row.markedUnreadAt??null}:{})});if(action==='archive'&&next&&selectedSession===key){selectedSession=null;chatMessages=[];chatState();}}
+    if(action==='fork'){const created=await client.request('sessions.create',{agentId:key.split(':')[1]||agentId,parentSessionKey:key,fork:true,...(row.hasActiveRun?{forkFrom:'last-completed'}:{})});if(!created.key)throw Error('Fork failed.');selectedSession=created.key;chatRun=null;chatThinking=false;await loadChat();}
+    if(action==='reset'||action==='compact'){await client.request(`sessions.${action}`,{key});if(selectedSession===key){chatThinking=false;chatRun=null;await loadChat();}}
+    if(action==='export'||action==='copy'){
+     let params={sessionKey:key,limit:200},messages=[],partial=false;const seen=new Set();
+     for(let page=0;page<50;page++){
+      const result=await client.request('chat.history',params);messages=[...(result.messages||[]),...messages];
+      const continuation=result.olderCursor||result.nextOffset;
+      partial=!!result.hasMore||!!result.olderCursor||!!result.truncated;
+      if(!partial||continuation===undefined||continuation===null||seen.has(continuation))break;
+      seen.add(continuation);params={sessionKey:key,limit:200,...(result.olderCursor?{cursor:result.olderCursor}:{offset:result.nextOffset})};
+     }
+     const ids=new Set();messages=messages.filter(m=>!m.id||!ids.has(m.id)&&ids.add(m.id));
+     const text=messages.map(m=>`## ${m.role||'message'}\n\n${typeof m.content==='string'?m.content:(m.content||[]).map(p=>p.text||'').join('\n')}`).join('\n\n');
+     output({type:'sessions-transcript',key,action,text,partial,sessionId:row.sessionId});
+    }
+    await listSessions();return;
+   }
+   if(data.type==='sessions-select'){if(row.unread&&supports('sessions.patch')){await client.request('sessions.patch',{key,unread:false,expectedMarkedUnreadAt:row.markedUnreadAt??null});await listSessions();}selectedSession=key;chatRun=null;chatThinking=false;await loadChat();return;}
    if(data.type==='sessions-rename'){if(typeof data.name!=='string'||!data.name.trim()||data.name.length>120)throw Error('Invalid session name.');await client.request('sessions.patch',{key,label:data.name.trim()});await listSessions();return;}
-   if(data.type==='sessions-delete'){if(data.confirmed!==true)throw Error('Deletion requires confirmation.');await client.request('sessions.delete',{key});if(selectedSession===key){selectedSession=null;chatMessages=[];chatState();}await listSessions();return;}
+   if(data.type==='sessions-delete'){if(main)throw Error('Main session cannot be deleted.');if(data.confirmed!==true)throw Error('Deletion requires confirmation.');await client.request('sessions.delete',{key});if(selectedSession===key){selectedSession=null;chatMessages=[];chatState();}await listSessions();return;}
    if(key!==selectedSession)throw Error('Conversation changed. Select it again.');
    if(data.type==='conversation-patch'){
     if(data.model){if(!catalogModels.some(m=>`${m.provider}/${m.id}`===data.model))throw Error('Model unavailable.');await client.request('sessions.patch',{key,model:data.model});}
@@ -98,6 +130,9 @@ export async function run(client, output=emit){
   }catch{thinking=false;publish();throw Error('Message was not accepted by Gateway. Check its connection and model authorization.');}finally{submitting=false;}
  }
  async function event(frame){
+  const failure=projectAgentFailure(frame);if(failure){latestFailure=failure;void alerts().catch(()=>{});}
+  if(frame.event==='cron'||/^(exec|plugin|openclaw)\.approval\.(requested|resolved)$/.test(frame.event))void alerts().catch(()=>{});
+  if(frame.event?.startsWith('sessions.'))await listSessions();
   if(frame.event==='chat'&&selectedSession&&frame.payload?.sessionKey===selectedSession){
    const p=frame.payload;if(chatRun&&p.runId!==chatRun)return;
    if(p.state==='delta'){chatThinking=true;const id=`live-${p.runId}`;let message=chatMessages.find(m=>m.id===id);if(!message){message={id,role:'assistant',text:'',streaming:true};chatMessages.push(message);}const text=p.deltaText??assistantText(p.message);message.text=p.replace===false?message.text+text:text;chatState();}
@@ -122,7 +157,7 @@ export async function run(client, output=emit){
    if(p.state==='error')output({type:'dashboard-error',message:'Gateway generation failed. Check the configured model and OAuth authorization in OpenClaw.'});
   }
  }
- return {initialize,command,event,disconnect(){ready=false;thinking=false;chatThinking=false;publish();output({type:'sessions-list',ready:false,sessions:[]});chatState();}};
+ return {initialize,command,event,failSetup(){ready=false;publish();listSessions().catch(()=>{});},disconnect(){connected=false;output({type:'gateway-alerts',connected:false,pending:[],tasks:[],unavailable:[],failure:latestFailure});void alerts().catch(()=>{});ready=false;thinking=false;chatThinking=false;publish();output({type:'sessions-list',ready:false,sessions:sessionRows,methods,mainKey});chatState();}};
 }
 async function main(){
  const windows=process.platform==='win32';
@@ -142,8 +177,8 @@ async function main(){
  const password=process.env.OPENCLAW_GATEWAY_PASSWORD||auth?.password;
  if((token&&typeof token!=='string')||(password&&typeof password!=='string')||String(token).includes('REDACTED'))throw Error('Gateway credentials require resolution by the existing OpenClaw installation; the preview will not request or expose secrets.');
  let adapter;
- const client=new GatewayClient({url:url.href,token,password,clientName:'cli',mode:'cli',scopes:['operator.read','operator.write','operator.admin'],
-  onHelloOk:()=>adapter.initialize().catch(error=>{adapter.disconnect();emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('The configured agent')?error.message:'Dashboard session setup failed. Check Gateway model access and session permissions.'});}),
+ const client=new GatewayClient({url:url.href,token,password,clientName:'cli',mode:'cli',caps:['approvals'],scopes:['operator.read','operator.write','operator.admin','operator.approvals'],
+  onHelloOk:hello=>adapter.initialize(hello).catch(error=>{adapter.failSetup();emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('The configured agent')?error.message:'Dashboard session setup failed. Check Gateway model access and session permissions.'});}),
   onEvent:frame=>adapter.event(frame).catch(()=>emit({type:'dashboard-error',message:'Dashboard history refresh failed.'})),
   onClose:()=>adapter.disconnect(),
   onConnectError:()=>{adapter.disconnect();emit({type:'dashboard-error',message:'Local Gateway unavailable or authorization requires attention in OpenClaw.'});}

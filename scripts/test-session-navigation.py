@@ -7,7 +7,7 @@ with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--enable-unsafe-swiftshader']);page=b.new_page(viewport={'width':1060,'height':946});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  events=[];commands=[];sessions=[{'key':'agent:main:one','label':'Session one'}]
  def emit(data):events.append({'sequence':len(events)+1,'data':data})
- def listing():emit({'type':'sessions-list','ready':True,'sessions':list(sessions)})
+ def listing():emit({'type':'sessions-list','ready':True,'sessions':list(sessions),'methods':['sessions.patch','sessions.create','sessions.delete','sessions.reset','sessions.compact','chat.history']})
  def conversation(key):emit({'type':'sessions-conversation','ready':True,'key':key,'thinking':False,'messages':[{'id':'u','role':'user','text':'Existing user message'},{'id':'a','role':'assistant','text':'Existing AI response'}] if key else []})
  listing()
  def route(r):
@@ -23,7 +23,7 @@ with sync_playwright() as p:
    r.fulfill(content_type='application/json',body='{"accepted":true}')
   else:
    after=int(r.request.url.split('after=')[1]);r.fulfill(content_type='application/json',body=json.dumps({'enabled':True,'events':[e for e in events if e['sequence']>after]}))
- page.route('**/api/dashboard?*',route);page.route('**/api/dashboard',route);page.goto('http://127.0.0.1:4215/')
+ page.route('**/api/dashboard?*',route);page.route('**/api/dashboard',route);page.goto('http://127.0.0.1:4216/')
  page.wait_for_selector('.morphy-nameplate');assert page.get_by_role('button',name='Start or stop voice input').count()==0
  assert page.locator('.morphy-nameplate').evaluate('(e)=>e.tabIndex')==-1
  page.get_by_role('button',name='Chat',exact=True).click();page.get_by_role('button',name='Session one',exact=True).wait_for()
@@ -35,9 +35,9 @@ with sync_playwright() as p:
  assert any(c['type']=='conversation-send' and c['key']=='agent:main:one' for c in commands)
  page.get_by_role('button',name='Chat',exact=True).click();assert page.locator('.composer-dock').is_hidden()
  page.get_by_role('button',name='Create New Session',exact=True).click();page.wait_for_selector('#chat.session-open')
- page.once('dialog',lambda d:d.accept('Renamed'));page.get_by_role('button',name='Rename New session',exact=True).click();page.get_by_role('button',name='Renamed',exact=True).wait_for()
- page.once('dialog',lambda d:d.dismiss());page.get_by_role('button',name='Delete Renamed',exact=True).click();assert len(sessions)==2
- page.once('dialog',lambda d:d.accept());page.get_by_role('button',name='Delete Renamed',exact=True).click();page.wait_for_function("()=>!document.querySelector('#chat').classList.contains('session-open')")
+ page.once('dialog',lambda d:d.accept('Renamed'));page.get_by_role('button',name='Actions for New session',exact=True).click();page.get_by_role('menuitem',name='Rename session',exact=True).click();page.get_by_role('button',name='Renamed',exact=True).wait_for()
+ page.once('dialog',lambda d:d.dismiss());page.get_by_role('button',name='Actions for Renamed',exact=True).click();page.get_by_role('menuitem',name='Delete session',exact=True).click();assert len(sessions)==2
+ page.once('dialog',lambda d:d.accept());page.get_by_role('button',name='Actions for Renamed',exact=True).click();page.get_by_role('menuitem',name='Delete session',exact=True).click();page.wait_for_function("()=>!document.querySelector('#chat').classList.contains('session-open')")
  page.set_viewport_size({'width':390,'height':800});page.screenshot(path=str(out/'compact.png'));assert page.locator('#conversation-sidebar').is_visible()
  assert not errors,errors
  b.close()

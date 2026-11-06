@@ -7,7 +7,7 @@ import argparse,mimetypes,webbrowser,json
 from preview_telemetry import Collector
 from preview_gateway import DashboardGateway
 ROOT=Path(__file__).resolve().parents[1]
-FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','chat-sessions.js','dashboard.css','dashboard-baseline.js')}
+FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','chat-sessions.js','notifications.js','dashboard.css','dashboard-baseline.js')}
 FILES['/']=FILES['/index.html']
 FILES['/ultron/orb.js']=ROOT/'ui/preview/ultron/orb.js'
 FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'

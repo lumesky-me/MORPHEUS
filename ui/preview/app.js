@@ -9,7 +9,7 @@ function navigate(next){page=next;for(const name of ['home','chat']){$(name).hid
 for(const b of document.querySelectorAll('[data-page]'))b.onclick=()=>navigate(b.dataset.page);
 function handoff(title,text='This action is provided by the native Windows application. The browser preview does not implement it.'){$('handoff-title').textContent=title;$('handoff-text').textContent=text;$('handoff').showModal();}
 for(const b of document.querySelectorAll('[data-handoff]'))b.onclick=()=>handoff(b.dataset.handoff);
-for(const [id,title] of Object.entries({settings:'Separate Settings window',connection:'Connection details',notifications:'Notifications',attach:'Attachments',microphone:'Phase 3 speech input'}))$(id).onclick=()=>handoff(title);
+for(const [id,title] of Object.entries({settings:'Separate Settings window',connection:'Connection details',attach:'Attachments',microphone:'Phase 3 speech input'}))$(id).onclick=()=>handoff(title);
 for(const [id,title] of Object.entries({'model-picker':'Model selection unavailable','reasoning-picker':'Reasoning options unavailable'}))$(id).onclick=()=>handoff(title,'This browser preview has no connected model catalog. Use the native MORPHEUS composer to select actual configured models and supported reasoning levels for the active session. No model or reasoning setting has been changed.');
 $('close-dialog').onclick=()=>$('handoff').close();
 $('search-toggle').onclick=()=>{$('search').hidden=!$('search').hidden;if(!$('search').hidden)$('search').focus();};
@@ -29,3 +29,5 @@ coreTouch.addEventListener('click',()=>{
 new MutationObserver(()=>{$('empty-conversation').hidden=$('chat').classList.contains('session-open')&&$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});
 
 import('./chat-sessions.js').catch(()=>{$('session-note').textContent='Session controls could not load. Restart the preview and refresh.';});
+
+import('./notifications.js').catch(()=>{$('notifications').onclick=()=>handoff('Notifications unavailable','Notification controls could not load. Restart the preview and refresh.');});

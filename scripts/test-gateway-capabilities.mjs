@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {run} from './dashboard-gateway.mjs';
+import {readGatewayAlerts,projectAgentFailure} from './gateway-alerts.mjs';
+const methods=['models.list','agents.list','agents.files.get','sessions.list','sessions.subscribe','sessions.create','sessions.patch','sessions.delete','sessions.reset','sessions.compact','chat.history','chat.send','exec.approval.list','cron.runs'];
+const calls=[],events=[];let rows=[{key:'agent:main:dashboard',label:'dashboard'},{key:'agent:main:one',label:'One',pinned:false,unread:false,archived:false,sessionId:'real-fixture-id'},{key:'agent:main:main',isMain:true}];
+const client={async request(method,p={}){calls.push({method,p});switch(method){
+case 'models.list':return {models:[{provider:'openai-codex',id:'gpt-6-luna'}]};
+case 'agents.list':return {defaultId:'main',mainKey:'agent:main:main',agents:[{id:'main'}]};
+case 'agents.files.get':return {file:{content:'You are MORPHY',missing:false}};
+case 'sessions.subscribe':return {subscribed:true};
+case 'sessions.list':return {sessions:rows};
+case 'sessions.patch':Object.assign(rows.find(r=>r.key===p.key),p);return {ok:true};
+case 'sessions.create':rows.push({key:'agent:main:fork'});return {key:'agent:main:fork'};
+case 'sessions.reset':case 'sessions.compact':return {ok:true};
+case 'exec.approval.list':return [{id:'approval-from-fixture',request:{sessionKey:'agent:main:one'},expiresAtMs:Date.now()+10000}];
+case 'cron.runs':return {entries:[{jobId:'job',runId:'completed-fixture',ts:1000,status:'ok',summary:'Actual protocol fixture task'}]};
+case 'chat.history':return p.cursor?{messages:[{id:'m0',role:'user',content:'Older'}],hasMore:false}:{messages:[{id:'m1',role:'assistant',content:'Newer'}],hasMore:true,olderCursor:'older-page'};
+default:throw Error(method);
+}}};
+const adapter=await run(client,d=>events.push(structuredClone(d)));await adapter.initialize({features:{methods}});
+assert(calls.some(c=>c.method==='sessions.subscribe'));
+const alerts=events.find(e=>e.type==='gateway-alerts');assert.equal(alerts.pending.length,1);assert.equal(alerts.tasks.length,1);
+for(const action of ['pin','unread','archive'])await adapter.command({type:'sessions-action',key:'agent:main:one',action});
+assert.equal(rows[1].pinned,true);assert.equal(rows[1].unread,true);assert.equal(rows[1].archived,true);
+await assert.rejects(()=>adapter.command({type:'sessions-action',key:'agent:main:main',action:'archive'}));
+await assert.rejects(()=>adapter.command({type:'sessions-delete',key:'agent:main:main',confirmed:true}));
+for(const action of ['reset','compact']){await assert.rejects(()=>adapter.command({type:'sessions-action',key:'agent:main:one',action}));await adapter.command({type:'sessions-action',key:'agent:main:one',action,confirmed:true});}
+await adapter.command({type:'sessions-action',key:'agent:main:one',action:'fork'});assert(calls.some(c=>c.method==='sessions.create'&&c.p.fork&&c.p.parentSessionKey==='agent:main:one'));
+await adapter.command({type:'sessions-action',key:'agent:main:one',action:'export'});const exported=events.findLast(e=>e.type==='sessions-transcript');assert(exported.text.indexOf('Older')<exported.text.indexOf('Newer'));assert.equal(exported.partial,false);
+await adapter.event({event:'agent',payload:{runId:'failed-fixture',sessionKey:'agent:main:one',stream:'lifecycle',data:{phase:'error'}}});await new Promise(resolve=>setImmediate(resolve));assert.equal(events.findLast(e=>e.type==='gateway-alerts').failure.id,'failed-fixture');
+assert.equal(projectAgentFailure({event:'agent',payload:{stream:'lifecycle',data:{phase:'end'}}}),null);
+const unsupported=await readGatewayAlerts({request(){throw Error('Must not call unadvertised methods');}},[]);assert.equal(unsupported.pending.length,0);assert(unsupported.unavailable.includes('cron.runs'));
+process.stdout.write('PASS advertised API gating, approval/task history projection, failure events, persisted session flags, fork, confirmed reset/compact, main guards, paged transcript export. Synthetic Gateway only.\n');
