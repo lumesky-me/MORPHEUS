@@ -487,7 +487,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         else
         {
             var notifications = new NotificationsPage();
-            notifications.Initialize(_notifications);
+            notifications.Initialize(_notifications, NavigateBack);
             ContentHost.Children.Add(notifications);
         }
 
@@ -1072,14 +1072,8 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void OnNewConversation(object sender, RoutedEventArgs e) =>
         AsyncEventHandlerGuard.Run(NewSessionAsync, new AppLogger(), nameof(OnNewConversation));
-    private void OnNotificationsOpening(object sender, object e) =>
-        NotificationContent.Initialize(_notifications, () =>
-        {
-            NotificationsFlyout.Hide();
-            Navigate(new(WorkspacePageId.Notifications));
-        });
-
-    private void OnNotificationsClosed(object sender, object e) => NotificationContent.Unbind();
+    private void OnNotificationsClick(object sender, RoutedEventArgs e) =>
+        Navigate(new(WorkspacePageId.Notifications), preserveConversation: false);
 
     private void OnNotificationsChanged(object? sender, AppNotificationChangedEventArgs e) =>
         DispatcherQueue.TryEnqueue(() =>
@@ -1268,8 +1262,6 @@ public sealed partial class WorkspaceWindow : WindowEx
         _identity.SetConnection(null, ConnectionStatus.Disconnected);
         _state.PropertyChanged -= OnStateChanged;
         _notifications.Changed -= OnNotificationsChanged;
-        NotificationsFlyout.Hide();
-        NotificationContent.Unbind();
         _gatewayStatusFlyout.Hide();
         var ownedSettings = _settings is not null;
         ContentHost.Children.Clear();

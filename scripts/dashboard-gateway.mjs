@@ -177,11 +177,12 @@ async function main(){
  const password=process.env.OPENCLAW_GATEWAY_PASSWORD||auth?.password;
  if((token&&typeof token!=='string')||(password&&typeof password!=='string')||String(token).includes('REDACTED'))throw Error('Gateway credentials require resolution by the existing OpenClaw installation; the preview will not request or expose secrets.');
  let adapter;
+ emit({type:'gateway-status',state:'connecting'});
  const client=new GatewayClient({url:url.href,token,password,clientName:'cli',mode:'cli',caps:['approvals'],scopes:['operator.read','operator.write','operator.admin','operator.approvals'],
-  onHelloOk:hello=>adapter.initialize(hello).catch(error=>{adapter.failSetup();emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('The configured agent')?error.message:'Dashboard session setup failed. Check Gateway model access and session permissions.'});}),
+  onHelloOk:hello=>{emit({type:'gateway-status',state:'connected'});adapter.initialize(hello).catch(error=>{adapter.failSetup();emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('The configured agent')?error.message:'Dashboard session setup failed. Check Gateway model access and session permissions.'});});},
   onEvent:frame=>adapter.event(frame).catch(()=>emit({type:'dashboard-error',message:'Dashboard history refresh failed.'})),
-  onClose:()=>adapter.disconnect(),
-  onConnectError:()=>{adapter.disconnect();emit({type:'dashboard-error',message:'Local Gateway unavailable or authorization requires attention in OpenClaw.'});}
+  onClose:()=>{emit({type:'gateway-status',state:'disconnected'});adapter.disconnect();},
+  onConnectError:error=>{emit({type:'gateway-status',state:error?.details?.code==='PAIRING_REQUIRED'?'pairingRequired':'error'});adapter.disconnect();emit({type:'dashboard-error',message:'Local Gateway unavailable or authorization requires attention in OpenClaw.'});}
  });
  adapter=await run(client);
  readline.createInterface({input:process.stdin}).on('line',line=>{
@@ -191,4 +192,4 @@ async function main(){
  }).on('close',()=>{client.stop();process.exit(0);});
  client.start();
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)main().catch(error=>{emit({type:'dashboard-state',ready:false,thinking:false,responses:[]});emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('This preview')||error.message.startsWith('Gateway credentials')?error.message:'Gateway bridge could not start. Ensure Node.js and your configured OpenClaw CLI are available in this terminal.'});process.exitCode=1;});
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)main().catch(error=>{emit({type:'gateway-status',state:'error'});emit({type:'dashboard-state',ready:false,thinking:false,responses:[]});emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('This preview')||error.message.startsWith('Gateway credentials')?error.message:'Gateway bridge could not start. Ensure Node.js and your configured OpenClaw CLI are available in this terminal.'});process.exitCode=1;});

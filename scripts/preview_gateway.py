@@ -14,9 +14,9 @@ class DashboardGateway:
         threading.Thread(target=self._run, daemon=True).start()
 
     def _event(self, data):
-        if data.get('type') not in ('dashboard-state','dashboard-error','dashboard-submitted','sessions-list','sessions-conversation','sessions-submitted','sessions-error','gateway-alerts','sessions-transcript'): return
+        if data.get('type') not in ('dashboard-state','dashboard-error','dashboard-submitted','sessions-list','sessions-conversation','sessions-submitted','sessions-error','gateway-alerts','sessions-transcript','gateway-status'): return
         with self.lock:
-            if data['type'] in ('dashboard-state','sessions-conversation','sessions-list','gateway-alerts'):self.events=[e for e in self.events if e['data']['type']!=data['type']]
+            if data['type'] in ('dashboard-state','sessions-conversation','sessions-list','gateway-alerts','gateway-status'):self.events=[e for e in self.events if e['data']['type']!=data['type']]
             self.sequence += 1
             self.events.append({'sequence':self.sequence,'data':data})
             self.events = self.events[-100:]

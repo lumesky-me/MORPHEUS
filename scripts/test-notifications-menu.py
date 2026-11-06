@@ -2,7 +2,7 @@
 from playwright.sync_api import sync_playwright
 from pathlib import Path
 import json
-out=Path(__file__).resolve().parents[1]/'AUDIT/evidence/gateway-alerts-menu';out.mkdir(parents=True,exist_ok=True)
+out=Path(__file__).resolve().parents[1]/'AUDIT/evidence/top-controls/menu-regression';out.mkdir(parents=True,exist_ok=True)
 methods=['sessions.patch','sessions.create','sessions.reset','sessions.compact','sessions.delete','chat.history']
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--enable-unsafe-swiftshader']);page=b.new_page(viewport={'width':1060,'height':946});events=[];commands=[]
@@ -16,10 +16,10 @@ with sync_playwright() as p:
    r.fulfill(content_type='application/json',body='{"accepted":true}')
   else:
    after=int(r.request.url.split('after=')[1]);r.fulfill(content_type='application/json',body=json.dumps({'enabled':True,'events':[e for e in events if e['sequence']>after]}))
- page.route('**/api/dashboard?*',route);page.route('**/api/dashboard',route);page.goto('http://127.0.0.1:4216/')
+ page.route('**/api/dashboard?*',route);page.route('**/api/dashboard',route);page.goto('http://127.0.0.1:4217/')
  bell=page.locator('#notifications');bell.click();page.wait_for_selector('.notification-body article');assert page.locator('.notification-count').inner_text()=='1';assert 'Completed task fixture' in page.locator('.notification-body').inner_text();assert page.get_by_role('button',name='Dismiss',exact=True).count()==0
  page.screenshot(path=str(out/'notifications.png'))
- page.get_by_role('button',name='Close notifications').click();page.get_by_role('button',name='Chat',exact=True).click();page.get_by_role('button',name='Actions for One',exact=True).click()
+ page.get_by_role('button',name='Back from notifications').click();page.get_by_role('button',name='Chat',exact=True).click();page.get_by_role('button',name='Actions for One',exact=True).click()
  expected=['Pin session','Rename session','Mark as unread','Archive session','Fork conversation','Copy session key','Copy session ID','Copy transcript','Reset session','Compact session','Export transcript','Delete session']
  assert page.get_by_role('menuitem').all_text_contents()==expected
  page.screenshot(path=str(out/'session-menu.png'))

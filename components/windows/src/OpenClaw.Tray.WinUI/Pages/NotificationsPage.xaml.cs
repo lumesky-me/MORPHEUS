@@ -11,6 +11,8 @@ public sealed partial class NotificationsPage : Page
     private static App CurrentApp => (App)Application.Current!;
     private readonly ObservableCollection<NotificationItemViewModel> _notificationItems = new();
     private AppNotificationService? _notificationService;
+    private Action? _back;
+    private void OnBackClick(object sender, RoutedEventArgs args) => _back?.Invoke();
 
     public NotificationsPage()
     {
@@ -19,8 +21,10 @@ public sealed partial class NotificationsPage : Page
         Unloaded += OnUnloaded;
     }
 
-    internal void Initialize(AppNotificationService? notificationService)
+    internal void Initialize(AppNotificationService? notificationService, Action? back = null)
     {
+        _back = back;
+        BackButton.Visibility = back is null ? Visibility.Collapsed : Visibility.Visible;
         if (!ReferenceEquals(_notificationService, notificationService))
         {
             if (_notificationService is not null)

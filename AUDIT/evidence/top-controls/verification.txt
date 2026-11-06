@@ -1,0 +1,13 @@
+Three top-right controls — focused verification
+
+PASS: Chromium normal 1060x946 and compact 390x800 screenshots inspected. Dedicated Notifications page, back navigation retains selected Chat history/draft, pending-approval badge, task history, failure/disconnection projection, session-menu regression.
+PASS: native-window fixed-route launcher unit tests (4); unavailable Windows error, missing/foreign Origin rejection via actual localhost endpoint.
+PASS: Gateway capability/session/dashboard adapter fixture suites; preview static build; JS syntax, Python compilation, XAML XML parsing, diff whitespace checks.
+Fixture Gateway responses only. No live Gateway or Windows window activation tested.
+
+Existing owners reused:
+Settings: native OnSettingsClick -> OpenCompanion -> WindowManager.ShowSeparateSettings. Browser localhost launcher uses existing morpheus-dev/morpheus protocol -> ActivationRouter IPC -> existing settings route. Shell acceptance is not visibility confirmation.
+Notifications: native NotificationsPage + AppNotificationService retain supported dismiss/clear/actions. Browser projects advertised approval lists, cron.runs history and actual live failure events; no new inbox/read-state/database. Browser badge counts pending approvals, not unread messages.
+Status: original native ConnectionStatusPresenter / GatewayStatusContent unchanged (overall, operator, node). Browser dot shows only real Gateway operator transport; native node/overall unavailable explicitly; native diagnostics opens existing status route.
+
+Windows build attempted: blocked on Linux by XAML compiler output.json absence and MakePri.exe Exec format error. No native build/runtime success claimed.

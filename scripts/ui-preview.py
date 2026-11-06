@@ -6,8 +6,9 @@ from urllib.parse import urlsplit,parse_qs
 import argparse,mimetypes,webbrowser,json
 from preview_telemetry import Collector
 from preview_gateway import DashboardGateway
+from native_windows import launch_window
 ROOT=Path(__file__).resolve().parents[1]
-FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','chat-sessions.js','notifications.js','dashboard.css','dashboard-baseline.js')}
+FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','chat-sessions.js','notifications.js','native-controls.js','dashboard.css','dashboard-baseline.js')}
 FILES['/']=FILES['/index.html']
 FILES['/ultron/orb.js']=ROOT/'ui/preview/ultron/orb.js'
 FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'
@@ -25,15 +26,19 @@ class Handler(BaseHTTPRequestHandler):
     def json_response(self, data, status=200):
         content=json.dumps(data).encode();self.send_response(status)
         self.send_header('Content-Type','application/json');self.send_header('Cache-Control','no-store')
-        self.send_header('Content-Length',str(len(content)));self.end_headers();self.wfile.write(content)
+        self.send_header('Content-Length',str(len(content)));self.send_header('X-Content-Type-Options','nosniff');self.end_headers();self.wfile.write(content)
 
     def do_POST(self):
-        if urlsplit(self.path).path!='/api/dashboard' or not self.local_request(True):self.send_error(403);return
+        if urlsplit(self.path).path not in ('/api/dashboard','/api/native-window') or not self.local_request(True):self.send_error(403);return
         if self.headers.get('Content-Type')!='application/json':self.send_error(415);return
         try:
             size=int(self.headers.get('Content-Length','0'))
             if not 0<size<=131072:raise ValueError('Invalid request size')
             data=json.loads(self.rfile.read(size))
+            if urlsplit(self.path).path=='/api/native-window':
+                try:self.json_response(launch_window(data.get('window')))
+                except RuntimeError as error:self.json_response({'error':str(error)},503)
+                return
             if not self.server.gateway:raise ValueError('Gateway bridge disabled')
             self.server.gateway.command(data);self.json_response({'accepted':True})
         except (ValueError,AttributeError,BrokenPipeError):self.json_response({'error':'Dashboard command unavailable or invalid'},409)
