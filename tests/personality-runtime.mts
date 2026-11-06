@@ -12,6 +12,10 @@ try {
  assert(context.contextFiles.some(f=>f.content.includes('You are MORPHY')));
  const prompt=buildAgentSystemPrompt({workspaceDir:workspace,contextFiles:context.contextFiles});
  assert(prompt.includes('You are MORPHY'));assert.equal(prompt.split('You are MORPHY').length-1,1);
+ const dashboardContext=await resolveBootstrapContextForRun({workspaceDir:workspace,sessionKey:'agent:main:dashboard',agentId:'main'});
+ const dashboardPrompt=buildAgentSystemPrompt({workspaceDir:workspace,contextFiles:dashboardContext.contextFiles});
+ assert.equal(dashboardPrompt.split('You are MORPHY').length-1,1);
+ assert(dashboardContext.contextFiles.some(f=>f.content.includes('MORPHY')));
  await writeFile(path.join(workspace,'SOUL.md'),'User-selected calm personality');
  const updated=await resolveBootstrapContextForRun({workspaceDir:workspace,sessionKey:'agent:main:new',agentId:'main'});
  assert(updated.contextFiles.some(f=>f.content==='User-selected calm personality'));

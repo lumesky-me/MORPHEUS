@@ -1,0 +1,51 @@
+"""Private local IPC with the installed OpenClaw SDK; no credentials in HTTP."""
+import json
+from pathlib import Path
+import subprocess
+import threading
+
+class DashboardGateway:
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.events = []
+        self.sequence = 0
+        self.process = None
+        self.closed=False
+        threading.Thread(target=self._run, daemon=True).start()
+
+    def _event(self, data):
+        if data.get('type') not in ('dashboard-state','dashboard-error','dashboard-submitted'): return
+        with self.lock:
+            if data['type']=='dashboard-state':self.events=[e for e in self.events if e['data']['type']!='dashboard-state']
+            self.sequence += 1
+            self.events.append({'sequence':self.sequence,'data':data})
+            self.events = self.events[-100:]
+
+    def _run(self):
+        try:
+            self.process = subprocess.Popen(['node',str(Path(__file__).with_name('dashboard-gateway.mjs'))],
+                stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True,
+                **({'creationflags':subprocess.CREATE_NO_WINDOW} if __import__('os').name == 'nt' else {}))
+            if self.closed:self.process.terminate()
+            for line in self.process.stdout:
+                try: self._event(json.loads(line))
+                except (ValueError,AttributeError): pass
+            self.process.wait()
+        except OSError: pass
+        self._event({'type':'dashboard-state','ready':False,'thinking':False,'responses':[]})
+        self._event({'type':'dashboard-error','message':'Gateway bridge stopped. Check Node.js, the installed OpenClaw SDK and your local Gateway, then restart the preview.'})
+
+    def snapshot(self, after):
+        with self.lock:
+            return {'enabled':True,'events':[e for e in self.events if e['sequence']>after]}
+
+    def command(self, data):
+        if data.get('type') not in ('dashboard-send','dashboard-stop'): raise ValueError('Unsupported command')
+        if data['type']=='dashboard-send' and (not isinstance(data.get('text'),str) or not 0<len(data['text'].strip())<=32000): raise ValueError('Invalid message')
+        with self.lock:
+            if self.process is None or self.process.poll() is not None: raise ValueError('Gateway bridge unavailable')
+            self.process.stdin.write(json.dumps(data)+'\n');self.process.stdin.flush()
+
+    def close(self):
+        self.closed=True
+        if self.process and self.process.poll() is None:self.process.terminate()

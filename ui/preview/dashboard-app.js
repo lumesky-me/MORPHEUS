@@ -3,10 +3,14 @@ let orb;
 let active=true;
 const home=document.querySelector("#home");
 const nativeHost=!!window.chrome?.webview;
+const dashboardListeners=[];
+function onDashboardMessage(listener){dashboardListeners.push(listener);window.chrome?.webview?.addEventListener('message',listener);}
+function deliverDashboard(data){for(const listener of dashboardListeners)listener({data});}
+let browserGateway=false;
 const unavailable="Voice input is unavailable in browser preview. Open the Windows app to use it.";
 const sync=()=>orb?.setVisible(active&&!home.hidden&&!document.hidden);
 new MutationObserver(sync).observe(home,{attributes:true,attributeFilter:["hidden"]});
-window.chrome?.webview?.addEventListener('message',event=>{
+onDashboardMessage(event=>{
  if(event.data?.type==='home-visibility'&&typeof event.data.active==='boolean'){active=event.data.active;sync();}
 });
 document.addEventListener('visibilitychange',sync);
@@ -35,11 +39,11 @@ function previewNotice(message){clearTimeout(statusExpiry);status.textContent=me
 if(!nativeHost){send.title='Sending unavailable in browser preview';input.setAttribute('aria-description','Sending requires a connected native Gateway.');}
 function updateComposer(){send.disabled=!nativeReady||submitting||!input.value.trim();form.classList.toggle('sending',submitting);form.setAttribute('aria-busy',String(submitting));}
 input.addEventListener('input',updateComposer);
-const post=value=>{if(nativeHost)window.chrome.webview.postMessage(value);else previewNotice(unavailable);};
+const post=value=>{if(nativeHost)window.chrome.webview.postMessage(value);else if(browserGateway&&['dashboard-send','dashboard-stop'].includes(value.type)){fetch('/api/dashboard',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(value)}).then(response=>{if(!response.ok)throw Error();}).catch(()=>deliverDashboard({type:'dashboard-error',message:'Gateway command could not be sent.'}));}else previewNotice(unavailable);};
 form.onsubmit=event=>{event.preventDefault();if(!input.value.trim()||send.disabled||submitting)return;submitting=true;updateComposer();input.readOnly=true;post({type:'dashboard-send',text:input.value});};
 stop.onclick=()=>post({type:'dashboard-stop'});
 const entries=new Map();
-window.chrome?.webview?.addEventListener('message',event=>{
+onDashboardMessage(event=>{
  const data=event.data;
  if(data.type==='dashboard-submitted'){input.value='';input.readOnly=false;submitting=false;updateComposer();}
  if(data.type==='dashboard-error'){status.textContent=data.message;input.readOnly=false;submitting=false;updateComposer();}
@@ -58,7 +62,7 @@ const transcript=document.createElement('div');transcript.className='dashboard-t
 function updateTranscript(text){clearTimeout(transcriptClear);if(text){transcript.textContent=text;transcript.classList.add('visible');}else{transcript.classList.remove('visible');transcriptClear=setTimeout(()=>{transcript.textContent='';},180);}}
 let voiceState='idle',processing=false,speechPlaying=false;
 function syncActivity(){orb?.setActivity(speechPlaying||voiceState==='listening'?'speaking':processing||voiceState==='thinking'?'thinking':'idle');}
-window.chrome?.webview?.addEventListener('message',event=>{
+onDashboardMessage(event=>{
  const data=event.data;
  if(data.type==='dashboard-voice-state'){
   voiceState=data.state;voice.dataset.state=data.state;voice.title=data.state;
@@ -118,7 +122,7 @@ function renderPermissions(preset,connected=false){
 if(!nativeHost)renderPermissions('Strict');
 const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.add('dashboard-visual-board');visuals.replaceChildren(transcript);const gallery=document.createElement('div');gallery.className='dashboard-gallery';visuals.append(gallery);
 const viewer=document.createElement('dialog');viewer.className='dashboard-viewer';const fullImage=document.createElement('img');fullImage.alt='Dashboard visual';const close=document.createElement('button');close.textContent='Close';close.onclick=()=>viewer.close();viewer.append(close,fullImage);document.body.append(viewer);let mediaSignature='';
-window.chrome?.webview?.addEventListener('message',event=>{
+onDashboardMessage(event=>{
  const data=event.data;
  if(data.type==='dashboard-metrics')acceptMetrics(data);
  if(data.type==='dashboard-permissions')renderPermissions(data.preset,data.connected===true);
@@ -129,7 +133,7 @@ window.chrome?.webview?.addEventListener('message',event=>{
  }
 });
 
-window.chrome?.webview?.addEventListener('message',event=>{if(event.data.type==='dashboard-speaking'){speechPlaying=!!event.data.active;voice.title=speechPlaying?'Speaking':processing?'Thinking':'Start or stop voice input';syncActivity();}});
+onDashboardMessage(event=>{if(event.data.type==='dashboard-speaking'){speechPlaying=!!event.data.active;voice.title=speechPlaying?'Speaking':processing?'Thinking':'Start or stop voice input';syncActivity();}});
 
 function formatResponse(node,text){
  node.replaceChildren();let code=null;
@@ -169,4 +173,17 @@ if(!nativeHost){
  }
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)pollMetrics();});
  pollMetrics();
+}
+
+if(!nativeHost){
+ let sequence=0,closed=false;window.addEventListener('pagehide',()=>{closed=true;});
+ async function pollDashboard(){
+  if(closed)return;
+  try{const response=await fetch(`/api/dashboard?after=${sequence}`,{cache:'no-store'});if(!response.ok)throw Error();const data=await response.json();browserGateway=!!data.enabled;if(!browserGateway)return;
+   for(const event of data.events||[]){sequence=Math.max(sequence,event.sequence);deliverDashboard(event.data);}
+   if(browserGateway){input.removeAttribute('aria-description');send.title='Send message';}
+  }catch{if(browserGateway){deliverDashboard({type:'dashboard-state',ready:false,thinking:false,responses:[...entries].map(([id,node])=>({id,text:node.dataset.text}))});status.textContent='Local Gateway connection unavailable';}}
+  if(!closed)setTimeout(pollDashboard,250);
+ }
+ pollDashboard();
 }
