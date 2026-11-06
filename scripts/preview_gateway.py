@@ -14,9 +14,10 @@ class DashboardGateway:
         threading.Thread(target=self._run, daemon=True).start()
 
     def _event(self, data):
-        if data.get('type') not in ('dashboard-state','dashboard-error','dashboard-submitted','sessions-list','sessions-conversation','sessions-submitted','sessions-error','gateway-alerts','sessions-transcript','gateway-status'): return
+        if data.get('type') not in ('dashboard-state','dashboard-error','dashboard-submitted','sessions-list','sessions-conversation','sessions-submitted','sessions-error','gateway-alerts','sessions-transcript','gateway-status','sessions-branches','sessions-editor','sessions-stream'): return
         with self.lock:
-            if data['type'] in ('dashboard-state','sessions-conversation','sessions-list','gateway-alerts','gateway-status'):self.events=[e for e in self.events if e['data']['type']!=data['type']]
+            if data['type']=='sessions-conversation':self.events=[e for e in self.events if e['data']['type']!='sessions-stream']
+            if data['type'] in ('dashboard-state','sessions-conversation','sessions-list','gateway-alerts','gateway-status','sessions-stream'):self.events=[e for e in self.events if e['data']['type']!=data['type']]
             self.sequence += 1
             self.events.append({'sequence':self.sequence,'data':data})
             self.events = self.events[-100:]
@@ -40,8 +41,8 @@ class DashboardGateway:
             return {'enabled':True,'events':[e for e in self.events if e['sequence']>after]}
 
     def command(self, data):
-        if data.get('type') not in ('dashboard-send','dashboard-stop','sessions-list','sessions-create','sessions-select','sessions-open-dashboard','sessions-rename','sessions-delete','conversation-send','conversation-stop','conversation-patch','sessions-action','notifications-refresh'): raise ValueError('Unsupported command')
-        if data['type'] in ('dashboard-send','conversation-send') and (not isinstance(data.get('text'),str) or not 0<len(data['text'].strip())<=32000): raise ValueError('Invalid message')
+        if data.get('type') not in ('dashboard-send','dashboard-stop','sessions-list','sessions-create','sessions-select','sessions-open-dashboard','sessions-rename','sessions-delete','conversation-send','conversation-stop','conversation-patch','conversation-history','conversation-refresh','conversation-cut','conversation-branches','conversation-branch-switch','sessions-action','notifications-refresh'): raise ValueError('Unsupported command')
+        if data['type'] in ('dashboard-send','conversation-send') and (not isinstance(data.get('text'),str) or (len(data['text'])>32000 or not data['text'].strip() and not data.get('attachments'))): raise ValueError('Invalid message')
         with self.lock:
             if self.process is None or self.process.poll() is not None: raise ValueError('Gateway bridge unavailable')
             self.process.stdin.write(json.dumps(data)+'\n');self.process.stdin.flush()

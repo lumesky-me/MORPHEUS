@@ -1,0 +1,11 @@
+Conversation UI checkpoint — verification
+
+PASS: test-conversation-view.py — actual Chromium at 1280x960 and 390x844; inspected screenshots; preview-only session read-only and separate from real transport; formatted messages/code/tool/context; advertised reasoning; real file-picker bytes forwarded to mocked transport; send acknowledgement, stream-only updates and cancellation; no page JS errors or compact horizontal overflow.
+PASS: test-conversation-adapter.mjs — rich content/history/media/tools, pagination, scoped models/reasoning/defaults, actual RPC parameter shapes, transcript confirmations/branch CAS, attachments, tool activity, abort, rejected ack, accepted request vs failed history refresh. Synthetic Gateway only.
+PASS: test-conversation-bridge.py — latest stream coalescing preserves baseline rich history; final persisted history retires stream.
+PASS: existing test-session-dashboard.mjs, test-gateway-capabilities.mjs, test-dashboard-gateway.mjs.
+PASS: existing browser top-controls and notification/menu regressions against current port 4218, output isolated under /tmp. Settings unavailable handling, Notifications Back preserves Chat draft/history, main-session guards retained.
+PASS: static preview export, edited JS syntax, Python compilation, git diff whitespace.
+
+No live Gateway/provider/OAuth, real permissions, real file upload acceptance, native Windows build or Windows desktop interaction verified. Native chat files are unchanged and retain their original owners. This Linux environment cannot run WinUI tooling (previous native attempt failed on MakePri.exe / XAML compiler). Screenshots and simulated transport tests do not establish full feature parity.
+Remaining browser gaps are explicitly listed in AUDIT/CONVERSATION_COMPATIBILITY.md. No voice/personality/Home/Settings/Notifications redesign.

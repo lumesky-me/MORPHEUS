@@ -1,0 +1,55 @@
+/* Conversation-local presentation; native Chat retains the upstream controller stack. */
+#chat .conversation-panel{background:#101014;min-width:0}
+#chat .conversation-header{display:flex;align-items:center;gap:16px;min-height:56px;padding:10px 24px;border-bottom:1px solid #aa91c513;flex-shrink:0}
+#chat .conversation-header[hidden]{display:none}
+.conversation-header button,.load-earlier{border:0;background:transparent;color:#ad9bc7;font-size:12px;padding:7px 0}
+.conversation-header strong{font-size:14px;font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conversation-header span{margin-left:auto;font-size:11px;color:#8b849b;text-align:right;max-width:45%;overflow-wrap:anywhere}
+#chat #messages{max-width:880px;padding:24px 32px 8px;scrollbar-width:thin;scrollbar-color:#4a4059 transparent;overscroll-behavior:contain}
+#chat .session-message{white-space:normal;margin:0 0 28px;line-height:1.75;font-size:14px;color:#dcd9e5;contain:layout style}
+.message-heading{display:flex;align-items:center;gap:12px;margin-bottom:9px;font-size:12px}
+.message-heading strong{font-weight:600;color:#c7b7e5;letter-spacing:.03em}
+.message-heading time{font-size:10px;color:#827b8e}
+#chat .session-message.user{padding:16px 20px;border-radius:16px;background:#1b1823;border:1px solid #b59aca16;margin-left:12%;color:#d9d4e1}
+.session-message.user .message-heading strong{color:#aaa1b7}
+.message-prose p{margin:0 0 10px;white-space:pre-wrap}
+.message-prose p:empty{display:none}
+.message-prose h2,.message-prose h3,.message-prose h4{font-weight:550;line-height:1.4;margin:18px 0 12px;color:#ede7f7}
+.message-prose h2{font-size:21px}.message-prose h3{font-size:17px}.message-prose h4{font-size:15px}
+.message-prose h2:first-child{margin-top:0}
+.message-prose ul{padding-left:22px;margin:8px 0 16px}.message-prose li{padding-left:3px;margin:4px 0}
+.message-prose code{font-family:Consolas,'Courier New',monospace;font-size:12px;background:#b69bd412;border-radius:4px;padding:2px 5px;color:#d6c1f6}
+.message-prose pre,.tool-details pre{position:relative;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #b49cc11a;background:#0c0d12;border-radius:11px;padding:42px 16px 16px;margin:14px 0;line-height:1.6}
+.message-prose pre code{padding:0;background:none;color:#c9c4d7;display:block}
+.code-language{position:absolute;top:11px;left:16px;font-size:10px;color:#948ba5}
+.code-copy{position:absolute;top:7px;right:10px;background:transparent;border:0;color:#a297b3;font-size:10px;padding:4px 8px}
+.message-prose blockquote{margin:12px 0;padding:8px 14px;border-left:2px solid #a180d365;color:#a39aae;background:#a78ac505}
+.message-prose a{color:#baa0e8;text-underline-offset:3px}
+.message-actions{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.message-actions small{font-size:10px;color:#8c829c;margin-right:auto}
+.message-actions button{font-size:10px;color:#9b8daa;background:transparent;border:0;padding:4px 8px;border-radius:5px}
+.message-actions button:hover,.code-copy:hover{color:#e4d7f8;background:#ac8ed510}
+.conversation-activity{max-width:816px;width:calc(100% - 64px);margin:0 auto;max-height:160px;overflow:auto;flex-shrink:0;scrollbar-width:thin}
+.tool-details{border:1px solid #a58cc41c;border-radius:9px;background:#15131b;margin:6px 0;font-size:12px;color:#a99db9}
+.tool-details summary{padding:10px 12px;cursor:pointer;list-style-position:inside}
+.tool-details pre{padding:12px;margin:0;border:0;font-size:11px}
+.conversation-progress{min-height:20px;font-size:11px;color:#b49bcf;max-width:816px;width:calc(100% - 64px);margin:8px auto;flex-shrink:0}
+.preview-notice{color:#c4b79a}
+.preview-session{display:block;width:calc(100% - 24px);margin:12px;padding:12px;border:1px dashed #9b80bd55;background:#a080bf0b;color:#c8b3df;text-align:left;border-radius:9px;font-size:12px}
+#chat .composer-dock{max-width:880px;padding:8px 32px 20px}
+#chat .composer{border-color:#a58bbe2c;background:#1b1921;border-radius:17px;padding:14px;box-shadow:0 8px 24px #0002}
+#chat .composer:focus-within{border-color:#aa89d05e;box-shadow:0 0 0 2px #9871c30a}
+#chat .composer textarea{font-size:14px;line-height:1.6;outline:none;min-height:52px}
+#chat .composer-tools button:disabled{opacity:.4;cursor:default}
+#chat .composer-tools button:last-child:not(#send){width:auto;padding:0 10px;font-size:11px;border:1px solid #a48abc30;border-radius:8px;color:#d2bfdc}
+.composer-attachments{display:flex;gap:8px;flex-wrap:wrap}.composer-attachments:empty{display:none}
+.composer-attachments button,.message-file{background:#ac8ed510;border:1px solid #a58ac52a;border-radius:7px;padding:6px 10px;color:#c9bdd8;font-size:11px}
+.message-image{display:block;border:0;padding:0;background:none;cursor:zoom-in}.message-image img{display:block;max-width:100%;max-height:300px;border-radius:12px}
+.media-unavailable{font-size:11px;color:#9e93ac}.tool-result{border-left:1px solid #9378b14a;padding-left:14px}.message-error{color:#e5adb9!important}
+.media-viewer{max-width:95vw;max-height:95vh;border:1px solid #aa8fbd44;border-radius:14px;background:#111015;color:#ddd;padding:16px}.media-viewer img{display:block;max-width:88vw;max-height:80vh;object-fit:contain}.media-viewer::backdrop{background:#000c}
+.load-earlier{align-self:center;margin:8px auto 0;font-size:11px}
+#chat button:focus-visible,#chat summary:focus-visible,.media-viewer button:focus-visible{outline:2px solid #a385c9;outline-offset:3px}
+@media(max-width:600px){#chat .conversation-header{padding:10px 16px;gap:10px;flex-wrap:wrap}.conversation-header span{max-width:100%;margin-left:0;flex-basis:100%;text-align:left}#chat #messages{padding:20px 16px 4px}#chat .composer-dock{padding:8px 12px 14px}#chat .session-message.user{margin-left:6%}.conversation-activity,.conversation-progress{width:calc(100% - 32px)}}
+@media(prefers-reduced-motion:reduce){#chat *{scroll-behavior:auto!important;transition:none!important}}
+.branch-dialog{max-width:560px;width:calc(100% - 32px)}.branch-dialog>button{display:block;margin:8px 0;width:100%;text-align:left;padding:10px;border:1px solid #aa8fbd22;background:#a080bf09;border-radius:8px;color:inherit}
+@media(max-width:600px){#chat.session-open .conversations{display:none}}

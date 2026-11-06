@@ -8,7 +8,7 @@ from preview_telemetry import Collector
 from preview_gateway import DashboardGateway
 from native_windows import launch_window
 ROOT=Path(__file__).resolve().parents[1]
-FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','chat-sessions.js','notifications.js','native-controls.js','dashboard.css','dashboard-baseline.js')}
+FILES={f'/{name}':ROOT/'ui/preview'/name for name in ('index.html','app.js','style.css','tokens.css','layout.js','dashboard.js','dashboard-app.js','chat-sessions.js','notifications.js','native-controls.js','conversation-view.js','conversation-preview.js','conversation.css','dashboard.css','dashboard-baseline.js')}
 FILES['/']=FILES['/index.html']
 FILES['/ultron/orb.js']=ROOT/'ui/preview/ultron/orb.js'
 FILES['/favicon.ico']=ROOT/'components/windows/src/OpenClaw.Tray.WinUI/Assets/openclaw.ico'
@@ -33,7 +33,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Content-Type')!='application/json':self.send_error(415);return
         try:
             size=int(self.headers.get('Content-Length','0'))
-            if not 0<size<=131072:raise ValueError('Invalid request size')
+            if not 0<size<=9*1024*1024:raise ValueError('Invalid request size')
             data=json.loads(self.rfile.read(size))
             if urlsplit(self.path).path=='/api/native-window':
                 try:self.json_response(launch_window(data.get('window')))
@@ -69,14 +69,14 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Security-Policy',"default-src 'self'; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com; worker-src 'self' blob:; img-src 'self' data: https:; script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'; style-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
         self.send_header('X-Content-Type-Options','nosniff');self.end_headers();self.wfile.write(content)
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=4173);parser.add_argument('--gateway-chat',action='store_true',help='Connect dashboard to the installed local OpenClaw Gateway');parser.add_argument('--open-browser',action='store_true',help='Open the local preview in your default browser');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=4173);parser.add_argument('--gateway-chat',action='store_true',help='Connect dashboard to the installed local OpenClaw Gateway');parser.add_argument('--conversation-preview',action='store_true',help='Show isolated MORPHY UI Test sample session');parser.add_argument('--open-browser',action='store_true',help='Open the local preview in your default browser');args=parser.parse_args()
     try:
         server=ThreadingHTTPServer(('127.0.0.1',args.port),Handler)
     except OSError as error:
         parser.exit(1,f'Cannot start preview on port {args.port}: {error}. Try --port 4174.\n')
     server.collector=Collector()
     server.gateway=DashboardGateway() if args.gateway_chat else None
-    url=f'http://127.0.0.1:{args.port}/'
+    url=f'http://127.0.0.1:{args.port}/'+('?conversation-preview=1' if args.conversation_preview else '')
     print(f'MORPHEUS preview: {url} (UI only; Ctrl+C to stop)',flush=True)
     if args.open_browser:webbrowser.open(url)
     try:server.serve_forever()
