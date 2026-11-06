@@ -54,7 +54,7 @@
                 </Button>
 
                 <Button x:Name="SettingsRailButton" Width="32" x:Uid="MorpheusSettings" Click="OnSettingsClick" Style="{StaticResource MorpheusRailButton}">
-                <Viewbox Width="20" Height="20"><Canvas Width="24" Height="24"><Path Stroke="{Binding Foreground, ElementName=SettingsRailButton}" StrokeThickness="1.6" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M5,3 V9 M5,13 V21 M12,3 V15 M12,19 V21 M19,3 V5 M19,9 V21 M2,9 H8 V13 H2 Z M9,15 H15 V19 H9 Z M16,5 H22 V9 H16 Z"/></Canvas></Viewbox>
+                <FontIcon Glyph="&#xE713;" FontSize="18"/>
                 </Button>
                 </StackPanel></TitleBar.LeftHeader>
             <TitleBar.RightHeader><StackPanel Orientation="Horizontal" Spacing="0">

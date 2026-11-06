@@ -5,7 +5,7 @@ const home=document.querySelector("#home");
 const nativeHost=!!window.chrome?.webview;
 const dashboardListeners=[];
 function onDashboardMessage(listener){dashboardListeners.push(listener);window.chrome?.webview?.addEventListener('message',listener);}
-function deliverDashboard(data){for(const listener of dashboardListeners)listener({data});}
+function deliverDashboard(data){for(const listener of dashboardListeners)listener({data});window.dispatchEvent(new CustomEvent('morpheus-gateway-event',{detail:data}));}
 let browserGateway=false;
 const unavailable="Voice input is unavailable in browser preview. Open the Windows app to use it.";
 const sync=()=>orb?.setVisible(active&&!home.hidden&&!document.hidden);
@@ -46,32 +46,20 @@ const entries=new Map();
 onDashboardMessage(event=>{
  const data=event.data;
  if(data.type==='dashboard-submitted'){input.value='';input.readOnly=false;submitting=false;updateComposer();}
- if(data.type==='dashboard-error'){status.textContent=data.message;input.readOnly=false;submitting=false;updateComposer();}
+ if(data.type==='dashboard-error'){processing=false;syncActivity();stop.hidden=true;status.textContent=data.message;input.readOnly=false;submitting=false;updateComposer();}
  if(data.type==='dashboard-state'){
   nativeReady=!!data.ready;updateComposer();stop.hidden=!data.thinking;status.textContent=data.thinking?'Thinking…':data.ready?'':'Gateway unavailable';
   const nearBottom=responses.scrollHeight-responses.scrollTop-responses.clientHeight<60;
   for(const item of data.responses||[]){let node=entries.get(item.id);if(!node){node=document.createElement('div');node.className='dashboard-response';entries.set(item.id,node);responses.append(node);}if(node.dataset.text!==item.text||node.dataset.streaming!==String(!!item.streaming)){node.dataset.text=item.text;node.dataset.streaming=String(!!item.streaming);if(item.streaming)node.textContent=item.text;else formatResponse(node,item.text);}}
   for(const [id,node] of entries)if(!(data.responses||[]).some(item=>item.id===id)){node.remove();entries.delete(id);}
   if(nearBottom)responses.scrollTop=responses.scrollHeight;
-  processing=!!data.thinking;syncActivity();
+  processing=!!data.ready&&!!data.thinking;syncActivity();
  }
 });
 
-const voice=document.createElement('button');voice.textContent='M O R P H Y';voice.setAttribute('aria-label','Start or stop voice input');voicePanel.replaceChildren(voice);voice.onclick=()=>post({type:'dashboard-voice'});
-const transcript=document.createElement('div');transcript.className='dashboard-transcript';transcript.setAttribute('aria-live','polite');let transcriptClear;
-function updateTranscript(text){clearTimeout(transcriptClear);if(text){transcript.textContent=text;transcript.classList.add('visible');}else{transcript.classList.remove('visible');transcriptClear=setTimeout(()=>{transcript.textContent='';},180);}}
-let voiceState='idle',processing=false,speechPlaying=false;
-function syncActivity(){orb?.setActivity(speechPlaying||voiceState==='listening'?'speaking':processing||voiceState==='thinking'?'thinking':'idle');}
-onDashboardMessage(event=>{
- const data=event.data;
- if(data.type==='dashboard-voice-state'){
-  voiceState=data.state;voice.dataset.state=data.state;voice.title=data.state;
-  voice.classList.toggle('listening',data.state==='listening');
-  if(data.transcript!==null&&data.transcript!==undefined)updateTranscript(data.transcript);
-  syncActivity();
- }
- if(data.type==='dashboard-state'&&voiceState==='idle')voice.title=data.thinking?'Thinking':'Start or stop voice input';
-});
+const voice=document.createElement('span');voice.className='morphy-nameplate';voice.textContent='M O R P H Y';voicePanel.replaceChildren(voice);
+let processing=false;
+function syncActivity(){orb?.setActivity(processing?'thinking':'idle');}
 const panel=id=>document.querySelector(`[data-id="${id}"]`);
 const graphPanel=panel('c4042c5a-5534-4d0a-84a1-3598ad644766');
 const selector=panel('5b7f1b40-9979-42fb-b4a2-f4adc3b7257b');
@@ -120,7 +108,7 @@ function renderPermissions(preset,connected=false){
  }
 }
 if(!nativeHost)renderPermissions('Strict');
-const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.add('dashboard-visual-board');visuals.replaceChildren(transcript);const gallery=document.createElement('div');gallery.className='dashboard-gallery';visuals.append(gallery);
+const visuals=panel('4734678d-ab2a-4d1f-b0f9-d85e88decb48');visuals.classList.add('dashboard-visual-board');visuals.replaceChildren();const gallery=document.createElement('div');gallery.className='dashboard-gallery';visuals.append(gallery);
 const viewer=document.createElement('dialog');viewer.className='dashboard-viewer';const fullImage=document.createElement('img');fullImage.alt='Dashboard visual';const close=document.createElement('button');close.textContent='Close';close.onclick=()=>viewer.close();viewer.append(close,fullImage);document.body.append(viewer);let mediaSignature='';
 onDashboardMessage(event=>{
  const data=event.data;
@@ -133,9 +121,8 @@ onDashboardMessage(event=>{
  }
 });
 
-onDashboardMessage(event=>{if(event.data.type==='dashboard-speaking'){speechPlaying=!!event.data.active;voice.title=speechPlaying?'Speaking':processing?'Thinking':'Start or stop voice input';syncActivity();}});
 
-function formatResponse(node,text){
+export function formatResponse(node,text){
  node.replaceChildren();let code=null;
  for(const line of text.split('\n')){
   if(line.startsWith('```')){if(code){code=null;}else{code=document.createElement('pre');node.append(code);}continue;}
@@ -187,3 +174,5 @@ if(!nativeHost){
  }
  pollDashboard();
 }
+
+window.addEventListener('morpheus-session-command',event=>{if(!nativeHost&&browserGateway)fetch('/api/dashboard',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(event.detail)}).then(r=>{if(!r.ok)throw Error();}).catch(()=>window.dispatchEvent(new CustomEvent('morpheus-gateway-event',{detail:{type:'sessions-error',message:'Gateway request failed.'}})));});

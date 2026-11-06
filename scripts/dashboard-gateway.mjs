@@ -33,8 +33,12 @@ export async function verifyPersonality(client,agentId){
  }
 }
 export async function run(client, output=emit){
- let session,model,personalityVerified=false,ready=false,thinking=false,runId=null;
- let responses=[];
+ let session,model,personalityVerified=false,ready=false,thinking=false,runId=null,submitting=false;
+ let responses=[],selectedSession=null,chatMessages=[],chatRun=null,chatThinking=false,chatPending=false,catalogModels=[],agentId='main',rosterAgents=[];
+ const chatState=()=>output({type:'sessions-conversation',key:selectedSession,messages:chatMessages,thinking:chatThinking,ready,models:catalogModels,reasoning:rosterAgents.find(a=>selectedSession?.startsWith(`agent:${a.id}:`))?.thinkingLevels||[]});
+ const ordinary=s=>s.key!==session&&!s.key.endsWith(':dashboard')&&s.label!=='dashboard';
+ async function listSessions(){const data=await client.request('sessions.list',{});const sessions=(data.sessions||[]).filter(ordinary);output({type:'sessions-list',ready,sessions});return sessions;}
+ async function loadChat(){const data=await client.request('chat.history',{sessionKey:selectedSession,limit:200});chatMessages=(data.messages||[]).filter(m=>['assistant','user'].includes(m.role)).map((m,i)=>({id:String(m.id||m.timestamp||i),role:m.role,text:typeof m.content==='string'?m.content:(m.content||[]).filter(p=>p.type==='text').map(p=>p.text||'').join('')}));chatState();}
  const publish=()=>output({type:'dashboard-state',ready,thinking,responses,model,personalityVerified,sessionLabel:'dashboard'});
  async function history(){
   const data=await client.request('chat.history',{sessionKey:session,limit:100});
@@ -43,9 +47,9 @@ export async function run(client, output=emit){
  async function initialize(){
   ready=false;thinking=false;publish();
   const catalog=await client.request('models.list',{});
-  model=selectModel(catalog.models||[]);
+  catalogModels=catalog.models||[];model=selectModel(catalogModels);
   const roster=await client.request('agents.list',{});
-  const agentId=roster.agents?.find(a=>a.id==='morphy')?.id||roster.defaultId||'main';
+  rosterAgents=roster.agents||[];agentId=roster.agents?.find(a=>a.id==='morphy')?.id||roster.defaultId||'main';
   await verifyPersonality(client,agentId);personalityVerified=true;
   const threads=await client.request('sessions.list',{});
   const existing=(threads.sessions||[]).find(s=>(s.label==='dashboard'&&s.key.startsWith(`agent:${agentId}:`))||s.key===`agent:${agentId}:dashboard`);
@@ -54,20 +58,52 @@ export async function run(client, output=emit){
   if(!session)throw Error('Gateway did not return a dashboard session key.');
   const patched=await client.request('sessions.patch',{key:session,label:'dashboard',model});
   if(patched?.ok===false)throw Error('Dashboard model selection failed.');
-  await history();ready=true;publish();
+  await history();ready=true;publish();await listSessions();if(selectedSession)await loadChat();
  }
  async function command(data){
   if(!ready)throw Error('Dashboard Gateway connection is not ready.');
+  if(data.type.startsWith('sessions-')||data.type.startsWith('conversation-')){
+   if(data.type==='sessions-list'){await listSessions();return;}
+   if(data.type==='sessions-create'){
+    const created=await client.request('sessions.create',{key:`chat-${randomUUID()}`,agentId});if(!created.key||created.key===session)throw Error('Session creation failed.');selectedSession=created.key;chatThinking=false;chatRun=null;await listSessions();await loadChat();return;
+   }
+   if(data.type==='sessions-open-dashboard'){selectedSession=null;chatState();return;}
+   const sessions=await listSessions();
+   const key=data.key||selectedSession;
+   if(!sessions.some(s=>s.key===key)||key===session)throw Error('Select an ordinary Chat session first.');
+   if(data.type==='sessions-select'){selectedSession=key;chatRun=null;chatThinking=false;await loadChat();return;}
+   if(data.type==='sessions-rename'){if(typeof data.name!=='string'||!data.name.trim()||data.name.length>120)throw Error('Invalid session name.');await client.request('sessions.patch',{key,label:data.name.trim()});await listSessions();return;}
+   if(data.type==='sessions-delete'){if(data.confirmed!==true)throw Error('Deletion requires confirmation.');await client.request('sessions.delete',{key});if(selectedSession===key){selectedSession=null;chatMessages=[];chatState();}await listSessions();return;}
+   if(key!==selectedSession)throw Error('Conversation changed. Select it again.');
+   if(data.type==='conversation-patch'){
+    if(data.model){if(!catalogModels.some(m=>`${m.provider}/${m.id}`===data.model))throw Error('Model unavailable.');await client.request('sessions.patch',{key,model:data.model});}
+    else if(data.thinkingLevel){const levels=rosterAgents.find(a=>key.startsWith(`agent:${a.id}:`))?.thinkingLevels||[];if(!levels.includes(data.thinkingLevel))throw Error('Reasoning level unavailable.');await client.request('sessions.patch',{key,thinkingLevel:data.thinkingLevel});}
+    return;
+   }
+   if(data.type==='conversation-stop'){await client.request('chat.abort',{sessionKey:key,...(chatRun?{runId:chatRun}:{})});return;}
+   if(data.type==='conversation-send'){
+    if(chatThinking||chatPending)throw Error('Conversation is already responding.');if(typeof data.text!=='string'||!data.text.trim()||data.text.length>32000)throw Error('Invalid message.');
+    chatRun=randomUUID();const sendingRun=chatRun;chatPending=true;try{await client.request('chat.send',{sessionKey:key,message:data.text,idempotencyKey:sendingRun});if(selectedSession===key&&chatRun===sendingRun){chatThinking=true;chatState();}output({type:'sessions-submitted',key});}catch{if(selectedSession===key){chatThinking=false;chatState();}throw Error('Message not accepted.');}finally{chatPending=false;}return;
+   }
+   throw Error('Unsupported session command.');
+  }
   if(data.type==='dashboard-stop'){await client.request('chat.abort',{sessionKey:session,...(runId?{runId}:{})});return;}
   if(data.type!=='dashboard-send'||typeof data.text!=='string'||!data.text.trim()||data.text.length>32000)throw Error('Invalid dashboard message.');
-  if(thinking)throw Error('MORPHY is already responding.');
-  thinking=true;runId=randomUUID();publish();
+  if(thinking||submitting)throw Error('MORPHY is already responding.');
+  submitting=true;runId=randomUUID();const sendingRun=runId;
   try{
-   await client.request('chat.send',{sessionKey:session,message:data.text,idempotencyKey:runId});
+   await client.request('chat.send',{sessionKey:session,message:data.text,idempotencyKey:sendingRun});
+   if(runId===sendingRun){thinking=true;publish();}
    output({type:'dashboard-submitted'});
-  }catch{thinking=false;publish();throw Error('Message was not accepted by Gateway. Check its connection and model authorization.');}
+  }catch{thinking=false;publish();throw Error('Message was not accepted by Gateway. Check its connection and model authorization.');}finally{submitting=false;}
  }
  async function event(frame){
+  if(frame.event==='chat'&&selectedSession&&frame.payload?.sessionKey===selectedSession){
+   const p=frame.payload;if(chatRun&&p.runId!==chatRun)return;
+   if(p.state==='delta'){chatThinking=true;const id=`live-${p.runId}`;let message=chatMessages.find(m=>m.id===id);if(!message){message={id,role:'assistant',text:'',streaming:true};chatMessages.push(message);}const text=p.deltaText??assistantText(p.message);message.text=p.replace===false?message.text+text:text;chatState();}
+   else if(['final','aborted','error'].includes(p.state)){chatThinking=false;chatRun=null;try{await loadChat();}catch{chatState();output({type:'sessions-error',message:'Conversation history refresh failed.'});}if(p.state==='error')output({type:'sessions-error',message:'Gateway generation failed.'});}
+   return;
+  }
   if(frame.event!=='chat'||frame.payload?.sessionKey!==session)return;
   const p=frame.payload;
   if(runId&&p.runId!==runId)return;
@@ -86,7 +122,7 @@ export async function run(client, output=emit){
    if(p.state==='error')output({type:'dashboard-error',message:'Gateway generation failed. Check the configured model and OAuth authorization in OpenClaw.'});
   }
  }
- return {initialize,command,event,disconnect(){ready=false;thinking=false;publish();}};
+ return {initialize,command,event,disconnect(){ready=false;thinking=false;chatThinking=false;publish();output({type:'sessions-list',ready:false,sessions:[]});chatState();}};
 }
 async function main(){
  const windows=process.platform==='win32';
@@ -113,7 +149,11 @@ async function main(){
   onConnectError:()=>{adapter.disconnect();emit({type:'dashboard-error',message:'Local Gateway unavailable or authorization requires attention in OpenClaw.'});}
  });
  adapter=await run(client);
- readline.createInterface({input:process.stdin}).on('line',line=>{try{adapter.command(JSON.parse(line)).catch(error=>emit({type:'dashboard-error',message:['Dashboard Gateway connection is not ready.','Invalid dashboard message.','MORPHY is already responding.','Message was not accepted by Gateway. Check its connection and model authorization.'].includes(error.message)?error.message:'Gateway command failed. Check the existing OpenClaw connection.'}));}catch{}}).on('close',()=>{client.stop();process.exit(0);});
+ readline.createInterface({input:process.stdin}).on('line',line=>{
+  try{
+   const command=JSON.parse(line);adapter.command(command).catch(()=>emit({type:command.type?.startsWith('sessions-')||command.type?.startsWith('conversation-')?'sessions-error':'dashboard-error',message:'Gateway action failed. Check connection, permissions and the current conversation.'}));
+  }catch{}
+ }).on('close',()=>{client.stop();process.exit(0);});
  client.start();
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)main().catch(error=>{emit({type:'dashboard-state',ready:false,thinking:false,responses:[]});emit({type:'dashboard-error',message:error.message.startsWith('GPT-6')||error.message.startsWith('This preview')||error.message.startsWith('Gateway credentials')?error.message:'Gateway bridge could not start. Ensure Node.js and your configured OpenClaw CLI are available in this terminal.'});process.exitCode=1;});

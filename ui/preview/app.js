@@ -2,35 +2,17 @@ import('./dashboard-app.js').catch(error=>{
  document.querySelector('#orb-status').textContent='Dashboard assets could not load. Stop and restart the preview server, then refresh.';
  console.error(error);
 });
-import { sidebarBreakpoint } from './layout.js';
-const icons={home:'<path d="m3 11 9-8 9 8v10h-6v-7H9v7H3z"/>',chat:'<path d="M7 4h10a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-6l-6 3v-3a4 4 0 0 1-2-4V8a4 4 0 0 1 4-4z"/>',schedule:'<circle cx="12" cy="12" r="10"/><path d="M12 5v7l5 3"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',settings:'<path d="M5 3v6m0 4v8M12 3v12m0 4v2M19 3v2m0 4v12"/><path d="M2 9h6v4H2zM9 15h6v4H9zM16 5h6v4h-6z"/>',notifications:'<path d="M5 17V9a7 7 0 0 1 14 0v8l2 2H3zM10 22h4"/>','sidebar-toggle':'<rect x="2" y="3" width="20" height="18" rx="2"/><path d="M10 3v18"/>','search-toggle':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>','new-chat':'<path d="M12 3v18M3 12h18"/>',attach:'<path d="m9 13 6-6a3 3 0 0 1 4 4l-8 8a5 5 0 0 1-7-7l8-8a2 2 0 0 1 3 3l-8 8"/>',microphone:'<rect x="9" y="2" width="6" height="13" rx="3"/><path d="M6 10v3a6 6 0 0 0 12 0v-3M12 19v3M9 22h6"/>',send:'<path d="m3 10 18-7-7 18-3-8zM11 13 21 3"/>'};
+const icons={home:'<path d="m3 11 9-8 9 8v10h-6v-7H9v7H3z"/>',chat:'<path d="M7 4h10a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-6l-6 3v-3a4 4 0 0 1-2-4V8a4 4 0 0 1 4-4z"/>',schedule:'<circle cx="12" cy="12" r="10"/><path d="M12 5v7l5 3"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',settings:'<path d="M9 3h6l.7 3 2 .9 2.8-.9 3 5.2-2.2 2.1.1 2.2 2.1 2-3 5.2-2.9-.9-1.9 1-.7 3H9l-.7-3-2-1-2.8.9-3-5.2 2.1-2v-2.2L.5 11.2l3-5.2 2.8.9 2-.9z" transform="translate(2 0) scale(.83)"/><circle cx="12" cy="12" r="3"/>',notifications:'<path d="M5 17V9a7 7 0 0 1 14 0v8l2 2H3zM10 22h4"/>','sidebar-toggle':'<rect x="2" y="3" width="20" height="18" rx="2"/><path d="M10 3v18"/>','search-toggle':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>','new-chat':'<path d="M12 3v18M3 12h18"/>',attach:'<path d="m9 13 6-6a3 3 0 0 1 4 4l-8 8a5 5 0 0 1-7-7l8-8a2 2 0 0 1 3 3l-8 8"/>',microphone:'<rect x="9" y="2" width="6" height="13" rx="3"/><path d="M6 10v3a6 6 0 0 0 12 0v-3M12 19v3M9 22h6"/>',send:'<path d="m3 10 18-7-7 18-3-8zM11 13 21 3"/>'};
 for(const [name,path] of Object.entries(icons)){const el=document.querySelector(`button[data-page="${name}"]`)||document.querySelector(`button[id="${name}"]`);if(el&&name!=='home')el.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;}
-const $=id=>document.getElementById(id);let page='home';let sidebarOpen=innerWidth>=sidebarBreakpoint;
-const narrowLayout=matchMedia(`(max-width: ${sidebarBreakpoint-1}px)`);
-let wideSidebarOpen=true;
-function presentSidebar(){
- $('chat').classList.toggle('sidebar-collapsed',!sidebarOpen);
- $('sidebar-toggle').setAttribute('aria-expanded',String(page==='chat'&&sidebarOpen));
- document.querySelector('.conversation-panel').inert=page==='chat'&&sidebarOpen&&narrowLayout.matches;
- $('sidebar-scrim').hidden=!(page==='chat'&&sidebarOpen&&narrowLayout.matches);
-}
-narrowLayout.addEventListener('change',()=>{sidebarOpen=narrowLayout.matches?false:wideSidebarOpen;presentSidebar();});
-function navigate(next){page=next;for(const name of ['home','chat']){$(name).hidden=name!==next;const b=document.querySelector(`[data-page="${name}"]`);if(name===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}$('sidebar-toggle').disabled=next!=='chat';presentSidebar();}
+const $=id=>document.getElementById(id);let page='home';
+function navigate(next){page=next;for(const name of ['home','chat']){$(name).hidden=name!==next;const b=document.querySelector(`[data-page="${name}"]`);if(name===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}if(next==='chat')window.dispatchEvent(new Event('morpheus-chat-dashboard'));}
 for(const b of document.querySelectorAll('[data-page]'))b.onclick=()=>navigate(b.dataset.page);
-$('sidebar-toggle').onclick=()=>{if(page!=='chat')return;sidebarOpen=!sidebarOpen;if(!narrowLayout.matches)wideSidebarOpen=sidebarOpen;presentSidebar();};
-$('sidebar-scrim').onclick=()=>{sidebarOpen=false;presentSidebar();$('sidebar-toggle').focus();};
-function handoff(title,text='This function uses the existing native Windows implementation. Open it in MORPHEUS for real sessions, settings and Gateway access. This browser preview has no native connection, credentials or settings storage.'){$('handoff-title').textContent=title;$('handoff-text').textContent=text;$('handoff').showModal();}
+function handoff(title,text='This action is provided by the native Windows application. The browser preview does not implement it.'){$('handoff-title').textContent=title;$('handoff-text').textContent=text;$('handoff').showModal();}
 for(const b of document.querySelectorAll('[data-handoff]'))b.onclick=()=>handoff(b.dataset.handoff);
 for(const [id,title] of Object.entries({settings:'Separate Settings window',connection:'Connection details',notifications:'Notifications',attach:'Attachments',microphone:'Phase 3 speech input'}))$(id).onclick=()=>handoff(title);
 for(const [id,title] of Object.entries({'model-picker':'Model selection unavailable','reasoning-picker':'Reasoning options unavailable'}))$(id).onclick=()=>handoff(title,'This browser preview has no connected model catalog. Use the native MORPHEUS composer to select actual configured models and supported reasoning levels for the active session. No model or reasoning setting has been changed.');
 $('close-dialog').onclick=()=>$('handoff').close();
-$('new-chat').onclick=()=>{$('draft').value='';if(narrowLayout.matches){sidebarOpen=false;presentSidebar();}$('draft').focus();$('session-note').textContent='New composition preview. Creating a persistent session requires the Windows app.';};
 $('search-toggle').onclick=()=>{$('search').hidden=!$('search').hidden;if(!$('search').hidden)$('search').focus();};
-$('search').oninput=()=>{$('session-note').textContent=$('search').value?'No browser sessions match. Native session search is available in Windows.':'Native sessions appear in the Windows app.';};
-document.querySelector('.composer').onsubmit=e=>{e.preventDefault();if($('draft').value.trim())handoff('Message not sent','Your draft remains here. This preview does not send messages or fabricate assistant responses. Use the native MORPHEUS chat to reach the actual agent.');};
-$('draft').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();document.querySelector('.composer').requestSubmit();}};
-$('draft').oninput=()=>{$('draft').style.height='auto';$('draft').style.height=Math.min(160,$('draft').scrollHeight)+'px';};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(narrowLayout.matches&&sidebarOpen&& !$('handoff').open){sidebarOpen=false;presentSidebar();$('sidebar-toggle').focus();}}});
 navigate('home');
 
 // Decorative feedback only: does not activate voice or submit a request.
@@ -44,4 +26,6 @@ coreTouch.addEventListener('click',()=>{
  corePulseTimer=setTimeout(()=>coreTouch.classList.remove('pressed'),650);
 });
 
-new MutationObserver(()=>{$('empty-conversation').hidden=$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});
+new MutationObserver(()=>{$('empty-conversation').hidden=$('chat').classList.contains('session-open')&&$('messages').childElementCount>0;}).observe($('messages'),{childList:true,subtree:true});
+
+import('./chat-sessions.js').catch(()=>{$('session-note').textContent='Session controls could not load. Restart the preview and refresh.';});

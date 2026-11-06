@@ -20,16 +20,12 @@ with sync_playwright() as p:
  assert 'Streamed' in page.locator('.dashboard-response').inner_text();assert 'A real draft' not in page.locator('.dashboard-responses').inner_text()
  page.evaluate("()=>deliver({type:'dashboard-state',ready:true,thinking:false,responses:[{id:'reply',text:'## Answer\\n**Streamed** text',streaming:false}]})")
  assert page.locator('.dashboard-response strong').inner_text()=='Streamed'
- page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'listening',transcript:'Live words'})");assert page.locator('.dashboard-transcript').inner_text()=='Live words'
- page.screenshot(path=str(out/'listening-fixture.png'))
- assert page.get_by_role('button',name='Start or stop voice input').inner_text()=='M O R P H Y'
- page.evaluate("()=>deliver({type:'dashboard-voice-state',state:'thinking',transcript:''})");assert page.locator('.dashboard-transcript').evaluate('(node)=>!node.classList.contains("visible")')
+ assert page.locator('.morphy-nameplate').inner_text()=='M O R P H Y'
+ assert page.get_by_role('button',name='Start or stop voice input').count()==0
  page.evaluate("()=>deliver({type:'dashboard-metrics',timestamp:1000,cpu:{usagePercent:25},ram:{usagePercent:50},gpu:20})");assert page.locator('.dashboard-legend').is_hidden()
  page.get_by_label('Performance metric').select_option(label='RAM');assert page.locator('.dashboard-legend').is_hidden()
  page.get_by_label('Performance metric').select_option(label='CPU')
  assert page.locator('.dashboard-graph [data-metric]').evaluate_all('(lines)=>lines.filter(line=>line.style.display!=="none" && line.getAttribute("d")).length===1')
- assert page.locator('.dashboard-visual-board .dashboard-transcript').count()==1
- page.wait_for_function("document.querySelector('.dashboard-transcript').textContent === ''")
  assert page.locator('.dashboard-legend').is_hidden()
  page.evaluate("()=>deliver({type:'dashboard-permissions',preset:'Strict',connected:true})")
  assert page.get_by_role('button',name='Lock Down',exact=True).get_attribute('aria-pressed')=='true'
@@ -48,5 +44,5 @@ with sync_playwright() as p:
  page.locator('.dashboard-gallery button').click();assert page.locator('.dashboard-viewer').is_visible();page.locator('.dashboard-viewer button').click()
  page.screenshot(path=str(out/'fixture-desktop.png'))
  page.set_viewport_size({'width':390,'height':800});page.wait_for_timeout(100);assert not errors,errors;page.screenshot(path=str(out/'fixture-compact.png'))
- print('PASS host-protocol fixture: submission acknowledgement, assistant-only formatting, transcription clear, metrics selector, preset command, cancellation command, image viewer, resize. This does not test native services.')
+ print('PASS host-protocol fixture: submission acknowledgement, assistant-only formatting, decorative nameplate, metrics selector, preset command, cancellation command, image viewer, resize. This does not test native services.')
  b.close()

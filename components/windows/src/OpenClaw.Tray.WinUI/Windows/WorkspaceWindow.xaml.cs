@@ -31,6 +31,7 @@ public sealed partial class WorkspaceWindow : WindowEx
     private readonly WorkspaceNavigationHistory _navigation = new();
     private readonly WorkspaceSessionOrder _sessionOrder = new();
     private readonly ChatPage _chat = new();
+    private readonly MorphyAnimatedCore _sessionDashboardCore = new() { Width = 298, Height = 320, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
     private readonly GatewayStatusContent _gatewayStatusContent = new();
     private readonly Flyout _gatewayStatusFlyout = new() { Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.TopEdgeAlignedLeft };
     private readonly MenuFlyoutItem _connectionStatusItem = new();
@@ -330,8 +331,11 @@ public sealed partial class WorkspaceWindow : WindowEx
         _commandExecutor.Execute(command, OnSettingsWorkspaceRoute, () => SettingsSaved?.Invoke(this, EventArgs.Empty));
     }
 
-    internal void SelectSession(string sessionKey) =>
+    internal void SelectSession(string sessionKey)
+    {
+        if (sessionKey == CurrentApp.DashboardSessionKey || sessionKey == "dashboard" || sessionKey.EndsWith(":dashboard", StringComparison.Ordinal)) return;
         Navigate(new(WorkspacePageId.Chat, sessionKey));
+    }
 
     private void OnChatSessionSelected(string sessionKey, string? previousSessionKey)
     {
@@ -418,6 +422,7 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void RenderDestination()
     {
+        _sessionDashboardCore.SetActive(false);
         SynchronizeSpeechSession();
         _chat.InvalidatePendingSessionNavigation();
         _chat.RetainNativeSetupForDestination(Destination);
@@ -432,7 +437,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         HomeCore.SetActive(isHome);
         NavView.Visibility = isHome ? Visibility.Collapsed : Visibility.Visible;
         EmptyHome.Visibility = isHome ? Visibility.Visible : Visibility.Collapsed;
-        ChatToolbar.Visibility = Destination.Page == WorkspacePageId.Chat ? Visibility.Visible : Visibility.Collapsed;
+        ChatToolbar.Visibility = Destination.Page == WorkspacePageId.Chat && Destination.SessionKey is not null ? Visibility.Visible : Visibility.Collapsed;
         CollapsePaneButton.IsEnabled = Destination.Page == WorkspacePageId.Chat;
         ApplyAdaptiveSidebar(force: true);
         if (isHome)
@@ -441,6 +446,18 @@ public sealed partial class WorkspaceWindow : WindowEx
             UpdateNavigationSelection();
             UpdateHistoryButtons();
             SignalContentReady(EmptyHome);
+            return;
+        }
+        if (Destination.Page == WorkspacePageId.Chat && Destination.SessionKey is null)
+        {
+            _chat.SuspendSurface();
+            ContentHost.Children.Clear();
+            ContentHost.Children.Add(_sessionDashboardCore);
+            _sessionDashboardCore.SetActive(true);
+            RefreshSidebar();
+            UpdateNavigationSelection();
+            UpdateHistoryButtons();
+            SignalContentReady(_sessionDashboardCore);
             return;
         }
         if (Destination.Page == WorkspacePageId.Chat && Destination.SessionKey is { } sessionKey)
@@ -695,7 +712,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         _agentId = WorkspaceProjection.SelectedAgentId(_state.AgentsList, agents, _agentId);
         RestoreAssistantSelection();
         AssistantSelector.PlaceholderText = Text(agents.Count == 0 ? "NoAgents" : "SelectAssistant");
-        var sessions = WorkspaceProjection.Sessions(_state.Sessions, _agentId, _sessionOrder);
+        var sessions = WorkspaceProjection.Sessions(_state.Sessions.Where(session => session.Key != CurrentApp.DashboardSessionKey && session.Key != "dashboard" && !session.Key.EndsWith(":dashboard", StringComparison.Ordinal)).ToArray(), _agentId, _sessionOrder);
         SyncSessionItems(_sessionItems, sessions, "WorkspaceSession", NavView.MenuItems.IndexOf(SessionsEmpty) + 1);
         SessionsEmpty.Content = Text("NoSessions");
         SessionsEmpty.Visibility = sessions.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
@@ -945,7 +962,7 @@ public sealed partial class WorkspaceWindow : WindowEx
 
     private void LeaveSession(string key)
     {
-        var next = WorkspaceProjection.Sessions(_state.Sessions, _agentId, _sessionOrder)
+        var next = WorkspaceProjection.Sessions(_state.Sessions.Where(session => session.Key != CurrentApp.DashboardSessionKey && session.Key != "dashboard" && !session.Key.EndsWith(":dashboard", StringComparison.Ordinal)).ToArray(), _agentId, _sessionOrder)
             .FirstOrDefault(session => session.Key != key);
         var wasChatDestination = _navigation.ChatDestination.SessionKey == key;
         var wasCurrent = _navigation.RemoveSession(key, next?.Key);
@@ -1099,11 +1116,12 @@ public sealed partial class WorkspaceWindow : WindowEx
     private bool? _sidebarOverlay;
     private void ApplyAdaptiveSidebar(bool force = false)
     {
-        var overlay = Root.ActualWidth > 0 && Root.ActualWidth < MorpheusLayout.SidebarBreakpoint;
+        var dashboard = Destination.Page == WorkspacePageId.Chat && Destination.SessionKey is null;
+        var overlay = !dashboard && Root.ActualWidth > 0 && Root.ActualWidth < MorpheusLayout.SidebarBreakpoint;
         NavView.PaneDisplayMode = overlay ? NavigationViewPaneDisplayMode.LeftMinimal : NavigationViewPaneDisplayMode.Left;
         if (force || _sidebarOverlay != overlay || Destination.Page != WorkspacePageId.Chat)
         {
-            NavView.IsPaneOpen = Destination.Page == WorkspacePageId.Chat && !overlay && _conversationPaneOpen;
+            NavView.IsPaneOpen = Destination.Page == WorkspacePageId.Chat && (dashboard || !overlay && _conversationPaneOpen);
             NavView.IsPaneVisible = NavView.IsPaneOpen;
         }
         _sidebarOverlay = overlay;
@@ -1117,7 +1135,7 @@ public sealed partial class WorkspaceWindow : WindowEx
         AutomationProperties.SetHelpText(CollapsePaneButton, NavView.IsPaneOpen ? Text("CollapseChats") : Text("ExpandChats"));
     }
     private void OnHomeClick(object sender, RoutedEventArgs e) => Navigate(new(WorkspacePageId.Home), preserveConversation: false);
-    private void OnChatClick(object sender, RoutedEventArgs e) => Navigate(_navigation.ChatDestination);
+    private void OnChatClick(object sender, RoutedEventArgs e) => Navigate(new(WorkspacePageId.Chat), preserveConversation: false);
     private void OnSchedulerClick(object sender, RoutedEventArgs e) => OpenCompanion(CompanionPageId.Cron);
     private void OnSettingsClick(object sender, RoutedEventArgs e) => OpenCompanion(CompanionPageId.Settings);
     private void OnStatusClick(object sender, RoutedEventArgs e) => _gatewayStatusFlyout.ShowAt(ConnectionButton);
@@ -1246,6 +1264,7 @@ public sealed partial class WorkspaceWindow : WindowEx
     {
         IsClosed = true;
         HomeCore.Dispose();
+        _sessionDashboardCore.Dispose();
         _identity.SetConnection(null, ConnectionStatus.Disconnected);
         _state.PropertyChanged -= OnStateChanged;
         _notifications.Changed -= OnNotificationsChanged;

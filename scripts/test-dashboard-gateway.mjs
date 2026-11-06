@@ -17,7 +17,7 @@ const client={async request(method,params){calls.push({method,params});switch(me
  default:throw Error(method);
 }}};
 const adapter=await run(client,e=>events.push(structuredClone(e)));await adapter.initialize();
-assert.equal(events.at(-1).ready,true);assert.equal(events.at(-1).model,'openai-codex/gpt-6-luna');assert.equal(events.at(-1).personalityVerified,true);
+assert.equal(events.findLast(e=>e.type==='dashboard-state').ready,true);assert.equal(events.findLast(e=>e.type==='dashboard-state').model,'openai-codex/gpt-6-luna');assert.equal(events.findLast(e=>e.type==='dashboard-state').personalityVerified,true);
 assert.equal(calls.some(c=>c.method==='agents.files.set'),false);
 assert.deepEqual(calls.find(c=>c.method==='sessions.create').params,{key:'dashboard',agentId:'main'});
 assert.equal(calls.find(c=>c.method==='sessions.patch').params.model,'openai-codex/gpt-6-luna');

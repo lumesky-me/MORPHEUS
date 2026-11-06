@@ -634,3 +634,22 @@ dialog button{
 /* Shared optical bounds: centered 19px outline icons, unchanged hit targets. */
 .titlebar [data-page="chat"] svg,.titlebar #settings svg{display:block;width:19px;height:19px;stroke-width:1.6}
 #connection .status{width:7px;height:7px;outline-offset:3px;outline-color:color-mix(in srgb,currentColor 45%,transparent);box-shadow:0 0 7px color-mix(in srgb,currentColor 18%,transparent)}
+
+/* Session dashboard and its dedicated conversation view share the existing shell. */
+#chat{padding-top:0}
+#chat .conversations{top:auto;display:flex;flex-direction:column;flex-shrink:0;position:relative;transform:none}
+#chat:not(.session-open) .composer-dock{display:none}
+#chat .chat-toolbar,#chat .sidebar-scrim{display:none}
+#chat #session-list{overflow:auto}
+.session-row{display:flex;align-items:center;gap:4px;padding:4px 8px}
+.session-row .session-open{flex:1;min-width:0;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.session-row button{border:0;background:transparent;padding:8px;color:inherit}
+.session-row button:hover{background:#aa8fbe12}
+#chat #messages{overflow:auto;min-height:0;padding:20px 24px;flex:1}
+.session-message{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin-bottom:20px}
+.session-message.user{color:var(--muted)}
+#chat:not(.session-open) #messages{display:none}
+#chat .composer-caption{display:none}
+@media(max-width:600px){#chat{flex-direction:column}#chat .conversations{width:100%;max-height:180px;min-height:100px;border-right:0;border-bottom:1px solid var(--border)}#chat .conversation-panel{min-height:350px;flex:1}}
+
+#chat .session-empty:has(#session-note:empty){display:none}
